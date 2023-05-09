@@ -33,7 +33,7 @@ type OrganizationsApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param CreateOrganizationApiParams - Parameters for the request
-	@return CreateOrganizationApiRequest}}
+	@return CreateOrganizationApiRequest
 	*/
 	CreateOrganizationWithParams(ctx context.Context, args *CreateOrganizationApiParams) CreateOrganizationApiRequest
 
@@ -56,7 +56,7 @@ type OrganizationsApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param CreateOrganizationInvitationApiParams - Parameters for the request
-	@return CreateOrganizationInvitationApiRequest}}
+	@return CreateOrganizationInvitationApiRequest
 	*/
 	CreateOrganizationInvitationWithParams(ctx context.Context, args *CreateOrganizationInvitationApiParams) CreateOrganizationInvitationApiRequest
 
@@ -83,7 +83,7 @@ type OrganizationsApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param DeleteOrganizationApiParams - Parameters for the request
-	@return DeleteOrganizationApiRequest}}
+	@return DeleteOrganizationApiRequest
 	*/
 	DeleteOrganizationWithParams(ctx context.Context, args *DeleteOrganizationApiParams) DeleteOrganizationApiRequest
 
@@ -107,7 +107,7 @@ type OrganizationsApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param DeleteOrganizationInvitationApiParams - Parameters for the request
-	@return DeleteOrganizationInvitationApiRequest}}
+	@return DeleteOrganizationInvitationApiRequest
 	*/
 	DeleteOrganizationInvitationWithParams(ctx context.Context, args *DeleteOrganizationInvitationApiParams) DeleteOrganizationInvitationApiRequest
 
@@ -130,7 +130,7 @@ type OrganizationsApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param GetOrganizationApiParams - Parameters for the request
-	@return GetOrganizationApiRequest}}
+	@return GetOrganizationApiRequest
 	*/
 	GetOrganizationWithParams(ctx context.Context, args *GetOrganizationApiParams) GetOrganizationApiRequest
 
@@ -154,7 +154,7 @@ type OrganizationsApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param GetOrganizationInvitationApiParams - Parameters for the request
-	@return GetOrganizationInvitationApiRequest}}
+	@return GetOrganizationInvitationApiRequest
 	*/
 	GetOrganizationInvitationWithParams(ctx context.Context, args *GetOrganizationInvitationApiParams) GetOrganizationInvitationApiRequest
 
@@ -177,7 +177,7 @@ type OrganizationsApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param GetOrganizationSettingsApiParams - Parameters for the request
-	@return GetOrganizationSettingsApiRequest}}
+	@return GetOrganizationSettingsApiRequest
 	*/
 	GetOrganizationSettingsWithParams(ctx context.Context, args *GetOrganizationSettingsApiParams) GetOrganizationSettingsApiRequest
 
@@ -200,7 +200,7 @@ type OrganizationsApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param ListOrganizationInvitationsApiParams - Parameters for the request
-	@return ListOrganizationInvitationsApiRequest}}
+	@return ListOrganizationInvitationsApiRequest
 	*/
 	ListOrganizationInvitationsWithParams(ctx context.Context, args *ListOrganizationInvitationsApiParams) ListOrganizationInvitationsApiRequest
 
@@ -230,7 +230,7 @@ To use this resource, the requesting API Key must have the Organization Member r
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param ListOrganizationProjectsApiParams - Parameters for the request
-	@return ListOrganizationProjectsApiRequest}}
+	@return ListOrganizationProjectsApiRequest
 	*/
 	ListOrganizationProjectsWithParams(ctx context.Context, args *ListOrganizationProjectsApiParams) ListOrganizationProjectsApiRequest
 
@@ -253,7 +253,7 @@ To use this resource, the requesting API Key must have the Organization Member r
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param ListOrganizationUsersApiParams - Parameters for the request
-	@return ListOrganizationUsersApiRequest}}
+	@return ListOrganizationUsersApiRequest
 	*/
 	ListOrganizationUsersWithParams(ctx context.Context, args *ListOrganizationUsersApiParams) ListOrganizationUsersApiRequest
 
@@ -275,7 +275,7 @@ To use this resource, the requesting API Key must have the Organization Member r
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param ListOrganizationsApiParams - Parameters for the request
-	@return ListOrganizationsApiRequest}}
+	@return ListOrganizationsApiRequest
 	*/
 	ListOrganizationsWithParams(ctx context.Context, args *ListOrganizationsApiParams) ListOrganizationsApiRequest
 
@@ -298,7 +298,7 @@ To use this resource, the requesting API Key must have the Organization Member r
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param RenameOrganizationApiParams - Parameters for the request
-	@return RenameOrganizationApiRequest}}
+	@return RenameOrganizationApiRequest
 	*/
 	RenameOrganizationWithParams(ctx context.Context, args *RenameOrganizationApiParams) RenameOrganizationApiRequest
 
@@ -321,7 +321,7 @@ To use this resource, the requesting API Key must have the Organization Member r
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param UpdateOrganizationInvitationApiParams - Parameters for the request
-	@return UpdateOrganizationInvitationApiRequest}}
+	@return UpdateOrganizationInvitationApiRequest
 	*/
 	UpdateOrganizationInvitationWithParams(ctx context.Context, args *UpdateOrganizationInvitationApiParams) UpdateOrganizationInvitationApiRequest
 
@@ -345,7 +345,7 @@ To use this resource, the requesting API Key must have the Organization Member r
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param UpdateOrganizationInvitationByIdApiParams - Parameters for the request
-	@return UpdateOrganizationInvitationByIdApiRequest}}
+	@return UpdateOrganizationInvitationByIdApiRequest
 	*/
 	UpdateOrganizationInvitationByIdWithParams(ctx context.Context, args *UpdateOrganizationInvitationByIdApiParams) UpdateOrganizationInvitationByIdApiRequest
 
@@ -368,7 +368,7 @@ To use this resource, the requesting API Key must have the Organization Member r
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param UpdateOrganizationSettingsApiParams - Parameters for the request
-	@return UpdateOrganizationSettingsApiRequest}}
+	@return UpdateOrganizationSettingsApiRequest
 	*/
 	UpdateOrganizationSettingsWithParams(ctx context.Context, args *UpdateOrganizationSettingsApiParams) UpdateOrganizationSettingsApiRequest
 

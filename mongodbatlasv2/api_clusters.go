@@ -36,7 +36,7 @@ type ClustersApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param GetClusterAdvancedConfigurationApiParams - Parameters for the request
-	@return GetClusterAdvancedConfigurationApiRequest}}
+	@return GetClusterAdvancedConfigurationApiRequest
 	*/
 	GetClusterAdvancedConfigurationWithParams(ctx context.Context, args *GetClusterAdvancedConfigurationApiParams) GetClusterAdvancedConfigurationApiRequest
 
@@ -60,7 +60,7 @@ type ClustersApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param GetClusterStatusApiParams - Parameters for the request
-	@return GetClusterStatusApiRequest}}
+	@return GetClusterStatusApiRequest
 	*/
 	GetClusterStatusWithParams(ctx context.Context, args *GetClusterStatusApiParams) GetClusterStatusApiRequest
 
@@ -84,7 +84,7 @@ type ClustersApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param GetSampleDatasetLoadStatusApiParams - Parameters for the request
-	@return GetSampleDatasetLoadStatusApiRequest}}
+	@return GetSampleDatasetLoadStatusApiRequest
 	*/
 	GetSampleDatasetLoadStatusWithParams(ctx context.Context, args *GetSampleDatasetLoadStatusApiParams) GetSampleDatasetLoadStatusApiRequest
 
@@ -107,7 +107,7 @@ type ClustersApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param ListCloudProviderRegionsApiParams - Parameters for the request
-	@return ListCloudProviderRegionsApiRequest}}
+	@return ListCloudProviderRegionsApiRequest
 	*/
 	ListCloudProviderRegionsWithParams(ctx context.Context, args *ListCloudProviderRegionsApiParams) ListCloudProviderRegionsApiRequest
 
@@ -129,7 +129,7 @@ type ClustersApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param ListClustersForAllProjectsApiParams - Parameters for the request
-	@return ListClustersForAllProjectsApiRequest}}
+	@return ListClustersForAllProjectsApiRequest
 	*/
 	ListClustersForAllProjectsWithParams(ctx context.Context, args *ListClustersForAllProjectsApiParams) ListClustersForAllProjectsApiRequest
 
@@ -153,7 +153,7 @@ type ClustersApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param LoadSampleDatasetApiParams - Parameters for the request
-	@return LoadSampleDatasetApiRequest}}
+	@return LoadSampleDatasetApiRequest
 	*/
 	LoadSampleDatasetWithParams(ctx context.Context, args *LoadSampleDatasetApiParams) LoadSampleDatasetApiRequest
 
@@ -177,7 +177,7 @@ type ClustersApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param UpdateClusterAdvancedConfigurationApiParams - Parameters for the request
-	@return UpdateClusterAdvancedConfigurationApiRequest}}
+	@return UpdateClusterAdvancedConfigurationApiRequest
 	*/
 	UpdateClusterAdvancedConfigurationWithParams(ctx context.Context, args *UpdateClusterAdvancedConfigurationApiParams) UpdateClusterAdvancedConfigurationApiRequest
 
@@ -200,7 +200,7 @@ type ClustersApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param UpgradeSharedClusterApiParams - Parameters for the request
-	@return UpgradeSharedClusterApiRequest}}
+	@return UpgradeSharedClusterApiRequest
 	*/
 	UpgradeSharedClusterWithParams(ctx context.Context, args *UpgradeSharedClusterApiParams) UpgradeSharedClusterApiRequest
 
@@ -223,7 +223,7 @@ type ClustersApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param UpgradeSharedClusterToServerlessApiParams - Parameters for the request
-	@return UpgradeSharedClusterToServerlessApiRequest}}
+	@return UpgradeSharedClusterToServerlessApiRequest
 	*/
 	UpgradeSharedClusterToServerlessWithParams(ctx context.Context, args *UpgradeSharedClusterToServerlessApiParams) UpgradeSharedClusterToServerlessApiRequest
 

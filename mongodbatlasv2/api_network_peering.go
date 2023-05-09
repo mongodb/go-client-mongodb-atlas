@@ -34,7 +34,7 @@ type NetworkPeeringApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param CreatePeeringConnectionApiParams - Parameters for the request
-	@return CreatePeeringConnectionApiRequest}}
+	@return CreatePeeringConnectionApiRequest
 	*/
 	CreatePeeringConnectionWithParams(ctx context.Context, args *CreatePeeringConnectionApiParams) CreatePeeringConnectionApiRequest
 
@@ -57,7 +57,7 @@ type NetworkPeeringApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param CreatePeeringContainerApiParams - Parameters for the request
-	@return CreatePeeringContainerApiRequest}}
+	@return CreatePeeringContainerApiRequest
 	*/
 	CreatePeeringContainerWithParams(ctx context.Context, args *CreatePeeringContainerApiParams) CreatePeeringContainerApiRequest
 
@@ -81,7 +81,7 @@ type NetworkPeeringApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param DeletePeeringConnectionApiParams - Parameters for the request
-	@return DeletePeeringConnectionApiRequest}}
+	@return DeletePeeringConnectionApiRequest
 	*/
 	DeletePeeringConnectionWithParams(ctx context.Context, args *DeletePeeringConnectionApiParams) DeletePeeringConnectionApiRequest
 
@@ -105,7 +105,7 @@ type NetworkPeeringApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param DeletePeeringContainerApiParams - Parameters for the request
-	@return DeletePeeringContainerApiRequest}}
+	@return DeletePeeringContainerApiRequest
 	*/
 	DeletePeeringContainerWithParams(ctx context.Context, args *DeletePeeringContainerApiParams) DeletePeeringContainerApiRequest
 
@@ -121,7 +121,7 @@ type NetworkPeeringApi interface {
 	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
 	@return DisablePeeringApiRequest
 	
-	Deprecated: Method have been deprecated. Please check the latest resource version for NetworkPeeringApi
+	Deprecated: this method has been deprecated. Please check the latest resource version for NetworkPeeringApi
 	*/
 	DisablePeering(ctx context.Context, groupId string) DisablePeeringApiRequest
 	/*
@@ -130,9 +130,9 @@ type NetworkPeeringApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param DisablePeeringApiParams - Parameters for the request
-	@return DisablePeeringApiRequest}}
+	@return DisablePeeringApiRequest
 
-	Deprecated: Method have been deprecated. Please check the latest resource version for NetworkPeeringApi
+	Deprecated: this method has been deprecated. Please check the latest resource version for NetworkPeeringApi
 	*/
 	DisablePeeringWithParams(ctx context.Context, args *DisablePeeringApiParams) DisablePeeringApiRequest
 
@@ -156,7 +156,7 @@ type NetworkPeeringApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param GetPeeringConnectionApiParams - Parameters for the request
-	@return GetPeeringConnectionApiRequest}}
+	@return GetPeeringConnectionApiRequest
 	*/
 	GetPeeringConnectionWithParams(ctx context.Context, args *GetPeeringConnectionApiParams) GetPeeringConnectionApiRequest
 
@@ -180,7 +180,7 @@ type NetworkPeeringApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param GetPeeringContainerApiParams - Parameters for the request
-	@return GetPeeringContainerApiRequest}}
+	@return GetPeeringContainerApiRequest
 	*/
 	GetPeeringContainerWithParams(ctx context.Context, args *GetPeeringContainerApiParams) GetPeeringContainerApiRequest
 
@@ -203,7 +203,7 @@ type NetworkPeeringApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param ListPeeringConnectionsApiParams - Parameters for the request
-	@return ListPeeringConnectionsApiRequest}}
+	@return ListPeeringConnectionsApiRequest
 	*/
 	ListPeeringConnectionsWithParams(ctx context.Context, args *ListPeeringConnectionsApiParams) ListPeeringConnectionsApiRequest
 
@@ -226,7 +226,7 @@ type NetworkPeeringApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param ListPeeringContainerByCloudProviderApiParams - Parameters for the request
-	@return ListPeeringContainerByCloudProviderApiRequest}}
+	@return ListPeeringContainerByCloudProviderApiRequest
 	*/
 	ListPeeringContainerByCloudProviderWithParams(ctx context.Context, args *ListPeeringContainerByCloudProviderApiParams) ListPeeringContainerByCloudProviderApiRequest
 
@@ -249,7 +249,7 @@ type NetworkPeeringApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param ListPeeringContainersApiParams - Parameters for the request
-	@return ListPeeringContainersApiRequest}}
+	@return ListPeeringContainersApiRequest
 	*/
 	ListPeeringContainersWithParams(ctx context.Context, args *ListPeeringContainersApiParams) ListPeeringContainersApiRequest
 
@@ -273,7 +273,7 @@ type NetworkPeeringApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param UpdatePeeringConnectionApiParams - Parameters for the request
-	@return UpdatePeeringConnectionApiRequest}}
+	@return UpdatePeeringConnectionApiRequest
 	*/
 	UpdatePeeringConnectionWithParams(ctx context.Context, args *UpdatePeeringConnectionApiParams) UpdatePeeringConnectionApiRequest
 
@@ -297,7 +297,7 @@ type NetworkPeeringApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param UpdatePeeringContainerApiParams - Parameters for the request
-	@return UpdatePeeringContainerApiRequest}}
+	@return UpdatePeeringContainerApiRequest
 	*/
 	UpdatePeeringContainerWithParams(ctx context.Context, args *UpdatePeeringContainerApiParams) UpdatePeeringContainerApiRequest
 
@@ -313,7 +313,7 @@ type NetworkPeeringApi interface {
 	@param groupId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access.  **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups.
 	@return VerifyConnectViaPeeringOnlyModeForOneProjectApiRequest
 	
-	Deprecated: Method have been deprecated. Please check the latest resource version for NetworkPeeringApi
+	Deprecated: this method has been deprecated. Please check the latest resource version for NetworkPeeringApi
 	*/
 	VerifyConnectViaPeeringOnlyModeForOneProject(ctx context.Context, groupId string) VerifyConnectViaPeeringOnlyModeForOneProjectApiRequest
 	/*
@@ -322,9 +322,9 @@ type NetworkPeeringApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param VerifyConnectViaPeeringOnlyModeForOneProjectApiParams - Parameters for the request
-	@return VerifyConnectViaPeeringOnlyModeForOneProjectApiRequest}}
+	@return VerifyConnectViaPeeringOnlyModeForOneProjectApiRequest
 
-	Deprecated: Method have been deprecated. Please check the latest resource version for NetworkPeeringApi
+	Deprecated: this method has been deprecated. Please check the latest resource version for NetworkPeeringApi
 	*/
 	VerifyConnectViaPeeringOnlyModeForOneProjectWithParams(ctx context.Context, args *VerifyConnectViaPeeringOnlyModeForOneProjectApiParams) VerifyConnectViaPeeringOnlyModeForOneProjectApiRequest
 

@@ -29,7 +29,7 @@ type LegacyBackupApi interface {
 	@param snapshotId Unique 24-hexadecimal digit string that identifies the desired snapshot.
 	@return DeleteLegacySnapshotApiRequest
 	
-	Deprecated: Method have been deprecated. Please check the latest resource version for LegacyBackupApi
+	Deprecated: this method has been deprecated. Please check the latest resource version for LegacyBackupApi
 	*/
 	DeleteLegacySnapshot(ctx context.Context, groupId string, clusterName string, snapshotId string) DeleteLegacySnapshotApiRequest
 	/*
@@ -38,9 +38,9 @@ type LegacyBackupApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param DeleteLegacySnapshotApiParams - Parameters for the request
-	@return DeleteLegacySnapshotApiRequest}}
+	@return DeleteLegacySnapshotApiRequest
 
-	Deprecated: Method have been deprecated. Please check the latest resource version for LegacyBackupApi
+	Deprecated: this method has been deprecated. Please check the latest resource version for LegacyBackupApi
 	*/
 	DeleteLegacySnapshotWithParams(ctx context.Context, args *DeleteLegacySnapshotApiParams) DeleteLegacySnapshotApiRequest
 
@@ -58,7 +58,7 @@ type LegacyBackupApi interface {
 	@param clusterName Human-readable label that identifies the cluster that contains the checkpoints that you want to return.
 	@return GetLegacyBackupCheckpointApiRequest
 	
-	Deprecated: Method have been deprecated. Please check the latest resource version for LegacyBackupApi
+	Deprecated: this method has been deprecated. Please check the latest resource version for LegacyBackupApi
 	*/
 	GetLegacyBackupCheckpoint(ctx context.Context, groupId string, checkpointId string, clusterName string) GetLegacyBackupCheckpointApiRequest
 	/*
@@ -67,9 +67,9 @@ type LegacyBackupApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param GetLegacyBackupCheckpointApiParams - Parameters for the request
-	@return GetLegacyBackupCheckpointApiRequest}}
+	@return GetLegacyBackupCheckpointApiRequest
 
-	Deprecated: Method have been deprecated. Please check the latest resource version for LegacyBackupApi
+	Deprecated: this method has been deprecated. Please check the latest resource version for LegacyBackupApi
 	*/
 	GetLegacyBackupCheckpointWithParams(ctx context.Context, args *GetLegacyBackupCheckpointApiParams) GetLegacyBackupCheckpointApiRequest
 
@@ -89,7 +89,7 @@ type LegacyBackupApi interface {
 	@param jobId Unique 24-hexadecimal digit string that identifies the restore job.
 	@return GetLegacyBackupRestoreJobApiRequest
 	
-	Deprecated: Method have been deprecated. Please check the latest resource version for LegacyBackupApi
+	Deprecated: this method has been deprecated. Please check the latest resource version for LegacyBackupApi
 	*/
 	GetLegacyBackupRestoreJob(ctx context.Context, groupId string, clusterName string, jobId string) GetLegacyBackupRestoreJobApiRequest
 	/*
@@ -98,9 +98,9 @@ type LegacyBackupApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param GetLegacyBackupRestoreJobApiParams - Parameters for the request
-	@return GetLegacyBackupRestoreJobApiRequest}}
+	@return GetLegacyBackupRestoreJobApiRequest
 
-	Deprecated: Method have been deprecated. Please check the latest resource version for LegacyBackupApi
+	Deprecated: this method has been deprecated. Please check the latest resource version for LegacyBackupApi
 	*/
 	GetLegacyBackupRestoreJobWithParams(ctx context.Context, args *GetLegacyBackupRestoreJobApiParams) GetLegacyBackupRestoreJobApiRequest
 
@@ -118,7 +118,7 @@ type LegacyBackupApi interface {
 	@param snapshotId Unique 24-hexadecimal digit string that identifies the desired snapshot.
 	@return GetLegacySnapshotApiRequest
 	
-	Deprecated: Method have been deprecated. Please check the latest resource version for LegacyBackupApi
+	Deprecated: this method has been deprecated. Please check the latest resource version for LegacyBackupApi
 	*/
 	GetLegacySnapshot(ctx context.Context, groupId string, clusterName string, snapshotId string) GetLegacySnapshotApiRequest
 	/*
@@ -127,9 +127,9 @@ type LegacyBackupApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param GetLegacySnapshotApiParams - Parameters for the request
-	@return GetLegacySnapshotApiRequest}}
+	@return GetLegacySnapshotApiRequest
 
-	Deprecated: Method have been deprecated. Please check the latest resource version for LegacyBackupApi
+	Deprecated: this method has been deprecated. Please check the latest resource version for LegacyBackupApi
 	*/
 	GetLegacySnapshotWithParams(ctx context.Context, args *GetLegacySnapshotApiParams) GetLegacySnapshotApiRequest
 
@@ -148,7 +148,7 @@ type LegacyBackupApi interface {
 	@param clusterName Human-readable label that identifies the cluster with the snapshot you want to return.
 	@return GetLegacySnapshotScheduleApiRequest
 	
-	Deprecated: Method have been deprecated. Please check the latest resource version for LegacyBackupApi
+	Deprecated: this method has been deprecated. Please check the latest resource version for LegacyBackupApi
 	*/
 	GetLegacySnapshotSchedule(ctx context.Context, groupId string, clusterName string) GetLegacySnapshotScheduleApiRequest
 	/*
@@ -157,9 +157,9 @@ type LegacyBackupApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param GetLegacySnapshotScheduleApiParams - Parameters for the request
-	@return GetLegacySnapshotScheduleApiRequest}}
+	@return GetLegacySnapshotScheduleApiRequest
 
-	Deprecated: Method have been deprecated. Please check the latest resource version for LegacyBackupApi
+	Deprecated: this method has been deprecated. Please check the latest resource version for LegacyBackupApi
 	*/
 	GetLegacySnapshotScheduleWithParams(ctx context.Context, args *GetLegacySnapshotScheduleApiParams) GetLegacySnapshotScheduleApiRequest
 
@@ -176,7 +176,7 @@ type LegacyBackupApi interface {
 	@param clusterName Human-readable label that identifies the cluster that contains the checkpoints that you want to return.
 	@return ListLegacyBackupCheckpointsApiRequest
 	
-	Deprecated: Method have been deprecated. Please check the latest resource version for LegacyBackupApi
+	Deprecated: this method has been deprecated. Please check the latest resource version for LegacyBackupApi
 	*/
 	ListLegacyBackupCheckpoints(ctx context.Context, groupId string, clusterName string) ListLegacyBackupCheckpointsApiRequest
 	/*
@@ -185,9 +185,9 @@ type LegacyBackupApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param ListLegacyBackupCheckpointsApiParams - Parameters for the request
-	@return ListLegacyBackupCheckpointsApiRequest}}
+	@return ListLegacyBackupCheckpointsApiRequest
 
-	Deprecated: Method have been deprecated. Please check the latest resource version for LegacyBackupApi
+	Deprecated: this method has been deprecated. Please check the latest resource version for LegacyBackupApi
 	*/
 	ListLegacyBackupCheckpointsWithParams(ctx context.Context, args *ListLegacyBackupCheckpointsApiParams) ListLegacyBackupCheckpointsApiRequest
 
@@ -206,7 +206,7 @@ type LegacyBackupApi interface {
 	@param clusterName Human-readable label that identifies the cluster with the snapshot you want to return.
 	@return ListLegacyBackupRestoreJobsApiRequest
 	
-	Deprecated: Method have been deprecated. Please check the latest resource version for LegacyBackupApi
+	Deprecated: this method has been deprecated. Please check the latest resource version for LegacyBackupApi
 	*/
 	ListLegacyBackupRestoreJobs(ctx context.Context, groupId string, clusterName string) ListLegacyBackupRestoreJobsApiRequest
 	/*
@@ -215,9 +215,9 @@ type LegacyBackupApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param ListLegacyBackupRestoreJobsApiParams - Parameters for the request
-	@return ListLegacyBackupRestoreJobsApiRequest}}
+	@return ListLegacyBackupRestoreJobsApiRequest
 
-	Deprecated: Method have been deprecated. Please check the latest resource version for LegacyBackupApi
+	Deprecated: this method has been deprecated. Please check the latest resource version for LegacyBackupApi
 	*/
 	ListLegacyBackupRestoreJobsWithParams(ctx context.Context, args *ListLegacyBackupRestoreJobsApiParams) ListLegacyBackupRestoreJobsApiRequest
 
@@ -234,7 +234,7 @@ type LegacyBackupApi interface {
 	@param clusterName Human-readable label that identifies the cluster.
 	@return ListLegacySnapshotsApiRequest
 	
-	Deprecated: Method have been deprecated. Please check the latest resource version for LegacyBackupApi
+	Deprecated: this method has been deprecated. Please check the latest resource version for LegacyBackupApi
 	*/
 	ListLegacySnapshots(ctx context.Context, groupId string, clusterName string) ListLegacySnapshotsApiRequest
 	/*
@@ -243,9 +243,9 @@ type LegacyBackupApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param ListLegacySnapshotsApiParams - Parameters for the request
-	@return ListLegacySnapshotsApiRequest}}
+	@return ListLegacySnapshotsApiRequest
 
-	Deprecated: Method have been deprecated. Please check the latest resource version for LegacyBackupApi
+	Deprecated: this method has been deprecated. Please check the latest resource version for LegacyBackupApi
 	*/
 	ListLegacySnapshotsWithParams(ctx context.Context, args *ListLegacySnapshotsApiParams) ListLegacySnapshotsApiRequest
 
@@ -263,7 +263,7 @@ type LegacyBackupApi interface {
 	@param snapshotId Unique 24-hexadecimal digit string that identifies the desired snapshot.
 	@return UpdateLegacySnapshotRetentionApiRequest
 	
-	Deprecated: Method have been deprecated. Please check the latest resource version for LegacyBackupApi
+	Deprecated: this method has been deprecated. Please check the latest resource version for LegacyBackupApi
 	*/
 	UpdateLegacySnapshotRetention(ctx context.Context, groupId string, clusterName string, snapshotId string) UpdateLegacySnapshotRetentionApiRequest
 	/*
@@ -272,9 +272,9 @@ type LegacyBackupApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param UpdateLegacySnapshotRetentionApiParams - Parameters for the request
-	@return UpdateLegacySnapshotRetentionApiRequest}}
+	@return UpdateLegacySnapshotRetentionApiRequest
 
-	Deprecated: Method have been deprecated. Please check the latest resource version for LegacyBackupApi
+	Deprecated: this method has been deprecated. Please check the latest resource version for LegacyBackupApi
 	*/
 	UpdateLegacySnapshotRetentionWithParams(ctx context.Context, args *UpdateLegacySnapshotRetentionApiParams) UpdateLegacySnapshotRetentionApiRequest
 
@@ -293,7 +293,7 @@ type LegacyBackupApi interface {
 	@param clusterName Human-readable label that identifies the cluster with the snapshot you want to return.
 	@return UpdateLegacySnapshotScheduleApiRequest
 	
-	Deprecated: Method have been deprecated. Please check the latest resource version for LegacyBackupApi
+	Deprecated: this method has been deprecated. Please check the latest resource version for LegacyBackupApi
 	*/
 	UpdateLegacySnapshotSchedule(ctx context.Context, groupId string, clusterName string) UpdateLegacySnapshotScheduleApiRequest
 	/*
@@ -302,9 +302,9 @@ type LegacyBackupApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param UpdateLegacySnapshotScheduleApiParams - Parameters for the request
-	@return UpdateLegacySnapshotScheduleApiRequest}}
+	@return UpdateLegacySnapshotScheduleApiRequest
 
-	Deprecated: Method have been deprecated. Please check the latest resource version for LegacyBackupApi
+	Deprecated: this method has been deprecated. Please check the latest resource version for LegacyBackupApi
 	*/
 	UpdateLegacySnapshotScheduleWithParams(ctx context.Context, args *UpdateLegacySnapshotScheduleApiParams) UpdateLegacySnapshotScheduleApiRequest
 

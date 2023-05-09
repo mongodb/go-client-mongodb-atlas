@@ -34,7 +34,7 @@ type CloudMigrationServiceApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param CreateLinkTokenApiParams - Parameters for the request
-	@return CreateLinkTokenApiRequest}}
+	@return CreateLinkTokenApiRequest
 	*/
 	CreateLinkTokenWithParams(ctx context.Context, args *CreateLinkTokenApiParams) CreateLinkTokenApiRequest
 
@@ -61,7 +61,7 @@ type CloudMigrationServiceApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param CreatePushMigrationApiParams - Parameters for the request
-	@return CreatePushMigrationApiRequest}}
+	@return CreatePushMigrationApiRequest
 	*/
 	CreatePushMigrationWithParams(ctx context.Context, args *CreatePushMigrationApiParams) CreatePushMigrationApiRequest
 
@@ -85,7 +85,7 @@ type CloudMigrationServiceApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param CutoverMigrationApiParams - Parameters for the request
-	@return CutoverMigrationApiRequest}}
+	@return CutoverMigrationApiRequest
 	*/
 	CutoverMigrationWithParams(ctx context.Context, args *CutoverMigrationApiParams) CutoverMigrationApiRequest
 
@@ -108,7 +108,7 @@ type CloudMigrationServiceApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param DeleteLinkTokenApiParams - Parameters for the request
-	@return DeleteLinkTokenApiRequest}}
+	@return DeleteLinkTokenApiRequest
 	*/
 	DeleteLinkTokenWithParams(ctx context.Context, args *DeleteLinkTokenApiParams) DeleteLinkTokenApiRequest
 
@@ -132,7 +132,7 @@ type CloudMigrationServiceApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param GetPushMigrationApiParams - Parameters for the request
-	@return GetPushMigrationApiRequest}}
+	@return GetPushMigrationApiRequest
 	*/
 	GetPushMigrationWithParams(ctx context.Context, args *GetPushMigrationApiParams) GetPushMigrationApiRequest
 
@@ -156,7 +156,7 @@ type CloudMigrationServiceApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param GetValidationStatusApiParams - Parameters for the request
-	@return GetValidationStatusApiRequest}}
+	@return GetValidationStatusApiRequest
 	*/
 	GetValidationStatusWithParams(ctx context.Context, args *GetValidationStatusApiParams) GetValidationStatusApiRequest
 
@@ -179,7 +179,7 @@ type CloudMigrationServiceApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param ListSourceProjectsApiParams - Parameters for the request
-	@return ListSourceProjectsApiRequest}}
+	@return ListSourceProjectsApiRequest
 	*/
 	ListSourceProjectsWithParams(ctx context.Context, args *ListSourceProjectsApiParams) ListSourceProjectsApiRequest
 
@@ -202,7 +202,7 @@ type CloudMigrationServiceApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param ValidateMigrationApiParams - Parameters for the request
-	@return ValidateMigrationApiRequest}}
+	@return ValidateMigrationApiRequest
 	*/
 	ValidateMigrationWithParams(ctx context.Context, args *ValidateMigrationApiParams) ValidateMigrationApiRequest
 

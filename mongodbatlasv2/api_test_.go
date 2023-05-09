@@ -32,7 +32,7 @@ type TestApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param VersionedExampleApiParams - Parameters for the request
-	@return VersionedExampleApiRequest}}
+	@return VersionedExampleApiRequest
 	*/
 	VersionedExampleWithParams(ctx context.Context, args *VersionedExampleApiParams) VersionedExampleApiRequest
 

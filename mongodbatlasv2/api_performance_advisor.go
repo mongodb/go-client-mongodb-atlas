@@ -35,7 +35,7 @@ type PerformanceAdvisorApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param DisableSlowOperationThresholdingApiParams - Parameters for the request
-	@return DisableSlowOperationThresholdingApiRequest}}
+	@return DisableSlowOperationThresholdingApiRequest
 	*/
 	DisableSlowOperationThresholdingWithParams(ctx context.Context, args *DisableSlowOperationThresholdingApiParams) DisableSlowOperationThresholdingApiRequest
 
@@ -58,7 +58,7 @@ type PerformanceAdvisorApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param EnableSlowOperationThresholdingApiParams - Parameters for the request
-	@return EnableSlowOperationThresholdingApiRequest}}
+	@return EnableSlowOperationThresholdingApiRequest
 	*/
 	EnableSlowOperationThresholdingWithParams(ctx context.Context, args *EnableSlowOperationThresholdingApiParams) EnableSlowOperationThresholdingApiRequest
 
@@ -82,7 +82,7 @@ type PerformanceAdvisorApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param ListSlowQueriesApiParams - Parameters for the request
-	@return ListSlowQueriesApiRequest}}
+	@return ListSlowQueriesApiRequest
 	*/
 	ListSlowQueriesWithParams(ctx context.Context, args *ListSlowQueriesApiParams) ListSlowQueriesApiRequest
 
@@ -106,7 +106,7 @@ type PerformanceAdvisorApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param ListSlowQueryNamespacesApiParams - Parameters for the request
-	@return ListSlowQueryNamespacesApiRequest}}
+	@return ListSlowQueryNamespacesApiRequest
 	*/
 	ListSlowQueryNamespacesWithParams(ctx context.Context, args *ListSlowQueryNamespacesApiParams) ListSlowQueryNamespacesApiRequest
 
@@ -130,7 +130,7 @@ type PerformanceAdvisorApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param ListSuggestedIndexesApiParams - Parameters for the request
-	@return ListSuggestedIndexesApiRequest}}
+	@return ListSuggestedIndexesApiRequest
 	*/
 	ListSuggestedIndexesWithParams(ctx context.Context, args *ListSuggestedIndexesApiParams) ListSuggestedIndexesApiRequest
 

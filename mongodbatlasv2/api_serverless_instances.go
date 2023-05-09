@@ -34,7 +34,7 @@ type ServerlessInstancesApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param CreateServerlessInstanceApiParams - Parameters for the request
-	@return CreateServerlessInstanceApiRequest}}
+	@return CreateServerlessInstanceApiRequest
 	*/
 	CreateServerlessInstanceWithParams(ctx context.Context, args *CreateServerlessInstanceApiParams) CreateServerlessInstanceApiRequest
 
@@ -58,7 +58,7 @@ type ServerlessInstancesApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param DeleteServerlessInstanceApiParams - Parameters for the request
-	@return DeleteServerlessInstanceApiRequest}}
+	@return DeleteServerlessInstanceApiRequest
 	*/
 	DeleteServerlessInstanceWithParams(ctx context.Context, args *DeleteServerlessInstanceApiParams) DeleteServerlessInstanceApiRequest
 
@@ -82,7 +82,7 @@ type ServerlessInstancesApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param GetServerlessInstanceApiParams - Parameters for the request
-	@return GetServerlessInstanceApiRequest}}
+	@return GetServerlessInstanceApiRequest
 	*/
 	GetServerlessInstanceWithParams(ctx context.Context, args *GetServerlessInstanceApiParams) GetServerlessInstanceApiRequest
 
@@ -105,7 +105,7 @@ type ServerlessInstancesApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param ListServerlessInstancesApiParams - Parameters for the request
-	@return ListServerlessInstancesApiRequest}}
+	@return ListServerlessInstancesApiRequest
 	*/
 	ListServerlessInstancesWithParams(ctx context.Context, args *ListServerlessInstancesApiParams) ListServerlessInstancesApiRequest
 
@@ -129,7 +129,7 @@ type ServerlessInstancesApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param UpdateServerlessInstanceApiParams - Parameters for the request
-	@return UpdateServerlessInstanceApiRequest}}
+	@return UpdateServerlessInstanceApiRequest
 	*/
 	UpdateServerlessInstanceWithParams(ctx context.Context, args *UpdateServerlessInstanceApiParams) UpdateServerlessInstanceApiRequest
 

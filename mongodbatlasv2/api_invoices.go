@@ -35,7 +35,7 @@ type InvoicesApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param DownloadInvoiceCSVApiParams - Parameters for the request
-	@return DownloadInvoiceCSVApiRequest}}
+	@return DownloadInvoiceCSVApiRequest
 	*/
 	DownloadInvoiceCSVWithParams(ctx context.Context, args *DownloadInvoiceCSVApiParams) DownloadInvoiceCSVApiRequest
 
@@ -59,7 +59,7 @@ type InvoicesApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param GetInvoiceApiParams - Parameters for the request
-	@return GetInvoiceApiRequest}}
+	@return GetInvoiceApiRequest
 	*/
 	GetInvoiceWithParams(ctx context.Context, args *GetInvoiceApiParams) GetInvoiceApiRequest
 
@@ -82,7 +82,7 @@ type InvoicesApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param ListInvoicesApiParams - Parameters for the request
-	@return ListInvoicesApiRequest}}
+	@return ListInvoicesApiRequest
 	*/
 	ListInvoicesWithParams(ctx context.Context, args *ListInvoicesApiParams) ListInvoicesApiRequest
 
@@ -105,7 +105,7 @@ type InvoicesApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param ListPendingInvoicesApiParams - Parameters for the request
-	@return ListPendingInvoicesApiRequest}}
+	@return ListPendingInvoicesApiRequest
 	*/
 	ListPendingInvoicesWithParams(ctx context.Context, args *ListPendingInvoicesApiParams) ListPendingInvoicesApiRequest
 

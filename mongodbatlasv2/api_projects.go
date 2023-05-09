@@ -33,7 +33,7 @@ type ProjectsApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param CreateProjectApiParams - Parameters for the request
-	@return CreateProjectApiRequest}}
+	@return CreateProjectApiRequest
 	*/
 	CreateProjectWithParams(ctx context.Context, args *CreateProjectApiParams) CreateProjectApiRequest
 
@@ -56,7 +56,7 @@ type ProjectsApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param CreateProjectInvitationApiParams - Parameters for the request
-	@return CreateProjectInvitationApiRequest}}
+	@return CreateProjectInvitationApiRequest
 	*/
 	CreateProjectInvitationWithParams(ctx context.Context, args *CreateProjectInvitationApiParams) CreateProjectInvitationApiRequest
 
@@ -79,7 +79,7 @@ type ProjectsApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param DeleteProjectApiParams - Parameters for the request
-	@return DeleteProjectApiRequest}}
+	@return DeleteProjectApiRequest
 	*/
 	DeleteProjectWithParams(ctx context.Context, args *DeleteProjectApiParams) DeleteProjectApiRequest
 
@@ -103,7 +103,7 @@ type ProjectsApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param DeleteProjectInvitationApiParams - Parameters for the request
-	@return DeleteProjectInvitationApiRequest}}
+	@return DeleteProjectInvitationApiRequest
 	*/
 	DeleteProjectInvitationWithParams(ctx context.Context, args *DeleteProjectInvitationApiParams) DeleteProjectInvitationApiRequest
 
@@ -127,7 +127,7 @@ type ProjectsApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param DeleteProjectLimitApiParams - Parameters for the request
-	@return DeleteProjectLimitApiRequest}}
+	@return DeleteProjectLimitApiRequest
 	*/
 	DeleteProjectLimitWithParams(ctx context.Context, args *DeleteProjectLimitApiParams) DeleteProjectLimitApiRequest
 
@@ -150,7 +150,7 @@ type ProjectsApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param GetProjectApiParams - Parameters for the request
-	@return GetProjectApiRequest}}
+	@return GetProjectApiRequest
 	*/
 	GetProjectWithParams(ctx context.Context, args *GetProjectApiParams) GetProjectApiRequest
 
@@ -173,7 +173,7 @@ type ProjectsApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param GetProjectByNameApiParams - Parameters for the request
-	@return GetProjectByNameApiRequest}}
+	@return GetProjectByNameApiRequest
 	*/
 	GetProjectByNameWithParams(ctx context.Context, args *GetProjectByNameApiParams) GetProjectByNameApiRequest
 
@@ -197,7 +197,7 @@ type ProjectsApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param GetProjectInvitationApiParams - Parameters for the request
-	@return GetProjectInvitationApiRequest}}
+	@return GetProjectInvitationApiRequest
 	*/
 	GetProjectInvitationWithParams(ctx context.Context, args *GetProjectInvitationApiParams) GetProjectInvitationApiRequest
 
@@ -221,7 +221,7 @@ type ProjectsApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param GetProjectLimitApiParams - Parameters for the request
-	@return GetProjectLimitApiRequest}}
+	@return GetProjectLimitApiRequest
 	*/
 	GetProjectLimitWithParams(ctx context.Context, args *GetProjectLimitApiParams) GetProjectLimitApiRequest
 
@@ -244,7 +244,7 @@ type ProjectsApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param GetProjectSettingsApiParams - Parameters for the request
-	@return GetProjectSettingsApiRequest}}
+	@return GetProjectSettingsApiRequest
 	*/
 	GetProjectSettingsWithParams(ctx context.Context, args *GetProjectSettingsApiParams) GetProjectSettingsApiRequest
 
@@ -267,7 +267,7 @@ type ProjectsApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param ListProjectInvitationsApiParams - Parameters for the request
-	@return ListProjectInvitationsApiRequest}}
+	@return ListProjectInvitationsApiRequest
 	*/
 	ListProjectInvitationsWithParams(ctx context.Context, args *ListProjectInvitationsApiParams) ListProjectInvitationsApiRequest
 
@@ -290,7 +290,7 @@ type ProjectsApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param ListProjectLimitsApiParams - Parameters for the request
-	@return ListProjectLimitsApiRequest}}
+	@return ListProjectLimitsApiRequest
 	*/
 	ListProjectLimitsWithParams(ctx context.Context, args *ListProjectLimitsApiParams) ListProjectLimitsApiRequest
 
@@ -313,7 +313,7 @@ type ProjectsApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param ListProjectUsersApiParams - Parameters for the request
-	@return ListProjectUsersApiRequest}}
+	@return ListProjectUsersApiRequest
 	*/
 	ListProjectUsersWithParams(ctx context.Context, args *ListProjectUsersApiParams) ListProjectUsersApiRequest
 
@@ -335,7 +335,7 @@ type ProjectsApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param ListProjectsApiParams - Parameters for the request
-	@return ListProjectsApiRequest}}
+	@return ListProjectsApiRequest
 	*/
 	ListProjectsWithParams(ctx context.Context, args *ListProjectsApiParams) ListProjectsApiRequest
 
@@ -359,7 +359,7 @@ type ProjectsApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param RemoveProjectUserApiParams - Parameters for the request
-	@return RemoveProjectUserApiRequest}}
+	@return RemoveProjectUserApiRequest
 	*/
 	RemoveProjectUserWithParams(ctx context.Context, args *RemoveProjectUserApiParams) RemoveProjectUserApiRequest
 
@@ -385,7 +385,7 @@ type ProjectsApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param SetProjectLimitApiParams - Parameters for the request
-	@return SetProjectLimitApiRequest}}
+	@return SetProjectLimitApiRequest
 	*/
 	SetProjectLimitWithParams(ctx context.Context, args *SetProjectLimitApiParams) SetProjectLimitApiRequest
 
@@ -408,7 +408,7 @@ type ProjectsApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param UpdateProjectApiParams - Parameters for the request
-	@return UpdateProjectApiRequest}}
+	@return UpdateProjectApiRequest
 	*/
 	UpdateProjectWithParams(ctx context.Context, args *UpdateProjectApiParams) UpdateProjectApiRequest
 
@@ -431,7 +431,7 @@ type ProjectsApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param UpdateProjectInvitationApiParams - Parameters for the request
-	@return UpdateProjectInvitationApiRequest}}
+	@return UpdateProjectInvitationApiRequest
 	*/
 	UpdateProjectInvitationWithParams(ctx context.Context, args *UpdateProjectInvitationApiParams) UpdateProjectInvitationApiRequest
 
@@ -455,7 +455,7 @@ type ProjectsApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param UpdateProjectInvitationByIdApiParams - Parameters for the request
-	@return UpdateProjectInvitationByIdApiRequest}}
+	@return UpdateProjectInvitationByIdApiRequest
 	*/
 	UpdateProjectInvitationByIdWithParams(ctx context.Context, args *UpdateProjectInvitationByIdApiParams) UpdateProjectInvitationByIdApiRequest
 
@@ -478,7 +478,7 @@ type ProjectsApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param UpdateProjectSettingsApiParams - Parameters for the request
-	@return UpdateProjectSettingsApiRequest}}
+	@return UpdateProjectSettingsApiRequest
 	*/
 	UpdateProjectSettingsWithParams(ctx context.Context, args *UpdateProjectSettingsApiParams) UpdateProjectSettingsApiRequest
 

@@ -37,7 +37,7 @@ type MongoDBCloudUsersApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param CreateUserApiParams - Parameters for the request
-	@return CreateUserApiRequest}}
+	@return CreateUserApiRequest
 	*/
 	CreateUserWithParams(ctx context.Context, args *CreateUserApiParams) CreateUserApiRequest
 
@@ -60,7 +60,7 @@ type MongoDBCloudUsersApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param GetUserApiParams - Parameters for the request
-	@return GetUserApiRequest}}
+	@return GetUserApiRequest
 	*/
 	GetUserWithParams(ctx context.Context, args *GetUserApiParams) GetUserApiRequest
 
@@ -83,7 +83,7 @@ type MongoDBCloudUsersApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param GetUserByUsernameApiParams - Parameters for the request
-	@return GetUserByUsernameApiRequest}}
+	@return GetUserByUsernameApiRequest
 	*/
 	GetUserByUsernameWithParams(ctx context.Context, args *GetUserByUsernameApiParams) GetUserByUsernameApiRequest
 

@@ -53,7 +53,7 @@ type DataFederationApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param CreateDataFederationPrivateEndpointApiParams - Parameters for the request
-	@return CreateDataFederationPrivateEndpointApiRequest}}
+	@return CreateDataFederationPrivateEndpointApiRequest
 	*/
 	CreateDataFederationPrivateEndpointWithParams(ctx context.Context, args *CreateDataFederationPrivateEndpointApiParams) CreateDataFederationPrivateEndpointApiRequest
 
@@ -76,7 +76,7 @@ type DataFederationApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param CreateFederatedDatabaseApiParams - Parameters for the request
-	@return CreateFederatedDatabaseApiRequest}}
+	@return CreateFederatedDatabaseApiRequest
 	*/
 	CreateFederatedDatabaseWithParams(ctx context.Context, args *CreateFederatedDatabaseApiParams) CreateFederatedDatabaseApiRequest
 
@@ -101,7 +101,7 @@ type DataFederationApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param CreateOneDataFederationQueryLimitApiParams - Parameters for the request
-	@return CreateOneDataFederationQueryLimitApiRequest}}
+	@return CreateOneDataFederationQueryLimitApiRequest
 	*/
 	CreateOneDataFederationQueryLimitWithParams(ctx context.Context, args *CreateOneDataFederationQueryLimitApiParams) CreateOneDataFederationQueryLimitApiRequest
 
@@ -125,7 +125,7 @@ type DataFederationApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param DeleteDataFederationPrivateEndpointApiParams - Parameters for the request
-	@return DeleteDataFederationPrivateEndpointApiRequest}}
+	@return DeleteDataFederationPrivateEndpointApiRequest
 	*/
 	DeleteDataFederationPrivateEndpointWithParams(ctx context.Context, args *DeleteDataFederationPrivateEndpointApiParams) DeleteDataFederationPrivateEndpointApiRequest
 
@@ -149,7 +149,7 @@ type DataFederationApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param DeleteFederatedDatabaseApiParams - Parameters for the request
-	@return DeleteFederatedDatabaseApiRequest}}
+	@return DeleteFederatedDatabaseApiRequest
 	*/
 	DeleteFederatedDatabaseWithParams(ctx context.Context, args *DeleteFederatedDatabaseApiParams) DeleteFederatedDatabaseApiRequest
 
@@ -174,7 +174,7 @@ type DataFederationApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param DeleteOneDataFederationInstanceQueryLimitApiParams - Parameters for the request
-	@return DeleteOneDataFederationInstanceQueryLimitApiRequest}}
+	@return DeleteOneDataFederationInstanceQueryLimitApiRequest
 	*/
 	DeleteOneDataFederationInstanceQueryLimitWithParams(ctx context.Context, args *DeleteOneDataFederationInstanceQueryLimitApiParams) DeleteOneDataFederationInstanceQueryLimitApiRequest
 
@@ -198,7 +198,7 @@ type DataFederationApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param DownloadFederatedDatabaseQueryLogsApiParams - Parameters for the request
-	@return DownloadFederatedDatabaseQueryLogsApiRequest}}
+	@return DownloadFederatedDatabaseQueryLogsApiRequest
 	*/
 	DownloadFederatedDatabaseQueryLogsWithParams(ctx context.Context, args *DownloadFederatedDatabaseQueryLogsApiParams) DownloadFederatedDatabaseQueryLogsApiRequest
 
@@ -222,7 +222,7 @@ type DataFederationApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param GetDataFederationPrivateEndpointApiParams - Parameters for the request
-	@return GetDataFederationPrivateEndpointApiRequest}}
+	@return GetDataFederationPrivateEndpointApiRequest
 	*/
 	GetDataFederationPrivateEndpointWithParams(ctx context.Context, args *GetDataFederationPrivateEndpointApiParams) GetDataFederationPrivateEndpointApiRequest
 
@@ -246,7 +246,7 @@ type DataFederationApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param GetFederatedDatabaseApiParams - Parameters for the request
-	@return GetFederatedDatabaseApiRequest}}
+	@return GetFederatedDatabaseApiRequest
 	*/
 	GetFederatedDatabaseWithParams(ctx context.Context, args *GetFederatedDatabaseApiParams) GetFederatedDatabaseApiRequest
 
@@ -269,7 +269,7 @@ type DataFederationApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param ListDataFederationPrivateEndpointsApiParams - Parameters for the request
-	@return ListDataFederationPrivateEndpointsApiRequest}}
+	@return ListDataFederationPrivateEndpointsApiRequest
 	*/
 	ListDataFederationPrivateEndpointsWithParams(ctx context.Context, args *ListDataFederationPrivateEndpointsApiParams) ListDataFederationPrivateEndpointsApiRequest
 
@@ -292,7 +292,7 @@ type DataFederationApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param ListFederatedDatabasesApiParams - Parameters for the request
-	@return ListFederatedDatabasesApiRequest}}
+	@return ListFederatedDatabasesApiRequest
 	*/
 	ListFederatedDatabasesWithParams(ctx context.Context, args *ListFederatedDatabasesApiParams) ListFederatedDatabasesApiRequest
 
@@ -317,7 +317,7 @@ type DataFederationApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param ReturnFederatedDatabaseQueryLimitApiParams - Parameters for the request
-	@return ReturnFederatedDatabaseQueryLimitApiRequest}}
+	@return ReturnFederatedDatabaseQueryLimitApiRequest
 	*/
 	ReturnFederatedDatabaseQueryLimitWithParams(ctx context.Context, args *ReturnFederatedDatabaseQueryLimitApiParams) ReturnFederatedDatabaseQueryLimitApiRequest
 
@@ -341,7 +341,7 @@ type DataFederationApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param ReturnFederatedDatabaseQueryLimitsApiParams - Parameters for the request
-	@return ReturnFederatedDatabaseQueryLimitsApiRequest}}
+	@return ReturnFederatedDatabaseQueryLimitsApiRequest
 	*/
 	ReturnFederatedDatabaseQueryLimitsWithParams(ctx context.Context, args *ReturnFederatedDatabaseQueryLimitsApiParams) ReturnFederatedDatabaseQueryLimitsApiRequest
 
@@ -365,7 +365,7 @@ type DataFederationApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param UpdateFederatedDatabaseApiParams - Parameters for the request
-	@return UpdateFederatedDatabaseApiRequest}}
+	@return UpdateFederatedDatabaseApiRequest
 	*/
 	UpdateFederatedDatabaseWithParams(ctx context.Context, args *UpdateFederatedDatabaseApiParams) UpdateFederatedDatabaseApiRequest
 

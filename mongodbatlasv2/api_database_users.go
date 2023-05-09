@@ -34,7 +34,7 @@ type DatabaseUsersApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param CreateDatabaseUserApiParams - Parameters for the request
-	@return CreateDatabaseUserApiRequest}}
+	@return CreateDatabaseUserApiRequest
 	*/
 	CreateDatabaseUserWithParams(ctx context.Context, args *CreateDatabaseUserApiParams) CreateDatabaseUserApiRequest
 
@@ -59,7 +59,7 @@ type DatabaseUsersApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param DeleteDatabaseUserApiParams - Parameters for the request
-	@return DeleteDatabaseUserApiRequest}}
+	@return DeleteDatabaseUserApiRequest
 	*/
 	DeleteDatabaseUserWithParams(ctx context.Context, args *DeleteDatabaseUserApiParams) DeleteDatabaseUserApiRequest
 
@@ -84,7 +84,7 @@ type DatabaseUsersApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param GetDatabaseUserApiParams - Parameters for the request
-	@return GetDatabaseUserApiRequest}}
+	@return GetDatabaseUserApiRequest
 	*/
 	GetDatabaseUserWithParams(ctx context.Context, args *GetDatabaseUserApiParams) GetDatabaseUserApiRequest
 
@@ -107,7 +107,7 @@ type DatabaseUsersApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param ListDatabaseUsersApiParams - Parameters for the request
-	@return ListDatabaseUsersApiRequest}}
+	@return ListDatabaseUsersApiRequest
 	*/
 	ListDatabaseUsersWithParams(ctx context.Context, args *ListDatabaseUsersApiParams) ListDatabaseUsersApiRequest
 
@@ -132,7 +132,7 @@ type DatabaseUsersApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param UpdateDatabaseUserApiParams - Parameters for the request
-	@return UpdateDatabaseUserApiRequest}}
+	@return UpdateDatabaseUserApiRequest
 	*/
 	UpdateDatabaseUserWithParams(ctx context.Context, args *UpdateDatabaseUserApiParams) UpdateDatabaseUserApiRequest
 

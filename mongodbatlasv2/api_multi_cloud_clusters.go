@@ -34,7 +34,7 @@ type MultiCloudClustersApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param CreateClusterApiParams - Parameters for the request
-	@return CreateClusterApiRequest}}
+	@return CreateClusterApiRequest
 	*/
 	CreateClusterWithParams(ctx context.Context, args *CreateClusterApiParams) CreateClusterApiRequest
 
@@ -58,7 +58,7 @@ type MultiCloudClustersApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param DeleteClusterApiParams - Parameters for the request
-	@return DeleteClusterApiRequest}}
+	@return DeleteClusterApiRequest
 	*/
 	DeleteClusterWithParams(ctx context.Context, args *DeleteClusterApiParams) DeleteClusterApiRequest
 
@@ -82,7 +82,7 @@ type MultiCloudClustersApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param GetClusterApiParams - Parameters for the request
-	@return GetClusterApiRequest}}
+	@return GetClusterApiRequest
 	*/
 	GetClusterWithParams(ctx context.Context, args *GetClusterApiParams) GetClusterApiRequest
 
@@ -105,7 +105,7 @@ type MultiCloudClustersApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param ListClustersApiParams - Parameters for the request
-	@return ListClustersApiRequest}}
+	@return ListClustersApiRequest
 	*/
 	ListClustersWithParams(ctx context.Context, args *ListClustersApiParams) ListClustersApiRequest
 
@@ -129,7 +129,7 @@ type MultiCloudClustersApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param TestFailoverApiParams - Parameters for the request
-	@return TestFailoverApiRequest}}
+	@return TestFailoverApiRequest
 	*/
 	TestFailoverWithParams(ctx context.Context, args *TestFailoverApiParams) TestFailoverApiRequest
 
@@ -153,7 +153,7 @@ type MultiCloudClustersApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param UpdateClusterApiParams - Parameters for the request
-	@return UpdateClusterApiRequest}}
+	@return UpdateClusterApiRequest
 	*/
 	UpdateClusterWithParams(ctx context.Context, args *UpdateClusterApiParams) UpdateClusterApiRequest
 

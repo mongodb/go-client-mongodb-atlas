@@ -34,7 +34,7 @@ type AuditingApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param GetAuditingConfigurationApiParams - Parameters for the request
-	@return GetAuditingConfigurationApiRequest}}
+	@return GetAuditingConfigurationApiRequest
 	*/
 	GetAuditingConfigurationWithParams(ctx context.Context, args *GetAuditingConfigurationApiParams) GetAuditingConfigurationApiRequest
 
@@ -57,7 +57,7 @@ type AuditingApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param UpdateAuditingConfigurationApiParams - Parameters for the request
-	@return UpdateAuditingConfigurationApiRequest}}
+	@return UpdateAuditingConfigurationApiRequest
 	*/
 	UpdateAuditingConfigurationWithParams(ctx context.Context, args *UpdateAuditingConfigurationApiParams) UpdateAuditingConfigurationApiRequest
 

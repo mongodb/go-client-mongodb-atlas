@@ -36,7 +36,7 @@ type OnlineArchiveApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param CreateOnlineArchiveApiParams - Parameters for the request
-	@return CreateOnlineArchiveApiRequest}}
+	@return CreateOnlineArchiveApiRequest
 	*/
 	CreateOnlineArchiveWithParams(ctx context.Context, args *CreateOnlineArchiveApiParams) CreateOnlineArchiveApiRequest
 
@@ -61,7 +61,7 @@ type OnlineArchiveApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param DeleteOnlineArchiveApiParams - Parameters for the request
-	@return DeleteOnlineArchiveApiRequest}}
+	@return DeleteOnlineArchiveApiRequest
 	*/
 	DeleteOnlineArchiveWithParams(ctx context.Context, args *DeleteOnlineArchiveApiParams) DeleteOnlineArchiveApiRequest
 
@@ -85,7 +85,7 @@ type OnlineArchiveApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param DownloadOnlineArchiveQueryLogsApiParams - Parameters for the request
-	@return DownloadOnlineArchiveQueryLogsApiRequest}}
+	@return DownloadOnlineArchiveQueryLogsApiRequest
 	*/
 	DownloadOnlineArchiveQueryLogsWithParams(ctx context.Context, args *DownloadOnlineArchiveQueryLogsApiParams) DownloadOnlineArchiveQueryLogsApiRequest
 
@@ -110,7 +110,7 @@ type OnlineArchiveApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param GetOnlineArchiveApiParams - Parameters for the request
-	@return GetOnlineArchiveApiRequest}}
+	@return GetOnlineArchiveApiRequest
 	*/
 	GetOnlineArchiveWithParams(ctx context.Context, args *GetOnlineArchiveApiParams) GetOnlineArchiveApiRequest
 
@@ -134,7 +134,7 @@ type OnlineArchiveApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param ListOnlineArchivesApiParams - Parameters for the request
-	@return ListOnlineArchivesApiRequest}}
+	@return ListOnlineArchivesApiRequest
 	*/
 	ListOnlineArchivesWithParams(ctx context.Context, args *ListOnlineArchivesApiParams) ListOnlineArchivesApiRequest
 
@@ -159,7 +159,7 @@ type OnlineArchiveApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param UpdateOnlineArchiveApiParams - Parameters for the request
-	@return UpdateOnlineArchiveApiRequest}}
+	@return UpdateOnlineArchiveApiRequest
 	*/
 	UpdateOnlineArchiveWithParams(ctx context.Context, args *UpdateOnlineArchiveApiParams) UpdateOnlineArchiveApiRequest
 

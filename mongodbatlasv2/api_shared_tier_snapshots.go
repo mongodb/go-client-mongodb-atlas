@@ -35,7 +35,7 @@ type SharedTierSnapshotsApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param DownloadSharedClusterBackupApiParams - Parameters for the request
-	@return DownloadSharedClusterBackupApiRequest}}
+	@return DownloadSharedClusterBackupApiRequest
 	*/
 	DownloadSharedClusterBackupWithParams(ctx context.Context, args *DownloadSharedClusterBackupApiParams) DownloadSharedClusterBackupApiRequest
 
@@ -60,7 +60,7 @@ type SharedTierSnapshotsApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param GetSharedClusterBackupApiParams - Parameters for the request
-	@return GetSharedClusterBackupApiRequest}}
+	@return GetSharedClusterBackupApiRequest
 	*/
 	GetSharedClusterBackupWithParams(ctx context.Context, args *GetSharedClusterBackupApiParams) GetSharedClusterBackupApiRequest
 
@@ -84,7 +84,7 @@ type SharedTierSnapshotsApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param ListSharedClusterBackupsApiParams - Parameters for the request
-	@return ListSharedClusterBackupsApiRequest}}
+	@return ListSharedClusterBackupsApiRequest
 	*/
 	ListSharedClusterBackupsWithParams(ctx context.Context, args *ListSharedClusterBackupsApiParams) ListSharedClusterBackupsApiRequest
 

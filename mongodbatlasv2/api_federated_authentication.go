@@ -35,7 +35,7 @@ type FederatedAuthenticationApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param CreateRoleMappingApiParams - Parameters for the request
-	@return CreateRoleMappingApiRequest}}
+	@return CreateRoleMappingApiRequest
 	*/
 	CreateRoleMappingWithParams(ctx context.Context, args *CreateRoleMappingApiParams) CreateRoleMappingApiRequest
 
@@ -58,7 +58,7 @@ type FederatedAuthenticationApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param DeleteFederationAppApiParams - Parameters for the request
-	@return DeleteFederationAppApiRequest}}
+	@return DeleteFederationAppApiRequest
 	*/
 	DeleteFederationAppWithParams(ctx context.Context, args *DeleteFederationAppApiParams) DeleteFederationAppApiRequest
 
@@ -83,7 +83,7 @@ type FederatedAuthenticationApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param DeleteRoleMappingApiParams - Parameters for the request
-	@return DeleteRoleMappingApiRequest}}
+	@return DeleteRoleMappingApiRequest
 	*/
 	DeleteRoleMappingWithParams(ctx context.Context, args *DeleteRoleMappingApiParams) DeleteRoleMappingApiRequest
 
@@ -107,7 +107,7 @@ type FederatedAuthenticationApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param GetConnectedOrgConfigApiParams - Parameters for the request
-	@return GetConnectedOrgConfigApiRequest}}
+	@return GetConnectedOrgConfigApiRequest
 	*/
 	GetConnectedOrgConfigWithParams(ctx context.Context, args *GetConnectedOrgConfigApiParams) GetConnectedOrgConfigApiRequest
 
@@ -130,7 +130,7 @@ type FederatedAuthenticationApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param GetFederationSettingsApiParams - Parameters for the request
-	@return GetFederationSettingsApiRequest}}
+	@return GetFederationSettingsApiRequest
 	*/
 	GetFederationSettingsWithParams(ctx context.Context, args *GetFederationSettingsApiParams) GetFederationSettingsApiRequest
 
@@ -154,7 +154,7 @@ type FederatedAuthenticationApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param GetIdentityProviderApiParams - Parameters for the request
-	@return GetIdentityProviderApiRequest}}
+	@return GetIdentityProviderApiRequest
 	*/
 	GetIdentityProviderWithParams(ctx context.Context, args *GetIdentityProviderApiParams) GetIdentityProviderApiRequest
 
@@ -178,7 +178,7 @@ type FederatedAuthenticationApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param GetIdentityProviderMetadataApiParams - Parameters for the request
-	@return GetIdentityProviderMetadataApiRequest}}
+	@return GetIdentityProviderMetadataApiRequest
 	*/
 	GetIdentityProviderMetadataWithParams(ctx context.Context, args *GetIdentityProviderMetadataApiParams) GetIdentityProviderMetadataApiRequest
 
@@ -203,7 +203,7 @@ type FederatedAuthenticationApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param GetRoleMappingApiParams - Parameters for the request
-	@return GetRoleMappingApiRequest}}
+	@return GetRoleMappingApiRequest
 	*/
 	GetRoleMappingWithParams(ctx context.Context, args *GetRoleMappingApiParams) GetRoleMappingApiRequest
 
@@ -226,7 +226,7 @@ type FederatedAuthenticationApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param ListConnectedOrgConfigsApiParams - Parameters for the request
-	@return ListConnectedOrgConfigsApiRequest}}
+	@return ListConnectedOrgConfigsApiRequest
 	*/
 	ListConnectedOrgConfigsWithParams(ctx context.Context, args *ListConnectedOrgConfigsApiParams) ListConnectedOrgConfigsApiRequest
 
@@ -249,7 +249,7 @@ type FederatedAuthenticationApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param ListIdentityProvidersApiParams - Parameters for the request
-	@return ListIdentityProvidersApiRequest}}
+	@return ListIdentityProvidersApiRequest
 	*/
 	ListIdentityProvidersWithParams(ctx context.Context, args *ListIdentityProvidersApiParams) ListIdentityProvidersApiRequest
 
@@ -273,7 +273,7 @@ type FederatedAuthenticationApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param ListRoleMappingsApiParams - Parameters for the request
-	@return ListRoleMappingsApiRequest}}
+	@return ListRoleMappingsApiRequest
 	*/
 	ListRoleMappingsWithParams(ctx context.Context, args *ListRoleMappingsApiParams) ListRoleMappingsApiRequest
 
@@ -297,7 +297,7 @@ type FederatedAuthenticationApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param RemoveConnectedOrgConfigApiParams - Parameters for the request
-	@return RemoveConnectedOrgConfigApiRequest}}
+	@return RemoveConnectedOrgConfigApiRequest
 	*/
 	RemoveConnectedOrgConfigWithParams(ctx context.Context, args *RemoveConnectedOrgConfigApiParams) RemoveConnectedOrgConfigApiRequest
 
@@ -327,7 +327,7 @@ type FederatedAuthenticationApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param UpdateConnectedOrgConfigApiParams - Parameters for the request
-	@return UpdateConnectedOrgConfigApiRequest}}
+	@return UpdateConnectedOrgConfigApiRequest
 	*/
 	UpdateConnectedOrgConfigWithParams(ctx context.Context, args *UpdateConnectedOrgConfigApiParams) UpdateConnectedOrgConfigApiRequest
 
@@ -351,7 +351,7 @@ type FederatedAuthenticationApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param UpdateIdentityProviderApiParams - Parameters for the request
-	@return UpdateIdentityProviderApiRequest}}
+	@return UpdateIdentityProviderApiRequest
 	*/
 	UpdateIdentityProviderWithParams(ctx context.Context, args *UpdateIdentityProviderApiParams) UpdateIdentityProviderApiRequest
 
@@ -376,7 +376,7 @@ type FederatedAuthenticationApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param UpdateRoleMappingApiParams - Parameters for the request
-	@return UpdateRoleMappingApiRequest}}
+	@return UpdateRoleMappingApiRequest
 	*/
 	UpdateRoleMappingWithParams(ctx context.Context, args *UpdateRoleMappingApiParams) UpdateRoleMappingApiRequest
 

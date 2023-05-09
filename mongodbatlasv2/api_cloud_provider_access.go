@@ -35,7 +35,7 @@ type CloudProviderAccessApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param AuthorizeCloudProviderAccessRoleApiParams - Parameters for the request
-	@return AuthorizeCloudProviderAccessRoleApiRequest}}
+	@return AuthorizeCloudProviderAccessRoleApiRequest
 	*/
 	AuthorizeCloudProviderAccessRoleWithParams(ctx context.Context, args *AuthorizeCloudProviderAccessRoleApiParams) AuthorizeCloudProviderAccessRoleApiRequest
 
@@ -60,7 +60,7 @@ After a successful request to this API endpoint, you can add the **atlasAWSAccou
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param CreateCloudProviderAccessRoleApiParams - Parameters for the request
-	@return CreateCloudProviderAccessRoleApiRequest}}
+	@return CreateCloudProviderAccessRoleApiRequest
 	*/
 	CreateCloudProviderAccessRoleWithParams(ctx context.Context, args *CreateCloudProviderAccessRoleApiParams) CreateCloudProviderAccessRoleApiRequest
 
@@ -85,7 +85,7 @@ After a successful request to this API endpoint, you can add the **atlasAWSAccou
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param DeauthorizeCloudProviderAccessRoleApiParams - Parameters for the request
-	@return DeauthorizeCloudProviderAccessRoleApiRequest}}
+	@return DeauthorizeCloudProviderAccessRoleApiRequest
 	*/
 	DeauthorizeCloudProviderAccessRoleWithParams(ctx context.Context, args *DeauthorizeCloudProviderAccessRoleApiParams) DeauthorizeCloudProviderAccessRoleApiRequest
 
@@ -109,7 +109,7 @@ After a successful request to this API endpoint, you can add the **atlasAWSAccou
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param GetCloudProviderAccessRoleApiParams - Parameters for the request
-	@return GetCloudProviderAccessRoleApiRequest}}
+	@return GetCloudProviderAccessRoleApiRequest
 	*/
 	GetCloudProviderAccessRoleWithParams(ctx context.Context, args *GetCloudProviderAccessRoleApiParams) GetCloudProviderAccessRoleApiRequest
 
@@ -132,7 +132,7 @@ After a successful request to this API endpoint, you can add the **atlasAWSAccou
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param ListCloudProviderAccessRolesApiParams - Parameters for the request
-	@return ListCloudProviderAccessRolesApiRequest}}
+	@return ListCloudProviderAccessRolesApiRequest
 	*/
 	ListCloudProviderAccessRolesWithParams(ctx context.Context, args *ListCloudProviderAccessRolesApiParams) ListCloudProviderAccessRolesApiRequest
 

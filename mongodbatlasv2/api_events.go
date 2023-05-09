@@ -39,7 +39,7 @@ type EventsApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param GetOrganizationEventApiParams - Parameters for the request
-	@return GetOrganizationEventApiRequest}}
+	@return GetOrganizationEventApiRequest
 	*/
 	GetOrganizationEventWithParams(ctx context.Context, args *GetOrganizationEventApiParams) GetOrganizationEventApiRequest
 
@@ -65,7 +65,7 @@ type EventsApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param GetProjectEventApiParams - Parameters for the request
-	@return GetProjectEventApiRequest}}
+	@return GetProjectEventApiRequest
 	*/
 	GetProjectEventWithParams(ctx context.Context, args *GetProjectEventApiParams) GetProjectEventApiRequest
 
@@ -90,7 +90,7 @@ type EventsApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param ListOrganizationEventsApiParams - Parameters for the request
-	@return ListOrganizationEventsApiRequest}}
+	@return ListOrganizationEventsApiRequest
 	*/
 	ListOrganizationEventsWithParams(ctx context.Context, args *ListOrganizationEventsApiParams) ListOrganizationEventsApiRequest
 
@@ -115,7 +115,7 @@ type EventsApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param ListProjectEventsApiParams - Parameters for the request
-	@return ListProjectEventsApiRequest}}
+	@return ListProjectEventsApiRequest
 	*/
 	ListProjectEventsWithParams(ctx context.Context, args *ListProjectEventsApiParams) ListProjectEventsApiRequest
 

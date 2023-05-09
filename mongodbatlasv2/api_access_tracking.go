@@ -36,7 +36,7 @@ type AccessTrackingApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param ListAccessLogsByClusterNameApiParams - Parameters for the request
-	@return ListAccessLogsByClusterNameApiRequest}}
+	@return ListAccessLogsByClusterNameApiRequest
 	*/
 	ListAccessLogsByClusterNameWithParams(ctx context.Context, args *ListAccessLogsByClusterNameApiParams) ListAccessLogsByClusterNameApiRequest
 
@@ -60,7 +60,7 @@ type AccessTrackingApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param ListAccessLogsByHostnameApiParams - Parameters for the request
-	@return ListAccessLogsByHostnameApiRequest}}
+	@return ListAccessLogsByHostnameApiRequest
 	*/
 	ListAccessLogsByHostnameWithParams(ctx context.Context, args *ListAccessLogsByHostnameApiParams) ListAccessLogsByHostnameApiRequest
 

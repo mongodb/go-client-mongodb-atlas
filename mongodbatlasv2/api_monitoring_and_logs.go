@@ -38,7 +38,7 @@ type MonitoringAndLogsApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param GetAtlasProcessApiParams - Parameters for the request
-	@return GetAtlasProcessApiRequest}}
+	@return GetAtlasProcessApiRequest
 	*/
 	GetAtlasProcessWithParams(ctx context.Context, args *GetAtlasProcessApiParams) GetAtlasProcessApiRequest
 
@@ -63,7 +63,7 @@ type MonitoringAndLogsApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param GetDatabaseApiParams - Parameters for the request
-	@return GetDatabaseApiRequest}}
+	@return GetDatabaseApiRequest
 	*/
 	GetDatabaseWithParams(ctx context.Context, args *GetDatabaseApiParams) GetDatabaseApiRequest
 
@@ -88,7 +88,7 @@ type MonitoringAndLogsApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param GetDatabaseMeasurementsApiParams - Parameters for the request
-	@return GetDatabaseMeasurementsApiRequest}}
+	@return GetDatabaseMeasurementsApiRequest
 	*/
 	GetDatabaseMeasurementsWithParams(ctx context.Context, args *GetDatabaseMeasurementsApiParams) GetDatabaseMeasurementsApiRequest
 
@@ -119,7 +119,7 @@ To use this resource, the requesting API Key must have the Project Read Only rol
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param GetDiskMeasurementsApiParams - Parameters for the request
-	@return GetDiskMeasurementsApiRequest}}
+	@return GetDiskMeasurementsApiRequest
 	*/
 	GetDiskMeasurementsWithParams(ctx context.Context, args *GetDiskMeasurementsApiParams) GetDiskMeasurementsApiRequest
 
@@ -144,7 +144,7 @@ To use this resource, the requesting API Key must have the Project Read Only rol
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param GetHostLogsApiParams - Parameters for the request
-	@return GetHostLogsApiRequest}}
+	@return GetHostLogsApiRequest
 	*/
 	GetHostLogsWithParams(ctx context.Context, args *GetHostLogsApiParams) GetHostLogsApiRequest
 
@@ -174,7 +174,7 @@ To use this resource, the requesting API Key must have the Project Read Only rol
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param GetHostMeasurementsApiParams - Parameters for the request
-	@return GetHostMeasurementsApiRequest}}
+	@return GetHostMeasurementsApiRequest
 	*/
 	GetHostMeasurementsWithParams(ctx context.Context, args *GetHostMeasurementsApiParams) GetHostMeasurementsApiRequest
 
@@ -201,7 +201,7 @@ To use this resource, the requesting API Key must have the Project Read Only rol
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param GetIndexMetricsApiParams - Parameters for the request
-	@return GetIndexMetricsApiRequest}}
+	@return GetIndexMetricsApiRequest
 	*/
 	GetIndexMetricsWithParams(ctx context.Context, args *GetIndexMetricsApiParams) GetIndexMetricsApiRequest
 
@@ -225,7 +225,7 @@ To use this resource, the requesting API Key must have the Project Read Only rol
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param GetMeasurementsApiParams - Parameters for the request
-	@return GetMeasurementsApiRequest}}
+	@return GetMeasurementsApiRequest
 	*/
 	GetMeasurementsWithParams(ctx context.Context, args *GetMeasurementsApiParams) GetMeasurementsApiRequest
 
@@ -248,7 +248,7 @@ To use this resource, the requesting API Key must have the Project Read Only rol
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param ListAtlasProcessesApiParams - Parameters for the request
-	@return ListAtlasProcessesApiRequest}}
+	@return ListAtlasProcessesApiRequest
 	*/
 	ListAtlasProcessesWithParams(ctx context.Context, args *ListAtlasProcessesApiParams) ListAtlasProcessesApiRequest
 
@@ -272,7 +272,7 @@ To use this resource, the requesting API Key must have the Project Read Only rol
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param ListDatabasesApiParams - Parameters for the request
-	@return ListDatabasesApiRequest}}
+	@return ListDatabasesApiRequest
 	*/
 	ListDatabasesWithParams(ctx context.Context, args *ListDatabasesApiParams) ListDatabasesApiRequest
 
@@ -303,7 +303,7 @@ To use this resource, the requesting API Key must have the Project Read Only rol
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param ListDiskMeasurementsApiParams - Parameters for the request
-	@return ListDiskMeasurementsApiRequest}}
+	@return ListDiskMeasurementsApiRequest
 	*/
 	ListDiskMeasurementsWithParams(ctx context.Context, args *ListDiskMeasurementsApiParams) ListDiskMeasurementsApiRequest
 
@@ -327,7 +327,7 @@ To use this resource, the requesting API Key must have the Project Read Only rol
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param ListDiskPartitionsApiParams - Parameters for the request
-	@return ListDiskPartitionsApiRequest}}
+	@return ListDiskPartitionsApiRequest
 	*/
 	ListDiskPartitionsWithParams(ctx context.Context, args *ListDiskPartitionsApiParams) ListDiskPartitionsApiRequest
 
@@ -353,7 +353,7 @@ To use this resource, the requesting API Key must have the Project Read Only rol
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param ListIndexMetricsApiParams - Parameters for the request
-	@return ListIndexMetricsApiRequest}}
+	@return ListIndexMetricsApiRequest
 	*/
 	ListIndexMetricsWithParams(ctx context.Context, args *ListIndexMetricsApiParams) ListIndexMetricsApiRequest
 
@@ -377,7 +377,7 @@ To use this resource, the requesting API Key must have the Project Read Only rol
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param ListMetricTypesApiParams - Parameters for the request
-	@return ListMetricTypesApiRequest}}
+	@return ListMetricTypesApiRequest
 	*/
 	ListMetricTypesWithParams(ctx context.Context, args *ListMetricTypesApiParams) ListMetricTypesApiRequest
 

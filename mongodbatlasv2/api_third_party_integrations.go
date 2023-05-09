@@ -35,7 +35,7 @@ type ThirdPartyIntegrationsApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param CreateThirdPartyIntegrationApiParams - Parameters for the request
-	@return CreateThirdPartyIntegrationApiRequest}}
+	@return CreateThirdPartyIntegrationApiRequest
 	*/
 	CreateThirdPartyIntegrationWithParams(ctx context.Context, args *CreateThirdPartyIntegrationApiParams) CreateThirdPartyIntegrationApiRequest
 
@@ -59,7 +59,7 @@ type ThirdPartyIntegrationsApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param DeleteThirdPartyIntegrationApiParams - Parameters for the request
-	@return DeleteThirdPartyIntegrationApiRequest}}
+	@return DeleteThirdPartyIntegrationApiRequest
 	*/
 	DeleteThirdPartyIntegrationWithParams(ctx context.Context, args *DeleteThirdPartyIntegrationApiParams) DeleteThirdPartyIntegrationApiRequest
 
@@ -83,7 +83,7 @@ type ThirdPartyIntegrationsApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param GetThirdPartyIntegrationApiParams - Parameters for the request
-	@return GetThirdPartyIntegrationApiRequest}}
+	@return GetThirdPartyIntegrationApiRequest
 	*/
 	GetThirdPartyIntegrationWithParams(ctx context.Context, args *GetThirdPartyIntegrationApiParams) GetThirdPartyIntegrationApiRequest
 
@@ -106,7 +106,7 @@ type ThirdPartyIntegrationsApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param ListThirdPartyIntegrationsApiParams - Parameters for the request
-	@return ListThirdPartyIntegrationsApiRequest}}
+	@return ListThirdPartyIntegrationsApiRequest
 	*/
 	ListThirdPartyIntegrationsWithParams(ctx context.Context, args *ListThirdPartyIntegrationsApiParams) ListThirdPartyIntegrationsApiRequest
 
@@ -130,7 +130,7 @@ type ThirdPartyIntegrationsApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param UpdateThirdPartyIntegrationApiParams - Parameters for the request
-	@return UpdateThirdPartyIntegrationApiRequest}}
+	@return UpdateThirdPartyIntegrationApiRequest
 	*/
 	UpdateThirdPartyIntegrationWithParams(ctx context.Context, args *UpdateThirdPartyIntegrationApiParams) UpdateThirdPartyIntegrationApiRequest
 

@@ -32,7 +32,7 @@ type RootApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param GetSystemStatusApiParams - Parameters for the request
-	@return GetSystemStatusApiRequest}}
+	@return GetSystemStatusApiRequest
 	*/
 	GetSystemStatusWithParams(ctx context.Context, args *GetSystemStatusApiParams) GetSystemStatusApiRequest
 

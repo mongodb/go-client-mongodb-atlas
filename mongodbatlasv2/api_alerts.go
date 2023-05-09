@@ -37,7 +37,7 @@ type AlertsApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param AcknowledgeAlertApiParams - Parameters for the request
-	@return AcknowledgeAlertApiRequest}}
+	@return AcknowledgeAlertApiRequest
 	*/
 	AcknowledgeAlertWithParams(ctx context.Context, args *AcknowledgeAlertApiParams) AcknowledgeAlertApiRequest
 
@@ -63,7 +63,7 @@ type AlertsApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param GetAlertApiParams - Parameters for the request
-	@return GetAlertApiRequest}}
+	@return GetAlertApiRequest
 	*/
 	GetAlertWithParams(ctx context.Context, args *GetAlertApiParams) GetAlertApiRequest
 
@@ -88,7 +88,7 @@ type AlertsApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param ListAlertsApiParams - Parameters for the request
-	@return ListAlertsApiRequest}}
+	@return ListAlertsApiRequest
 	*/
 	ListAlertsWithParams(ctx context.Context, args *ListAlertsApiParams) ListAlertsApiRequest
 
@@ -114,7 +114,7 @@ type AlertsApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param ListAlertsByAlertConfigurationIdApiParams - Parameters for the request
-	@return ListAlertsByAlertConfigurationIdApiRequest}}
+	@return ListAlertsByAlertConfigurationIdApiRequest
 	*/
 	ListAlertsByAlertConfigurationIdWithParams(ctx context.Context, args *ListAlertsByAlertConfigurationIdApiParams) ListAlertsByAlertConfigurationIdApiRequest
 

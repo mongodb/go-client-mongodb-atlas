@@ -35,7 +35,7 @@ type GlobalClustersApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param CreateCustomZoneMappingApiParams - Parameters for the request
-	@return CreateCustomZoneMappingApiRequest}}
+	@return CreateCustomZoneMappingApiRequest
 	*/
 	CreateCustomZoneMappingWithParams(ctx context.Context, args *CreateCustomZoneMappingApiParams) CreateCustomZoneMappingApiRequest
 
@@ -59,7 +59,7 @@ type GlobalClustersApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param CreateManagedNamespaceApiParams - Parameters for the request
-	@return CreateManagedNamespaceApiRequest}}
+	@return CreateManagedNamespaceApiRequest
 	*/
 	CreateManagedNamespaceWithParams(ctx context.Context, args *CreateManagedNamespaceApiParams) CreateManagedNamespaceApiRequest
 
@@ -83,7 +83,7 @@ type GlobalClustersApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param DeleteAllCustomZoneMappingsApiParams - Parameters for the request
-	@return DeleteAllCustomZoneMappingsApiRequest}}
+	@return DeleteAllCustomZoneMappingsApiRequest
 	*/
 	DeleteAllCustomZoneMappingsWithParams(ctx context.Context, args *DeleteAllCustomZoneMappingsApiParams) DeleteAllCustomZoneMappingsApiRequest
 
@@ -107,7 +107,7 @@ type GlobalClustersApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param DeleteManagedNamespaceApiParams - Parameters for the request
-	@return DeleteManagedNamespaceApiRequest}}
+	@return DeleteManagedNamespaceApiRequest
 	*/
 	DeleteManagedNamespaceWithParams(ctx context.Context, args *DeleteManagedNamespaceApiParams) DeleteManagedNamespaceApiRequest
 
@@ -131,7 +131,7 @@ type GlobalClustersApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param GetManagedNamespaceApiParams - Parameters for the request
-	@return GetManagedNamespaceApiRequest}}
+	@return GetManagedNamespaceApiRequest
 	*/
 	GetManagedNamespaceWithParams(ctx context.Context, args *GetManagedNamespaceApiParams) GetManagedNamespaceApiRequest
 

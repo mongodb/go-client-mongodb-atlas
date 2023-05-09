@@ -34,7 +34,7 @@ type CustomDatabaseRolesApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param CreateCustomDatabaseRoleApiParams - Parameters for the request
-	@return CreateCustomDatabaseRoleApiRequest}}
+	@return CreateCustomDatabaseRoleApiRequest
 	*/
 	CreateCustomDatabaseRoleWithParams(ctx context.Context, args *CreateCustomDatabaseRoleApiParams) CreateCustomDatabaseRoleApiRequest
 
@@ -58,7 +58,7 @@ type CustomDatabaseRolesApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param DeleteCustomDatabaseRoleApiParams - Parameters for the request
-	@return DeleteCustomDatabaseRoleApiRequest}}
+	@return DeleteCustomDatabaseRoleApiRequest
 	*/
 	DeleteCustomDatabaseRoleWithParams(ctx context.Context, args *DeleteCustomDatabaseRoleApiParams) DeleteCustomDatabaseRoleApiRequest
 
@@ -82,7 +82,7 @@ type CustomDatabaseRolesApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param GetCustomDatabaseRoleApiParams - Parameters for the request
-	@return GetCustomDatabaseRoleApiRequest}}
+	@return GetCustomDatabaseRoleApiRequest
 	*/
 	GetCustomDatabaseRoleWithParams(ctx context.Context, args *GetCustomDatabaseRoleApiParams) GetCustomDatabaseRoleApiRequest
 
@@ -105,7 +105,7 @@ type CustomDatabaseRolesApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param ListCustomDatabaseRolesApiParams - Parameters for the request
-	@return ListCustomDatabaseRolesApiRequest}}
+	@return ListCustomDatabaseRolesApiRequest
 	*/
 	ListCustomDatabaseRolesWithParams(ctx context.Context, args *ListCustomDatabaseRolesApiParams) ListCustomDatabaseRolesApiRequest
 
@@ -129,7 +129,7 @@ type CustomDatabaseRolesApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param UpdateCustomDatabaseRoleApiParams - Parameters for the request
-	@return UpdateCustomDatabaseRoleApiRequest}}
+	@return UpdateCustomDatabaseRoleApiRequest
 	*/
 	UpdateCustomDatabaseRoleWithParams(ctx context.Context, args *UpdateCustomDatabaseRoleApiParams) UpdateCustomDatabaseRoleApiRequest
 

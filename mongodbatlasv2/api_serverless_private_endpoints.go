@@ -37,7 +37,7 @@ type ServerlessPrivateEndpointsApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param CreateServerlessPrivateEndpointApiParams - Parameters for the request
-	@return CreateServerlessPrivateEndpointApiRequest}}
+	@return CreateServerlessPrivateEndpointApiRequest
 	*/
 	CreateServerlessPrivateEndpointWithParams(ctx context.Context, args *CreateServerlessPrivateEndpointApiParams) CreateServerlessPrivateEndpointApiRequest
 
@@ -62,7 +62,7 @@ type ServerlessPrivateEndpointsApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param DeleteServerlessPrivateEndpointApiParams - Parameters for the request
-	@return DeleteServerlessPrivateEndpointApiRequest}}
+	@return DeleteServerlessPrivateEndpointApiRequest
 	*/
 	DeleteServerlessPrivateEndpointWithParams(ctx context.Context, args *DeleteServerlessPrivateEndpointApiParams) DeleteServerlessPrivateEndpointApiRequest
 
@@ -87,7 +87,7 @@ type ServerlessPrivateEndpointsApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param GetServerlessPrivateEndpointApiParams - Parameters for the request
-	@return GetServerlessPrivateEndpointApiRequest}}
+	@return GetServerlessPrivateEndpointApiRequest
 	*/
 	GetServerlessPrivateEndpointWithParams(ctx context.Context, args *GetServerlessPrivateEndpointApiParams) GetServerlessPrivateEndpointApiRequest
 
@@ -111,7 +111,7 @@ type ServerlessPrivateEndpointsApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param ListServerlessPrivateEndpointsApiParams - Parameters for the request
-	@return ListServerlessPrivateEndpointsApiRequest}}
+	@return ListServerlessPrivateEndpointsApiRequest
 	*/
 	ListServerlessPrivateEndpointsWithParams(ctx context.Context, args *ListServerlessPrivateEndpointsApiParams) ListServerlessPrivateEndpointsApiRequest
 
@@ -136,7 +136,7 @@ type ServerlessPrivateEndpointsApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param UpdateServerlessPrivateEndpointApiParams - Parameters for the request
-	@return UpdateServerlessPrivateEndpointApiRequest}}
+	@return UpdateServerlessPrivateEndpointApiRequest
 	*/
 	UpdateServerlessPrivateEndpointWithParams(ctx context.Context, args *UpdateServerlessPrivateEndpointApiParams) UpdateServerlessPrivateEndpointApiRequest
 

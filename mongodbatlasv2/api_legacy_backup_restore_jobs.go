@@ -28,7 +28,7 @@ type LegacyBackupRestoreJobsApi interface {
 	@param clusterName Human-readable label that identifies the cluster with the snapshot you want to return.
 	@return CreateLegacyBackupRestoreJobApiRequest
 	
-	Deprecated: Method have been deprecated. Please check the latest resource version for LegacyBackupRestoreJobsApi
+	Deprecated: this method has been deprecated. Please check the latest resource version for LegacyBackupRestoreJobsApi
 	*/
 	CreateLegacyBackupRestoreJob(ctx context.Context, groupId string, clusterName string) CreateLegacyBackupRestoreJobApiRequest
 	/*
@@ -37,9 +37,9 @@ type LegacyBackupRestoreJobsApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param CreateLegacyBackupRestoreJobApiParams - Parameters for the request
-	@return CreateLegacyBackupRestoreJobApiRequest}}
+	@return CreateLegacyBackupRestoreJobApiRequest
 
-	Deprecated: Method have been deprecated. Please check the latest resource version for LegacyBackupRestoreJobsApi
+	Deprecated: this method has been deprecated. Please check the latest resource version for LegacyBackupRestoreJobsApi
 	*/
 	CreateLegacyBackupRestoreJobWithParams(ctx context.Context, args *CreateLegacyBackupRestoreJobApiParams) CreateLegacyBackupRestoreJobApiRequest
 

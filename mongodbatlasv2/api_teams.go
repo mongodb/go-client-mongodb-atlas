@@ -34,7 +34,7 @@ type TeamsApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param AddAllTeamsToProjectApiParams - Parameters for the request
-	@return AddAllTeamsToProjectApiRequest}}
+	@return AddAllTeamsToProjectApiRequest
 	*/
 	AddAllTeamsToProjectWithParams(ctx context.Context, args *AddAllTeamsToProjectApiParams) AddAllTeamsToProjectApiRequest
 
@@ -58,7 +58,7 @@ type TeamsApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param AddTeamUserApiParams - Parameters for the request
-	@return AddTeamUserApiRequest}}
+	@return AddTeamUserApiRequest
 	*/
 	AddTeamUserWithParams(ctx context.Context, args *AddTeamUserApiParams) AddTeamUserApiRequest
 
@@ -81,7 +81,7 @@ type TeamsApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param CreateTeamApiParams - Parameters for the request
-	@return CreateTeamApiRequest}}
+	@return CreateTeamApiRequest
 	*/
 	CreateTeamWithParams(ctx context.Context, args *CreateTeamApiParams) CreateTeamApiRequest
 
@@ -105,7 +105,7 @@ type TeamsApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param DeleteTeamApiParams - Parameters for the request
-	@return DeleteTeamApiRequest}}
+	@return DeleteTeamApiRequest
 	*/
 	DeleteTeamWithParams(ctx context.Context, args *DeleteTeamApiParams) DeleteTeamApiRequest
 
@@ -129,7 +129,7 @@ type TeamsApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param GetTeamByIdApiParams - Parameters for the request
-	@return GetTeamByIdApiRequest}}
+	@return GetTeamByIdApiRequest
 	*/
 	GetTeamByIdWithParams(ctx context.Context, args *GetTeamByIdApiParams) GetTeamByIdApiRequest
 
@@ -153,7 +153,7 @@ type TeamsApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param GetTeamByNameApiParams - Parameters for the request
-	@return GetTeamByNameApiRequest}}
+	@return GetTeamByNameApiRequest
 	*/
 	GetTeamByNameWithParams(ctx context.Context, args *GetTeamByNameApiParams) GetTeamByNameApiRequest
 
@@ -176,7 +176,7 @@ type TeamsApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param ListOrganizationTeamsApiParams - Parameters for the request
-	@return ListOrganizationTeamsApiRequest}}
+	@return ListOrganizationTeamsApiRequest
 	*/
 	ListOrganizationTeamsWithParams(ctx context.Context, args *ListOrganizationTeamsApiParams) ListOrganizationTeamsApiRequest
 
@@ -199,7 +199,7 @@ type TeamsApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param ListProjectTeamsApiParams - Parameters for the request
-	@return ListProjectTeamsApiRequest}}
+	@return ListProjectTeamsApiRequest
 	*/
 	ListProjectTeamsWithParams(ctx context.Context, args *ListProjectTeamsApiParams) ListProjectTeamsApiRequest
 
@@ -223,7 +223,7 @@ type TeamsApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param ListTeamUsersApiParams - Parameters for the request
-	@return ListTeamUsersApiRequest}}
+	@return ListTeamUsersApiRequest
 	*/
 	ListTeamUsersWithParams(ctx context.Context, args *ListTeamUsersApiParams) ListTeamUsersApiRequest
 
@@ -247,7 +247,7 @@ type TeamsApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param RemoveProjectTeamApiParams - Parameters for the request
-	@return RemoveProjectTeamApiRequest}}
+	@return RemoveProjectTeamApiRequest
 	*/
 	RemoveProjectTeamWithParams(ctx context.Context, args *RemoveProjectTeamApiParams) RemoveProjectTeamApiRequest
 
@@ -272,7 +272,7 @@ type TeamsApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param RemoveTeamUserApiParams - Parameters for the request
-	@return RemoveTeamUserApiRequest}}
+	@return RemoveTeamUserApiRequest
 	*/
 	RemoveTeamUserWithParams(ctx context.Context, args *RemoveTeamUserApiParams) RemoveTeamUserApiRequest
 
@@ -296,7 +296,7 @@ type TeamsApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param RenameTeamApiParams - Parameters for the request
-	@return RenameTeamApiRequest}}
+	@return RenameTeamApiRequest
 	*/
 	RenameTeamWithParams(ctx context.Context, args *RenameTeamApiParams) RenameTeamApiRequest
 
@@ -320,7 +320,7 @@ type TeamsApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param UpdateTeamRolesApiParams - Parameters for the request
-	@return UpdateTeamRolesApiRequest}}
+	@return UpdateTeamRolesApiRequest
 	*/
 	UpdateTeamRolesWithParams(ctx context.Context, args *UpdateTeamRolesApiParams) UpdateTeamRolesApiRequest
 

@@ -36,7 +36,7 @@ type AlertConfigurationsApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param CreateAlertConfigurationApiParams - Parameters for the request
-	@return CreateAlertConfigurationApiRequest}}
+	@return CreateAlertConfigurationApiRequest
 	*/
 	CreateAlertConfigurationWithParams(ctx context.Context, args *CreateAlertConfigurationApiParams) CreateAlertConfigurationApiRequest
 
@@ -62,7 +62,7 @@ type AlertConfigurationsApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param DeleteAlertConfigurationApiParams - Parameters for the request
-	@return DeleteAlertConfigurationApiRequest}}
+	@return DeleteAlertConfigurationApiRequest
 	*/
 	DeleteAlertConfigurationWithParams(ctx context.Context, args *DeleteAlertConfigurationApiParams) DeleteAlertConfigurationApiRequest
 
@@ -88,7 +88,7 @@ type AlertConfigurationsApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param GetAlertConfigurationApiParams - Parameters for the request
-	@return GetAlertConfigurationApiRequest}}
+	@return GetAlertConfigurationApiRequest
 	*/
 	GetAlertConfigurationWithParams(ctx context.Context, args *GetAlertConfigurationApiParams) GetAlertConfigurationApiRequest
 
@@ -110,7 +110,7 @@ type AlertConfigurationsApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param ListAlertConfigurationMatchersFieldNamesApiParams - Parameters for the request
-	@return ListAlertConfigurationMatchersFieldNamesApiRequest}}
+	@return ListAlertConfigurationMatchersFieldNamesApiRequest
 	*/
 	ListAlertConfigurationMatchersFieldNamesWithParams(ctx context.Context, args *ListAlertConfigurationMatchersFieldNamesApiParams) ListAlertConfigurationMatchersFieldNamesApiRequest
 
@@ -135,7 +135,7 @@ type AlertConfigurationsApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param ListAlertConfigurationsApiParams - Parameters for the request
-	@return ListAlertConfigurationsApiRequest}}
+	@return ListAlertConfigurationsApiRequest
 	*/
 	ListAlertConfigurationsWithParams(ctx context.Context, args *ListAlertConfigurationsApiParams) ListAlertConfigurationsApiRequest
 
@@ -161,7 +161,7 @@ type AlertConfigurationsApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param ListAlertConfigurationsByAlertIdApiParams - Parameters for the request
-	@return ListAlertConfigurationsByAlertIdApiRequest}}
+	@return ListAlertConfigurationsByAlertIdApiRequest
 	*/
 	ListAlertConfigurationsByAlertIdWithParams(ctx context.Context, args *ListAlertConfigurationsByAlertIdApiParams) ListAlertConfigurationsByAlertIdApiRequest
 
@@ -189,7 +189,7 @@ This resource remains under revision and may change. Refer to the [legacy docume
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param ToggleAlertConfigurationApiParams - Parameters for the request
-	@return ToggleAlertConfigurationApiRequest}}
+	@return ToggleAlertConfigurationApiRequest
 	*/
 	ToggleAlertConfigurationWithParams(ctx context.Context, args *ToggleAlertConfigurationApiParams) ToggleAlertConfigurationApiRequest
 
@@ -217,7 +217,7 @@ This resource remains under revision and may change. Refer to the [legacy docume
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param UpdateAlertConfigurationApiParams - Parameters for the request
-	@return UpdateAlertConfigurationApiRequest}}
+	@return UpdateAlertConfigurationApiRequest
 	*/
 	UpdateAlertConfigurationWithParams(ctx context.Context, args *UpdateAlertConfigurationApiParams) UpdateAlertConfigurationApiRequest
 

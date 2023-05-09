@@ -34,7 +34,7 @@ type MaintenanceWindowsApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param DeferMaintenanceWindowApiParams - Parameters for the request
-	@return DeferMaintenanceWindowApiRequest}}
+	@return DeferMaintenanceWindowApiRequest
 	*/
 	DeferMaintenanceWindowWithParams(ctx context.Context, args *DeferMaintenanceWindowApiParams) DeferMaintenanceWindowApiRequest
 
@@ -57,7 +57,7 @@ type MaintenanceWindowsApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param GetMaintenanceWindowApiParams - Parameters for the request
-	@return GetMaintenanceWindowApiRequest}}
+	@return GetMaintenanceWindowApiRequest
 	*/
 	GetMaintenanceWindowWithParams(ctx context.Context, args *GetMaintenanceWindowApiParams) GetMaintenanceWindowApiRequest
 
@@ -80,7 +80,7 @@ type MaintenanceWindowsApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param ResetMaintenanceWindowApiParams - Parameters for the request
-	@return ResetMaintenanceWindowApiRequest}}
+	@return ResetMaintenanceWindowApiRequest
 	*/
 	ResetMaintenanceWindowWithParams(ctx context.Context, args *ResetMaintenanceWindowApiParams) ResetMaintenanceWindowApiRequest
 
@@ -103,7 +103,7 @@ type MaintenanceWindowsApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param ToggleMaintenanceAutoDeferApiParams - Parameters for the request
-	@return ToggleMaintenanceAutoDeferApiRequest}}
+	@return ToggleMaintenanceAutoDeferApiRequest
 	*/
 	ToggleMaintenanceAutoDeferWithParams(ctx context.Context, args *ToggleMaintenanceAutoDeferApiParams) ToggleMaintenanceAutoDeferApiRequest
 
@@ -126,7 +126,7 @@ type MaintenanceWindowsApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param UpdateMaintenanceWindowApiParams - Parameters for the request
-	@return UpdateMaintenanceWindowApiRequest}}
+	@return UpdateMaintenanceWindowApiRequest
 	*/
 	UpdateMaintenanceWindowWithParams(ctx context.Context, args *UpdateMaintenanceWindowApiParams) UpdateMaintenanceWindowApiRequest
 

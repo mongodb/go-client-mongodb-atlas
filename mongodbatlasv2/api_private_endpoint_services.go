@@ -36,7 +36,7 @@ type PrivateEndpointServicesApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param CreatePrivateEndpointApiParams - Parameters for the request
-	@return CreatePrivateEndpointApiRequest}}
+	@return CreatePrivateEndpointApiRequest
 	*/
 	CreatePrivateEndpointWithParams(ctx context.Context, args *CreatePrivateEndpointApiParams) CreatePrivateEndpointApiRequest
 
@@ -59,7 +59,7 @@ type PrivateEndpointServicesApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param CreatePrivateEndpointServiceApiParams - Parameters for the request
-	@return CreatePrivateEndpointServiceApiRequest}}
+	@return CreatePrivateEndpointServiceApiRequest
 	*/
 	CreatePrivateEndpointServiceWithParams(ctx context.Context, args *CreatePrivateEndpointServiceApiParams) CreatePrivateEndpointServiceApiRequest
 
@@ -85,7 +85,7 @@ type PrivateEndpointServicesApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param DeletePrivateEndpointApiParams - Parameters for the request
-	@return DeletePrivateEndpointApiRequest}}
+	@return DeletePrivateEndpointApiRequest
 	*/
 	DeletePrivateEndpointWithParams(ctx context.Context, args *DeletePrivateEndpointApiParams) DeletePrivateEndpointApiRequest
 
@@ -110,7 +110,7 @@ type PrivateEndpointServicesApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param DeletePrivateEndpointServiceApiParams - Parameters for the request
-	@return DeletePrivateEndpointServiceApiRequest}}
+	@return DeletePrivateEndpointServiceApiRequest
 	*/
 	DeletePrivateEndpointServiceWithParams(ctx context.Context, args *DeletePrivateEndpointServiceApiParams) DeletePrivateEndpointServiceApiRequest
 
@@ -136,7 +136,7 @@ type PrivateEndpointServicesApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param GetPrivateEndpointApiParams - Parameters for the request
-	@return GetPrivateEndpointApiRequest}}
+	@return GetPrivateEndpointApiRequest
 	*/
 	GetPrivateEndpointWithParams(ctx context.Context, args *GetPrivateEndpointApiParams) GetPrivateEndpointApiRequest
 
@@ -161,7 +161,7 @@ type PrivateEndpointServicesApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param GetPrivateEndpointServiceApiParams - Parameters for the request
-	@return GetPrivateEndpointServiceApiRequest}}
+	@return GetPrivateEndpointServiceApiRequest
 	*/
 	GetPrivateEndpointServiceWithParams(ctx context.Context, args *GetPrivateEndpointServiceApiParams) GetPrivateEndpointServiceApiRequest
 
@@ -184,7 +184,7 @@ type PrivateEndpointServicesApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param GetRegionalizedPrivateEndpointSettingApiParams - Parameters for the request
-	@return GetRegionalizedPrivateEndpointSettingApiRequest}}
+	@return GetRegionalizedPrivateEndpointSettingApiRequest
 	*/
 	GetRegionalizedPrivateEndpointSettingWithParams(ctx context.Context, args *GetRegionalizedPrivateEndpointSettingApiParams) GetRegionalizedPrivateEndpointSettingApiRequest
 
@@ -208,7 +208,7 @@ type PrivateEndpointServicesApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param ListPrivateEndpointServicesApiParams - Parameters for the request
-	@return ListPrivateEndpointServicesApiRequest}}
+	@return ListPrivateEndpointServicesApiRequest
 	*/
 	ListPrivateEndpointServicesWithParams(ctx context.Context, args *ListPrivateEndpointServicesApiParams) ListPrivateEndpointServicesApiRequest
 
@@ -231,7 +231,7 @@ type PrivateEndpointServicesApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param ToggleRegionalizedPrivateEndpointSettingApiParams - Parameters for the request
-	@return ToggleRegionalizedPrivateEndpointSettingApiRequest}}
+	@return ToggleRegionalizedPrivateEndpointSettingApiRequest
 	*/
 	ToggleRegionalizedPrivateEndpointSettingWithParams(ctx context.Context, args *ToggleRegionalizedPrivateEndpointSettingApiParams) ToggleRegionalizedPrivateEndpointSettingApiRequest
 

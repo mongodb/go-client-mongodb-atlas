@@ -36,7 +36,7 @@ type CloudBackupsApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param CancelBackupRestoreJobApiParams - Parameters for the request
-	@return CancelBackupRestoreJobApiRequest}}
+	@return CancelBackupRestoreJobApiRequest
 	*/
 	CancelBackupRestoreJobWithParams(ctx context.Context, args *CancelBackupRestoreJobApiParams) CancelBackupRestoreJobApiRequest
 
@@ -60,7 +60,7 @@ type CloudBackupsApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param CreateBackupExportJobApiParams - Parameters for the request
-	@return CreateBackupExportJobApiRequest}}
+	@return CreateBackupExportJobApiRequest
 	*/
 	CreateBackupExportJobWithParams(ctx context.Context, args *CreateBackupExportJobApiParams) CreateBackupExportJobApiRequest
 
@@ -86,7 +86,7 @@ type CloudBackupsApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param CreateBackupRestoreJobApiParams - Parameters for the request
-	@return CreateBackupRestoreJobApiRequest}}
+	@return CreateBackupRestoreJobApiRequest
 	*/
 	CreateBackupRestoreJobWithParams(ctx context.Context, args *CreateBackupRestoreJobApiParams) CreateBackupRestoreJobApiRequest
 
@@ -109,7 +109,7 @@ type CloudBackupsApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param CreateExportBucketApiParams - Parameters for the request
-	@return CreateExportBucketApiRequest}}
+	@return CreateExportBucketApiRequest
 	*/
 	CreateExportBucketWithParams(ctx context.Context, args *CreateExportBucketApiParams) CreateExportBucketApiRequest
 
@@ -133,7 +133,7 @@ type CloudBackupsApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param CreateServerlessBackupRestoreJobApiParams - Parameters for the request
-	@return CreateServerlessBackupRestoreJobApiRequest}}
+	@return CreateServerlessBackupRestoreJobApiRequest
 	*/
 	CreateServerlessBackupRestoreJobWithParams(ctx context.Context, args *CreateServerlessBackupRestoreJobApiParams) CreateServerlessBackupRestoreJobApiRequest
 
@@ -157,7 +157,7 @@ type CloudBackupsApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param DeleteAllBackupSchedulesApiParams - Parameters for the request
-	@return DeleteAllBackupSchedulesApiRequest}}
+	@return DeleteAllBackupSchedulesApiRequest
 	*/
 	DeleteAllBackupSchedulesWithParams(ctx context.Context, args *DeleteAllBackupSchedulesApiParams) DeleteAllBackupSchedulesApiRequest
 
@@ -181,7 +181,7 @@ type CloudBackupsApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param DeleteExportBucketApiParams - Parameters for the request
-	@return DeleteExportBucketApiRequest}}
+	@return DeleteExportBucketApiRequest
 	*/
 	DeleteExportBucketWithParams(ctx context.Context, args *DeleteExportBucketApiParams) DeleteExportBucketApiRequest
 
@@ -206,7 +206,7 @@ type CloudBackupsApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param DeleteReplicaSetBackupApiParams - Parameters for the request
-	@return DeleteReplicaSetBackupApiRequest}}
+	@return DeleteReplicaSetBackupApiRequest
 	*/
 	DeleteReplicaSetBackupWithParams(ctx context.Context, args *DeleteReplicaSetBackupApiParams) DeleteReplicaSetBackupApiRequest
 
@@ -231,7 +231,7 @@ type CloudBackupsApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param DeleteShardedClusterBackupApiParams - Parameters for the request
-	@return DeleteShardedClusterBackupApiRequest}}
+	@return DeleteShardedClusterBackupApiRequest
 	*/
 	DeleteShardedClusterBackupWithParams(ctx context.Context, args *DeleteShardedClusterBackupApiParams) DeleteShardedClusterBackupApiRequest
 
@@ -256,7 +256,7 @@ type CloudBackupsApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param GetBackupExportJobApiParams - Parameters for the request
-	@return GetBackupExportJobApiRequest}}
+	@return GetBackupExportJobApiRequest
 	*/
 	GetBackupExportJobWithParams(ctx context.Context, args *GetBackupExportJobApiParams) GetBackupExportJobApiRequest
 
@@ -281,7 +281,7 @@ type CloudBackupsApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param GetBackupRestoreJobApiParams - Parameters for the request
-	@return GetBackupRestoreJobApiRequest}}
+	@return GetBackupRestoreJobApiRequest
 	*/
 	GetBackupRestoreJobWithParams(ctx context.Context, args *GetBackupRestoreJobApiParams) GetBackupRestoreJobApiRequest
 
@@ -305,7 +305,7 @@ type CloudBackupsApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param GetBackupScheduleApiParams - Parameters for the request
-	@return GetBackupScheduleApiRequest}}
+	@return GetBackupScheduleApiRequest
 	*/
 	GetBackupScheduleWithParams(ctx context.Context, args *GetBackupScheduleApiParams) GetBackupScheduleApiRequest
 
@@ -328,7 +328,7 @@ type CloudBackupsApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param GetDataProtectionSettingsApiParams - Parameters for the request
-	@return GetDataProtectionSettingsApiRequest}}
+	@return GetDataProtectionSettingsApiRequest
 	*/
 	GetDataProtectionSettingsWithParams(ctx context.Context, args *GetDataProtectionSettingsApiParams) GetDataProtectionSettingsApiRequest
 
@@ -352,7 +352,7 @@ type CloudBackupsApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param GetExportBucketApiParams - Parameters for the request
-	@return GetExportBucketApiRequest}}
+	@return GetExportBucketApiRequest
 	*/
 	GetExportBucketWithParams(ctx context.Context, args *GetExportBucketApiParams) GetExportBucketApiRequest
 
@@ -377,7 +377,7 @@ type CloudBackupsApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param GetReplicaSetBackupApiParams - Parameters for the request
-	@return GetReplicaSetBackupApiRequest}}
+	@return GetReplicaSetBackupApiRequest
 	*/
 	GetReplicaSetBackupWithParams(ctx context.Context, args *GetReplicaSetBackupApiParams) GetReplicaSetBackupApiRequest
 
@@ -402,7 +402,7 @@ type CloudBackupsApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param GetServerlessBackupApiParams - Parameters for the request
-	@return GetServerlessBackupApiRequest}}
+	@return GetServerlessBackupApiRequest
 	*/
 	GetServerlessBackupWithParams(ctx context.Context, args *GetServerlessBackupApiParams) GetServerlessBackupApiRequest
 
@@ -427,7 +427,7 @@ type CloudBackupsApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param GetServerlessBackupRestoreJobApiParams - Parameters for the request
-	@return GetServerlessBackupRestoreJobApiRequest}}
+	@return GetServerlessBackupRestoreJobApiRequest
 	*/
 	GetServerlessBackupRestoreJobWithParams(ctx context.Context, args *GetServerlessBackupRestoreJobApiParams) GetServerlessBackupRestoreJobApiRequest
 
@@ -452,7 +452,7 @@ type CloudBackupsApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param GetShardedClusterBackupApiParams - Parameters for the request
-	@return GetShardedClusterBackupApiRequest}}
+	@return GetShardedClusterBackupApiRequest
 	*/
 	GetShardedClusterBackupWithParams(ctx context.Context, args *GetShardedClusterBackupApiParams) GetShardedClusterBackupApiRequest
 
@@ -476,7 +476,7 @@ type CloudBackupsApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param ListBackupExportJobsApiParams - Parameters for the request
-	@return ListBackupExportJobsApiRequest}}
+	@return ListBackupExportJobsApiRequest
 	*/
 	ListBackupExportJobsWithParams(ctx context.Context, args *ListBackupExportJobsApiParams) ListBackupExportJobsApiRequest
 
@@ -500,7 +500,7 @@ type CloudBackupsApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param ListBackupRestoreJobsApiParams - Parameters for the request
-	@return ListBackupRestoreJobsApiRequest}}
+	@return ListBackupRestoreJobsApiRequest
 	*/
 	ListBackupRestoreJobsWithParams(ctx context.Context, args *ListBackupRestoreJobsApiParams) ListBackupRestoreJobsApiRequest
 
@@ -523,7 +523,7 @@ type CloudBackupsApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param ListExportBucketsApiParams - Parameters for the request
-	@return ListExportBucketsApiRequest}}
+	@return ListExportBucketsApiRequest
 	*/
 	ListExportBucketsWithParams(ctx context.Context, args *ListExportBucketsApiParams) ListExportBucketsApiRequest
 
@@ -547,7 +547,7 @@ type CloudBackupsApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param ListReplicaSetBackupsApiParams - Parameters for the request
-	@return ListReplicaSetBackupsApiRequest}}
+	@return ListReplicaSetBackupsApiRequest
 	*/
 	ListReplicaSetBackupsWithParams(ctx context.Context, args *ListReplicaSetBackupsApiParams) ListReplicaSetBackupsApiRequest
 
@@ -571,7 +571,7 @@ type CloudBackupsApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param ListServerlessBackupRestoreJobsApiParams - Parameters for the request
-	@return ListServerlessBackupRestoreJobsApiRequest}}
+	@return ListServerlessBackupRestoreJobsApiRequest
 	*/
 	ListServerlessBackupRestoreJobsWithParams(ctx context.Context, args *ListServerlessBackupRestoreJobsApiParams) ListServerlessBackupRestoreJobsApiRequest
 
@@ -595,7 +595,7 @@ type CloudBackupsApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param ListServerlessBackupsApiParams - Parameters for the request
-	@return ListServerlessBackupsApiRequest}}
+	@return ListServerlessBackupsApiRequest
 	*/
 	ListServerlessBackupsWithParams(ctx context.Context, args *ListServerlessBackupsApiParams) ListServerlessBackupsApiRequest
 
@@ -619,7 +619,7 @@ type CloudBackupsApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param ListShardedClusterBackupsApiParams - Parameters for the request
-	@return ListShardedClusterBackupsApiRequest}}
+	@return ListShardedClusterBackupsApiRequest
 	*/
 	ListShardedClusterBackupsWithParams(ctx context.Context, args *ListShardedClusterBackupsApiParams) ListShardedClusterBackupsApiRequest
 
@@ -645,7 +645,7 @@ type CloudBackupsApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param TakeSnapshotApiParams - Parameters for the request
-	@return TakeSnapshotApiRequest}}
+	@return TakeSnapshotApiRequest
 	*/
 	TakeSnapshotWithParams(ctx context.Context, args *TakeSnapshotApiParams) TakeSnapshotApiRequest
 
@@ -669,7 +669,7 @@ type CloudBackupsApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param UpdateBackupScheduleApiParams - Parameters for the request
-	@return UpdateBackupScheduleApiRequest}}
+	@return UpdateBackupScheduleApiRequest
 	*/
 	UpdateBackupScheduleWithParams(ctx context.Context, args *UpdateBackupScheduleApiParams) UpdateBackupScheduleApiRequest
 
@@ -692,7 +692,7 @@ type CloudBackupsApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param UpdateDataProtectionSettingsApiParams - Parameters for the request
-	@return UpdateDataProtectionSettingsApiRequest}}
+	@return UpdateDataProtectionSettingsApiRequest
 	*/
 	UpdateDataProtectionSettingsWithParams(ctx context.Context, args *UpdateDataProtectionSettingsApiParams) UpdateDataProtectionSettingsApiRequest
 
@@ -717,7 +717,7 @@ type CloudBackupsApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param UpdateSnapshotRetentionApiParams - Parameters for the request
-	@return UpdateSnapshotRetentionApiRequest}}
+	@return UpdateSnapshotRetentionApiRequest
 	*/
 	UpdateSnapshotRetentionWithParams(ctx context.Context, args *UpdateSnapshotRetentionApiParams) UpdateSnapshotRetentionApiRequest
 

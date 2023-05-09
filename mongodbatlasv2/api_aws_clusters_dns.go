@@ -34,7 +34,7 @@ type AWSClustersDNSApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param GetAWSCustomDNSApiParams - Parameters for the request
-	@return GetAWSCustomDNSApiRequest}}
+	@return GetAWSCustomDNSApiRequest
 	*/
 	GetAWSCustomDNSWithParams(ctx context.Context, args *GetAWSCustomDNSApiParams) GetAWSCustomDNSApiRequest
 
@@ -57,7 +57,7 @@ type AWSClustersDNSApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param ToggleAWSCustomDNSApiParams - Parameters for the request
-	@return ToggleAWSCustomDNSApiRequest}}
+	@return ToggleAWSCustomDNSApiRequest
 	*/
 	ToggleAWSCustomDNSWithParams(ctx context.Context, args *ToggleAWSCustomDNSApiParams) ToggleAWSCustomDNSApiRequest
 

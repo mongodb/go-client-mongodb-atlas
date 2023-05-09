@@ -35,7 +35,7 @@ type AtlasSearchApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param CreateAtlasSearchIndexApiParams - Parameters for the request
-	@return CreateAtlasSearchIndexApiRequest}}
+	@return CreateAtlasSearchIndexApiRequest
 	*/
 	CreateAtlasSearchIndexWithParams(ctx context.Context, args *CreateAtlasSearchIndexApiParams) CreateAtlasSearchIndexApiRequest
 
@@ -60,7 +60,7 @@ type AtlasSearchApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param DeleteAtlasSearchIndexApiParams - Parameters for the request
-	@return DeleteAtlasSearchIndexApiRequest}}
+	@return DeleteAtlasSearchIndexApiRequest
 	*/
 	DeleteAtlasSearchIndexWithParams(ctx context.Context, args *DeleteAtlasSearchIndexApiParams) DeleteAtlasSearchIndexApiRequest
 
@@ -85,7 +85,7 @@ type AtlasSearchApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param GetAtlasSearchIndexApiParams - Parameters for the request
-	@return GetAtlasSearchIndexApiRequest}}
+	@return GetAtlasSearchIndexApiRequest
 	*/
 	GetAtlasSearchIndexWithParams(ctx context.Context, args *GetAtlasSearchIndexApiParams) GetAtlasSearchIndexApiRequest
 
@@ -111,7 +111,7 @@ type AtlasSearchApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param ListAtlasSearchIndexesApiParams - Parameters for the request
-	@return ListAtlasSearchIndexesApiRequest}}
+	@return ListAtlasSearchIndexesApiRequest
 	*/
 	ListAtlasSearchIndexesWithParams(ctx context.Context, args *ListAtlasSearchIndexesApiParams) ListAtlasSearchIndexesApiRequest
 
@@ -136,7 +136,7 @@ type AtlasSearchApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param UpdateAtlasSearchIndexApiParams - Parameters for the request
-	@return UpdateAtlasSearchIndexApiRequest}}
+	@return UpdateAtlasSearchIndexApiRequest
 	*/
 	UpdateAtlasSearchIndexWithParams(ctx context.Context, args *UpdateAtlasSearchIndexApiParams) UpdateAtlasSearchIndexApiRequest
 

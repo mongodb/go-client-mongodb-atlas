@@ -35,7 +35,7 @@ type ClusterOutageSimulationApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param EndOutageSimulationApiParams - Parameters for the request
-	@return EndOutageSimulationApiRequest}}
+	@return EndOutageSimulationApiRequest
 	*/
 	EndOutageSimulationWithParams(ctx context.Context, args *EndOutageSimulationApiParams) EndOutageSimulationApiRequest
 
@@ -59,7 +59,7 @@ type ClusterOutageSimulationApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param GetOutageSimulationApiParams - Parameters for the request
-	@return GetOutageSimulationApiRequest}}
+	@return GetOutageSimulationApiRequest
 	*/
 	GetOutageSimulationWithParams(ctx context.Context, args *GetOutageSimulationApiParams) GetOutageSimulationApiRequest
 
@@ -83,7 +83,7 @@ type ClusterOutageSimulationApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param StartOutageSimulationApiParams - Parameters for the request
-	@return StartOutageSimulationApiRequest}}
+	@return StartOutageSimulationApiRequest
 	*/
 	StartOutageSimulationWithParams(ctx context.Context, args *StartOutageSimulationApiParams) StartOutageSimulationApiRequest
 

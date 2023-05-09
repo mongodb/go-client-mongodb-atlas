@@ -39,7 +39,7 @@ If you are managing your own Certificate Authority (CA) in Self-Managed X.509 mo
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param CreateDatabaseUserCertificateApiParams - Parameters for the request
-	@return CreateDatabaseUserCertificateApiRequest}}
+	@return CreateDatabaseUserCertificateApiRequest
 	*/
 	CreateDatabaseUserCertificateWithParams(ctx context.Context, args *CreateDatabaseUserCertificateApiParams) CreateDatabaseUserCertificateApiRequest
 
@@ -64,7 +64,7 @@ If you are managing your own Certificate Authority (CA) in Self-Managed X.509 mo
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param DisableCustomerManagedX509ApiParams - Parameters for the request
-	@return DisableCustomerManagedX509ApiRequest}}
+	@return DisableCustomerManagedX509ApiRequest
 	*/
 	DisableCustomerManagedX509WithParams(ctx context.Context, args *DisableCustomerManagedX509ApiParams) DisableCustomerManagedX509ApiRequest
 
@@ -88,7 +88,7 @@ If you are managing your own Certificate Authority (CA) in Self-Managed X.509 mo
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param ListDatabaseUserCertificatesApiParams - Parameters for the request
-	@return ListDatabaseUserCertificatesApiRequest}}
+	@return ListDatabaseUserCertificatesApiRequest
 	*/
 	ListDatabaseUserCertificatesWithParams(ctx context.Context, args *ListDatabaseUserCertificatesApiParams) ListDatabaseUserCertificatesApiRequest
 

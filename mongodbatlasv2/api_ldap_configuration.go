@@ -34,7 +34,7 @@ type LDAPConfigurationApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param DeleteLDAPConfigurationApiParams - Parameters for the request
-	@return DeleteLDAPConfigurationApiRequest}}
+	@return DeleteLDAPConfigurationApiRequest
 	*/
 	DeleteLDAPConfigurationWithParams(ctx context.Context, args *DeleteLDAPConfigurationApiParams) DeleteLDAPConfigurationApiRequest
 
@@ -57,7 +57,7 @@ type LDAPConfigurationApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param GetLDAPConfigurationApiParams - Parameters for the request
-	@return GetLDAPConfigurationApiRequest}}
+	@return GetLDAPConfigurationApiRequest
 	*/
 	GetLDAPConfigurationWithParams(ctx context.Context, args *GetLDAPConfigurationApiParams) GetLDAPConfigurationApiRequest
 
@@ -81,7 +81,7 @@ type LDAPConfigurationApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param GetLDAPConfigurationStatusApiParams - Parameters for the request
-	@return GetLDAPConfigurationStatusApiRequest}}
+	@return GetLDAPConfigurationStatusApiRequest
 	*/
 	GetLDAPConfigurationStatusWithParams(ctx context.Context, args *GetLDAPConfigurationStatusApiParams) GetLDAPConfigurationStatusApiRequest
 
@@ -106,7 +106,7 @@ Updating this configuration triggers a rolling restart of the database.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param SaveLDAPConfigurationApiParams - Parameters for the request
-	@return SaveLDAPConfigurationApiRequest}}
+	@return SaveLDAPConfigurationApiRequest
 	*/
 	SaveLDAPConfigurationWithParams(ctx context.Context, args *SaveLDAPConfigurationApiParams) SaveLDAPConfigurationApiRequest
 
@@ -129,7 +129,7 @@ Updating this configuration triggers a rolling restart of the database.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param VerifyLDAPConfigurationApiParams - Parameters for the request
-	@return VerifyLDAPConfigurationApiRequest}}
+	@return VerifyLDAPConfigurationApiRequest
 	*/
 	VerifyLDAPConfigurationWithParams(ctx context.Context, args *VerifyLDAPConfigurationApiParams) VerifyLDAPConfigurationApiRequest
 

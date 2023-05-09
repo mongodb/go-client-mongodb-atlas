@@ -29,7 +29,7 @@ type {{classname}} interface {
 	@return {{operationId}}ApiRequest
 	{{#isDeprecated}}
 	
-	Deprecated: Method have been deprecated. Please check the latest resource version for {{classname}}
+	Deprecated: this method has been deprecated. Please check the latest resource version for {{classname}}
 	{{/isDeprecated}}
 	*/
 	{{{nickname}}}(ctx context.Context{{#pathParams}}, {{paramName}} {{{dataType}}}{{/pathParams}}) {{operationId}}ApiRequest
@@ -40,10 +40,10 @@ type {{classname}} interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param {{operationId}}ApiParams - Parameters for the request
-	@return {{operationId}}ApiRequest}}
+	@return {{operationId}}ApiRequest
 	{{#isDeprecated}}
 
-	Deprecated: Method have been deprecated. Please check the latest resource version for {{classname}}
+	Deprecated: this method has been deprecated. Please check the latest resource version for {{classname}}
 	{{/isDeprecated}}
 	*/
 	{{nickname}}WithParams(ctx context.Context, args *{{operationId}}ApiParams) {{operationId}}ApiRequest

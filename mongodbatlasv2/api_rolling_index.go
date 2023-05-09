@@ -35,7 +35,7 @@ type RollingIndexApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param CreateRollingIndexApiParams - Parameters for the request
-	@return CreateRollingIndexApiRequest}}
+	@return CreateRollingIndexApiRequest
 	*/
 	CreateRollingIndexWithParams(ctx context.Context, args *CreateRollingIndexApiParams) CreateRollingIndexApiRequest
 

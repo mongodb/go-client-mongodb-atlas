@@ -35,7 +35,7 @@ type SharedTierRestoreJobsApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param CreateSharedClusterBackupRestoreJobApiParams - Parameters for the request
-	@return CreateSharedClusterBackupRestoreJobApiRequest}}
+	@return CreateSharedClusterBackupRestoreJobApiRequest
 	*/
 	CreateSharedClusterBackupRestoreJobWithParams(ctx context.Context, args *CreateSharedClusterBackupRestoreJobApiParams) CreateSharedClusterBackupRestoreJobApiRequest
 
@@ -60,7 +60,7 @@ type SharedTierRestoreJobsApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param GetSharedClusterBackupRestoreJobApiParams - Parameters for the request
-	@return GetSharedClusterBackupRestoreJobApiRequest}}
+	@return GetSharedClusterBackupRestoreJobApiRequest
 	*/
 	GetSharedClusterBackupRestoreJobWithParams(ctx context.Context, args *GetSharedClusterBackupRestoreJobApiParams) GetSharedClusterBackupRestoreJobApiRequest
 
@@ -84,7 +84,7 @@ type SharedTierRestoreJobsApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param ListSharedClusterBackupRestoreJobsApiParams - Parameters for the request
-	@return ListSharedClusterBackupRestoreJobsApiRequest}}
+	@return ListSharedClusterBackupRestoreJobsApiRequest
 	*/
 	ListSharedClusterBackupRestoreJobsWithParams(ctx context.Context, args *ListSharedClusterBackupRestoreJobsApiParams) ListSharedClusterBackupRestoreJobsApiRequest
 

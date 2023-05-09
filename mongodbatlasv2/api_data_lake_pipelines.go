@@ -35,7 +35,7 @@ type DataLakePipelinesApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param CreatePipelineApiParams - Parameters for the request
-	@return CreatePipelineApiRequest}}
+	@return CreatePipelineApiRequest
 	*/
 	CreatePipelineWithParams(ctx context.Context, args *CreatePipelineApiParams) CreatePipelineApiRequest
 
@@ -59,7 +59,7 @@ type DataLakePipelinesApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param DeletePipelineApiParams - Parameters for the request
-	@return DeletePipelineApiRequest}}
+	@return DeletePipelineApiRequest
 	*/
 	DeletePipelineWithParams(ctx context.Context, args *DeletePipelineApiParams) DeletePipelineApiRequest
 
@@ -84,7 +84,7 @@ type DataLakePipelinesApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param DeletePipelineRunDatasetApiParams - Parameters for the request
-	@return DeletePipelineRunDatasetApiRequest}}
+	@return DeletePipelineRunDatasetApiRequest
 	*/
 	DeletePipelineRunDatasetWithParams(ctx context.Context, args *DeletePipelineRunDatasetApiParams) DeletePipelineRunDatasetApiRequest
 
@@ -108,7 +108,7 @@ type DataLakePipelinesApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param GetPipelineApiParams - Parameters for the request
-	@return GetPipelineApiRequest}}
+	@return GetPipelineApiRequest
 	*/
 	GetPipelineWithParams(ctx context.Context, args *GetPipelineApiParams) GetPipelineApiRequest
 
@@ -133,7 +133,7 @@ type DataLakePipelinesApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param GetPipelineRunApiParams - Parameters for the request
-	@return GetPipelineRunApiRequest}}
+	@return GetPipelineRunApiRequest
 	*/
 	GetPipelineRunWithParams(ctx context.Context, args *GetPipelineRunApiParams) GetPipelineRunApiRequest
 
@@ -157,7 +157,7 @@ type DataLakePipelinesApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param ListPipelineRunsApiParams - Parameters for the request
-	@return ListPipelineRunsApiRequest}}
+	@return ListPipelineRunsApiRequest
 	*/
 	ListPipelineRunsWithParams(ctx context.Context, args *ListPipelineRunsApiParams) ListPipelineRunsApiRequest
 
@@ -181,7 +181,7 @@ type DataLakePipelinesApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param ListPipelineSchedulesApiParams - Parameters for the request
-	@return ListPipelineSchedulesApiRequest}}
+	@return ListPipelineSchedulesApiRequest
 	*/
 	ListPipelineSchedulesWithParams(ctx context.Context, args *ListPipelineSchedulesApiParams) ListPipelineSchedulesApiRequest
 
@@ -205,7 +205,7 @@ type DataLakePipelinesApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param ListPipelineSnapshotsApiParams - Parameters for the request
-	@return ListPipelineSnapshotsApiRequest}}
+	@return ListPipelineSnapshotsApiRequest
 	*/
 	ListPipelineSnapshotsWithParams(ctx context.Context, args *ListPipelineSnapshotsApiParams) ListPipelineSnapshotsApiRequest
 
@@ -228,7 +228,7 @@ type DataLakePipelinesApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param ListPipelinesApiParams - Parameters for the request
-	@return ListPipelinesApiRequest}}
+	@return ListPipelinesApiRequest
 	*/
 	ListPipelinesWithParams(ctx context.Context, args *ListPipelinesApiParams) ListPipelinesApiRequest
 
@@ -252,7 +252,7 @@ type DataLakePipelinesApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param PausePipelineApiParams - Parameters for the request
-	@return PausePipelineApiRequest}}
+	@return PausePipelineApiRequest
 	*/
 	PausePipelineWithParams(ctx context.Context, args *PausePipelineApiParams) PausePipelineApiRequest
 
@@ -276,7 +276,7 @@ type DataLakePipelinesApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param ResumePipelineApiParams - Parameters for the request
-	@return ResumePipelineApiRequest}}
+	@return ResumePipelineApiRequest
 	*/
 	ResumePipelineWithParams(ctx context.Context, args *ResumePipelineApiParams) ResumePipelineApiRequest
 
@@ -300,7 +300,7 @@ type DataLakePipelinesApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param TriggerSnapshotIngestionApiParams - Parameters for the request
-	@return TriggerSnapshotIngestionApiRequest}}
+	@return TriggerSnapshotIngestionApiRequest
 	*/
 	TriggerSnapshotIngestionWithParams(ctx context.Context, args *TriggerSnapshotIngestionApiParams) TriggerSnapshotIngestionApiRequest
 
@@ -324,7 +324,7 @@ type DataLakePipelinesApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param UpdatePipelineApiParams - Parameters for the request
-	@return UpdatePipelineApiRequest}}
+	@return UpdatePipelineApiRequest
 	*/
 	UpdatePipelineWithParams(ctx context.Context, args *UpdatePipelineApiParams) UpdatePipelineApiRequest
 

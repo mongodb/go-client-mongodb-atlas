@@ -35,7 +35,7 @@ type ProgrammaticAPIKeysApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param AddProjectApiKeyApiParams - Parameters for the request
-	@return AddProjectApiKeyApiRequest}}
+	@return AddProjectApiKeyApiRequest
 	*/
 	AddProjectApiKeyWithParams(ctx context.Context, args *AddProjectApiKeyApiParams) AddProjectApiKeyApiRequest
 
@@ -58,7 +58,7 @@ type ProgrammaticAPIKeysApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param CreateApiKeyApiParams - Parameters for the request
-	@return CreateApiKeyApiRequest}}
+	@return CreateApiKeyApiRequest
 	*/
 	CreateApiKeyWithParams(ctx context.Context, args *CreateApiKeyApiParams) CreateApiKeyApiRequest
 
@@ -82,7 +82,7 @@ type ProgrammaticAPIKeysApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param CreateApiKeyAccessListApiParams - Parameters for the request
-	@return CreateApiKeyAccessListApiRequest}}
+	@return CreateApiKeyAccessListApiRequest
 	*/
 	CreateApiKeyAccessListWithParams(ctx context.Context, args *CreateApiKeyAccessListApiParams) CreateApiKeyAccessListApiRequest
 
@@ -105,7 +105,7 @@ type ProgrammaticAPIKeysApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param CreateProjectApiKeyApiParams - Parameters for the request
-	@return CreateProjectApiKeyApiRequest}}
+	@return CreateProjectApiKeyApiRequest
 	*/
 	CreateProjectApiKeyWithParams(ctx context.Context, args *CreateProjectApiKeyApiParams) CreateProjectApiKeyApiRequest
 
@@ -129,7 +129,7 @@ type ProgrammaticAPIKeysApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param DeleteApiKeyApiParams - Parameters for the request
-	@return DeleteApiKeyApiRequest}}
+	@return DeleteApiKeyApiRequest
 	*/
 	DeleteApiKeyWithParams(ctx context.Context, args *DeleteApiKeyApiParams) DeleteApiKeyApiRequest
 
@@ -154,7 +154,7 @@ type ProgrammaticAPIKeysApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param DeleteApiKeyAccessListEntryApiParams - Parameters for the request
-	@return DeleteApiKeyAccessListEntryApiRequest}}
+	@return DeleteApiKeyAccessListEntryApiRequest
 	*/
 	DeleteApiKeyAccessListEntryWithParams(ctx context.Context, args *DeleteApiKeyAccessListEntryApiParams) DeleteApiKeyAccessListEntryApiRequest
 
@@ -178,7 +178,7 @@ type ProgrammaticAPIKeysApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param GetApiKeyApiParams - Parameters for the request
-	@return GetApiKeyApiRequest}}
+	@return GetApiKeyApiRequest
 	*/
 	GetApiKeyWithParams(ctx context.Context, args *GetApiKeyApiParams) GetApiKeyApiRequest
 
@@ -203,7 +203,7 @@ type ProgrammaticAPIKeysApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param GetApiKeyAccessListApiParams - Parameters for the request
-	@return GetApiKeyAccessListApiRequest}}
+	@return GetApiKeyAccessListApiRequest
 	*/
 	GetApiKeyAccessListWithParams(ctx context.Context, args *GetApiKeyAccessListApiParams) GetApiKeyAccessListApiRequest
 
@@ -227,7 +227,7 @@ type ProgrammaticAPIKeysApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param ListApiKeyAccessListsEntriesApiParams - Parameters for the request
-	@return ListApiKeyAccessListsEntriesApiRequest}}
+	@return ListApiKeyAccessListsEntriesApiRequest
 	*/
 	ListApiKeyAccessListsEntriesWithParams(ctx context.Context, args *ListApiKeyAccessListsEntriesApiParams) ListApiKeyAccessListsEntriesApiRequest
 
@@ -250,7 +250,7 @@ type ProgrammaticAPIKeysApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param ListApiKeysApiParams - Parameters for the request
-	@return ListApiKeysApiRequest}}
+	@return ListApiKeysApiRequest
 	*/
 	ListApiKeysWithParams(ctx context.Context, args *ListApiKeysApiParams) ListApiKeysApiRequest
 
@@ -273,7 +273,7 @@ type ProgrammaticAPIKeysApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param ListProjectApiKeysApiParams - Parameters for the request
-	@return ListProjectApiKeysApiRequest}}
+	@return ListProjectApiKeysApiRequest
 	*/
 	ListProjectApiKeysWithParams(ctx context.Context, args *ListProjectApiKeysApiParams) ListProjectApiKeysApiRequest
 
@@ -297,7 +297,7 @@ type ProgrammaticAPIKeysApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param RemoveProjectApiKeyApiParams - Parameters for the request
-	@return RemoveProjectApiKeyApiRequest}}
+	@return RemoveProjectApiKeyApiRequest
 	*/
 	RemoveProjectApiKeyWithParams(ctx context.Context, args *RemoveProjectApiKeyApiParams) RemoveProjectApiKeyApiRequest
 
@@ -321,7 +321,7 @@ type ProgrammaticAPIKeysApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param UpdateApiKeyApiParams - Parameters for the request
-	@return UpdateApiKeyApiRequest}}
+	@return UpdateApiKeyApiRequest
 	*/
 	UpdateApiKeyWithParams(ctx context.Context, args *UpdateApiKeyApiParams) UpdateApiKeyApiRequest
 
@@ -345,7 +345,7 @@ type ProgrammaticAPIKeysApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param UpdateApiKeyRolesApiParams - Parameters for the request
-	@return UpdateApiKeyRolesApiRequest}}
+	@return UpdateApiKeyRolesApiRequest
 	*/
 	UpdateApiKeyRolesWithParams(ctx context.Context, args *UpdateApiKeyRolesApiParams) UpdateApiKeyRolesApiRequest
 

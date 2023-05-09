@@ -36,7 +36,7 @@ type EncryptionAtRestUsingCustomerKeyManagementApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param GetEncryptionAtRestApiParams - Parameters for the request
-	@return GetEncryptionAtRestApiRequest}}
+	@return GetEncryptionAtRestApiRequest
 	*/
 	GetEncryptionAtRestWithParams(ctx context.Context, args *GetEncryptionAtRestApiParams) GetEncryptionAtRestApiRequest
 
@@ -61,7 +61,7 @@ type EncryptionAtRestUsingCustomerKeyManagementApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param UpdateEncryptionAtRestApiParams - Parameters for the request
-	@return UpdateEncryptionAtRestApiRequest}}
+	@return UpdateEncryptionAtRestApiRequest
 	*/
 	UpdateEncryptionAtRestWithParams(ctx context.Context, args *UpdateEncryptionAtRestApiParams) UpdateEncryptionAtRestApiRequest
 

@@ -34,7 +34,7 @@ type ProjectIPAccessListApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param CreateProjectIpAccessListApiParams - Parameters for the request
-	@return CreateProjectIpAccessListApiRequest}}
+	@return CreateProjectIpAccessListApiRequest
 	*/
 	CreateProjectIpAccessListWithParams(ctx context.Context, args *CreateProjectIpAccessListApiParams) CreateProjectIpAccessListApiRequest
 
@@ -58,7 +58,7 @@ type ProjectIPAccessListApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param DeleteProjectIpAccessListApiParams - Parameters for the request
-	@return DeleteProjectIpAccessListApiRequest}}
+	@return DeleteProjectIpAccessListApiRequest
 	*/
 	DeleteProjectIpAccessListWithParams(ctx context.Context, args *DeleteProjectIpAccessListApiParams) DeleteProjectIpAccessListApiRequest
 
@@ -82,7 +82,7 @@ type ProjectIPAccessListApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param GetProjectIpAccessListStatusApiParams - Parameters for the request
-	@return GetProjectIpAccessListStatusApiRequest}}
+	@return GetProjectIpAccessListStatusApiRequest
 	*/
 	GetProjectIpAccessListStatusWithParams(ctx context.Context, args *GetProjectIpAccessListStatusApiParams) GetProjectIpAccessListStatusApiRequest
 
@@ -106,7 +106,7 @@ type ProjectIPAccessListApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param GetProjectIpListApiParams - Parameters for the request
-	@return GetProjectIpListApiRequest}}
+	@return GetProjectIpListApiRequest
 	*/
 	GetProjectIpListWithParams(ctx context.Context, args *GetProjectIpListApiParams) GetProjectIpListApiRequest
 
@@ -129,7 +129,7 @@ type ProjectIPAccessListApi interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param ListProjectIpAccessListsApiParams - Parameters for the request
-	@return ListProjectIpAccessListsApiRequest}}
+	@return ListProjectIpAccessListsApiRequest
 	*/
 	ListProjectIpAccessListsWithParams(ctx context.Context, args *ListProjectIpAccessListsApiParams) ListProjectIpAccessListsApiRequest
 
