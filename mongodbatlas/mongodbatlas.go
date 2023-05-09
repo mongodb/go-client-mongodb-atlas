@@ -153,6 +153,7 @@ type Client struct {
 	CloudProviderSnapshotExportBuckets  CloudProviderSnapshotExportBucketsService
 	CloudProviderSnapshotExportJobs     CloudProviderSnapshotExportJobsService
 	FederatedSettings                   FederatedSettingsService
+	DataFederation                      DataFederationService
 	ClusterOutageSimulation             ClusterOutageSimulationService
 
 	onRequestCompleted  RequestCompletionCallback
@@ -304,6 +305,7 @@ func NewClient(httpClient *http.Client) *Client {
 	c.CloudProviderSnapshotExportJobs = &CloudProviderSnapshotExportJobsServiceOp{Client: c}
 	c.FederatedSettings = &FederatedSettingsServiceOp{Client: c}
 	c.ClusterOutageSimulation = &ClusterOutageSimulationServiceOp{Client: c}
+	c.DataFederation = &DataFederationServiceOp{Client: c}
 	return c
 }
 
