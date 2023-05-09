@@ -30,10 +30,18 @@ type AccessTrackingApi interface {
 	@return ListAccessLogsByClusterNameApiRequest
 	*/
 	ListAccessLogsByClusterName(ctx context.Context, groupId string, clusterName string) ListAccessLogsByClusterNameApiRequest
+	/*
+	ListAccessLogsByClusterName Return Database Access History for One Cluster using Its Cluster Name
 
-	// ListAccessLogsByClusterNameExecute executes the request
-	//  @return MongoDBAccessLogsList
-	ListAccessLogsByClusterNameExecute(r ListAccessLogsByClusterNameApiRequest) (*MongoDBAccessLogsList, *http.Response, error)
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param ListAccessLogsByClusterNameApiParams - Parameters for the request
+	@return ListAccessLogsByClusterNameApiRequest
+	*/
+	ListAccessLogsByClusterNameWithParams(ctx context.Context, args *ListAccessLogsByClusterNameApiParams) ListAccessLogsByClusterNameApiRequest
+
+	// Interface only available internally
+	listAccessLogsByClusterNameExecute(r ListAccessLogsByClusterNameApiRequest) (*MongoDBAccessLogsList, *http.Response, error)
 
 	/*
 	ListAccessLogsByHostname Return Database Access History for One Cluster using Its Hostname
@@ -46,10 +54,18 @@ type AccessTrackingApi interface {
 	@return ListAccessLogsByHostnameApiRequest
 	*/
 	ListAccessLogsByHostname(ctx context.Context, groupId string, hostname string) ListAccessLogsByHostnameApiRequest
+	/*
+	ListAccessLogsByHostname Return Database Access History for One Cluster using Its Hostname
 
-	// ListAccessLogsByHostnameExecute executes the request
-	//  @return MongoDBAccessLogsList
-	ListAccessLogsByHostnameExecute(r ListAccessLogsByHostnameApiRequest) (*MongoDBAccessLogsList, *http.Response, error)
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param ListAccessLogsByHostnameApiParams - Parameters for the request
+	@return ListAccessLogsByHostnameApiRequest
+	*/
+	ListAccessLogsByHostnameWithParams(ctx context.Context, args *ListAccessLogsByHostnameApiParams) ListAccessLogsByHostnameApiRequest
+
+	// Interface only available internally
+	listAccessLogsByHostnameExecute(r ListAccessLogsByHostnameApiRequest) (*MongoDBAccessLogsList, *http.Response, error)
 }
 
 // AccessTrackingApiService AccessTrackingApi service
@@ -75,6 +91,20 @@ type ListAccessLogsByClusterNameApiParams struct {
 		IpAddress *string
 		NLogs *int64
 		Start *time.Time
+}
+
+func (a *AccessTrackingApiService) ListAccessLogsByClusterNameWithParams(ctx context.Context, args *ListAccessLogsByClusterNameApiParams) ListAccessLogsByClusterNameApiRequest {
+	return ListAccessLogsByClusterNameApiRequest{
+		ApiService: a,
+		ctx: ctx,
+		groupId: args.GroupId,
+		clusterName: args.ClusterName,
+		authResult: args.AuthResult,
+		end: args.End,
+		ipAddress: args.IpAddress,
+		nLogs: args.NLogs,
+		start: args.Start,
+	}
 }
 
 // Flag that indicates whether the response returns the successful authentication attempts only.
@@ -108,7 +138,7 @@ func (r ListAccessLogsByClusterNameApiRequest) Start(start time.Time) ListAccess
 }
 
 func (r ListAccessLogsByClusterNameApiRequest) Execute() (*MongoDBAccessLogsList, *http.Response, error) {
-	return r.ApiService.ListAccessLogsByClusterNameExecute(r)
+	return r.ApiService.listAccessLogsByClusterNameExecute(r)
 }
 
 /*
@@ -132,7 +162,7 @@ func (a *AccessTrackingApiService) ListAccessLogsByClusterName(ctx context.Conte
 
 // Execute executes the request
 //  @return MongoDBAccessLogsList
-func (a *AccessTrackingApiService) ListAccessLogsByClusterNameExecute(r ListAccessLogsByClusterNameApiRequest) (*MongoDBAccessLogsList, *http.Response, error) {
+func (a *AccessTrackingApiService) listAccessLogsByClusterNameExecute(r ListAccessLogsByClusterNameApiRequest) (*MongoDBAccessLogsList, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -268,6 +298,20 @@ type ListAccessLogsByHostnameApiParams struct {
 		Start *time.Time
 }
 
+func (a *AccessTrackingApiService) ListAccessLogsByHostnameWithParams(ctx context.Context, args *ListAccessLogsByHostnameApiParams) ListAccessLogsByHostnameApiRequest {
+	return ListAccessLogsByHostnameApiRequest{
+		ApiService: a,
+		ctx: ctx,
+		groupId: args.GroupId,
+		hostname: args.Hostname,
+		authResult: args.AuthResult,
+		end: args.End,
+		ipAddress: args.IpAddress,
+		nLogs: args.NLogs,
+		start: args.Start,
+	}
+}
+
 // Flag that indicates whether the response returns the successful authentication attempts only.
 func (r ListAccessLogsByHostnameApiRequest) AuthResult(authResult bool) ListAccessLogsByHostnameApiRequest {
 	r.authResult = &authResult
@@ -299,7 +343,7 @@ func (r ListAccessLogsByHostnameApiRequest) Start(start time.Time) ListAccessLog
 }
 
 func (r ListAccessLogsByHostnameApiRequest) Execute() (*MongoDBAccessLogsList, *http.Response, error) {
-	return r.ApiService.ListAccessLogsByHostnameExecute(r)
+	return r.ApiService.listAccessLogsByHostnameExecute(r)
 }
 
 /*
@@ -323,7 +367,7 @@ func (a *AccessTrackingApiService) ListAccessLogsByHostname(ctx context.Context,
 
 // Execute executes the request
 //  @return MongoDBAccessLogsList
-func (a *AccessTrackingApiService) ListAccessLogsByHostnameExecute(r ListAccessLogsByHostnameApiRequest) (*MongoDBAccessLogsList, *http.Response, error) {
+func (a *AccessTrackingApiService) listAccessLogsByHostnameExecute(r ListAccessLogsByHostnameApiRequest) (*MongoDBAccessLogsList, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}

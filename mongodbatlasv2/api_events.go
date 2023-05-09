@@ -33,10 +33,18 @@ type EventsApi interface {
 	@return GetOrganizationEventApiRequest
 	*/
 	GetOrganizationEvent(ctx context.Context, orgId string, eventId string) GetOrganizationEventApiRequest
+	/*
+	GetOrganizationEvent Return One Event from One Organization
 
-	// GetOrganizationEventExecute executes the request
-	//  @return EventViewForOrg
-	GetOrganizationEventExecute(r GetOrganizationEventApiRequest) (*EventViewForOrg, *http.Response, error)
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param GetOrganizationEventApiParams - Parameters for the request
+	@return GetOrganizationEventApiRequest
+	*/
+	GetOrganizationEventWithParams(ctx context.Context, args *GetOrganizationEventApiParams) GetOrganizationEventApiRequest
+
+	// Interface only available internally
+	getOrganizationEventExecute(r GetOrganizationEventApiRequest) (*EventViewForOrg, *http.Response, error)
 
 	/*
 	GetProjectEvent Return One Event from One Project
@@ -51,10 +59,18 @@ type EventsApi interface {
 	@return GetProjectEventApiRequest
 	*/
 	GetProjectEvent(ctx context.Context, groupId string, eventId string) GetProjectEventApiRequest
+	/*
+	GetProjectEvent Return One Event from One Project
 
-	// GetProjectEventExecute executes the request
-	//  @return EventViewForNdsGroup
-	GetProjectEventExecute(r GetProjectEventApiRequest) (*EventViewForNdsGroup, *http.Response, error)
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param GetProjectEventApiParams - Parameters for the request
+	@return GetProjectEventApiRequest
+	*/
+	GetProjectEventWithParams(ctx context.Context, args *GetProjectEventApiParams) GetProjectEventApiRequest
+
+	// Interface only available internally
+	getProjectEventExecute(r GetProjectEventApiRequest) (*EventViewForNdsGroup, *http.Response, error)
 
 	/*
 	ListOrganizationEvents Return All Events from One Organization
@@ -68,10 +84,18 @@ type EventsApi interface {
 	@return ListOrganizationEventsApiRequest
 	*/
 	ListOrganizationEvents(ctx context.Context, orgId string) ListOrganizationEventsApiRequest
+	/*
+	ListOrganizationEvents Return All Events from One Organization
 
-	// ListOrganizationEventsExecute executes the request
-	//  @return OrgPaginatedEvent
-	ListOrganizationEventsExecute(r ListOrganizationEventsApiRequest) (*OrgPaginatedEvent, *http.Response, error)
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param ListOrganizationEventsApiParams - Parameters for the request
+	@return ListOrganizationEventsApiRequest
+	*/
+	ListOrganizationEventsWithParams(ctx context.Context, args *ListOrganizationEventsApiParams) ListOrganizationEventsApiRequest
+
+	// Interface only available internally
+	listOrganizationEventsExecute(r ListOrganizationEventsApiRequest) (*OrgPaginatedEvent, *http.Response, error)
 
 	/*
 	ListProjectEvents Return All Events from One Project
@@ -85,10 +109,18 @@ type EventsApi interface {
 	@return ListProjectEventsApiRequest
 	*/
 	ListProjectEvents(ctx context.Context, groupId string) ListProjectEventsApiRequest
+	/*
+	ListProjectEvents Return All Events from One Project
 
-	// ListProjectEventsExecute executes the request
-	//  @return GroupPaginatedEvent
-	ListProjectEventsExecute(r ListProjectEventsApiRequest) (*GroupPaginatedEvent, *http.Response, error)
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param ListProjectEventsApiParams - Parameters for the request
+	@return ListProjectEventsApiRequest
+	*/
+	ListProjectEventsWithParams(ctx context.Context, args *ListProjectEventsApiParams) ListProjectEventsApiRequest
+
+	// Interface only available internally
+	listProjectEventsExecute(r ListProjectEventsApiRequest) (*GroupPaginatedEvent, *http.Response, error)
 }
 
 // EventsApiService EventsApi service
@@ -108,6 +140,16 @@ type GetOrganizationEventApiParams struct {
 		IncludeRaw *bool
 }
 
+func (a *EventsApiService) GetOrganizationEventWithParams(ctx context.Context, args *GetOrganizationEventApiParams) GetOrganizationEventApiRequest {
+	return GetOrganizationEventApiRequest{
+		ApiService: a,
+		ctx: ctx,
+		orgId: args.OrgId,
+		eventId: args.EventId,
+		includeRaw: args.IncludeRaw,
+	}
+}
+
 // Flag that indicates whether to include the raw document in the output. The raw document contains additional meta information about the event.
 func (r GetOrganizationEventApiRequest) IncludeRaw(includeRaw bool) GetOrganizationEventApiRequest {
 	r.includeRaw = &includeRaw
@@ -115,7 +157,7 @@ func (r GetOrganizationEventApiRequest) IncludeRaw(includeRaw bool) GetOrganizat
 }
 
 func (r GetOrganizationEventApiRequest) Execute() (*EventViewForOrg, *http.Response, error) {
-	return r.ApiService.GetOrganizationEventExecute(r)
+	return r.ApiService.getOrganizationEventExecute(r)
 }
 
 /*
@@ -141,7 +183,7 @@ func (a *EventsApiService) GetOrganizationEvent(ctx context.Context, orgId strin
 
 // Execute executes the request
 //  @return EventViewForOrg
-func (a *EventsApiService) GetOrganizationEventExecute(r GetOrganizationEventApiRequest) (*EventViewForOrg, *http.Response, error) {
+func (a *EventsApiService) getOrganizationEventExecute(r GetOrganizationEventApiRequest) (*EventViewForOrg, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -257,6 +299,16 @@ type GetProjectEventApiParams struct {
 		IncludeRaw *bool
 }
 
+func (a *EventsApiService) GetProjectEventWithParams(ctx context.Context, args *GetProjectEventApiParams) GetProjectEventApiRequest {
+	return GetProjectEventApiRequest{
+		ApiService: a,
+		ctx: ctx,
+		groupId: args.GroupId,
+		eventId: args.EventId,
+		includeRaw: args.IncludeRaw,
+	}
+}
+
 // Flag that indicates whether to include the raw document in the output. The raw document contains additional meta information about the event.
 func (r GetProjectEventApiRequest) IncludeRaw(includeRaw bool) GetProjectEventApiRequest {
 	r.includeRaw = &includeRaw
@@ -264,7 +316,7 @@ func (r GetProjectEventApiRequest) IncludeRaw(includeRaw bool) GetProjectEventAp
 }
 
 func (r GetProjectEventApiRequest) Execute() (*EventViewForNdsGroup, *http.Response, error) {
-	return r.ApiService.GetProjectEventExecute(r)
+	return r.ApiService.getProjectEventExecute(r)
 }
 
 /*
@@ -290,7 +342,7 @@ func (a *EventsApiService) GetProjectEvent(ctx context.Context, groupId string, 
 
 // Execute executes the request
 //  @return EventViewForNdsGroup
-func (a *EventsApiService) GetProjectEventExecute(r GetProjectEventApiRequest) (*EventViewForNdsGroup, *http.Response, error) {
+func (a *EventsApiService) getProjectEventExecute(r GetProjectEventApiRequest) (*EventViewForNdsGroup, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -416,6 +468,21 @@ type ListOrganizationEventsApiParams struct {
 		MinDate *time.Time
 }
 
+func (a *EventsApiService) ListOrganizationEventsWithParams(ctx context.Context, args *ListOrganizationEventsApiParams) ListOrganizationEventsApiRequest {
+	return ListOrganizationEventsApiRequest{
+		ApiService: a,
+		ctx: ctx,
+		orgId: args.OrgId,
+		includeCount: args.IncludeCount,
+		itemsPerPage: args.ItemsPerPage,
+		pageNum: args.PageNum,
+		eventType: args.EventType,
+		includeRaw: args.IncludeRaw,
+		maxDate: args.MaxDate,
+		minDate: args.MinDate,
+	}
+}
+
 // Flag that indicates whether the response returns the total number of items (**totalCount**) in the response.
 func (r ListOrganizationEventsApiRequest) IncludeCount(includeCount bool) ListOrganizationEventsApiRequest {
 	r.includeCount = &includeCount
@@ -459,7 +526,7 @@ func (r ListOrganizationEventsApiRequest) MinDate(minDate time.Time) ListOrganiz
 }
 
 func (r ListOrganizationEventsApiRequest) Execute() (*OrgPaginatedEvent, *http.Response, error) {
-	return r.ApiService.ListOrganizationEventsExecute(r)
+	return r.ApiService.listOrganizationEventsExecute(r)
 }
 
 /*
@@ -483,7 +550,7 @@ func (a *EventsApiService) ListOrganizationEvents(ctx context.Context, orgId str
 
 // Execute executes the request
 //  @return OrgPaginatedEvent
-func (a *EventsApiService) ListOrganizationEventsExecute(r ListOrganizationEventsApiRequest) (*OrgPaginatedEvent, *http.Response, error) {
+func (a *EventsApiService) listOrganizationEventsExecute(r ListOrganizationEventsApiRequest) (*OrgPaginatedEvent, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -634,6 +701,22 @@ type ListProjectEventsApiParams struct {
 		MinDate *time.Time
 }
 
+func (a *EventsApiService) ListProjectEventsWithParams(ctx context.Context, args *ListProjectEventsApiParams) ListProjectEventsApiRequest {
+	return ListProjectEventsApiRequest{
+		ApiService: a,
+		ctx: ctx,
+		groupId: args.GroupId,
+		includeCount: args.IncludeCount,
+		itemsPerPage: args.ItemsPerPage,
+		pageNum: args.PageNum,
+		clusterNames: args.ClusterNames,
+		eventType: args.EventType,
+		includeRaw: args.IncludeRaw,
+		maxDate: args.MaxDate,
+		minDate: args.MinDate,
+	}
+}
+
 // Flag that indicates whether the response returns the total number of items (**totalCount**) in the response.
 func (r ListProjectEventsApiRequest) IncludeCount(includeCount bool) ListProjectEventsApiRequest {
 	r.includeCount = &includeCount
@@ -683,7 +766,7 @@ func (r ListProjectEventsApiRequest) MinDate(minDate time.Time) ListProjectEvent
 }
 
 func (r ListProjectEventsApiRequest) Execute() (*GroupPaginatedEvent, *http.Response, error) {
-	return r.ApiService.ListProjectEventsExecute(r)
+	return r.ApiService.listProjectEventsExecute(r)
 }
 
 /*
@@ -707,7 +790,7 @@ func (a *EventsApiService) ListProjectEvents(ctx context.Context, groupId string
 
 // Execute executes the request
 //  @return GroupPaginatedEvent
-func (a *EventsApiService) ListProjectEventsExecute(r ListProjectEventsApiRequest) (*GroupPaginatedEvent, *http.Response, error) {
+func (a *EventsApiService) listProjectEventsExecute(r ListProjectEventsApiRequest) (*GroupPaginatedEvent, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}

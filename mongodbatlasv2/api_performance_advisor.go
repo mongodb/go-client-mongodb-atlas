@@ -29,9 +29,18 @@ type PerformanceAdvisorApi interface {
 	@return DisableSlowOperationThresholdingApiRequest
 	*/
 	DisableSlowOperationThresholding(ctx context.Context, groupId string) DisableSlowOperationThresholdingApiRequest
+	/*
+	DisableSlowOperationThresholding Disable Managed Slow Operation Threshold
 
-	// DisableSlowOperationThresholdingExecute executes the request
-	DisableSlowOperationThresholdingExecute(r DisableSlowOperationThresholdingApiRequest) (*http.Response, error)
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param DisableSlowOperationThresholdingApiParams - Parameters for the request
+	@return DisableSlowOperationThresholdingApiRequest
+	*/
+	DisableSlowOperationThresholdingWithParams(ctx context.Context, args *DisableSlowOperationThresholdingApiParams) DisableSlowOperationThresholdingApiRequest
+
+	// Interface only available internally
+	disableSlowOperationThresholdingExecute(r DisableSlowOperationThresholdingApiRequest) (*http.Response, error)
 
 	/*
 	EnableSlowOperationThresholding Enable Managed Slow Operation Threshold
@@ -43,9 +52,18 @@ type PerformanceAdvisorApi interface {
 	@return EnableSlowOperationThresholdingApiRequest
 	*/
 	EnableSlowOperationThresholding(ctx context.Context, groupId string) EnableSlowOperationThresholdingApiRequest
+	/*
+	EnableSlowOperationThresholding Enable Managed Slow Operation Threshold
 
-	// EnableSlowOperationThresholdingExecute executes the request
-	EnableSlowOperationThresholdingExecute(r EnableSlowOperationThresholdingApiRequest) (*http.Response, error)
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param EnableSlowOperationThresholdingApiParams - Parameters for the request
+	@return EnableSlowOperationThresholdingApiRequest
+	*/
+	EnableSlowOperationThresholdingWithParams(ctx context.Context, args *EnableSlowOperationThresholdingApiParams) EnableSlowOperationThresholdingApiRequest
+
+	// Interface only available internally
+	enableSlowOperationThresholdingExecute(r EnableSlowOperationThresholdingApiRequest) (*http.Response, error)
 
 	/*
 	ListSlowQueries Return Slow Queries
@@ -58,10 +76,18 @@ type PerformanceAdvisorApi interface {
 	@return ListSlowQueriesApiRequest
 	*/
 	ListSlowQueries(ctx context.Context, groupId string, processId string) ListSlowQueriesApiRequest
+	/*
+	ListSlowQueries Return Slow Queries
 
-	// ListSlowQueriesExecute executes the request
-	//  @return PerformanceAdvisorSlowQueryList
-	ListSlowQueriesExecute(r ListSlowQueriesApiRequest) (*PerformanceAdvisorSlowQueryList, *http.Response, error)
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param ListSlowQueriesApiParams - Parameters for the request
+	@return ListSlowQueriesApiRequest
+	*/
+	ListSlowQueriesWithParams(ctx context.Context, args *ListSlowQueriesApiParams) ListSlowQueriesApiRequest
+
+	// Interface only available internally
+	listSlowQueriesExecute(r ListSlowQueriesApiRequest) (*PerformanceAdvisorSlowQueryList, *http.Response, error)
 
 	/*
 	ListSlowQueryNamespaces Return All Namespaces for One Host
@@ -74,10 +100,18 @@ type PerformanceAdvisorApi interface {
 	@return ListSlowQueryNamespacesApiRequest
 	*/
 	ListSlowQueryNamespaces(ctx context.Context, groupId string, processId string) ListSlowQueryNamespacesApiRequest
+	/*
+	ListSlowQueryNamespaces Return All Namespaces for One Host
 
-	// ListSlowQueryNamespacesExecute executes the request
-	//  @return Namespaces
-	ListSlowQueryNamespacesExecute(r ListSlowQueryNamespacesApiRequest) (*Namespaces, *http.Response, error)
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param ListSlowQueryNamespacesApiParams - Parameters for the request
+	@return ListSlowQueryNamespacesApiRequest
+	*/
+	ListSlowQueryNamespacesWithParams(ctx context.Context, args *ListSlowQueryNamespacesApiParams) ListSlowQueryNamespacesApiRequest
+
+	// Interface only available internally
+	listSlowQueryNamespacesExecute(r ListSlowQueryNamespacesApiRequest) (*Namespaces, *http.Response, error)
 
 	/*
 	ListSuggestedIndexes Return Suggested Indexes
@@ -90,10 +124,18 @@ type PerformanceAdvisorApi interface {
 	@return ListSuggestedIndexesApiRequest
 	*/
 	ListSuggestedIndexes(ctx context.Context, groupId string, processId string) ListSuggestedIndexesApiRequest
+	/*
+	ListSuggestedIndexes Return Suggested Indexes
 
-	// ListSuggestedIndexesExecute executes the request
-	//  @return PerformanceAdvisorResponse
-	ListSuggestedIndexesExecute(r ListSuggestedIndexesApiRequest) (*PerformanceAdvisorResponse, *http.Response, error)
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param ListSuggestedIndexesApiParams - Parameters for the request
+	@return ListSuggestedIndexesApiRequest
+	*/
+	ListSuggestedIndexesWithParams(ctx context.Context, args *ListSuggestedIndexesApiParams) ListSuggestedIndexesApiRequest
+
+	// Interface only available internally
+	listSuggestedIndexesExecute(r ListSuggestedIndexesApiRequest) (*PerformanceAdvisorResponse, *http.Response, error)
 }
 
 // PerformanceAdvisorApiService PerformanceAdvisorApi service
@@ -109,8 +151,16 @@ type DisableSlowOperationThresholdingApiParams struct {
 		GroupId string
 }
 
+func (a *PerformanceAdvisorApiService) DisableSlowOperationThresholdingWithParams(ctx context.Context, args *DisableSlowOperationThresholdingApiParams) DisableSlowOperationThresholdingApiRequest {
+	return DisableSlowOperationThresholdingApiRequest{
+		ApiService: a,
+		ctx: ctx,
+		groupId: args.GroupId,
+	}
+}
+
 func (r DisableSlowOperationThresholdingApiRequest) Execute() (*http.Response, error) {
-	return r.ApiService.DisableSlowOperationThresholdingExecute(r)
+	return r.ApiService.disableSlowOperationThresholdingExecute(r)
 }
 
 /*
@@ -131,7 +181,7 @@ func (a *PerformanceAdvisorApiService) DisableSlowOperationThresholding(ctx cont
 }
 
 // Execute executes the request
-func (a *PerformanceAdvisorApiService) DisableSlowOperationThresholdingExecute(r DisableSlowOperationThresholdingApiRequest) (*http.Response, error) {
+func (a *PerformanceAdvisorApiService) disableSlowOperationThresholdingExecute(r DisableSlowOperationThresholdingApiRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
@@ -219,8 +269,16 @@ type EnableSlowOperationThresholdingApiParams struct {
 		GroupId string
 }
 
+func (a *PerformanceAdvisorApiService) EnableSlowOperationThresholdingWithParams(ctx context.Context, args *EnableSlowOperationThresholdingApiParams) EnableSlowOperationThresholdingApiRequest {
+	return EnableSlowOperationThresholdingApiRequest{
+		ApiService: a,
+		ctx: ctx,
+		groupId: args.GroupId,
+	}
+}
+
 func (r EnableSlowOperationThresholdingApiRequest) Execute() (*http.Response, error) {
-	return r.ApiService.EnableSlowOperationThresholdingExecute(r)
+	return r.ApiService.enableSlowOperationThresholdingExecute(r)
 }
 
 /*
@@ -241,7 +299,7 @@ func (a *PerformanceAdvisorApiService) EnableSlowOperationThresholding(ctx conte
 }
 
 // Execute executes the request
-func (a *PerformanceAdvisorApiService) EnableSlowOperationThresholdingExecute(r EnableSlowOperationThresholdingApiRequest) (*http.Response, error) {
+func (a *PerformanceAdvisorApiService) enableSlowOperationThresholdingExecute(r EnableSlowOperationThresholdingApiRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -339,6 +397,19 @@ type ListSlowQueriesApiParams struct {
 		Since *int64
 }
 
+func (a *PerformanceAdvisorApiService) ListSlowQueriesWithParams(ctx context.Context, args *ListSlowQueriesApiParams) ListSlowQueriesApiRequest {
+	return ListSlowQueriesApiRequest{
+		ApiService: a,
+		ctx: ctx,
+		groupId: args.GroupId,
+		processId: args.ProcessId,
+		duration: args.Duration,
+		namespaces: args.Namespaces,
+		nLogs: args.NLogs,
+		since: args.Since,
+	}
+}
+
 // Length of time expressed during which the query finds suggested indexes among the managed namespaces in the cluster. This parameter expresses its value in milliseconds.  - If you don&#39;t specify the **since** parameter, the endpoint returns data covering the duration before the current time. - If you specify neither the **duration** nor **since** parameters, the endpoint returns data from the previous 24 hours.
 func (r ListSlowQueriesApiRequest) Duration(duration int64) ListSlowQueriesApiRequest {
 	r.duration = &duration
@@ -364,7 +435,7 @@ func (r ListSlowQueriesApiRequest) Since(since int64) ListSlowQueriesApiRequest 
 }
 
 func (r ListSlowQueriesApiRequest) Execute() (*PerformanceAdvisorSlowQueryList, *http.Response, error) {
-	return r.ApiService.ListSlowQueriesExecute(r)
+	return r.ApiService.listSlowQueriesExecute(r)
 }
 
 /*
@@ -388,7 +459,7 @@ func (a *PerformanceAdvisorApiService) ListSlowQueries(ctx context.Context, grou
 
 // Execute executes the request
 //  @return PerformanceAdvisorSlowQueryList
-func (a *PerformanceAdvisorApiService) ListSlowQueriesExecute(r ListSlowQueriesApiRequest) (*PerformanceAdvisorSlowQueryList, *http.Response, error) {
+func (a *PerformanceAdvisorApiService) listSlowQueriesExecute(r ListSlowQueriesApiRequest) (*PerformanceAdvisorSlowQueryList, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -517,6 +588,17 @@ type ListSlowQueryNamespacesApiParams struct {
 		Since *int64
 }
 
+func (a *PerformanceAdvisorApiService) ListSlowQueryNamespacesWithParams(ctx context.Context, args *ListSlowQueryNamespacesApiParams) ListSlowQueryNamespacesApiRequest {
+	return ListSlowQueryNamespacesApiRequest{
+		ApiService: a,
+		ctx: ctx,
+		groupId: args.GroupId,
+		processId: args.ProcessId,
+		duration: args.Duration,
+		since: args.Since,
+	}
+}
+
 // Length of time expressed during which the query finds suggested indexes among the managed namespaces in the cluster. This parameter expresses its value in milliseconds.  - If you don&#39;t specify the **since** parameter, the endpoint returns data covering the duration before the current time. - If you specify neither the **duration** nor **since** parameters, the endpoint returns data from the previous 24 hours.
 func (r ListSlowQueryNamespacesApiRequest) Duration(duration int64) ListSlowQueryNamespacesApiRequest {
 	r.duration = &duration
@@ -530,7 +612,7 @@ func (r ListSlowQueryNamespacesApiRequest) Since(since int64) ListSlowQueryNames
 }
 
 func (r ListSlowQueryNamespacesApiRequest) Execute() (*Namespaces, *http.Response, error) {
-	return r.ApiService.ListSlowQueryNamespacesExecute(r)
+	return r.ApiService.listSlowQueryNamespacesExecute(r)
 }
 
 /*
@@ -554,7 +636,7 @@ func (a *PerformanceAdvisorApiService) ListSlowQueryNamespaces(ctx context.Conte
 
 // Execute executes the request
 //  @return Namespaces
-func (a *PerformanceAdvisorApiService) ListSlowQueryNamespacesExecute(r ListSlowQueryNamespacesApiRequest) (*Namespaces, *http.Response, error) {
+func (a *PerformanceAdvisorApiService) listSlowQueryNamespacesExecute(r ListSlowQueryNamespacesApiRequest) (*Namespaces, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -677,6 +759,23 @@ type ListSuggestedIndexesApiParams struct {
 		Since *float32
 }
 
+func (a *PerformanceAdvisorApiService) ListSuggestedIndexesWithParams(ctx context.Context, args *ListSuggestedIndexesApiParams) ListSuggestedIndexesApiRequest {
+	return ListSuggestedIndexesApiRequest{
+		ApiService: a,
+		ctx: ctx,
+		groupId: args.GroupId,
+		processId: args.ProcessId,
+		includeCount: args.IncludeCount,
+		itemsPerPage: args.ItemsPerPage,
+		pageNum: args.PageNum,
+		duration: args.Duration,
+		namespaces: args.Namespaces,
+		nExamples: args.NExamples,
+		nIndexes: args.NIndexes,
+		since: args.Since,
+	}
+}
+
 // Flag that indicates whether the response returns the total number of items (**totalCount**) in the response.
 func (r ListSuggestedIndexesApiRequest) IncludeCount(includeCount bool) ListSuggestedIndexesApiRequest {
 	r.includeCount = &includeCount
@@ -726,7 +825,7 @@ func (r ListSuggestedIndexesApiRequest) Since(since float32) ListSuggestedIndexe
 }
 
 func (r ListSuggestedIndexesApiRequest) Execute() (*PerformanceAdvisorResponse, *http.Response, error) {
-	return r.ApiService.ListSuggestedIndexesExecute(r)
+	return r.ApiService.listSuggestedIndexesExecute(r)
 }
 
 /*
@@ -750,7 +849,7 @@ func (a *PerformanceAdvisorApiService) ListSuggestedIndexes(ctx context.Context,
 
 // Execute executes the request
 //  @return PerformanceAdvisorResponse
-func (a *PerformanceAdvisorApiService) ListSuggestedIndexesExecute(r ListSuggestedIndexesApiRequest) (*PerformanceAdvisorResponse, *http.Response, error) {
+func (a *PerformanceAdvisorApiService) listSuggestedIndexesExecute(r ListSuggestedIndexesApiRequest) (*PerformanceAdvisorResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}

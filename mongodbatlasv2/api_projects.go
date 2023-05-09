@@ -27,10 +27,18 @@ type ProjectsApi interface {
 	@return CreateProjectApiRequest
 	*/
 	CreateProject(ctx context.Context) CreateProjectApiRequest
+	/*
+	CreateProject Create One Project
 
-	// CreateProjectExecute executes the request
-	//  @return Group
-	CreateProjectExecute(r CreateProjectApiRequest) (*Group, *http.Response, error)
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param CreateProjectApiParams - Parameters for the request
+	@return CreateProjectApiRequest
+	*/
+	CreateProjectWithParams(ctx context.Context, args *CreateProjectApiParams) CreateProjectApiRequest
+
+	// Interface only available internally
+	createProjectExecute(r CreateProjectApiRequest) (*Group, *http.Response, error)
 
 	/*
 	CreateProjectInvitation Invite One MongoDB Cloud User to Join One Project
@@ -42,10 +50,18 @@ type ProjectsApi interface {
 	@return CreateProjectInvitationApiRequest
 	*/
 	CreateProjectInvitation(ctx context.Context, groupId string) CreateProjectInvitationApiRequest
+	/*
+	CreateProjectInvitation Invite One MongoDB Cloud User to Join One Project
 
-	// CreateProjectInvitationExecute executes the request
-	//  @return GroupInvitation
-	CreateProjectInvitationExecute(r CreateProjectInvitationApiRequest) (*GroupInvitation, *http.Response, error)
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param CreateProjectInvitationApiParams - Parameters for the request
+	@return CreateProjectInvitationApiRequest
+	*/
+	CreateProjectInvitationWithParams(ctx context.Context, args *CreateProjectInvitationApiParams) CreateProjectInvitationApiRequest
+
+	// Interface only available internally
+	createProjectInvitationExecute(r CreateProjectInvitationApiRequest) (*GroupInvitation, *http.Response, error)
 
 	/*
 	DeleteProject Remove One Project
@@ -57,9 +73,18 @@ type ProjectsApi interface {
 	@return DeleteProjectApiRequest
 	*/
 	DeleteProject(ctx context.Context, groupId string) DeleteProjectApiRequest
+	/*
+	DeleteProject Remove One Project
 
-	// DeleteProjectExecute executes the request
-	DeleteProjectExecute(r DeleteProjectApiRequest) (*http.Response, error)
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param DeleteProjectApiParams - Parameters for the request
+	@return DeleteProjectApiRequest
+	*/
+	DeleteProjectWithParams(ctx context.Context, args *DeleteProjectApiParams) DeleteProjectApiRequest
+
+	// Interface only available internally
+	deleteProjectExecute(r DeleteProjectApiRequest) (*http.Response, error)
 
 	/*
 	DeleteProjectInvitation Cancel One Project Invitation
@@ -72,9 +97,18 @@ type ProjectsApi interface {
 	@return DeleteProjectInvitationApiRequest
 	*/
 	DeleteProjectInvitation(ctx context.Context, groupId string, invitationId string) DeleteProjectInvitationApiRequest
+	/*
+	DeleteProjectInvitation Cancel One Project Invitation
 
-	// DeleteProjectInvitationExecute executes the request
-	DeleteProjectInvitationExecute(r DeleteProjectInvitationApiRequest) (*http.Response, error)
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param DeleteProjectInvitationApiParams - Parameters for the request
+	@return DeleteProjectInvitationApiRequest
+	*/
+	DeleteProjectInvitationWithParams(ctx context.Context, args *DeleteProjectInvitationApiParams) DeleteProjectInvitationApiRequest
+
+	// Interface only available internally
+	deleteProjectInvitationExecute(r DeleteProjectInvitationApiRequest) (*http.Response, error)
 
 	/*
 	DeleteProjectLimit Remove One Project Limit
@@ -87,9 +121,18 @@ type ProjectsApi interface {
 	@return DeleteProjectLimitApiRequest
 	*/
 	DeleteProjectLimit(ctx context.Context, limitName string, groupId string) DeleteProjectLimitApiRequest
+	/*
+	DeleteProjectLimit Remove One Project Limit
 
-	// DeleteProjectLimitExecute executes the request
-	DeleteProjectLimitExecute(r DeleteProjectLimitApiRequest) (*http.Response, error)
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param DeleteProjectLimitApiParams - Parameters for the request
+	@return DeleteProjectLimitApiRequest
+	*/
+	DeleteProjectLimitWithParams(ctx context.Context, args *DeleteProjectLimitApiParams) DeleteProjectLimitApiRequest
+
+	// Interface only available internally
+	deleteProjectLimitExecute(r DeleteProjectLimitApiRequest) (*http.Response, error)
 
 	/*
 	GetProject Return One Project
@@ -101,10 +144,18 @@ type ProjectsApi interface {
 	@return GetProjectApiRequest
 	*/
 	GetProject(ctx context.Context, groupId string) GetProjectApiRequest
+	/*
+	GetProject Return One Project
 
-	// GetProjectExecute executes the request
-	//  @return Group
-	GetProjectExecute(r GetProjectApiRequest) (*Group, *http.Response, error)
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param GetProjectApiParams - Parameters for the request
+	@return GetProjectApiRequest
+	*/
+	GetProjectWithParams(ctx context.Context, args *GetProjectApiParams) GetProjectApiRequest
+
+	// Interface only available internally
+	getProjectExecute(r GetProjectApiRequest) (*Group, *http.Response, error)
 
 	/*
 	GetProjectByName Return One Project using Its Name
@@ -116,10 +167,18 @@ type ProjectsApi interface {
 	@return GetProjectByNameApiRequest
 	*/
 	GetProjectByName(ctx context.Context, groupName string) GetProjectByNameApiRequest
+	/*
+	GetProjectByName Return One Project using Its Name
 
-	// GetProjectByNameExecute executes the request
-	//  @return Group
-	GetProjectByNameExecute(r GetProjectByNameApiRequest) (*Group, *http.Response, error)
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param GetProjectByNameApiParams - Parameters for the request
+	@return GetProjectByNameApiRequest
+	*/
+	GetProjectByNameWithParams(ctx context.Context, args *GetProjectByNameApiParams) GetProjectByNameApiRequest
+
+	// Interface only available internally
+	getProjectByNameExecute(r GetProjectByNameApiRequest) (*Group, *http.Response, error)
 
 	/*
 	GetProjectInvitation Return One Project Invitation
@@ -132,10 +191,18 @@ type ProjectsApi interface {
 	@return GetProjectInvitationApiRequest
 	*/
 	GetProjectInvitation(ctx context.Context, groupId string, invitationId string) GetProjectInvitationApiRequest
+	/*
+	GetProjectInvitation Return One Project Invitation
 
-	// GetProjectInvitationExecute executes the request
-	//  @return GroupInvitation
-	GetProjectInvitationExecute(r GetProjectInvitationApiRequest) (*GroupInvitation, *http.Response, error)
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param GetProjectInvitationApiParams - Parameters for the request
+	@return GetProjectInvitationApiRequest
+	*/
+	GetProjectInvitationWithParams(ctx context.Context, args *GetProjectInvitationApiParams) GetProjectInvitationApiRequest
+
+	// Interface only available internally
+	getProjectInvitationExecute(r GetProjectInvitationApiRequest) (*GroupInvitation, *http.Response, error)
 
 	/*
 	GetProjectLimit Return One Limit for One Project
@@ -148,10 +215,18 @@ type ProjectsApi interface {
 	@return GetProjectLimitApiRequest
 	*/
 	GetProjectLimit(ctx context.Context, limitName string, groupId string) GetProjectLimitApiRequest
+	/*
+	GetProjectLimit Return One Limit for One Project
 
-	// GetProjectLimitExecute executes the request
-	//  @return Limit
-	GetProjectLimitExecute(r GetProjectLimitApiRequest) (*Limit, *http.Response, error)
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param GetProjectLimitApiParams - Parameters for the request
+	@return GetProjectLimitApiRequest
+	*/
+	GetProjectLimitWithParams(ctx context.Context, args *GetProjectLimitApiParams) GetProjectLimitApiRequest
+
+	// Interface only available internally
+	getProjectLimitExecute(r GetProjectLimitApiRequest) (*Limit, *http.Response, error)
 
 	/*
 	GetProjectSettings Return One Project Settings
@@ -163,10 +238,18 @@ type ProjectsApi interface {
 	@return GetProjectSettingsApiRequest
 	*/
 	GetProjectSettings(ctx context.Context, groupId string) GetProjectSettingsApiRequest
+	/*
+	GetProjectSettings Return One Project Settings
 
-	// GetProjectSettingsExecute executes the request
-	//  @return GroupSettings
-	GetProjectSettingsExecute(r GetProjectSettingsApiRequest) (*GroupSettings, *http.Response, error)
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param GetProjectSettingsApiParams - Parameters for the request
+	@return GetProjectSettingsApiRequest
+	*/
+	GetProjectSettingsWithParams(ctx context.Context, args *GetProjectSettingsApiParams) GetProjectSettingsApiRequest
+
+	// Interface only available internally
+	getProjectSettingsExecute(r GetProjectSettingsApiRequest) (*GroupSettings, *http.Response, error)
 
 	/*
 	ListProjectInvitations Return All Project Invitations
@@ -178,10 +261,18 @@ type ProjectsApi interface {
 	@return ListProjectInvitationsApiRequest
 	*/
 	ListProjectInvitations(ctx context.Context, groupId string) ListProjectInvitationsApiRequest
+	/*
+	ListProjectInvitations Return All Project Invitations
 
-	// ListProjectInvitationsExecute executes the request
-	//  @return []GroupInvitation
-	ListProjectInvitationsExecute(r ListProjectInvitationsApiRequest) ([]GroupInvitation, *http.Response, error)
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param ListProjectInvitationsApiParams - Parameters for the request
+	@return ListProjectInvitationsApiRequest
+	*/
+	ListProjectInvitationsWithParams(ctx context.Context, args *ListProjectInvitationsApiParams) ListProjectInvitationsApiRequest
+
+	// Interface only available internally
+	listProjectInvitationsExecute(r ListProjectInvitationsApiRequest) ([]GroupInvitation, *http.Response, error)
 
 	/*
 	ListProjectLimits Return All Limits for One Project
@@ -193,10 +284,18 @@ type ProjectsApi interface {
 	@return ListProjectLimitsApiRequest
 	*/
 	ListProjectLimits(ctx context.Context, groupId string) ListProjectLimitsApiRequest
+	/*
+	ListProjectLimits Return All Limits for One Project
 
-	// ListProjectLimitsExecute executes the request
-	//  @return Limit
-	ListProjectLimitsExecute(r ListProjectLimitsApiRequest) (*Limit, *http.Response, error)
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param ListProjectLimitsApiParams - Parameters for the request
+	@return ListProjectLimitsApiRequest
+	*/
+	ListProjectLimitsWithParams(ctx context.Context, args *ListProjectLimitsApiParams) ListProjectLimitsApiRequest
+
+	// Interface only available internally
+	listProjectLimitsExecute(r ListProjectLimitsApiRequest) (*Limit, *http.Response, error)
 
 	/*
 	ListProjectUsers Return All Users in One Project
@@ -208,10 +307,18 @@ type ProjectsApi interface {
 	@return ListProjectUsersApiRequest
 	*/
 	ListProjectUsers(ctx context.Context, groupId string) ListProjectUsersApiRequest
+	/*
+	ListProjectUsers Return All Users in One Project
 
-	// ListProjectUsersExecute executes the request
-	//  @return PaginatedApiAppUser
-	ListProjectUsersExecute(r ListProjectUsersApiRequest) (*PaginatedApiAppUser, *http.Response, error)
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param ListProjectUsersApiParams - Parameters for the request
+	@return ListProjectUsersApiRequest
+	*/
+	ListProjectUsersWithParams(ctx context.Context, args *ListProjectUsersApiParams) ListProjectUsersApiRequest
+
+	// Interface only available internally
+	listProjectUsersExecute(r ListProjectUsersApiRequest) (*PaginatedApiAppUser, *http.Response, error)
 
 	/*
 	ListProjects Return All Projects
@@ -222,10 +329,18 @@ type ProjectsApi interface {
 	@return ListProjectsApiRequest
 	*/
 	ListProjects(ctx context.Context) ListProjectsApiRequest
+	/*
+	ListProjects Return All Projects
 
-	// ListProjectsExecute executes the request
-	//  @return PaginatedAtlasGroup
-	ListProjectsExecute(r ListProjectsApiRequest) (*PaginatedAtlasGroup, *http.Response, error)
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param ListProjectsApiParams - Parameters for the request
+	@return ListProjectsApiRequest
+	*/
+	ListProjectsWithParams(ctx context.Context, args *ListProjectsApiParams) ListProjectsApiRequest
+
+	// Interface only available internally
+	listProjectsExecute(r ListProjectsApiRequest) (*PaginatedAtlasGroup, *http.Response, error)
 
 	/*
 	RemoveProjectUser Remove One User from One Project
@@ -238,9 +353,18 @@ type ProjectsApi interface {
 	@return RemoveProjectUserApiRequest
 	*/
 	RemoveProjectUser(ctx context.Context, groupId string, userId string) RemoveProjectUserApiRequest
+	/*
+	RemoveProjectUser Remove One User from One Project
 
-	// RemoveProjectUserExecute executes the request
-	RemoveProjectUserExecute(r RemoveProjectUserApiRequest) (*http.Response, error)
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param RemoveProjectUserApiParams - Parameters for the request
+	@return RemoveProjectUserApiRequest
+	*/
+	RemoveProjectUserWithParams(ctx context.Context, args *RemoveProjectUserApiParams) RemoveProjectUserApiRequest
+
+	// Interface only available internally
+	removeProjectUserExecute(r RemoveProjectUserApiRequest) (*http.Response, error)
 
 	/*
 	SetProjectLimit Set One Project Limit
@@ -255,10 +379,18 @@ type ProjectsApi interface {
 	@return SetProjectLimitApiRequest
 	*/
 	SetProjectLimit(ctx context.Context, limitName string, groupId string) SetProjectLimitApiRequest
+	/*
+	SetProjectLimit Set One Project Limit
 
-	// SetProjectLimitExecute executes the request
-	//  @return Limit
-	SetProjectLimitExecute(r SetProjectLimitApiRequest) (*Limit, *http.Response, error)
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param SetProjectLimitApiParams - Parameters for the request
+	@return SetProjectLimitApiRequest
+	*/
+	SetProjectLimitWithParams(ctx context.Context, args *SetProjectLimitApiParams) SetProjectLimitApiRequest
+
+	// Interface only available internally
+	setProjectLimitExecute(r SetProjectLimitApiRequest) (*Limit, *http.Response, error)
 
 	/*
 	UpdateProject Update One Project Name
@@ -270,10 +402,18 @@ type ProjectsApi interface {
 	@return UpdateProjectApiRequest
 	*/
 	UpdateProject(ctx context.Context, groupId string) UpdateProjectApiRequest
+	/*
+	UpdateProject Update One Project Name
 
-	// UpdateProjectExecute executes the request
-	//  @return Group
-	UpdateProjectExecute(r UpdateProjectApiRequest) (*Group, *http.Response, error)
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param UpdateProjectApiParams - Parameters for the request
+	@return UpdateProjectApiRequest
+	*/
+	UpdateProjectWithParams(ctx context.Context, args *UpdateProjectApiParams) UpdateProjectApiRequest
+
+	// Interface only available internally
+	updateProjectExecute(r UpdateProjectApiRequest) (*Group, *http.Response, error)
 
 	/*
 	UpdateProjectInvitation Update One Project Invitation
@@ -285,10 +425,18 @@ type ProjectsApi interface {
 	@return UpdateProjectInvitationApiRequest
 	*/
 	UpdateProjectInvitation(ctx context.Context, groupId string) UpdateProjectInvitationApiRequest
+	/*
+	UpdateProjectInvitation Update One Project Invitation
 
-	// UpdateProjectInvitationExecute executes the request
-	//  @return GroupInvitation
-	UpdateProjectInvitationExecute(r UpdateProjectInvitationApiRequest) (*GroupInvitation, *http.Response, error)
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param UpdateProjectInvitationApiParams - Parameters for the request
+	@return UpdateProjectInvitationApiRequest
+	*/
+	UpdateProjectInvitationWithParams(ctx context.Context, args *UpdateProjectInvitationApiParams) UpdateProjectInvitationApiRequest
+
+	// Interface only available internally
+	updateProjectInvitationExecute(r UpdateProjectInvitationApiRequest) (*GroupInvitation, *http.Response, error)
 
 	/*
 	UpdateProjectInvitationById Update One Project Invitation by Invitation ID
@@ -301,10 +449,18 @@ type ProjectsApi interface {
 	@return UpdateProjectInvitationByIdApiRequest
 	*/
 	UpdateProjectInvitationById(ctx context.Context, groupId string, invitationId string) UpdateProjectInvitationByIdApiRequest
+	/*
+	UpdateProjectInvitationById Update One Project Invitation by Invitation ID
 
-	// UpdateProjectInvitationByIdExecute executes the request
-	//  @return GroupInvitation
-	UpdateProjectInvitationByIdExecute(r UpdateProjectInvitationByIdApiRequest) (*GroupInvitation, *http.Response, error)
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param UpdateProjectInvitationByIdApiParams - Parameters for the request
+	@return UpdateProjectInvitationByIdApiRequest
+	*/
+	UpdateProjectInvitationByIdWithParams(ctx context.Context, args *UpdateProjectInvitationByIdApiParams) UpdateProjectInvitationByIdApiRequest
+
+	// Interface only available internally
+	updateProjectInvitationByIdExecute(r UpdateProjectInvitationByIdApiRequest) (*GroupInvitation, *http.Response, error)
 
 	/*
 	UpdateProjectSettings Update One Project Settings
@@ -316,10 +472,18 @@ type ProjectsApi interface {
 	@return UpdateProjectSettingsApiRequest
 	*/
 	UpdateProjectSettings(ctx context.Context, groupId string) UpdateProjectSettingsApiRequest
+	/*
+	UpdateProjectSettings Update One Project Settings
 
-	// UpdateProjectSettingsExecute executes the request
-	//  @return GroupSettings
-	UpdateProjectSettingsExecute(r UpdateProjectSettingsApiRequest) (*GroupSettings, *http.Response, error)
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param UpdateProjectSettingsApiParams - Parameters for the request
+	@return UpdateProjectSettingsApiRequest
+	*/
+	UpdateProjectSettingsWithParams(ctx context.Context, args *UpdateProjectSettingsApiParams) UpdateProjectSettingsApiRequest
+
+	// Interface only available internally
+	updateProjectSettingsExecute(r UpdateProjectSettingsApiRequest) (*GroupSettings, *http.Response, error)
 }
 
 // ProjectsApiService ProjectsApi service
@@ -337,6 +501,15 @@ type CreateProjectApiParams struct {
 		ProjectOwnerId *string
 }
 
+func (a *ProjectsApiService) CreateProjectWithParams(ctx context.Context, args *CreateProjectApiParams) CreateProjectApiRequest {
+	return CreateProjectApiRequest{
+		ApiService: a,
+		ctx: ctx,
+		group: args.Group,
+		projectOwnerId: args.ProjectOwnerId,
+	}
+}
+
 // Creates one project.
 func (r CreateProjectApiRequest) Group(group Group) CreateProjectApiRequest {
 	r.group = &group
@@ -350,7 +523,7 @@ func (r CreateProjectApiRequest) ProjectOwnerId(projectOwnerId string) CreatePro
 }
 
 func (r CreateProjectApiRequest) Execute() (*Group, *http.Response, error) {
-	return r.ApiService.CreateProjectExecute(r)
+	return r.ApiService.createProjectExecute(r)
 }
 
 /*
@@ -370,7 +543,7 @@ func (a *ProjectsApiService) CreateProject(ctx context.Context) CreateProjectApi
 
 // Execute executes the request
 //  @return Group
-func (a *ProjectsApiService) CreateProjectExecute(r CreateProjectApiRequest) (*Group, *http.Response, error) {
+func (a *ProjectsApiService) createProjectExecute(r CreateProjectApiRequest) (*Group, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -471,6 +644,15 @@ type CreateProjectInvitationApiParams struct {
 		GroupInvitationRequest *GroupInvitationRequest
 }
 
+func (a *ProjectsApiService) CreateProjectInvitationWithParams(ctx context.Context, args *CreateProjectInvitationApiParams) CreateProjectInvitationApiRequest {
+	return CreateProjectInvitationApiRequest{
+		ApiService: a,
+		ctx: ctx,
+		groupId: args.GroupId,
+		groupInvitationRequest: args.GroupInvitationRequest,
+	}
+}
+
 // Invites one MongoDB Cloud user to join the specified project.
 func (r CreateProjectInvitationApiRequest) GroupInvitationRequest(groupInvitationRequest GroupInvitationRequest) CreateProjectInvitationApiRequest {
 	r.groupInvitationRequest = &groupInvitationRequest
@@ -478,7 +660,7 @@ func (r CreateProjectInvitationApiRequest) GroupInvitationRequest(groupInvitatio
 }
 
 func (r CreateProjectInvitationApiRequest) Execute() (*GroupInvitation, *http.Response, error) {
-	return r.ApiService.CreateProjectInvitationExecute(r)
+	return r.ApiService.createProjectInvitationExecute(r)
 }
 
 /*
@@ -500,7 +682,7 @@ func (a *ProjectsApiService) CreateProjectInvitation(ctx context.Context, groupI
 
 // Execute executes the request
 //  @return GroupInvitation
-func (a *ProjectsApiService) CreateProjectInvitationExecute(r CreateProjectInvitationApiRequest) (*GroupInvitation, *http.Response, error) {
+func (a *ProjectsApiService) createProjectInvitationExecute(r CreateProjectInvitationApiRequest) (*GroupInvitation, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -603,8 +785,16 @@ type DeleteProjectApiParams struct {
 		GroupId string
 }
 
+func (a *ProjectsApiService) DeleteProjectWithParams(ctx context.Context, args *DeleteProjectApiParams) DeleteProjectApiRequest {
+	return DeleteProjectApiRequest{
+		ApiService: a,
+		ctx: ctx,
+		groupId: args.GroupId,
+	}
+}
+
 func (r DeleteProjectApiRequest) Execute() (*http.Response, error) {
-	return r.ApiService.DeleteProjectExecute(r)
+	return r.ApiService.deleteProjectExecute(r)
 }
 
 /*
@@ -625,7 +815,7 @@ func (a *ProjectsApiService) DeleteProject(ctx context.Context, groupId string) 
 }
 
 // Execute executes the request
-func (a *ProjectsApiService) DeleteProjectExecute(r DeleteProjectApiRequest) (*http.Response, error) {
+func (a *ProjectsApiService) deleteProjectExecute(r DeleteProjectApiRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
@@ -715,8 +905,17 @@ type DeleteProjectInvitationApiParams struct {
 		InvitationId string
 }
 
+func (a *ProjectsApiService) DeleteProjectInvitationWithParams(ctx context.Context, args *DeleteProjectInvitationApiParams) DeleteProjectInvitationApiRequest {
+	return DeleteProjectInvitationApiRequest{
+		ApiService: a,
+		ctx: ctx,
+		groupId: args.GroupId,
+		invitationId: args.InvitationId,
+	}
+}
+
 func (r DeleteProjectInvitationApiRequest) Execute() (*http.Response, error) {
-	return r.ApiService.DeleteProjectInvitationExecute(r)
+	return r.ApiService.deleteProjectInvitationExecute(r)
 }
 
 /*
@@ -739,7 +938,7 @@ func (a *ProjectsApiService) DeleteProjectInvitation(ctx context.Context, groupI
 }
 
 // Execute executes the request
-func (a *ProjectsApiService) DeleteProjectInvitationExecute(r DeleteProjectInvitationApiRequest) (*http.Response, error) {
+func (a *ProjectsApiService) deleteProjectInvitationExecute(r DeleteProjectInvitationApiRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
@@ -836,8 +1035,17 @@ type DeleteProjectLimitApiParams struct {
 		GroupId string
 }
 
+func (a *ProjectsApiService) DeleteProjectLimitWithParams(ctx context.Context, args *DeleteProjectLimitApiParams) DeleteProjectLimitApiRequest {
+	return DeleteProjectLimitApiRequest{
+		ApiService: a,
+		ctx: ctx,
+		limitName: args.LimitName,
+		groupId: args.GroupId,
+	}
+}
+
 func (r DeleteProjectLimitApiRequest) Execute() (*http.Response, error) {
-	return r.ApiService.DeleteProjectLimitExecute(r)
+	return r.ApiService.deleteProjectLimitExecute(r)
 }
 
 /*
@@ -860,7 +1068,7 @@ func (a *ProjectsApiService) DeleteProjectLimit(ctx context.Context, limitName s
 }
 
 // Execute executes the request
-func (a *ProjectsApiService) DeleteProjectLimitExecute(r DeleteProjectLimitApiRequest) (*http.Response, error) {
+func (a *ProjectsApiService) deleteProjectLimitExecute(r DeleteProjectLimitApiRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
@@ -949,8 +1157,16 @@ type GetProjectApiParams struct {
 		GroupId string
 }
 
+func (a *ProjectsApiService) GetProjectWithParams(ctx context.Context, args *GetProjectApiParams) GetProjectApiRequest {
+	return GetProjectApiRequest{
+		ApiService: a,
+		ctx: ctx,
+		groupId: args.GroupId,
+	}
+}
+
 func (r GetProjectApiRequest) Execute() (*Group, *http.Response, error) {
-	return r.ApiService.GetProjectExecute(r)
+	return r.ApiService.getProjectExecute(r)
 }
 
 /*
@@ -972,7 +1188,7 @@ func (a *ProjectsApiService) GetProject(ctx context.Context, groupId string) Get
 
 // Execute executes the request
 //  @return Group
-func (a *ProjectsApiService) GetProjectExecute(r GetProjectApiRequest) (*Group, *http.Response, error) {
+func (a *ProjectsApiService) getProjectExecute(r GetProjectApiRequest) (*Group, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -1070,8 +1286,16 @@ type GetProjectByNameApiParams struct {
 		GroupName string
 }
 
+func (a *ProjectsApiService) GetProjectByNameWithParams(ctx context.Context, args *GetProjectByNameApiParams) GetProjectByNameApiRequest {
+	return GetProjectByNameApiRequest{
+		ApiService: a,
+		ctx: ctx,
+		groupName: args.GroupName,
+	}
+}
+
 func (r GetProjectByNameApiRequest) Execute() (*Group, *http.Response, error) {
-	return r.ApiService.GetProjectByNameExecute(r)
+	return r.ApiService.getProjectByNameExecute(r)
 }
 
 /*
@@ -1093,7 +1317,7 @@ func (a *ProjectsApiService) GetProjectByName(ctx context.Context, groupName str
 
 // Execute executes the request
 //  @return Group
-func (a *ProjectsApiService) GetProjectByNameExecute(r GetProjectByNameApiRequest) (*Group, *http.Response, error) {
+func (a *ProjectsApiService) getProjectByNameExecute(r GetProjectByNameApiRequest) (*Group, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -1193,8 +1417,17 @@ type GetProjectInvitationApiParams struct {
 		InvitationId string
 }
 
+func (a *ProjectsApiService) GetProjectInvitationWithParams(ctx context.Context, args *GetProjectInvitationApiParams) GetProjectInvitationApiRequest {
+	return GetProjectInvitationApiRequest{
+		ApiService: a,
+		ctx: ctx,
+		groupId: args.GroupId,
+		invitationId: args.InvitationId,
+	}
+}
+
 func (r GetProjectInvitationApiRequest) Execute() (*GroupInvitation, *http.Response, error) {
-	return r.ApiService.GetProjectInvitationExecute(r)
+	return r.ApiService.getProjectInvitationExecute(r)
 }
 
 /*
@@ -1218,7 +1451,7 @@ func (a *ProjectsApiService) GetProjectInvitation(ctx context.Context, groupId s
 
 // Execute executes the request
 //  @return GroupInvitation
-func (a *ProjectsApiService) GetProjectInvitationExecute(r GetProjectInvitationApiRequest) (*GroupInvitation, *http.Response, error) {
+func (a *ProjectsApiService) getProjectInvitationExecute(r GetProjectInvitationApiRequest) (*GroupInvitation, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -1325,8 +1558,17 @@ type GetProjectLimitApiParams struct {
 		GroupId string
 }
 
+func (a *ProjectsApiService) GetProjectLimitWithParams(ctx context.Context, args *GetProjectLimitApiParams) GetProjectLimitApiRequest {
+	return GetProjectLimitApiRequest{
+		ApiService: a,
+		ctx: ctx,
+		limitName: args.LimitName,
+		groupId: args.GroupId,
+	}
+}
+
 func (r GetProjectLimitApiRequest) Execute() (*Limit, *http.Response, error) {
-	return r.ApiService.GetProjectLimitExecute(r)
+	return r.ApiService.getProjectLimitExecute(r)
 }
 
 /*
@@ -1350,7 +1592,7 @@ func (a *ProjectsApiService) GetProjectLimit(ctx context.Context, limitName stri
 
 // Execute executes the request
 //  @return Limit
-func (a *ProjectsApiService) GetProjectLimitExecute(r GetProjectLimitApiRequest) (*Limit, *http.Response, error) {
+func (a *ProjectsApiService) getProjectLimitExecute(r GetProjectLimitApiRequest) (*Limit, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -1449,8 +1691,16 @@ type GetProjectSettingsApiParams struct {
 		GroupId string
 }
 
+func (a *ProjectsApiService) GetProjectSettingsWithParams(ctx context.Context, args *GetProjectSettingsApiParams) GetProjectSettingsApiRequest {
+	return GetProjectSettingsApiRequest{
+		ApiService: a,
+		ctx: ctx,
+		groupId: args.GroupId,
+	}
+}
+
 func (r GetProjectSettingsApiRequest) Execute() (*GroupSettings, *http.Response, error) {
-	return r.ApiService.GetProjectSettingsExecute(r)
+	return r.ApiService.getProjectSettingsExecute(r)
 }
 
 /*
@@ -1472,7 +1722,7 @@ func (a *ProjectsApiService) GetProjectSettings(ctx context.Context, groupId str
 
 // Execute executes the request
 //  @return GroupSettings
-func (a *ProjectsApiService) GetProjectSettingsExecute(r GetProjectSettingsApiRequest) (*GroupSettings, *http.Response, error) {
+func (a *ProjectsApiService) getProjectSettingsExecute(r GetProjectSettingsApiRequest) (*GroupSettings, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -1572,6 +1822,15 @@ type ListProjectInvitationsApiParams struct {
 		Username *string
 }
 
+func (a *ProjectsApiService) ListProjectInvitationsWithParams(ctx context.Context, args *ListProjectInvitationsApiParams) ListProjectInvitationsApiRequest {
+	return ListProjectInvitationsApiRequest{
+		ApiService: a,
+		ctx: ctx,
+		groupId: args.GroupId,
+		username: args.Username,
+	}
+}
+
 // Email address of the user account invited to this project.
 func (r ListProjectInvitationsApiRequest) Username(username string) ListProjectInvitationsApiRequest {
 	r.username = &username
@@ -1579,7 +1838,7 @@ func (r ListProjectInvitationsApiRequest) Username(username string) ListProjectI
 }
 
 func (r ListProjectInvitationsApiRequest) Execute() ([]GroupInvitation, *http.Response, error) {
-	return r.ApiService.ListProjectInvitationsExecute(r)
+	return r.ApiService.listProjectInvitationsExecute(r)
 }
 
 /*
@@ -1601,7 +1860,7 @@ func (a *ProjectsApiService) ListProjectInvitations(ctx context.Context, groupId
 
 // Execute executes the request
 //  @return []GroupInvitation
-func (a *ProjectsApiService) ListProjectInvitationsExecute(r ListProjectInvitationsApiRequest) ([]GroupInvitation, *http.Response, error) {
+func (a *ProjectsApiService) listProjectInvitationsExecute(r ListProjectInvitationsApiRequest) ([]GroupInvitation, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -1702,8 +1961,16 @@ type ListProjectLimitsApiParams struct {
 		GroupId string
 }
 
+func (a *ProjectsApiService) ListProjectLimitsWithParams(ctx context.Context, args *ListProjectLimitsApiParams) ListProjectLimitsApiRequest {
+	return ListProjectLimitsApiRequest{
+		ApiService: a,
+		ctx: ctx,
+		groupId: args.GroupId,
+	}
+}
+
 func (r ListProjectLimitsApiRequest) Execute() (*Limit, *http.Response, error) {
-	return r.ApiService.ListProjectLimitsExecute(r)
+	return r.ApiService.listProjectLimitsExecute(r)
 }
 
 /*
@@ -1725,7 +1992,7 @@ func (a *ProjectsApiService) ListProjectLimits(ctx context.Context, groupId stri
 
 // Execute executes the request
 //  @return Limit
-func (a *ProjectsApiService) ListProjectLimitsExecute(r ListProjectLimitsApiRequest) (*Limit, *http.Response, error) {
+func (a *ProjectsApiService) listProjectLimitsExecute(r ListProjectLimitsApiRequest) (*Limit, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -1833,6 +2100,19 @@ type ListProjectUsersApiParams struct {
 		IncludeOrgUsers *bool
 }
 
+func (a *ProjectsApiService) ListProjectUsersWithParams(ctx context.Context, args *ListProjectUsersApiParams) ListProjectUsersApiRequest {
+	return ListProjectUsersApiRequest{
+		ApiService: a,
+		ctx: ctx,
+		groupId: args.GroupId,
+		includeCount: args.IncludeCount,
+		itemsPerPage: args.ItemsPerPage,
+		pageNum: args.PageNum,
+		flattenTeams: args.FlattenTeams,
+		includeOrgUsers: args.IncludeOrgUsers,
+	}
+}
+
 // Flag that indicates whether the response returns the total number of items (**totalCount**) in the response.
 func (r ListProjectUsersApiRequest) IncludeCount(includeCount bool) ListProjectUsersApiRequest {
 	r.includeCount = &includeCount
@@ -1864,7 +2144,7 @@ func (r ListProjectUsersApiRequest) IncludeOrgUsers(includeOrgUsers bool) ListPr
 }
 
 func (r ListProjectUsersApiRequest) Execute() (*PaginatedApiAppUser, *http.Response, error) {
-	return r.ApiService.ListProjectUsersExecute(r)
+	return r.ApiService.listProjectUsersExecute(r)
 }
 
 /*
@@ -1886,7 +2166,7 @@ func (a *ProjectsApiService) ListProjectUsers(ctx context.Context, groupId strin
 
 // Execute executes the request
 //  @return PaginatedApiAppUser
-func (a *ProjectsApiService) ListProjectUsersExecute(r ListProjectUsersApiRequest) (*PaginatedApiAppUser, *http.Response, error) {
+func (a *ProjectsApiService) listProjectUsersExecute(r ListProjectUsersApiRequest) (*PaginatedApiAppUser, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -2023,6 +2303,16 @@ type ListProjectsApiParams struct {
 		PageNum *int32
 }
 
+func (a *ProjectsApiService) ListProjectsWithParams(ctx context.Context, args *ListProjectsApiParams) ListProjectsApiRequest {
+	return ListProjectsApiRequest{
+		ApiService: a,
+		ctx: ctx,
+		includeCount: args.IncludeCount,
+		itemsPerPage: args.ItemsPerPage,
+		pageNum: args.PageNum,
+	}
+}
+
 // Flag that indicates whether the response returns the total number of items (**totalCount**) in the response.
 func (r ListProjectsApiRequest) IncludeCount(includeCount bool) ListProjectsApiRequest {
 	r.includeCount = &includeCount
@@ -2042,7 +2332,7 @@ func (r ListProjectsApiRequest) PageNum(pageNum int32) ListProjectsApiRequest {
 }
 
 func (r ListProjectsApiRequest) Execute() (*PaginatedAtlasGroup, *http.Response, error) {
-	return r.ApiService.ListProjectsExecute(r)
+	return r.ApiService.listProjectsExecute(r)
 }
 
 /*
@@ -2062,7 +2352,7 @@ func (a *ProjectsApiService) ListProjects(ctx context.Context) ListProjectsApiRe
 
 // Execute executes the request
 //  @return PaginatedAtlasGroup
-func (a *ProjectsApiService) ListProjectsExecute(r ListProjectsApiRequest) (*PaginatedAtlasGroup, *http.Response, error) {
+func (a *ProjectsApiService) listProjectsExecute(r ListProjectsApiRequest) (*PaginatedAtlasGroup, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -2176,8 +2466,17 @@ type RemoveProjectUserApiParams struct {
 		UserId string
 }
 
+func (a *ProjectsApiService) RemoveProjectUserWithParams(ctx context.Context, args *RemoveProjectUserApiParams) RemoveProjectUserApiRequest {
+	return RemoveProjectUserApiRequest{
+		ApiService: a,
+		ctx: ctx,
+		groupId: args.GroupId,
+		userId: args.UserId,
+	}
+}
+
 func (r RemoveProjectUserApiRequest) Execute() (*http.Response, error) {
-	return r.ApiService.RemoveProjectUserExecute(r)
+	return r.ApiService.removeProjectUserExecute(r)
 }
 
 /*
@@ -2200,7 +2499,7 @@ func (a *ProjectsApiService) RemoveProjectUser(ctx context.Context, groupId stri
 }
 
 // Execute executes the request
-func (a *ProjectsApiService) RemoveProjectUserExecute(r RemoveProjectUserApiRequest) (*http.Response, error) {
+func (a *ProjectsApiService) removeProjectUserExecute(r RemoveProjectUserApiRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
@@ -2299,13 +2598,23 @@ type SetProjectLimitApiParams struct {
 		Limit *Limit
 }
 
+func (a *ProjectsApiService) SetProjectLimitWithParams(ctx context.Context, args *SetProjectLimitApiParams) SetProjectLimitApiRequest {
+	return SetProjectLimitApiRequest{
+		ApiService: a,
+		ctx: ctx,
+		limitName: args.LimitName,
+		groupId: args.GroupId,
+		limit: args.Limit,
+	}
+}
+
 func (r SetProjectLimitApiRequest) Limit(limit Limit) SetProjectLimitApiRequest {
 	r.limit = &limit
 	return r
 }
 
 func (r SetProjectLimitApiRequest) Execute() (*Limit, *http.Response, error) {
-	return r.ApiService.SetProjectLimitExecute(r)
+	return r.ApiService.setProjectLimitExecute(r)
 }
 
 /*
@@ -2331,7 +2640,7 @@ func (a *ProjectsApiService) SetProjectLimit(ctx context.Context, limitName stri
 
 // Execute executes the request
 //  @return Limit
-func (a *ProjectsApiService) SetProjectLimitExecute(r SetProjectLimitApiRequest) (*Limit, *http.Response, error) {
+func (a *ProjectsApiService) setProjectLimitExecute(r SetProjectLimitApiRequest) (*Limit, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPatch
 		localVarPostBody     interface{}
@@ -2434,13 +2743,22 @@ type UpdateProjectApiParams struct {
 		GroupName *GroupName
 }
 
+func (a *ProjectsApiService) UpdateProjectWithParams(ctx context.Context, args *UpdateProjectApiParams) UpdateProjectApiRequest {
+	return UpdateProjectApiRequest{
+		ApiService: a,
+		ctx: ctx,
+		groupId: args.GroupId,
+		groupName: args.GroupName,
+	}
+}
+
 func (r UpdateProjectApiRequest) GroupName(groupName GroupName) UpdateProjectApiRequest {
 	r.groupName = &groupName
 	return r
 }
 
 func (r UpdateProjectApiRequest) Execute() (*Group, *http.Response, error) {
-	return r.ApiService.UpdateProjectExecute(r)
+	return r.ApiService.updateProjectExecute(r)
 }
 
 /*
@@ -2462,7 +2780,7 @@ func (a *ProjectsApiService) UpdateProject(ctx context.Context, groupId string) 
 
 // Execute executes the request
 //  @return Group
-func (a *ProjectsApiService) UpdateProjectExecute(r UpdateProjectApiRequest) (*Group, *http.Response, error) {
+func (a *ProjectsApiService) updateProjectExecute(r UpdateProjectApiRequest) (*Group, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPatch
 		localVarPostBody     interface{}
@@ -2564,6 +2882,15 @@ type UpdateProjectInvitationApiParams struct {
 		GroupInvitationRequest *GroupInvitationRequest
 }
 
+func (a *ProjectsApiService) UpdateProjectInvitationWithParams(ctx context.Context, args *UpdateProjectInvitationApiParams) UpdateProjectInvitationApiRequest {
+	return UpdateProjectInvitationApiRequest{
+		ApiService: a,
+		ctx: ctx,
+		groupId: args.GroupId,
+		groupInvitationRequest: args.GroupInvitationRequest,
+	}
+}
+
 // Updates the details of one pending invitation to the specified project.
 func (r UpdateProjectInvitationApiRequest) GroupInvitationRequest(groupInvitationRequest GroupInvitationRequest) UpdateProjectInvitationApiRequest {
 	r.groupInvitationRequest = &groupInvitationRequest
@@ -2571,7 +2898,7 @@ func (r UpdateProjectInvitationApiRequest) GroupInvitationRequest(groupInvitatio
 }
 
 func (r UpdateProjectInvitationApiRequest) Execute() (*GroupInvitation, *http.Response, error) {
-	return r.ApiService.UpdateProjectInvitationExecute(r)
+	return r.ApiService.updateProjectInvitationExecute(r)
 }
 
 /*
@@ -2593,7 +2920,7 @@ func (a *ProjectsApiService) UpdateProjectInvitation(ctx context.Context, groupI
 
 // Execute executes the request
 //  @return GroupInvitation
-func (a *ProjectsApiService) UpdateProjectInvitationExecute(r UpdateProjectInvitationApiRequest) (*GroupInvitation, *http.Response, error) {
+func (a *ProjectsApiService) updateProjectInvitationExecute(r UpdateProjectInvitationApiRequest) (*GroupInvitation, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPatch
 		localVarPostBody     interface{}
@@ -2700,6 +3027,16 @@ type UpdateProjectInvitationByIdApiParams struct {
 		GroupInvitationUpdateRequest *GroupInvitationUpdateRequest
 }
 
+func (a *ProjectsApiService) UpdateProjectInvitationByIdWithParams(ctx context.Context, args *UpdateProjectInvitationByIdApiParams) UpdateProjectInvitationByIdApiRequest {
+	return UpdateProjectInvitationByIdApiRequest{
+		ApiService: a,
+		ctx: ctx,
+		groupId: args.GroupId,
+		invitationId: args.InvitationId,
+		groupInvitationUpdateRequest: args.GroupInvitationUpdateRequest,
+	}
+}
+
 // Updates the details of one pending invitation to the specified project.
 func (r UpdateProjectInvitationByIdApiRequest) GroupInvitationUpdateRequest(groupInvitationUpdateRequest GroupInvitationUpdateRequest) UpdateProjectInvitationByIdApiRequest {
 	r.groupInvitationUpdateRequest = &groupInvitationUpdateRequest
@@ -2707,7 +3044,7 @@ func (r UpdateProjectInvitationByIdApiRequest) GroupInvitationUpdateRequest(grou
 }
 
 func (r UpdateProjectInvitationByIdApiRequest) Execute() (*GroupInvitation, *http.Response, error) {
-	return r.ApiService.UpdateProjectInvitationByIdExecute(r)
+	return r.ApiService.updateProjectInvitationByIdExecute(r)
 }
 
 /*
@@ -2731,7 +3068,7 @@ func (a *ProjectsApiService) UpdateProjectInvitationById(ctx context.Context, gr
 
 // Execute executes the request
 //  @return GroupInvitation
-func (a *ProjectsApiService) UpdateProjectInvitationByIdExecute(r UpdateProjectInvitationByIdApiRequest) (*GroupInvitation, *http.Response, error) {
+func (a *ProjectsApiService) updateProjectInvitationByIdExecute(r UpdateProjectInvitationByIdApiRequest) (*GroupInvitation, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPatch
 		localVarPostBody     interface{}
@@ -2843,13 +3180,22 @@ type UpdateProjectSettingsApiParams struct {
 		GroupSettings *GroupSettings
 }
 
+func (a *ProjectsApiService) UpdateProjectSettingsWithParams(ctx context.Context, args *UpdateProjectSettingsApiParams) UpdateProjectSettingsApiRequest {
+	return UpdateProjectSettingsApiRequest{
+		ApiService: a,
+		ctx: ctx,
+		groupId: args.GroupId,
+		groupSettings: args.GroupSettings,
+	}
+}
+
 func (r UpdateProjectSettingsApiRequest) GroupSettings(groupSettings GroupSettings) UpdateProjectSettingsApiRequest {
 	r.groupSettings = &groupSettings
 	return r
 }
 
 func (r UpdateProjectSettingsApiRequest) Execute() (*GroupSettings, *http.Response, error) {
-	return r.ApiService.UpdateProjectSettingsExecute(r)
+	return r.ApiService.updateProjectSettingsExecute(r)
 }
 
 /*
@@ -2871,7 +3217,7 @@ func (a *ProjectsApiService) UpdateProjectSettings(ctx context.Context, groupId 
 
 // Execute executes the request
 //  @return GroupSettings
-func (a *ProjectsApiService) UpdateProjectSettingsExecute(r UpdateProjectSettingsApiRequest) (*GroupSettings, *http.Response, error) {
+func (a *ProjectsApiService) updateProjectSettingsExecute(r UpdateProjectSettingsApiRequest) (*GroupSettings, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPatch
 		localVarPostBody     interface{}

@@ -28,9 +28,18 @@ type MaintenanceWindowsApi interface {
 	@return DeferMaintenanceWindowApiRequest
 	*/
 	DeferMaintenanceWindow(ctx context.Context, groupId string) DeferMaintenanceWindowApiRequest
+	/*
+	DeferMaintenanceWindow Defer One Maintenance Window for One Project
 
-	// DeferMaintenanceWindowExecute executes the request
-	DeferMaintenanceWindowExecute(r DeferMaintenanceWindowApiRequest) (*http.Response, error)
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param DeferMaintenanceWindowApiParams - Parameters for the request
+	@return DeferMaintenanceWindowApiRequest
+	*/
+	DeferMaintenanceWindowWithParams(ctx context.Context, args *DeferMaintenanceWindowApiParams) DeferMaintenanceWindowApiRequest
+
+	// Interface only available internally
+	deferMaintenanceWindowExecute(r DeferMaintenanceWindowApiRequest) (*http.Response, error)
 
 	/*
 	GetMaintenanceWindow Return One Maintenance Window for One Project
@@ -42,10 +51,18 @@ type MaintenanceWindowsApi interface {
 	@return GetMaintenanceWindowApiRequest
 	*/
 	GetMaintenanceWindow(ctx context.Context, groupId string) GetMaintenanceWindowApiRequest
+	/*
+	GetMaintenanceWindow Return One Maintenance Window for One Project
 
-	// GetMaintenanceWindowExecute executes the request
-	//  @return GroupMaintenanceWindow
-	GetMaintenanceWindowExecute(r GetMaintenanceWindowApiRequest) (*GroupMaintenanceWindow, *http.Response, error)
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param GetMaintenanceWindowApiParams - Parameters for the request
+	@return GetMaintenanceWindowApiRequest
+	*/
+	GetMaintenanceWindowWithParams(ctx context.Context, args *GetMaintenanceWindowApiParams) GetMaintenanceWindowApiRequest
+
+	// Interface only available internally
+	getMaintenanceWindowExecute(r GetMaintenanceWindowApiRequest) (*GroupMaintenanceWindow, *http.Response, error)
 
 	/*
 	ResetMaintenanceWindow Reset One Maintenance Window for One Project
@@ -57,9 +74,18 @@ type MaintenanceWindowsApi interface {
 	@return ResetMaintenanceWindowApiRequest
 	*/
 	ResetMaintenanceWindow(ctx context.Context, groupId string) ResetMaintenanceWindowApiRequest
+	/*
+	ResetMaintenanceWindow Reset One Maintenance Window for One Project
 
-	// ResetMaintenanceWindowExecute executes the request
-	ResetMaintenanceWindowExecute(r ResetMaintenanceWindowApiRequest) (*http.Response, error)
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param ResetMaintenanceWindowApiParams - Parameters for the request
+	@return ResetMaintenanceWindowApiRequest
+	*/
+	ResetMaintenanceWindowWithParams(ctx context.Context, args *ResetMaintenanceWindowApiParams) ResetMaintenanceWindowApiRequest
+
+	// Interface only available internally
+	resetMaintenanceWindowExecute(r ResetMaintenanceWindowApiRequest) (*http.Response, error)
 
 	/*
 	ToggleMaintenanceAutoDefer Toggle Automatic Deferral of Maintenance for One Project
@@ -71,9 +97,18 @@ type MaintenanceWindowsApi interface {
 	@return ToggleMaintenanceAutoDeferApiRequest
 	*/
 	ToggleMaintenanceAutoDefer(ctx context.Context, groupId string) ToggleMaintenanceAutoDeferApiRequest
+	/*
+	ToggleMaintenanceAutoDefer Toggle Automatic Deferral of Maintenance for One Project
 
-	// ToggleMaintenanceAutoDeferExecute executes the request
-	ToggleMaintenanceAutoDeferExecute(r ToggleMaintenanceAutoDeferApiRequest) (*http.Response, error)
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param ToggleMaintenanceAutoDeferApiParams - Parameters for the request
+	@return ToggleMaintenanceAutoDeferApiRequest
+	*/
+	ToggleMaintenanceAutoDeferWithParams(ctx context.Context, args *ToggleMaintenanceAutoDeferApiParams) ToggleMaintenanceAutoDeferApiRequest
+
+	// Interface only available internally
+	toggleMaintenanceAutoDeferExecute(r ToggleMaintenanceAutoDeferApiRequest) (*http.Response, error)
 
 	/*
 	UpdateMaintenanceWindow Update Maintenance Window for One Project
@@ -85,9 +120,18 @@ type MaintenanceWindowsApi interface {
 	@return UpdateMaintenanceWindowApiRequest
 	*/
 	UpdateMaintenanceWindow(ctx context.Context, groupId string) UpdateMaintenanceWindowApiRequest
+	/*
+	UpdateMaintenanceWindow Update Maintenance Window for One Project
 
-	// UpdateMaintenanceWindowExecute executes the request
-	UpdateMaintenanceWindowExecute(r UpdateMaintenanceWindowApiRequest) (*http.Response, error)
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param UpdateMaintenanceWindowApiParams - Parameters for the request
+	@return UpdateMaintenanceWindowApiRequest
+	*/
+	UpdateMaintenanceWindowWithParams(ctx context.Context, args *UpdateMaintenanceWindowApiParams) UpdateMaintenanceWindowApiRequest
+
+	// Interface only available internally
+	updateMaintenanceWindowExecute(r UpdateMaintenanceWindowApiRequest) (*http.Response, error)
 }
 
 // MaintenanceWindowsApiService MaintenanceWindowsApi service
@@ -103,8 +147,16 @@ type DeferMaintenanceWindowApiParams struct {
 		GroupId string
 }
 
+func (a *MaintenanceWindowsApiService) DeferMaintenanceWindowWithParams(ctx context.Context, args *DeferMaintenanceWindowApiParams) DeferMaintenanceWindowApiRequest {
+	return DeferMaintenanceWindowApiRequest{
+		ApiService: a,
+		ctx: ctx,
+		groupId: args.GroupId,
+	}
+}
+
 func (r DeferMaintenanceWindowApiRequest) Execute() (*http.Response, error) {
-	return r.ApiService.DeferMaintenanceWindowExecute(r)
+	return r.ApiService.deferMaintenanceWindowExecute(r)
 }
 
 /*
@@ -125,7 +177,7 @@ func (a *MaintenanceWindowsApiService) DeferMaintenanceWindow(ctx context.Contex
 }
 
 // Execute executes the request
-func (a *MaintenanceWindowsApiService) DeferMaintenanceWindowExecute(r DeferMaintenanceWindowApiRequest) (*http.Response, error) {
+func (a *MaintenanceWindowsApiService) deferMaintenanceWindowExecute(r DeferMaintenanceWindowApiRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -213,8 +265,16 @@ type GetMaintenanceWindowApiParams struct {
 		GroupId string
 }
 
+func (a *MaintenanceWindowsApiService) GetMaintenanceWindowWithParams(ctx context.Context, args *GetMaintenanceWindowApiParams) GetMaintenanceWindowApiRequest {
+	return GetMaintenanceWindowApiRequest{
+		ApiService: a,
+		ctx: ctx,
+		groupId: args.GroupId,
+	}
+}
+
 func (r GetMaintenanceWindowApiRequest) Execute() (*GroupMaintenanceWindow, *http.Response, error) {
-	return r.ApiService.GetMaintenanceWindowExecute(r)
+	return r.ApiService.getMaintenanceWindowExecute(r)
 }
 
 /*
@@ -236,7 +296,7 @@ func (a *MaintenanceWindowsApiService) GetMaintenanceWindow(ctx context.Context,
 
 // Execute executes the request
 //  @return GroupMaintenanceWindow
-func (a *MaintenanceWindowsApiService) GetMaintenanceWindowExecute(r GetMaintenanceWindowApiRequest) (*GroupMaintenanceWindow, *http.Response, error) {
+func (a *MaintenanceWindowsApiService) getMaintenanceWindowExecute(r GetMaintenanceWindowApiRequest) (*GroupMaintenanceWindow, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -334,8 +394,16 @@ type ResetMaintenanceWindowApiParams struct {
 		GroupId string
 }
 
+func (a *MaintenanceWindowsApiService) ResetMaintenanceWindowWithParams(ctx context.Context, args *ResetMaintenanceWindowApiParams) ResetMaintenanceWindowApiRequest {
+	return ResetMaintenanceWindowApiRequest{
+		ApiService: a,
+		ctx: ctx,
+		groupId: args.GroupId,
+	}
+}
+
 func (r ResetMaintenanceWindowApiRequest) Execute() (*http.Response, error) {
-	return r.ApiService.ResetMaintenanceWindowExecute(r)
+	return r.ApiService.resetMaintenanceWindowExecute(r)
 }
 
 /*
@@ -356,7 +424,7 @@ func (a *MaintenanceWindowsApiService) ResetMaintenanceWindow(ctx context.Contex
 }
 
 // Execute executes the request
-func (a *MaintenanceWindowsApiService) ResetMaintenanceWindowExecute(r ResetMaintenanceWindowApiRequest) (*http.Response, error) {
+func (a *MaintenanceWindowsApiService) resetMaintenanceWindowExecute(r ResetMaintenanceWindowApiRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
@@ -444,8 +512,16 @@ type ToggleMaintenanceAutoDeferApiParams struct {
 		GroupId string
 }
 
+func (a *MaintenanceWindowsApiService) ToggleMaintenanceAutoDeferWithParams(ctx context.Context, args *ToggleMaintenanceAutoDeferApiParams) ToggleMaintenanceAutoDeferApiRequest {
+	return ToggleMaintenanceAutoDeferApiRequest{
+		ApiService: a,
+		ctx: ctx,
+		groupId: args.GroupId,
+	}
+}
+
 func (r ToggleMaintenanceAutoDeferApiRequest) Execute() (*http.Response, error) {
-	return r.ApiService.ToggleMaintenanceAutoDeferExecute(r)
+	return r.ApiService.toggleMaintenanceAutoDeferExecute(r)
 }
 
 /*
@@ -466,7 +542,7 @@ func (a *MaintenanceWindowsApiService) ToggleMaintenanceAutoDefer(ctx context.Co
 }
 
 // Execute executes the request
-func (a *MaintenanceWindowsApiService) ToggleMaintenanceAutoDeferExecute(r ToggleMaintenanceAutoDeferApiRequest) (*http.Response, error) {
+func (a *MaintenanceWindowsApiService) toggleMaintenanceAutoDeferExecute(r ToggleMaintenanceAutoDeferApiRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -556,6 +632,15 @@ type UpdateMaintenanceWindowApiParams struct {
 		GroupMaintenanceWindow *GroupMaintenanceWindow
 }
 
+func (a *MaintenanceWindowsApiService) UpdateMaintenanceWindowWithParams(ctx context.Context, args *UpdateMaintenanceWindowApiParams) UpdateMaintenanceWindowApiRequest {
+	return UpdateMaintenanceWindowApiRequest{
+		ApiService: a,
+		ctx: ctx,
+		groupId: args.GroupId,
+		groupMaintenanceWindow: args.GroupMaintenanceWindow,
+	}
+}
+
 // Updates the maintenance window for the specified project.
 func (r UpdateMaintenanceWindowApiRequest) GroupMaintenanceWindow(groupMaintenanceWindow GroupMaintenanceWindow) UpdateMaintenanceWindowApiRequest {
 	r.groupMaintenanceWindow = &groupMaintenanceWindow
@@ -563,7 +648,7 @@ func (r UpdateMaintenanceWindowApiRequest) GroupMaintenanceWindow(groupMaintenan
 }
 
 func (r UpdateMaintenanceWindowApiRequest) Execute() (*http.Response, error) {
-	return r.ApiService.UpdateMaintenanceWindowExecute(r)
+	return r.ApiService.updateMaintenanceWindowExecute(r)
 }
 
 /*
@@ -584,7 +669,7 @@ func (a *MaintenanceWindowsApiService) UpdateMaintenanceWindow(ctx context.Conte
 }
 
 // Execute executes the request
-func (a *MaintenanceWindowsApiService) UpdateMaintenanceWindowExecute(r UpdateMaintenanceWindowApiRequest) (*http.Response, error) {
+func (a *MaintenanceWindowsApiService) updateMaintenanceWindowExecute(r UpdateMaintenanceWindowApiRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPatch
 		localVarPostBody     interface{}

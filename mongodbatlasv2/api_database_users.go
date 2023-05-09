@@ -28,10 +28,18 @@ type DatabaseUsersApi interface {
 	@return CreateDatabaseUserApiRequest
 	*/
 	CreateDatabaseUser(ctx context.Context, groupId string) CreateDatabaseUserApiRequest
+	/*
+	CreateDatabaseUser Create One Database User in One Project
 
-	// CreateDatabaseUserExecute executes the request
-	//  @return DatabaseUser
-	CreateDatabaseUserExecute(r CreateDatabaseUserApiRequest) (*DatabaseUser, *http.Response, error)
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param CreateDatabaseUserApiParams - Parameters for the request
+	@return CreateDatabaseUserApiRequest
+	*/
+	CreateDatabaseUserWithParams(ctx context.Context, args *CreateDatabaseUserApiParams) CreateDatabaseUserApiRequest
+
+	// Interface only available internally
+	createDatabaseUserExecute(r CreateDatabaseUserApiRequest) (*DatabaseUser, *http.Response, error)
 
 	/*
 	DeleteDatabaseUser Remove One Database User from One Project
@@ -45,9 +53,18 @@ type DatabaseUsersApi interface {
 	@return DeleteDatabaseUserApiRequest
 	*/
 	DeleteDatabaseUser(ctx context.Context, groupId string, databaseName string, username string) DeleteDatabaseUserApiRequest
+	/*
+	DeleteDatabaseUser Remove One Database User from One Project
 
-	// DeleteDatabaseUserExecute executes the request
-	DeleteDatabaseUserExecute(r DeleteDatabaseUserApiRequest) (*http.Response, error)
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param DeleteDatabaseUserApiParams - Parameters for the request
+	@return DeleteDatabaseUserApiRequest
+	*/
+	DeleteDatabaseUserWithParams(ctx context.Context, args *DeleteDatabaseUserApiParams) DeleteDatabaseUserApiRequest
+
+	// Interface only available internally
+	deleteDatabaseUserExecute(r DeleteDatabaseUserApiRequest) (*http.Response, error)
 
 	/*
 	GetDatabaseUser Return One Database User from One Project
@@ -61,10 +78,18 @@ type DatabaseUsersApi interface {
 	@return GetDatabaseUserApiRequest
 	*/
 	GetDatabaseUser(ctx context.Context, groupId string, databaseName string, username string) GetDatabaseUserApiRequest
+	/*
+	GetDatabaseUser Return One Database User from One Project
 
-	// GetDatabaseUserExecute executes the request
-	//  @return DatabaseUser
-	GetDatabaseUserExecute(r GetDatabaseUserApiRequest) (*DatabaseUser, *http.Response, error)
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param GetDatabaseUserApiParams - Parameters for the request
+	@return GetDatabaseUserApiRequest
+	*/
+	GetDatabaseUserWithParams(ctx context.Context, args *GetDatabaseUserApiParams) GetDatabaseUserApiRequest
+
+	// Interface only available internally
+	getDatabaseUserExecute(r GetDatabaseUserApiRequest) (*DatabaseUser, *http.Response, error)
 
 	/*
 	ListDatabaseUsers Return All Database Users from One Project
@@ -76,10 +101,18 @@ type DatabaseUsersApi interface {
 	@return ListDatabaseUsersApiRequest
 	*/
 	ListDatabaseUsers(ctx context.Context, groupId string) ListDatabaseUsersApiRequest
+	/*
+	ListDatabaseUsers Return All Database Users from One Project
 
-	// ListDatabaseUsersExecute executes the request
-	//  @return PaginatedApiAtlasDatabaseUser
-	ListDatabaseUsersExecute(r ListDatabaseUsersApiRequest) (*PaginatedApiAtlasDatabaseUser, *http.Response, error)
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param ListDatabaseUsersApiParams - Parameters for the request
+	@return ListDatabaseUsersApiRequest
+	*/
+	ListDatabaseUsersWithParams(ctx context.Context, args *ListDatabaseUsersApiParams) ListDatabaseUsersApiRequest
+
+	// Interface only available internally
+	listDatabaseUsersExecute(r ListDatabaseUsersApiRequest) (*PaginatedApiAtlasDatabaseUser, *http.Response, error)
 
 	/*
 	UpdateDatabaseUser Update One Database User in One Project
@@ -93,10 +126,18 @@ type DatabaseUsersApi interface {
 	@return UpdateDatabaseUserApiRequest
 	*/
 	UpdateDatabaseUser(ctx context.Context, groupId string, databaseName string, username string) UpdateDatabaseUserApiRequest
+	/*
+	UpdateDatabaseUser Update One Database User in One Project
 
-	// UpdateDatabaseUserExecute executes the request
-	//  @return DatabaseUser
-	UpdateDatabaseUserExecute(r UpdateDatabaseUserApiRequest) (*DatabaseUser, *http.Response, error)
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param UpdateDatabaseUserApiParams - Parameters for the request
+	@return UpdateDatabaseUserApiRequest
+	*/
+	UpdateDatabaseUserWithParams(ctx context.Context, args *UpdateDatabaseUserApiParams) UpdateDatabaseUserApiRequest
+
+	// Interface only available internally
+	updateDatabaseUserExecute(r UpdateDatabaseUserApiRequest) (*DatabaseUser, *http.Response, error)
 }
 
 // DatabaseUsersApiService DatabaseUsersApi service
@@ -114,6 +155,15 @@ type CreateDatabaseUserApiParams struct {
 		DatabaseUser *DatabaseUser
 }
 
+func (a *DatabaseUsersApiService) CreateDatabaseUserWithParams(ctx context.Context, args *CreateDatabaseUserApiParams) CreateDatabaseUserApiRequest {
+	return CreateDatabaseUserApiRequest{
+		ApiService: a,
+		ctx: ctx,
+		groupId: args.GroupId,
+		databaseUser: args.DatabaseUser,
+	}
+}
+
 // Creates one database user in the specified project.
 func (r CreateDatabaseUserApiRequest) DatabaseUser(databaseUser DatabaseUser) CreateDatabaseUserApiRequest {
 	r.databaseUser = &databaseUser
@@ -121,7 +171,7 @@ func (r CreateDatabaseUserApiRequest) DatabaseUser(databaseUser DatabaseUser) Cr
 }
 
 func (r CreateDatabaseUserApiRequest) Execute() (*DatabaseUser, *http.Response, error) {
-	return r.ApiService.CreateDatabaseUserExecute(r)
+	return r.ApiService.createDatabaseUserExecute(r)
 }
 
 /*
@@ -143,7 +193,7 @@ func (a *DatabaseUsersApiService) CreateDatabaseUser(ctx context.Context, groupI
 
 // Execute executes the request
 //  @return DatabaseUser
-func (a *DatabaseUsersApiService) CreateDatabaseUserExecute(r CreateDatabaseUserApiRequest) (*DatabaseUser, *http.Response, error) {
+func (a *DatabaseUsersApiService) createDatabaseUserExecute(r CreateDatabaseUserApiRequest) (*DatabaseUser, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -250,8 +300,18 @@ type DeleteDatabaseUserApiParams struct {
 		Username string
 }
 
+func (a *DatabaseUsersApiService) DeleteDatabaseUserWithParams(ctx context.Context, args *DeleteDatabaseUserApiParams) DeleteDatabaseUserApiRequest {
+	return DeleteDatabaseUserApiRequest{
+		ApiService: a,
+		ctx: ctx,
+		groupId: args.GroupId,
+		databaseName: args.DatabaseName,
+		username: args.Username,
+	}
+}
+
 func (r DeleteDatabaseUserApiRequest) Execute() (*http.Response, error) {
-	return r.ApiService.DeleteDatabaseUserExecute(r)
+	return r.ApiService.deleteDatabaseUserExecute(r)
 }
 
 /*
@@ -276,7 +336,7 @@ func (a *DatabaseUsersApiService) DeleteDatabaseUser(ctx context.Context, groupI
 }
 
 // Execute executes the request
-func (a *DatabaseUsersApiService) DeleteDatabaseUserExecute(r DeleteDatabaseUserApiRequest) (*http.Response, error) {
+func (a *DatabaseUsersApiService) deleteDatabaseUserExecute(r DeleteDatabaseUserApiRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
@@ -370,8 +430,18 @@ type GetDatabaseUserApiParams struct {
 		Username string
 }
 
+func (a *DatabaseUsersApiService) GetDatabaseUserWithParams(ctx context.Context, args *GetDatabaseUserApiParams) GetDatabaseUserApiRequest {
+	return GetDatabaseUserApiRequest{
+		ApiService: a,
+		ctx: ctx,
+		groupId: args.GroupId,
+		databaseName: args.DatabaseName,
+		username: args.Username,
+	}
+}
+
 func (r GetDatabaseUserApiRequest) Execute() (*DatabaseUser, *http.Response, error) {
-	return r.ApiService.GetDatabaseUserExecute(r)
+	return r.ApiService.getDatabaseUserExecute(r)
 }
 
 /*
@@ -397,7 +467,7 @@ func (a *DatabaseUsersApiService) GetDatabaseUser(ctx context.Context, groupId s
 
 // Execute executes the request
 //  @return DatabaseUser
-func (a *DatabaseUsersApiService) GetDatabaseUserExecute(r GetDatabaseUserApiRequest) (*DatabaseUser, *http.Response, error) {
+func (a *DatabaseUsersApiService) getDatabaseUserExecute(r GetDatabaseUserApiRequest) (*DatabaseUser, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -503,6 +573,17 @@ type ListDatabaseUsersApiParams struct {
 		PageNum *int32
 }
 
+func (a *DatabaseUsersApiService) ListDatabaseUsersWithParams(ctx context.Context, args *ListDatabaseUsersApiParams) ListDatabaseUsersApiRequest {
+	return ListDatabaseUsersApiRequest{
+		ApiService: a,
+		ctx: ctx,
+		groupId: args.GroupId,
+		includeCount: args.IncludeCount,
+		itemsPerPage: args.ItemsPerPage,
+		pageNum: args.PageNum,
+	}
+}
+
 // Flag that indicates whether the response returns the total number of items (**totalCount**) in the response.
 func (r ListDatabaseUsersApiRequest) IncludeCount(includeCount bool) ListDatabaseUsersApiRequest {
 	r.includeCount = &includeCount
@@ -522,7 +603,7 @@ func (r ListDatabaseUsersApiRequest) PageNum(pageNum int32) ListDatabaseUsersApi
 }
 
 func (r ListDatabaseUsersApiRequest) Execute() (*PaginatedApiAtlasDatabaseUser, *http.Response, error) {
-	return r.ApiService.ListDatabaseUsersExecute(r)
+	return r.ApiService.listDatabaseUsersExecute(r)
 }
 
 /*
@@ -544,7 +625,7 @@ func (a *DatabaseUsersApiService) ListDatabaseUsers(ctx context.Context, groupId
 
 // Execute executes the request
 //  @return PaginatedApiAtlasDatabaseUser
-func (a *DatabaseUsersApiService) ListDatabaseUsersExecute(r ListDatabaseUsersApiRequest) (*PaginatedApiAtlasDatabaseUser, *http.Response, error) {
+func (a *DatabaseUsersApiService) listDatabaseUsersExecute(r ListDatabaseUsersApiRequest) (*PaginatedApiAtlasDatabaseUser, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -669,6 +750,17 @@ type UpdateDatabaseUserApiParams struct {
 		DatabaseUser *DatabaseUser
 }
 
+func (a *DatabaseUsersApiService) UpdateDatabaseUserWithParams(ctx context.Context, args *UpdateDatabaseUserApiParams) UpdateDatabaseUserApiRequest {
+	return UpdateDatabaseUserApiRequest{
+		ApiService: a,
+		ctx: ctx,
+		groupId: args.GroupId,
+		databaseName: args.DatabaseName,
+		username: args.Username,
+		databaseUser: args.DatabaseUser,
+	}
+}
+
 // Updates one database user that belongs to the specified project.
 func (r UpdateDatabaseUserApiRequest) DatabaseUser(databaseUser DatabaseUser) UpdateDatabaseUserApiRequest {
 	r.databaseUser = &databaseUser
@@ -676,7 +768,7 @@ func (r UpdateDatabaseUserApiRequest) DatabaseUser(databaseUser DatabaseUser) Up
 }
 
 func (r UpdateDatabaseUserApiRequest) Execute() (*DatabaseUser, *http.Response, error) {
-	return r.ApiService.UpdateDatabaseUserExecute(r)
+	return r.ApiService.updateDatabaseUserExecute(r)
 }
 
 /*
@@ -702,7 +794,7 @@ func (a *DatabaseUsersApiService) UpdateDatabaseUser(ctx context.Context, groupI
 
 // Execute executes the request
 //  @return DatabaseUser
-func (a *DatabaseUsersApiService) UpdateDatabaseUserExecute(r UpdateDatabaseUserApiRequest) (*DatabaseUser, *http.Response, error) {
+func (a *DatabaseUsersApiService) updateDatabaseUserExecute(r UpdateDatabaseUserApiRequest) (*DatabaseUser, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPatch
 		localVarPostBody     interface{}

@@ -29,9 +29,18 @@ type InvoicesApi interface {
 	@return DownloadInvoiceCSVApiRequest
 	*/
 	DownloadInvoiceCSV(ctx context.Context, orgId string, invoiceId string) DownloadInvoiceCSVApiRequest
+	/*
+	DownloadInvoiceCSV Return One Organization Invoice as CSV
 
-	// DownloadInvoiceCSVExecute executes the request
-	DownloadInvoiceCSVExecute(r DownloadInvoiceCSVApiRequest) (*http.Response, error)
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param DownloadInvoiceCSVApiParams - Parameters for the request
+	@return DownloadInvoiceCSVApiRequest
+	*/
+	DownloadInvoiceCSVWithParams(ctx context.Context, args *DownloadInvoiceCSVApiParams) DownloadInvoiceCSVApiRequest
+
+	// Interface only available internally
+	downloadInvoiceCSVExecute(r DownloadInvoiceCSVApiRequest) (*http.Response, error)
 
 	/*
 	GetInvoice Return One Organization Invoice
@@ -44,10 +53,18 @@ type InvoicesApi interface {
 	@return GetInvoiceApiRequest
 	*/
 	GetInvoice(ctx context.Context, orgId string, invoiceId string) GetInvoiceApiRequest
+	/*
+	GetInvoice Return One Organization Invoice
 
-	// GetInvoiceExecute executes the request
-	//  @return Invoice
-	GetInvoiceExecute(r GetInvoiceApiRequest) (*Invoice, *http.Response, error)
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param GetInvoiceApiParams - Parameters for the request
+	@return GetInvoiceApiRequest
+	*/
+	GetInvoiceWithParams(ctx context.Context, args *GetInvoiceApiParams) GetInvoiceApiRequest
+
+	// Interface only available internally
+	getInvoiceExecute(r GetInvoiceApiRequest) (*Invoice, *http.Response, error)
 
 	/*
 	ListInvoices Return All Invoices for One Organization
@@ -59,10 +76,18 @@ type InvoicesApi interface {
 	@return ListInvoicesApiRequest
 	*/
 	ListInvoices(ctx context.Context, orgId string) ListInvoicesApiRequest
+	/*
+	ListInvoices Return All Invoices for One Organization
 
-	// ListInvoicesExecute executes the request
-	//  @return PaginatedApiInvoice
-	ListInvoicesExecute(r ListInvoicesApiRequest) (*PaginatedApiInvoice, *http.Response, error)
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param ListInvoicesApiParams - Parameters for the request
+	@return ListInvoicesApiRequest
+	*/
+	ListInvoicesWithParams(ctx context.Context, args *ListInvoicesApiParams) ListInvoicesApiRequest
+
+	// Interface only available internally
+	listInvoicesExecute(r ListInvoicesApiRequest) (*PaginatedApiInvoice, *http.Response, error)
 
 	/*
 	ListPendingInvoices Return All Pending Invoices for One Organization
@@ -74,10 +99,18 @@ type InvoicesApi interface {
 	@return ListPendingInvoicesApiRequest
 	*/
 	ListPendingInvoices(ctx context.Context, orgId string) ListPendingInvoicesApiRequest
+	/*
+	ListPendingInvoices Return All Pending Invoices for One Organization
 
-	// ListPendingInvoicesExecute executes the request
-	//  @return PaginatedApiInvoice
-	ListPendingInvoicesExecute(r ListPendingInvoicesApiRequest) (*PaginatedApiInvoice, *http.Response, error)
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param ListPendingInvoicesApiParams - Parameters for the request
+	@return ListPendingInvoicesApiRequest
+	*/
+	ListPendingInvoicesWithParams(ctx context.Context, args *ListPendingInvoicesApiParams) ListPendingInvoicesApiRequest
+
+	// Interface only available internally
+	listPendingInvoicesExecute(r ListPendingInvoicesApiRequest) (*PaginatedApiInvoice, *http.Response, error)
 }
 
 // InvoicesApiService InvoicesApi service
@@ -95,8 +128,17 @@ type DownloadInvoiceCSVApiParams struct {
 		InvoiceId string
 }
 
+func (a *InvoicesApiService) DownloadInvoiceCSVWithParams(ctx context.Context, args *DownloadInvoiceCSVApiParams) DownloadInvoiceCSVApiRequest {
+	return DownloadInvoiceCSVApiRequest{
+		ApiService: a,
+		ctx: ctx,
+		orgId: args.OrgId,
+		invoiceId: args.InvoiceId,
+	}
+}
+
 func (r DownloadInvoiceCSVApiRequest) Execute() (*http.Response, error) {
-	return r.ApiService.DownloadInvoiceCSVExecute(r)
+	return r.ApiService.downloadInvoiceCSVExecute(r)
 }
 
 /*
@@ -119,7 +161,7 @@ func (a *InvoicesApiService) DownloadInvoiceCSV(ctx context.Context, orgId strin
 }
 
 // Execute executes the request
-func (a *InvoicesApiService) DownloadInvoiceCSVExecute(r DownloadInvoiceCSVApiRequest) (*http.Response, error) {
+func (a *InvoicesApiService) downloadInvoiceCSVExecute(r DownloadInvoiceCSVApiRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -210,8 +252,17 @@ type GetInvoiceApiParams struct {
 		InvoiceId string
 }
 
+func (a *InvoicesApiService) GetInvoiceWithParams(ctx context.Context, args *GetInvoiceApiParams) GetInvoiceApiRequest {
+	return GetInvoiceApiRequest{
+		ApiService: a,
+		ctx: ctx,
+		orgId: args.OrgId,
+		invoiceId: args.InvoiceId,
+	}
+}
+
 func (r GetInvoiceApiRequest) Execute() (*Invoice, *http.Response, error) {
-	return r.ApiService.GetInvoiceExecute(r)
+	return r.ApiService.getInvoiceExecute(r)
 }
 
 /*
@@ -235,7 +286,7 @@ func (a *InvoicesApiService) GetInvoice(ctx context.Context, orgId string, invoi
 
 // Execute executes the request
 //  @return Invoice
-func (a *InvoicesApiService) GetInvoiceExecute(r GetInvoiceApiRequest) (*Invoice, *http.Response, error) {
+func (a *InvoicesApiService) getInvoiceExecute(r GetInvoiceApiRequest) (*Invoice, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -346,6 +397,17 @@ type ListInvoicesApiParams struct {
 		PageNum *int32
 }
 
+func (a *InvoicesApiService) ListInvoicesWithParams(ctx context.Context, args *ListInvoicesApiParams) ListInvoicesApiRequest {
+	return ListInvoicesApiRequest{
+		ApiService: a,
+		ctx: ctx,
+		orgId: args.OrgId,
+		includeCount: args.IncludeCount,
+		itemsPerPage: args.ItemsPerPage,
+		pageNum: args.PageNum,
+	}
+}
+
 // Flag that indicates whether the response returns the total number of items (**totalCount**) in the response.
 func (r ListInvoicesApiRequest) IncludeCount(includeCount bool) ListInvoicesApiRequest {
 	r.includeCount = &includeCount
@@ -365,7 +427,7 @@ func (r ListInvoicesApiRequest) PageNum(pageNum int32) ListInvoicesApiRequest {
 }
 
 func (r ListInvoicesApiRequest) Execute() (*PaginatedApiInvoice, *http.Response, error) {
-	return r.ApiService.ListInvoicesExecute(r)
+	return r.ApiService.listInvoicesExecute(r)
 }
 
 /*
@@ -387,7 +449,7 @@ func (a *InvoicesApiService) ListInvoices(ctx context.Context, orgId string) Lis
 
 // Execute executes the request
 //  @return PaginatedApiInvoice
-func (a *InvoicesApiService) ListInvoicesExecute(r ListInvoicesApiRequest) (*PaginatedApiInvoice, *http.Response, error) {
+func (a *InvoicesApiService) listInvoicesExecute(r ListInvoicesApiRequest) (*PaginatedApiInvoice, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -506,8 +568,16 @@ type ListPendingInvoicesApiParams struct {
 		OrgId string
 }
 
+func (a *InvoicesApiService) ListPendingInvoicesWithParams(ctx context.Context, args *ListPendingInvoicesApiParams) ListPendingInvoicesApiRequest {
+	return ListPendingInvoicesApiRequest{
+		ApiService: a,
+		ctx: ctx,
+		orgId: args.OrgId,
+	}
+}
+
 func (r ListPendingInvoicesApiRequest) Execute() (*PaginatedApiInvoice, *http.Response, error) {
-	return r.ApiService.ListPendingInvoicesExecute(r)
+	return r.ApiService.listPendingInvoicesExecute(r)
 }
 
 /*
@@ -529,7 +599,7 @@ func (a *InvoicesApiService) ListPendingInvoices(ctx context.Context, orgId stri
 
 // Execute executes the request
 //  @return PaginatedApiInvoice
-func (a *InvoicesApiService) ListPendingInvoicesExecute(r ListPendingInvoicesApiRequest) (*PaginatedApiInvoice, *http.Response, error) {
+func (a *InvoicesApiService) listPendingInvoicesExecute(r ListPendingInvoicesApiRequest) (*PaginatedApiInvoice, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}

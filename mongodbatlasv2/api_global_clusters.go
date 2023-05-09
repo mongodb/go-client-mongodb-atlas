@@ -29,10 +29,18 @@ type GlobalClustersApi interface {
 	@return CreateCustomZoneMappingApiRequest
 	*/
 	CreateCustomZoneMapping(ctx context.Context, groupId string, clusterName string) CreateCustomZoneMappingApiRequest
+	/*
+	CreateCustomZoneMapping Add One Entry to One Custom Zone Mapping
 
-	// CreateCustomZoneMappingExecute executes the request
-	//  @return GeoSharding
-	CreateCustomZoneMappingExecute(r CreateCustomZoneMappingApiRequest) (*GeoSharding, *http.Response, error)
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param CreateCustomZoneMappingApiParams - Parameters for the request
+	@return CreateCustomZoneMappingApiRequest
+	*/
+	CreateCustomZoneMappingWithParams(ctx context.Context, args *CreateCustomZoneMappingApiParams) CreateCustomZoneMappingApiRequest
+
+	// Interface only available internally
+	createCustomZoneMappingExecute(r CreateCustomZoneMappingApiRequest) (*GeoSharding, *http.Response, error)
 
 	/*
 	CreateManagedNamespace Create One Managed Namespace in One Global Multi-Cloud Cluster
@@ -45,10 +53,18 @@ type GlobalClustersApi interface {
 	@return CreateManagedNamespaceApiRequest
 	*/
 	CreateManagedNamespace(ctx context.Context, groupId string, clusterName string) CreateManagedNamespaceApiRequest
+	/*
+	CreateManagedNamespace Create One Managed Namespace in One Global Multi-Cloud Cluster
 
-	// CreateManagedNamespaceExecute executes the request
-	//  @return GeoSharding
-	CreateManagedNamespaceExecute(r CreateManagedNamespaceApiRequest) (*GeoSharding, *http.Response, error)
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param CreateManagedNamespaceApiParams - Parameters for the request
+	@return CreateManagedNamespaceApiRequest
+	*/
+	CreateManagedNamespaceWithParams(ctx context.Context, args *CreateManagedNamespaceApiParams) CreateManagedNamespaceApiRequest
+
+	// Interface only available internally
+	createManagedNamespaceExecute(r CreateManagedNamespaceApiRequest) (*GeoSharding, *http.Response, error)
 
 	/*
 	DeleteAllCustomZoneMappings Remove All Custom Zone Mappings from One Global Multi-Cloud Cluster
@@ -61,10 +77,18 @@ type GlobalClustersApi interface {
 	@return DeleteAllCustomZoneMappingsApiRequest
 	*/
 	DeleteAllCustomZoneMappings(ctx context.Context, groupId string, clusterName string) DeleteAllCustomZoneMappingsApiRequest
+	/*
+	DeleteAllCustomZoneMappings Remove All Custom Zone Mappings from One Global Multi-Cloud Cluster
 
-	// DeleteAllCustomZoneMappingsExecute executes the request
-	//  @return GeoSharding
-	DeleteAllCustomZoneMappingsExecute(r DeleteAllCustomZoneMappingsApiRequest) (*GeoSharding, *http.Response, error)
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param DeleteAllCustomZoneMappingsApiParams - Parameters for the request
+	@return DeleteAllCustomZoneMappingsApiRequest
+	*/
+	DeleteAllCustomZoneMappingsWithParams(ctx context.Context, args *DeleteAllCustomZoneMappingsApiParams) DeleteAllCustomZoneMappingsApiRequest
+
+	// Interface only available internally
+	deleteAllCustomZoneMappingsExecute(r DeleteAllCustomZoneMappingsApiRequest) (*GeoSharding, *http.Response, error)
 
 	/*
 	DeleteManagedNamespace Remove One Managed Namespace from One Global Multi-Cloud Cluster
@@ -77,10 +101,18 @@ type GlobalClustersApi interface {
 	@return DeleteManagedNamespaceApiRequest
 	*/
 	DeleteManagedNamespace(ctx context.Context, clusterName string, groupId string) DeleteManagedNamespaceApiRequest
+	/*
+	DeleteManagedNamespace Remove One Managed Namespace from One Global Multi-Cloud Cluster
 
-	// DeleteManagedNamespaceExecute executes the request
-	//  @return GeoSharding
-	DeleteManagedNamespaceExecute(r DeleteManagedNamespaceApiRequest) (*GeoSharding, *http.Response, error)
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param DeleteManagedNamespaceApiParams - Parameters for the request
+	@return DeleteManagedNamespaceApiRequest
+	*/
+	DeleteManagedNamespaceWithParams(ctx context.Context, args *DeleteManagedNamespaceApiParams) DeleteManagedNamespaceApiRequest
+
+	// Interface only available internally
+	deleteManagedNamespaceExecute(r DeleteManagedNamespaceApiRequest) (*GeoSharding, *http.Response, error)
 
 	/*
 	GetManagedNamespace Return One Managed Namespace in One Global Multi-Cloud Cluster
@@ -93,10 +125,18 @@ type GlobalClustersApi interface {
 	@return GetManagedNamespaceApiRequest
 	*/
 	GetManagedNamespace(ctx context.Context, groupId string, clusterName string) GetManagedNamespaceApiRequest
+	/*
+	GetManagedNamespace Return One Managed Namespace in One Global Multi-Cloud Cluster
 
-	// GetManagedNamespaceExecute executes the request
-	//  @return GeoSharding
-	GetManagedNamespaceExecute(r GetManagedNamespaceApiRequest) (*GeoSharding, *http.Response, error)
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param GetManagedNamespaceApiParams - Parameters for the request
+	@return GetManagedNamespaceApiRequest
+	*/
+	GetManagedNamespaceWithParams(ctx context.Context, args *GetManagedNamespaceApiParams) GetManagedNamespaceApiRequest
+
+	// Interface only available internally
+	getManagedNamespaceExecute(r GetManagedNamespaceApiRequest) (*GeoSharding, *http.Response, error)
 }
 
 // GlobalClustersApiService GlobalClustersApi service
@@ -116,6 +156,16 @@ type CreateCustomZoneMappingApiParams struct {
 		GeoSharding *GeoSharding
 }
 
+func (a *GlobalClustersApiService) CreateCustomZoneMappingWithParams(ctx context.Context, args *CreateCustomZoneMappingApiParams) CreateCustomZoneMappingApiRequest {
+	return CreateCustomZoneMappingApiRequest{
+		ApiService: a,
+		ctx: ctx,
+		groupId: args.GroupId,
+		clusterName: args.ClusterName,
+		geoSharding: args.GeoSharding,
+	}
+}
+
 // Custom zone mapping to add to the specified global cluster.
 func (r CreateCustomZoneMappingApiRequest) GeoSharding(geoSharding GeoSharding) CreateCustomZoneMappingApiRequest {
 	r.geoSharding = &geoSharding
@@ -123,7 +173,7 @@ func (r CreateCustomZoneMappingApiRequest) GeoSharding(geoSharding GeoSharding) 
 }
 
 func (r CreateCustomZoneMappingApiRequest) Execute() (*GeoSharding, *http.Response, error) {
-	return r.ApiService.CreateCustomZoneMappingExecute(r)
+	return r.ApiService.createCustomZoneMappingExecute(r)
 }
 
 /*
@@ -147,7 +197,7 @@ func (a *GlobalClustersApiService) CreateCustomZoneMapping(ctx context.Context, 
 
 // Execute executes the request
 //  @return GeoSharding
-func (a *GlobalClustersApiService) CreateCustomZoneMappingExecute(r CreateCustomZoneMappingApiRequest) (*GeoSharding, *http.Response, error) {
+func (a *GlobalClustersApiService) createCustomZoneMappingExecute(r CreateCustomZoneMappingApiRequest) (*GeoSharding, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -261,6 +311,16 @@ type CreateManagedNamespaceApiParams struct {
 		ManagedNamespace *ManagedNamespace
 }
 
+func (a *GlobalClustersApiService) CreateManagedNamespaceWithParams(ctx context.Context, args *CreateManagedNamespaceApiParams) CreateManagedNamespaceApiRequest {
+	return CreateManagedNamespaceApiRequest{
+		ApiService: a,
+		ctx: ctx,
+		groupId: args.GroupId,
+		clusterName: args.ClusterName,
+		managedNamespace: args.ManagedNamespace,
+	}
+}
+
 // Managed namespace to create within the specified global cluster.
 func (r CreateManagedNamespaceApiRequest) ManagedNamespace(managedNamespace ManagedNamespace) CreateManagedNamespaceApiRequest {
 	r.managedNamespace = &managedNamespace
@@ -268,7 +328,7 @@ func (r CreateManagedNamespaceApiRequest) ManagedNamespace(managedNamespace Mana
 }
 
 func (r CreateManagedNamespaceApiRequest) Execute() (*GeoSharding, *http.Response, error) {
-	return r.ApiService.CreateManagedNamespaceExecute(r)
+	return r.ApiService.createManagedNamespaceExecute(r)
 }
 
 /*
@@ -292,7 +352,7 @@ func (a *GlobalClustersApiService) CreateManagedNamespace(ctx context.Context, g
 
 // Execute executes the request
 //  @return GeoSharding
-func (a *GlobalClustersApiService) CreateManagedNamespaceExecute(r CreateManagedNamespaceApiRequest) (*GeoSharding, *http.Response, error) {
+func (a *GlobalClustersApiService) createManagedNamespaceExecute(r CreateManagedNamespaceApiRequest) (*GeoSharding, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -404,8 +464,17 @@ type DeleteAllCustomZoneMappingsApiParams struct {
 		ClusterName string
 }
 
+func (a *GlobalClustersApiService) DeleteAllCustomZoneMappingsWithParams(ctx context.Context, args *DeleteAllCustomZoneMappingsApiParams) DeleteAllCustomZoneMappingsApiRequest {
+	return DeleteAllCustomZoneMappingsApiRequest{
+		ApiService: a,
+		ctx: ctx,
+		groupId: args.GroupId,
+		clusterName: args.ClusterName,
+	}
+}
+
 func (r DeleteAllCustomZoneMappingsApiRequest) Execute() (*GeoSharding, *http.Response, error) {
-	return r.ApiService.DeleteAllCustomZoneMappingsExecute(r)
+	return r.ApiService.deleteAllCustomZoneMappingsExecute(r)
 }
 
 /*
@@ -429,7 +498,7 @@ func (a *GlobalClustersApiService) DeleteAllCustomZoneMappings(ctx context.Conte
 
 // Execute executes the request
 //  @return GeoSharding
-func (a *GlobalClustersApiService) DeleteAllCustomZoneMappingsExecute(r DeleteAllCustomZoneMappingsApiRequest) (*GeoSharding, *http.Response, error) {
+func (a *GlobalClustersApiService) deleteAllCustomZoneMappingsExecute(r DeleteAllCustomZoneMappingsApiRequest) (*GeoSharding, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
@@ -540,6 +609,17 @@ type DeleteManagedNamespaceApiParams struct {
 		Collection *string
 }
 
+func (a *GlobalClustersApiService) DeleteManagedNamespaceWithParams(ctx context.Context, args *DeleteManagedNamespaceApiParams) DeleteManagedNamespaceApiRequest {
+	return DeleteManagedNamespaceApiRequest{
+		ApiService: a,
+		ctx: ctx,
+		clusterName: args.ClusterName,
+		groupId: args.GroupId,
+		db: args.Db,
+		collection: args.Collection,
+	}
+}
+
 // Human-readable label that identifies the database that contains the collection.
 func (r DeleteManagedNamespaceApiRequest) Db(db string) DeleteManagedNamespaceApiRequest {
 	r.db = &db
@@ -553,7 +633,7 @@ func (r DeleteManagedNamespaceApiRequest) Collection(collection string) DeleteMa
 }
 
 func (r DeleteManagedNamespaceApiRequest) Execute() (*GeoSharding, *http.Response, error) {
-	return r.ApiService.DeleteManagedNamespaceExecute(r)
+	return r.ApiService.deleteManagedNamespaceExecute(r)
 }
 
 /*
@@ -577,7 +657,7 @@ func (a *GlobalClustersApiService) DeleteManagedNamespace(ctx context.Context, c
 
 // Execute executes the request
 //  @return GeoSharding
-func (a *GlobalClustersApiService) DeleteManagedNamespaceExecute(r DeleteManagedNamespaceApiRequest) (*GeoSharding, *http.Response, error) {
+func (a *GlobalClustersApiService) deleteManagedNamespaceExecute(r DeleteManagedNamespaceApiRequest) (*GeoSharding, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
@@ -690,8 +770,17 @@ type GetManagedNamespaceApiParams struct {
 		ClusterName string
 }
 
+func (a *GlobalClustersApiService) GetManagedNamespaceWithParams(ctx context.Context, args *GetManagedNamespaceApiParams) GetManagedNamespaceApiRequest {
+	return GetManagedNamespaceApiRequest{
+		ApiService: a,
+		ctx: ctx,
+		groupId: args.GroupId,
+		clusterName: args.ClusterName,
+	}
+}
+
 func (r GetManagedNamespaceApiRequest) Execute() (*GeoSharding, *http.Response, error) {
-	return r.ApiService.GetManagedNamespaceExecute(r)
+	return r.ApiService.getManagedNamespaceExecute(r)
 }
 
 /*
@@ -715,7 +804,7 @@ func (a *GlobalClustersApiService) GetManagedNamespace(ctx context.Context, grou
 
 // Execute executes the request
 //  @return GeoSharding
-func (a *GlobalClustersApiService) GetManagedNamespaceExecute(r GetManagedNamespaceApiRequest) (*GeoSharding, *http.Response, error) {
+func (a *GlobalClustersApiService) getManagedNamespaceExecute(r GetManagedNamespaceApiRequest) (*GeoSharding, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}

@@ -30,10 +30,18 @@ type PrivateEndpointServicesApi interface {
 	@return CreatePrivateEndpointApiRequest
 	*/
 	CreatePrivateEndpoint(ctx context.Context, groupId string, cloudProvider string, endpointServiceId string) CreatePrivateEndpointApiRequest
+	/*
+	CreatePrivateEndpoint Create One Private Endpoint for One Provider
 
-	// CreatePrivateEndpointExecute executes the request
-	//  @return Endpoint
-	CreatePrivateEndpointExecute(r CreatePrivateEndpointApiRequest) (*Endpoint, *http.Response, error)
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param CreatePrivateEndpointApiParams - Parameters for the request
+	@return CreatePrivateEndpointApiRequest
+	*/
+	CreatePrivateEndpointWithParams(ctx context.Context, args *CreatePrivateEndpointApiParams) CreatePrivateEndpointApiRequest
+
+	// Interface only available internally
+	createPrivateEndpointExecute(r CreatePrivateEndpointApiRequest) (*Endpoint, *http.Response, error)
 
 	/*
 	CreatePrivateEndpointService Create One Private Endpoint Service for One Provider
@@ -45,10 +53,18 @@ type PrivateEndpointServicesApi interface {
 	@return CreatePrivateEndpointServiceApiRequest
 	*/
 	CreatePrivateEndpointService(ctx context.Context, groupId string) CreatePrivateEndpointServiceApiRequest
+	/*
+	CreatePrivateEndpointService Create One Private Endpoint Service for One Provider
 
-	// CreatePrivateEndpointServiceExecute executes the request
-	//  @return EndpointService
-	CreatePrivateEndpointServiceExecute(r CreatePrivateEndpointServiceApiRequest) (*EndpointService, *http.Response, error)
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param CreatePrivateEndpointServiceApiParams - Parameters for the request
+	@return CreatePrivateEndpointServiceApiRequest
+	*/
+	CreatePrivateEndpointServiceWithParams(ctx context.Context, args *CreatePrivateEndpointServiceApiParams) CreatePrivateEndpointServiceApiRequest
+
+	// Interface only available internally
+	createPrivateEndpointServiceExecute(r CreatePrivateEndpointServiceApiRequest) (*EndpointService, *http.Response, error)
 
 	/*
 	DeletePrivateEndpoint Remove One Private Endpoint for One Provider
@@ -63,9 +79,18 @@ type PrivateEndpointServicesApi interface {
 	@return DeletePrivateEndpointApiRequest
 	*/
 	DeletePrivateEndpoint(ctx context.Context, groupId string, cloudProvider string, endpointId string, endpointServiceId string) DeletePrivateEndpointApiRequest
+	/*
+	DeletePrivateEndpoint Remove One Private Endpoint for One Provider
 
-	// DeletePrivateEndpointExecute executes the request
-	DeletePrivateEndpointExecute(r DeletePrivateEndpointApiRequest) (*http.Response, error)
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param DeletePrivateEndpointApiParams - Parameters for the request
+	@return DeletePrivateEndpointApiRequest
+	*/
+	DeletePrivateEndpointWithParams(ctx context.Context, args *DeletePrivateEndpointApiParams) DeletePrivateEndpointApiRequest
+
+	// Interface only available internally
+	deletePrivateEndpointExecute(r DeletePrivateEndpointApiRequest) (*http.Response, error)
 
 	/*
 	DeletePrivateEndpointService Remove One Private Endpoint Service for One Provider
@@ -79,9 +104,18 @@ type PrivateEndpointServicesApi interface {
 	@return DeletePrivateEndpointServiceApiRequest
 	*/
 	DeletePrivateEndpointService(ctx context.Context, groupId string, cloudProvider string, endpointServiceId string) DeletePrivateEndpointServiceApiRequest
+	/*
+	DeletePrivateEndpointService Remove One Private Endpoint Service for One Provider
 
-	// DeletePrivateEndpointServiceExecute executes the request
-	DeletePrivateEndpointServiceExecute(r DeletePrivateEndpointServiceApiRequest) (*http.Response, error)
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param DeletePrivateEndpointServiceApiParams - Parameters for the request
+	@return DeletePrivateEndpointServiceApiRequest
+	*/
+	DeletePrivateEndpointServiceWithParams(ctx context.Context, args *DeletePrivateEndpointServiceApiParams) DeletePrivateEndpointServiceApiRequest
+
+	// Interface only available internally
+	deletePrivateEndpointServiceExecute(r DeletePrivateEndpointServiceApiRequest) (*http.Response, error)
 
 	/*
 	GetPrivateEndpoint Return One Private Endpoint for One Provider
@@ -96,10 +130,18 @@ type PrivateEndpointServicesApi interface {
 	@return GetPrivateEndpointApiRequest
 	*/
 	GetPrivateEndpoint(ctx context.Context, groupId string, cloudProvider string, endpointId string, endpointServiceId string) GetPrivateEndpointApiRequest
+	/*
+	GetPrivateEndpoint Return One Private Endpoint for One Provider
 
-	// GetPrivateEndpointExecute executes the request
-	//  @return Endpoint
-	GetPrivateEndpointExecute(r GetPrivateEndpointApiRequest) (*Endpoint, *http.Response, error)
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param GetPrivateEndpointApiParams - Parameters for the request
+	@return GetPrivateEndpointApiRequest
+	*/
+	GetPrivateEndpointWithParams(ctx context.Context, args *GetPrivateEndpointApiParams) GetPrivateEndpointApiRequest
+
+	// Interface only available internally
+	getPrivateEndpointExecute(r GetPrivateEndpointApiRequest) (*Endpoint, *http.Response, error)
 
 	/*
 	GetPrivateEndpointService Return One Private Endpoint Service for One Provider
@@ -113,10 +155,18 @@ type PrivateEndpointServicesApi interface {
 	@return GetPrivateEndpointServiceApiRequest
 	*/
 	GetPrivateEndpointService(ctx context.Context, groupId string, cloudProvider string, endpointServiceId string) GetPrivateEndpointServiceApiRequest
+	/*
+	GetPrivateEndpointService Return One Private Endpoint Service for One Provider
 
-	// GetPrivateEndpointServiceExecute executes the request
-	//  @return EndpointService
-	GetPrivateEndpointServiceExecute(r GetPrivateEndpointServiceApiRequest) (*EndpointService, *http.Response, error)
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param GetPrivateEndpointServiceApiParams - Parameters for the request
+	@return GetPrivateEndpointServiceApiRequest
+	*/
+	GetPrivateEndpointServiceWithParams(ctx context.Context, args *GetPrivateEndpointServiceApiParams) GetPrivateEndpointServiceApiRequest
+
+	// Interface only available internally
+	getPrivateEndpointServiceExecute(r GetPrivateEndpointServiceApiRequest) (*EndpointService, *http.Response, error)
 
 	/*
 	GetRegionalizedPrivateEndpointSetting Return Regionalized Private Endpoint Status
@@ -128,10 +178,18 @@ type PrivateEndpointServicesApi interface {
 	@return GetRegionalizedPrivateEndpointSettingApiRequest
 	*/
 	GetRegionalizedPrivateEndpointSetting(ctx context.Context, groupId string) GetRegionalizedPrivateEndpointSettingApiRequest
+	/*
+	GetRegionalizedPrivateEndpointSetting Return Regionalized Private Endpoint Status
 
-	// GetRegionalizedPrivateEndpointSettingExecute executes the request
-	//  @return ProjectSettingItem
-	GetRegionalizedPrivateEndpointSettingExecute(r GetRegionalizedPrivateEndpointSettingApiRequest) (*ProjectSettingItem, *http.Response, error)
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param GetRegionalizedPrivateEndpointSettingApiParams - Parameters for the request
+	@return GetRegionalizedPrivateEndpointSettingApiRequest
+	*/
+	GetRegionalizedPrivateEndpointSettingWithParams(ctx context.Context, args *GetRegionalizedPrivateEndpointSettingApiParams) GetRegionalizedPrivateEndpointSettingApiRequest
+
+	// Interface only available internally
+	getRegionalizedPrivateEndpointSettingExecute(r GetRegionalizedPrivateEndpointSettingApiRequest) (*ProjectSettingItem, *http.Response, error)
 
 	/*
 	ListPrivateEndpointServices Return All Private Endpoint Services for One Provider
@@ -144,10 +202,18 @@ type PrivateEndpointServicesApi interface {
 	@return ListPrivateEndpointServicesApiRequest
 	*/
 	ListPrivateEndpointServices(ctx context.Context, groupId string, cloudProvider string) ListPrivateEndpointServicesApiRequest
+	/*
+	ListPrivateEndpointServices Return All Private Endpoint Services for One Provider
 
-	// ListPrivateEndpointServicesExecute executes the request
-	//  @return PaginatedPrivateLinkConnection
-	ListPrivateEndpointServicesExecute(r ListPrivateEndpointServicesApiRequest) (*PaginatedPrivateLinkConnection, *http.Response, error)
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param ListPrivateEndpointServicesApiParams - Parameters for the request
+	@return ListPrivateEndpointServicesApiRequest
+	*/
+	ListPrivateEndpointServicesWithParams(ctx context.Context, args *ListPrivateEndpointServicesApiParams) ListPrivateEndpointServicesApiRequest
+
+	// Interface only available internally
+	listPrivateEndpointServicesExecute(r ListPrivateEndpointServicesApiRequest) (*PaginatedPrivateLinkConnection, *http.Response, error)
 
 	/*
 	ToggleRegionalizedPrivateEndpointSetting Toggle Regionalized Private Endpoint Status
@@ -159,10 +225,18 @@ type PrivateEndpointServicesApi interface {
 	@return ToggleRegionalizedPrivateEndpointSettingApiRequest
 	*/
 	ToggleRegionalizedPrivateEndpointSetting(ctx context.Context, groupId string) ToggleRegionalizedPrivateEndpointSettingApiRequest
+	/*
+	ToggleRegionalizedPrivateEndpointSetting Toggle Regionalized Private Endpoint Status
 
-	// ToggleRegionalizedPrivateEndpointSettingExecute executes the request
-	//  @return ProjectSettingItem
-	ToggleRegionalizedPrivateEndpointSettingExecute(r ToggleRegionalizedPrivateEndpointSettingApiRequest) (*ProjectSettingItem, *http.Response, error)
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param ToggleRegionalizedPrivateEndpointSettingApiParams - Parameters for the request
+	@return ToggleRegionalizedPrivateEndpointSettingApiRequest
+	*/
+	ToggleRegionalizedPrivateEndpointSettingWithParams(ctx context.Context, args *ToggleRegionalizedPrivateEndpointSettingApiParams) ToggleRegionalizedPrivateEndpointSettingApiRequest
+
+	// Interface only available internally
+	toggleRegionalizedPrivateEndpointSettingExecute(r ToggleRegionalizedPrivateEndpointSettingApiRequest) (*ProjectSettingItem, *http.Response, error)
 }
 
 // PrivateEndpointServicesApiService PrivateEndpointServicesApi service
@@ -184,6 +258,17 @@ type CreatePrivateEndpointApiParams struct {
 		CreatePrivateEndpointRequest *CreatePrivateEndpointRequest
 }
 
+func (a *PrivateEndpointServicesApiService) CreatePrivateEndpointWithParams(ctx context.Context, args *CreatePrivateEndpointApiParams) CreatePrivateEndpointApiRequest {
+	return CreatePrivateEndpointApiRequest{
+		ApiService: a,
+		ctx: ctx,
+		groupId: args.GroupId,
+		cloudProvider: args.CloudProvider,
+		endpointServiceId: args.EndpointServiceId,
+		createPrivateEndpointRequest: args.CreatePrivateEndpointRequest,
+	}
+}
+
 // Creates one private endpoint for the specified cloud service provider.
 func (r CreatePrivateEndpointApiRequest) CreatePrivateEndpointRequest(createPrivateEndpointRequest CreatePrivateEndpointRequest) CreatePrivateEndpointApiRequest {
 	r.createPrivateEndpointRequest = &createPrivateEndpointRequest
@@ -191,7 +276,7 @@ func (r CreatePrivateEndpointApiRequest) CreatePrivateEndpointRequest(createPriv
 }
 
 func (r CreatePrivateEndpointApiRequest) Execute() (*Endpoint, *http.Response, error) {
-	return r.ApiService.CreatePrivateEndpointExecute(r)
+	return r.ApiService.createPrivateEndpointExecute(r)
 }
 
 /*
@@ -217,7 +302,7 @@ func (a *PrivateEndpointServicesApiService) CreatePrivateEndpoint(ctx context.Co
 
 // Execute executes the request
 //  @return Endpoint
-func (a *PrivateEndpointServicesApiService) CreatePrivateEndpointExecute(r CreatePrivateEndpointApiRequest) (*Endpoint, *http.Response, error) {
+func (a *PrivateEndpointServicesApiService) createPrivateEndpointExecute(r CreatePrivateEndpointApiRequest) (*Endpoint, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -330,6 +415,15 @@ type CreatePrivateEndpointServiceApiParams struct {
 		CreateEndpointServiceRequest *CreateEndpointServiceRequest
 }
 
+func (a *PrivateEndpointServicesApiService) CreatePrivateEndpointServiceWithParams(ctx context.Context, args *CreatePrivateEndpointServiceApiParams) CreatePrivateEndpointServiceApiRequest {
+	return CreatePrivateEndpointServiceApiRequest{
+		ApiService: a,
+		ctx: ctx,
+		groupId: args.GroupId,
+		createEndpointServiceRequest: args.CreateEndpointServiceRequest,
+	}
+}
+
 // Creates one private endpoint for the specified cloud service provider.
 func (r CreatePrivateEndpointServiceApiRequest) CreateEndpointServiceRequest(createEndpointServiceRequest CreateEndpointServiceRequest) CreatePrivateEndpointServiceApiRequest {
 	r.createEndpointServiceRequest = &createEndpointServiceRequest
@@ -337,7 +431,7 @@ func (r CreatePrivateEndpointServiceApiRequest) CreateEndpointServiceRequest(cre
 }
 
 func (r CreatePrivateEndpointServiceApiRequest) Execute() (*EndpointService, *http.Response, error) {
-	return r.ApiService.CreatePrivateEndpointServiceExecute(r)
+	return r.ApiService.createPrivateEndpointServiceExecute(r)
 }
 
 /*
@@ -359,7 +453,7 @@ func (a *PrivateEndpointServicesApiService) CreatePrivateEndpointService(ctx con
 
 // Execute executes the request
 //  @return EndpointService
-func (a *PrivateEndpointServicesApiService) CreatePrivateEndpointServiceExecute(r CreatePrivateEndpointServiceApiRequest) (*EndpointService, *http.Response, error) {
+func (a *PrivateEndpointServicesApiService) createPrivateEndpointServiceExecute(r CreatePrivateEndpointServiceApiRequest) (*EndpointService, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -468,8 +562,19 @@ type DeletePrivateEndpointApiParams struct {
 		EndpointServiceId string
 }
 
+func (a *PrivateEndpointServicesApiService) DeletePrivateEndpointWithParams(ctx context.Context, args *DeletePrivateEndpointApiParams) DeletePrivateEndpointApiRequest {
+	return DeletePrivateEndpointApiRequest{
+		ApiService: a,
+		ctx: ctx,
+		groupId: args.GroupId,
+		cloudProvider: args.CloudProvider,
+		endpointId: args.EndpointId,
+		endpointServiceId: args.EndpointServiceId,
+	}
+}
+
 func (r DeletePrivateEndpointApiRequest) Execute() (*http.Response, error) {
-	return r.ApiService.DeletePrivateEndpointExecute(r)
+	return r.ApiService.deletePrivateEndpointExecute(r)
 }
 
 /*
@@ -496,7 +601,7 @@ func (a *PrivateEndpointServicesApiService) DeletePrivateEndpoint(ctx context.Co
 }
 
 // Execute executes the request
-func (a *PrivateEndpointServicesApiService) DeletePrivateEndpointExecute(r DeletePrivateEndpointApiRequest) (*http.Response, error) {
+func (a *PrivateEndpointServicesApiService) deletePrivateEndpointExecute(r DeletePrivateEndpointApiRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
@@ -597,8 +702,18 @@ type DeletePrivateEndpointServiceApiParams struct {
 		EndpointServiceId string
 }
 
+func (a *PrivateEndpointServicesApiService) DeletePrivateEndpointServiceWithParams(ctx context.Context, args *DeletePrivateEndpointServiceApiParams) DeletePrivateEndpointServiceApiRequest {
+	return DeletePrivateEndpointServiceApiRequest{
+		ApiService: a,
+		ctx: ctx,
+		groupId: args.GroupId,
+		cloudProvider: args.CloudProvider,
+		endpointServiceId: args.EndpointServiceId,
+	}
+}
+
 func (r DeletePrivateEndpointServiceApiRequest) Execute() (*http.Response, error) {
-	return r.ApiService.DeletePrivateEndpointServiceExecute(r)
+	return r.ApiService.deletePrivateEndpointServiceExecute(r)
 }
 
 /*
@@ -623,7 +738,7 @@ func (a *PrivateEndpointServicesApiService) DeletePrivateEndpointService(ctx con
 }
 
 // Execute executes the request
-func (a *PrivateEndpointServicesApiService) DeletePrivateEndpointServiceExecute(r DeletePrivateEndpointServiceApiRequest) (*http.Response, error) {
+func (a *PrivateEndpointServicesApiService) deletePrivateEndpointServiceExecute(r DeletePrivateEndpointServiceApiRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
@@ -725,8 +840,19 @@ type GetPrivateEndpointApiParams struct {
 		EndpointServiceId string
 }
 
+func (a *PrivateEndpointServicesApiService) GetPrivateEndpointWithParams(ctx context.Context, args *GetPrivateEndpointApiParams) GetPrivateEndpointApiRequest {
+	return GetPrivateEndpointApiRequest{
+		ApiService: a,
+		ctx: ctx,
+		groupId: args.GroupId,
+		cloudProvider: args.CloudProvider,
+		endpointId: args.EndpointId,
+		endpointServiceId: args.EndpointServiceId,
+	}
+}
+
 func (r GetPrivateEndpointApiRequest) Execute() (*Endpoint, *http.Response, error) {
-	return r.ApiService.GetPrivateEndpointExecute(r)
+	return r.ApiService.getPrivateEndpointExecute(r)
 }
 
 /*
@@ -754,7 +880,7 @@ func (a *PrivateEndpointServicesApiService) GetPrivateEndpoint(ctx context.Conte
 
 // Execute executes the request
 //  @return Endpoint
-func (a *PrivateEndpointServicesApiService) GetPrivateEndpointExecute(r GetPrivateEndpointApiRequest) (*Endpoint, *http.Response, error) {
+func (a *PrivateEndpointServicesApiService) getPrivateEndpointExecute(r GetPrivateEndpointApiRequest) (*Endpoint, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -865,8 +991,18 @@ type GetPrivateEndpointServiceApiParams struct {
 		EndpointServiceId string
 }
 
+func (a *PrivateEndpointServicesApiService) GetPrivateEndpointServiceWithParams(ctx context.Context, args *GetPrivateEndpointServiceApiParams) GetPrivateEndpointServiceApiRequest {
+	return GetPrivateEndpointServiceApiRequest{
+		ApiService: a,
+		ctx: ctx,
+		groupId: args.GroupId,
+		cloudProvider: args.CloudProvider,
+		endpointServiceId: args.EndpointServiceId,
+	}
+}
+
 func (r GetPrivateEndpointServiceApiRequest) Execute() (*EndpointService, *http.Response, error) {
-	return r.ApiService.GetPrivateEndpointServiceExecute(r)
+	return r.ApiService.getPrivateEndpointServiceExecute(r)
 }
 
 /*
@@ -892,7 +1028,7 @@ func (a *PrivateEndpointServicesApiService) GetPrivateEndpointService(ctx contex
 
 // Execute executes the request
 //  @return EndpointService
-func (a *PrivateEndpointServicesApiService) GetPrivateEndpointServiceExecute(r GetPrivateEndpointServiceApiRequest) (*EndpointService, *http.Response, error) {
+func (a *PrivateEndpointServicesApiService) getPrivateEndpointServiceExecute(r GetPrivateEndpointServiceApiRequest) (*EndpointService, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -998,8 +1134,16 @@ type GetRegionalizedPrivateEndpointSettingApiParams struct {
 		GroupId string
 }
 
+func (a *PrivateEndpointServicesApiService) GetRegionalizedPrivateEndpointSettingWithParams(ctx context.Context, args *GetRegionalizedPrivateEndpointSettingApiParams) GetRegionalizedPrivateEndpointSettingApiRequest {
+	return GetRegionalizedPrivateEndpointSettingApiRequest{
+		ApiService: a,
+		ctx: ctx,
+		groupId: args.GroupId,
+	}
+}
+
 func (r GetRegionalizedPrivateEndpointSettingApiRequest) Execute() (*ProjectSettingItem, *http.Response, error) {
-	return r.ApiService.GetRegionalizedPrivateEndpointSettingExecute(r)
+	return r.ApiService.getRegionalizedPrivateEndpointSettingExecute(r)
 }
 
 /*
@@ -1021,7 +1165,7 @@ func (a *PrivateEndpointServicesApiService) GetRegionalizedPrivateEndpointSettin
 
 // Execute executes the request
 //  @return ProjectSettingItem
-func (a *PrivateEndpointServicesApiService) GetRegionalizedPrivateEndpointSettingExecute(r GetRegionalizedPrivateEndpointSettingApiRequest) (*ProjectSettingItem, *http.Response, error) {
+func (a *PrivateEndpointServicesApiService) getRegionalizedPrivateEndpointSettingExecute(r GetRegionalizedPrivateEndpointSettingApiRequest) (*ProjectSettingItem, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -1121,8 +1265,17 @@ type ListPrivateEndpointServicesApiParams struct {
 		CloudProvider string
 }
 
+func (a *PrivateEndpointServicesApiService) ListPrivateEndpointServicesWithParams(ctx context.Context, args *ListPrivateEndpointServicesApiParams) ListPrivateEndpointServicesApiRequest {
+	return ListPrivateEndpointServicesApiRequest{
+		ApiService: a,
+		ctx: ctx,
+		groupId: args.GroupId,
+		cloudProvider: args.CloudProvider,
+	}
+}
+
 func (r ListPrivateEndpointServicesApiRequest) Execute() (*PaginatedPrivateLinkConnection, *http.Response, error) {
-	return r.ApiService.ListPrivateEndpointServicesExecute(r)
+	return r.ApiService.listPrivateEndpointServicesExecute(r)
 }
 
 /*
@@ -1146,7 +1299,7 @@ func (a *PrivateEndpointServicesApiService) ListPrivateEndpointServices(ctx cont
 
 // Execute executes the request
 //  @return PaginatedPrivateLinkConnection
-func (a *PrivateEndpointServicesApiService) ListPrivateEndpointServicesExecute(r ListPrivateEndpointServicesApiRequest) (*PaginatedPrivateLinkConnection, *http.Response, error) {
+func (a *PrivateEndpointServicesApiService) listPrivateEndpointServicesExecute(r ListPrivateEndpointServicesApiRequest) (*PaginatedPrivateLinkConnection, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -1247,6 +1400,15 @@ type ToggleRegionalizedPrivateEndpointSettingApiParams struct {
 		ProjectSettingItem *ProjectSettingItem
 }
 
+func (a *PrivateEndpointServicesApiService) ToggleRegionalizedPrivateEndpointSettingWithParams(ctx context.Context, args *ToggleRegionalizedPrivateEndpointSettingApiParams) ToggleRegionalizedPrivateEndpointSettingApiRequest {
+	return ToggleRegionalizedPrivateEndpointSettingApiRequest{
+		ApiService: a,
+		ctx: ctx,
+		groupId: args.GroupId,
+		projectSettingItem: args.ProjectSettingItem,
+	}
+}
+
 // Enables or disables the ability to create multiple private endpoints per region in all cloud service providers in one project.
 func (r ToggleRegionalizedPrivateEndpointSettingApiRequest) ProjectSettingItem(projectSettingItem ProjectSettingItem) ToggleRegionalizedPrivateEndpointSettingApiRequest {
 	r.projectSettingItem = &projectSettingItem
@@ -1254,7 +1416,7 @@ func (r ToggleRegionalizedPrivateEndpointSettingApiRequest) ProjectSettingItem(p
 }
 
 func (r ToggleRegionalizedPrivateEndpointSettingApiRequest) Execute() (*ProjectSettingItem, *http.Response, error) {
-	return r.ApiService.ToggleRegionalizedPrivateEndpointSettingExecute(r)
+	return r.ApiService.toggleRegionalizedPrivateEndpointSettingExecute(r)
 }
 
 /*
@@ -1276,7 +1438,7 @@ func (a *PrivateEndpointServicesApiService) ToggleRegionalizedPrivateEndpointSet
 
 // Execute executes the request
 //  @return ProjectSettingItem
-func (a *PrivateEndpointServicesApiService) ToggleRegionalizedPrivateEndpointSettingExecute(r ToggleRegionalizedPrivateEndpointSettingApiRequest) (*ProjectSettingItem, *http.Response, error) {
+func (a *PrivateEndpointServicesApiService) toggleRegionalizedPrivateEndpointSettingExecute(r ToggleRegionalizedPrivateEndpointSettingApiRequest) (*ProjectSettingItem, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPatch
 		localVarPostBody     interface{}

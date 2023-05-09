@@ -26,10 +26,18 @@ type TestApi interface {
 	@return VersionedExampleApiRequest
 	*/
 	VersionedExample(ctx context.Context) VersionedExampleApiRequest
+	/*
+	VersionedExample Example resource info for versioning of the Atlas API
 
-	// VersionedExampleExecute executes the request
-	//  @return ExampleResourceResponseView20230201
-	VersionedExampleExecute(r VersionedExampleApiRequest) (*ExampleResourceResponseView20230201, *http.Response, error)
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param VersionedExampleApiParams - Parameters for the request
+	@return VersionedExampleApiRequest
+	*/
+	VersionedExampleWithParams(ctx context.Context, args *VersionedExampleApiParams) VersionedExampleApiRequest
+
+	// Interface only available internally
+	versionedExampleExecute(r VersionedExampleApiRequest) (*ExampleResourceResponseView20230201, *http.Response, error)
 }
 
 // TestApiService TestApi service
@@ -45,13 +53,21 @@ type VersionedExampleApiParams struct {
 		AdditionalInfo *bool
 }
 
+func (a *TestApiService) VersionedExampleWithParams(ctx context.Context, args *VersionedExampleApiParams) VersionedExampleApiRequest {
+	return VersionedExampleApiRequest{
+		ApiService: a,
+		ctx: ctx,
+		additionalInfo: args.AdditionalInfo,
+	}
+}
+
 func (r VersionedExampleApiRequest) AdditionalInfo(additionalInfo bool) VersionedExampleApiRequest {
 	r.additionalInfo = &additionalInfo
 	return r
 }
 
 func (r VersionedExampleApiRequest) Execute() (*ExampleResourceResponseView20230201, *http.Response, error) {
-	return r.ApiService.VersionedExampleExecute(r)
+	return r.ApiService.versionedExampleExecute(r)
 }
 
 /*
@@ -71,7 +87,7 @@ func (a *TestApiService) VersionedExample(ctx context.Context) VersionedExampleA
 
 // Execute executes the request
 //  @return ExampleResourceResponseView20230201
-func (a *TestApiService) VersionedExampleExecute(r VersionedExampleApiRequest) (*ExampleResourceResponseView20230201, *http.Response, error) {
+func (a *TestApiService) versionedExampleExecute(r VersionedExampleApiRequest) (*ExampleResourceResponseView20230201, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}

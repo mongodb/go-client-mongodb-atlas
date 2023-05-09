@@ -29,10 +29,18 @@ type DataLakePipelinesApi interface {
 	@return CreatePipelineApiRequest
 	*/
 	CreatePipeline(ctx context.Context, groupId string) CreatePipelineApiRequest
+	/*
+	CreatePipeline Create One Data Lake Pipeline
 
-	// CreatePipelineExecute executes the request
-	//  @return IngestionPipeline
-	CreatePipelineExecute(r CreatePipelineApiRequest) (*IngestionPipeline, *http.Response, error)
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param CreatePipelineApiParams - Parameters for the request
+	@return CreatePipelineApiRequest
+	*/
+	CreatePipelineWithParams(ctx context.Context, args *CreatePipelineApiParams) CreatePipelineApiRequest
+
+	// Interface only available internally
+	createPipelineExecute(r CreatePipelineApiRequest) (*IngestionPipeline, *http.Response, error)
 
 	/*
 	DeletePipeline Remove One Data Lake Pipeline
@@ -45,9 +53,18 @@ type DataLakePipelinesApi interface {
 	@return DeletePipelineApiRequest
 	*/
 	DeletePipeline(ctx context.Context, groupId string, pipelineName string) DeletePipelineApiRequest
+	/*
+	DeletePipeline Remove One Data Lake Pipeline
 
-	// DeletePipelineExecute executes the request
-	DeletePipelineExecute(r DeletePipelineApiRequest) (*http.Response, error)
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param DeletePipelineApiParams - Parameters for the request
+	@return DeletePipelineApiRequest
+	*/
+	DeletePipelineWithParams(ctx context.Context, args *DeletePipelineApiParams) DeletePipelineApiRequest
+
+	// Interface only available internally
+	deletePipelineExecute(r DeletePipelineApiRequest) (*http.Response, error)
 
 	/*
 	DeletePipelineRunDataset Delete Pipeline Run Dataset
@@ -61,9 +78,18 @@ type DataLakePipelinesApi interface {
 	@return DeletePipelineRunDatasetApiRequest
 	*/
 	DeletePipelineRunDataset(ctx context.Context, groupId string, pipelineName string, pipelineRunId string) DeletePipelineRunDatasetApiRequest
+	/*
+	DeletePipelineRunDataset Delete Pipeline Run Dataset
 
-	// DeletePipelineRunDatasetExecute executes the request
-	DeletePipelineRunDatasetExecute(r DeletePipelineRunDatasetApiRequest) (*http.Response, error)
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param DeletePipelineRunDatasetApiParams - Parameters for the request
+	@return DeletePipelineRunDatasetApiRequest
+	*/
+	DeletePipelineRunDatasetWithParams(ctx context.Context, args *DeletePipelineRunDatasetApiParams) DeletePipelineRunDatasetApiRequest
+
+	// Interface only available internally
+	deletePipelineRunDatasetExecute(r DeletePipelineRunDatasetApiRequest) (*http.Response, error)
 
 	/*
 	GetPipeline Return One Data Lake Pipeline
@@ -76,10 +102,18 @@ type DataLakePipelinesApi interface {
 	@return GetPipelineApiRequest
 	*/
 	GetPipeline(ctx context.Context, groupId string, pipelineName string) GetPipelineApiRequest
+	/*
+	GetPipeline Return One Data Lake Pipeline
 
-	// GetPipelineExecute executes the request
-	//  @return IngestionPipeline
-	GetPipelineExecute(r GetPipelineApiRequest) (*IngestionPipeline, *http.Response, error)
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param GetPipelineApiParams - Parameters for the request
+	@return GetPipelineApiRequest
+	*/
+	GetPipelineWithParams(ctx context.Context, args *GetPipelineApiParams) GetPipelineApiRequest
+
+	// Interface only available internally
+	getPipelineExecute(r GetPipelineApiRequest) (*IngestionPipeline, *http.Response, error)
 
 	/*
 	GetPipelineRun Return One Data Lake Pipeline Run
@@ -93,10 +127,18 @@ type DataLakePipelinesApi interface {
 	@return GetPipelineRunApiRequest
 	*/
 	GetPipelineRun(ctx context.Context, groupId string, pipelineName string, pipelineRunId string) GetPipelineRunApiRequest
+	/*
+	GetPipelineRun Return One Data Lake Pipeline Run
 
-	// GetPipelineRunExecute executes the request
-	//  @return IngestionPipelineRun
-	GetPipelineRunExecute(r GetPipelineRunApiRequest) (*IngestionPipelineRun, *http.Response, error)
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param GetPipelineRunApiParams - Parameters for the request
+	@return GetPipelineRunApiRequest
+	*/
+	GetPipelineRunWithParams(ctx context.Context, args *GetPipelineRunApiParams) GetPipelineRunApiRequest
+
+	// Interface only available internally
+	getPipelineRunExecute(r GetPipelineRunApiRequest) (*IngestionPipelineRun, *http.Response, error)
 
 	/*
 	ListPipelineRuns Return All Data Lake Pipeline Runs from One Project
@@ -109,10 +151,18 @@ type DataLakePipelinesApi interface {
 	@return ListPipelineRunsApiRequest
 	*/
 	ListPipelineRuns(ctx context.Context, groupId string, pipelineName string) ListPipelineRunsApiRequest
+	/*
+	ListPipelineRuns Return All Data Lake Pipeline Runs from One Project
 
-	// ListPipelineRunsExecute executes the request
-	//  @return PaginatedPipelineRun
-	ListPipelineRunsExecute(r ListPipelineRunsApiRequest) (*PaginatedPipelineRun, *http.Response, error)
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param ListPipelineRunsApiParams - Parameters for the request
+	@return ListPipelineRunsApiRequest
+	*/
+	ListPipelineRunsWithParams(ctx context.Context, args *ListPipelineRunsApiParams) ListPipelineRunsApiRequest
+
+	// Interface only available internally
+	listPipelineRunsExecute(r ListPipelineRunsApiRequest) (*PaginatedPipelineRun, *http.Response, error)
 
 	/*
 	ListPipelineSchedules Return Available Ingestion Schedules for One Data Lake Pipeline
@@ -125,10 +175,18 @@ type DataLakePipelinesApi interface {
 	@return ListPipelineSchedulesApiRequest
 	*/
 	ListPipelineSchedules(ctx context.Context, groupId string, pipelineName string) ListPipelineSchedulesApiRequest
+	/*
+	ListPipelineSchedules Return Available Ingestion Schedules for One Data Lake Pipeline
 
-	// ListPipelineSchedulesExecute executes the request
-	//  @return []PolicyItem
-	ListPipelineSchedulesExecute(r ListPipelineSchedulesApiRequest) ([]PolicyItem, *http.Response, error)
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param ListPipelineSchedulesApiParams - Parameters for the request
+	@return ListPipelineSchedulesApiRequest
+	*/
+	ListPipelineSchedulesWithParams(ctx context.Context, args *ListPipelineSchedulesApiParams) ListPipelineSchedulesApiRequest
+
+	// Interface only available internally
+	listPipelineSchedulesExecute(r ListPipelineSchedulesApiRequest) ([]PolicyItem, *http.Response, error)
 
 	/*
 	ListPipelineSnapshots Return Available Backup Snapshots for One Data Lake Pipeline
@@ -141,10 +199,18 @@ type DataLakePipelinesApi interface {
 	@return ListPipelineSnapshotsApiRequest
 	*/
 	ListPipelineSnapshots(ctx context.Context, groupId string, pipelineName string) ListPipelineSnapshotsApiRequest
+	/*
+	ListPipelineSnapshots Return Available Backup Snapshots for One Data Lake Pipeline
 
-	// ListPipelineSnapshotsExecute executes the request
-	//  @return PaginatedBackupSnapshot
-	ListPipelineSnapshotsExecute(r ListPipelineSnapshotsApiRequest) (*PaginatedBackupSnapshot, *http.Response, error)
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param ListPipelineSnapshotsApiParams - Parameters for the request
+	@return ListPipelineSnapshotsApiRequest
+	*/
+	ListPipelineSnapshotsWithParams(ctx context.Context, args *ListPipelineSnapshotsApiParams) ListPipelineSnapshotsApiRequest
+
+	// Interface only available internally
+	listPipelineSnapshotsExecute(r ListPipelineSnapshotsApiRequest) (*PaginatedBackupSnapshot, *http.Response, error)
 
 	/*
 	ListPipelines Return All Data Lake Pipelines from One Project
@@ -156,10 +222,18 @@ type DataLakePipelinesApi interface {
 	@return ListPipelinesApiRequest
 	*/
 	ListPipelines(ctx context.Context, groupId string) ListPipelinesApiRequest
+	/*
+	ListPipelines Return All Data Lake Pipelines from One Project
 
-	// ListPipelinesExecute executes the request
-	//  @return []IngestionPipeline
-	ListPipelinesExecute(r ListPipelinesApiRequest) ([]IngestionPipeline, *http.Response, error)
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param ListPipelinesApiParams - Parameters for the request
+	@return ListPipelinesApiRequest
+	*/
+	ListPipelinesWithParams(ctx context.Context, args *ListPipelinesApiParams) ListPipelinesApiRequest
+
+	// Interface only available internally
+	listPipelinesExecute(r ListPipelinesApiRequest) ([]IngestionPipeline, *http.Response, error)
 
 	/*
 	PausePipeline Pause One Data Lake Pipeline
@@ -172,10 +246,18 @@ type DataLakePipelinesApi interface {
 	@return PausePipelineApiRequest
 	*/
 	PausePipeline(ctx context.Context, groupId string, pipelineName string) PausePipelineApiRequest
+	/*
+	PausePipeline Pause One Data Lake Pipeline
 
-	// PausePipelineExecute executes the request
-	//  @return IngestionPipeline
-	PausePipelineExecute(r PausePipelineApiRequest) (*IngestionPipeline, *http.Response, error)
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param PausePipelineApiParams - Parameters for the request
+	@return PausePipelineApiRequest
+	*/
+	PausePipelineWithParams(ctx context.Context, args *PausePipelineApiParams) PausePipelineApiRequest
+
+	// Interface only available internally
+	pausePipelineExecute(r PausePipelineApiRequest) (*IngestionPipeline, *http.Response, error)
 
 	/*
 	ResumePipeline Resume One Data Lake Pipeline
@@ -188,10 +270,18 @@ type DataLakePipelinesApi interface {
 	@return ResumePipelineApiRequest
 	*/
 	ResumePipeline(ctx context.Context, groupId string, pipelineName string) ResumePipelineApiRequest
+	/*
+	ResumePipeline Resume One Data Lake Pipeline
 
-	// ResumePipelineExecute executes the request
-	//  @return IngestionPipeline
-	ResumePipelineExecute(r ResumePipelineApiRequest) (*IngestionPipeline, *http.Response, error)
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param ResumePipelineApiParams - Parameters for the request
+	@return ResumePipelineApiRequest
+	*/
+	ResumePipelineWithParams(ctx context.Context, args *ResumePipelineApiParams) ResumePipelineApiRequest
+
+	// Interface only available internally
+	resumePipelineExecute(r ResumePipelineApiRequest) (*IngestionPipeline, *http.Response, error)
 
 	/*
 	TriggerSnapshotIngestion Trigger on demand snapshot ingestion
@@ -204,10 +294,18 @@ type DataLakePipelinesApi interface {
 	@return TriggerSnapshotIngestionApiRequest
 	*/
 	TriggerSnapshotIngestion(ctx context.Context, groupId string, pipelineName string) TriggerSnapshotIngestionApiRequest
+	/*
+	TriggerSnapshotIngestion Trigger on demand snapshot ingestion
 
-	// TriggerSnapshotIngestionExecute executes the request
-	//  @return IngestionPipelineRun
-	TriggerSnapshotIngestionExecute(r TriggerSnapshotIngestionApiRequest) (*IngestionPipelineRun, *http.Response, error)
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param TriggerSnapshotIngestionApiParams - Parameters for the request
+	@return TriggerSnapshotIngestionApiRequest
+	*/
+	TriggerSnapshotIngestionWithParams(ctx context.Context, args *TriggerSnapshotIngestionApiParams) TriggerSnapshotIngestionApiRequest
+
+	// Interface only available internally
+	triggerSnapshotIngestionExecute(r TriggerSnapshotIngestionApiRequest) (*IngestionPipelineRun, *http.Response, error)
 
 	/*
 	UpdatePipeline Update One Data Lake Pipeline
@@ -220,10 +318,18 @@ type DataLakePipelinesApi interface {
 	@return UpdatePipelineApiRequest
 	*/
 	UpdatePipeline(ctx context.Context, groupId string, pipelineName string) UpdatePipelineApiRequest
+	/*
+	UpdatePipeline Update One Data Lake Pipeline
 
-	// UpdatePipelineExecute executes the request
-	//  @return IngestionPipeline
-	UpdatePipelineExecute(r UpdatePipelineApiRequest) (*IngestionPipeline, *http.Response, error)
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param UpdatePipelineApiParams - Parameters for the request
+	@return UpdatePipelineApiRequest
+	*/
+	UpdatePipelineWithParams(ctx context.Context, args *UpdatePipelineApiParams) UpdatePipelineApiRequest
+
+	// Interface only available internally
+	updatePipelineExecute(r UpdatePipelineApiRequest) (*IngestionPipeline, *http.Response, error)
 }
 
 // DataLakePipelinesApiService DataLakePipelinesApi service
@@ -241,6 +347,15 @@ type CreatePipelineApiParams struct {
 		IngestionPipeline *IngestionPipeline
 }
 
+func (a *DataLakePipelinesApiService) CreatePipelineWithParams(ctx context.Context, args *CreatePipelineApiParams) CreatePipelineApiRequest {
+	return CreatePipelineApiRequest{
+		ApiService: a,
+		ctx: ctx,
+		groupId: args.GroupId,
+		ingestionPipeline: args.IngestionPipeline,
+	}
+}
+
 // Creates one Data Lake Pipeline.
 func (r CreatePipelineApiRequest) IngestionPipeline(ingestionPipeline IngestionPipeline) CreatePipelineApiRequest {
 	r.ingestionPipeline = &ingestionPipeline
@@ -248,7 +363,7 @@ func (r CreatePipelineApiRequest) IngestionPipeline(ingestionPipeline IngestionP
 }
 
 func (r CreatePipelineApiRequest) Execute() (*IngestionPipeline, *http.Response, error) {
-	return r.ApiService.CreatePipelineExecute(r)
+	return r.ApiService.createPipelineExecute(r)
 }
 
 /*
@@ -270,7 +385,7 @@ func (a *DataLakePipelinesApiService) CreatePipeline(ctx context.Context, groupI
 
 // Execute executes the request
 //  @return IngestionPipeline
-func (a *DataLakePipelinesApiService) CreatePipelineExecute(r CreatePipelineApiRequest) (*IngestionPipeline, *http.Response, error) {
+func (a *DataLakePipelinesApiService) createPipelineExecute(r CreatePipelineApiRequest) (*IngestionPipeline, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -375,8 +490,17 @@ type DeletePipelineApiParams struct {
 		PipelineName string
 }
 
+func (a *DataLakePipelinesApiService) DeletePipelineWithParams(ctx context.Context, args *DeletePipelineApiParams) DeletePipelineApiRequest {
+	return DeletePipelineApiRequest{
+		ApiService: a,
+		ctx: ctx,
+		groupId: args.GroupId,
+		pipelineName: args.PipelineName,
+	}
+}
+
 func (r DeletePipelineApiRequest) Execute() (*http.Response, error) {
-	return r.ApiService.DeletePipelineExecute(r)
+	return r.ApiService.deletePipelineExecute(r)
 }
 
 /*
@@ -399,7 +523,7 @@ func (a *DataLakePipelinesApiService) DeletePipeline(ctx context.Context, groupI
 }
 
 // Execute executes the request
-func (a *DataLakePipelinesApiService) DeletePipelineExecute(r DeletePipelineApiRequest) (*http.Response, error) {
+func (a *DataLakePipelinesApiService) deletePipelineExecute(r DeletePipelineApiRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
@@ -498,8 +622,18 @@ type DeletePipelineRunDatasetApiParams struct {
 		PipelineRunId string
 }
 
+func (a *DataLakePipelinesApiService) DeletePipelineRunDatasetWithParams(ctx context.Context, args *DeletePipelineRunDatasetApiParams) DeletePipelineRunDatasetApiRequest {
+	return DeletePipelineRunDatasetApiRequest{
+		ApiService: a,
+		ctx: ctx,
+		groupId: args.GroupId,
+		pipelineName: args.PipelineName,
+		pipelineRunId: args.PipelineRunId,
+	}
+}
+
 func (r DeletePipelineRunDatasetApiRequest) Execute() (*http.Response, error) {
-	return r.ApiService.DeletePipelineRunDatasetExecute(r)
+	return r.ApiService.deletePipelineRunDatasetExecute(r)
 }
 
 /*
@@ -524,7 +658,7 @@ func (a *DataLakePipelinesApiService) DeletePipelineRunDataset(ctx context.Conte
 }
 
 // Execute executes the request
-func (a *DataLakePipelinesApiService) DeletePipelineRunDatasetExecute(r DeletePipelineRunDatasetApiRequest) (*http.Response, error) {
+func (a *DataLakePipelinesApiService) deletePipelineRunDatasetExecute(r DeletePipelineRunDatasetApiRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
@@ -628,8 +762,17 @@ type GetPipelineApiParams struct {
 		PipelineName string
 }
 
+func (a *DataLakePipelinesApiService) GetPipelineWithParams(ctx context.Context, args *GetPipelineApiParams) GetPipelineApiRequest {
+	return GetPipelineApiRequest{
+		ApiService: a,
+		ctx: ctx,
+		groupId: args.GroupId,
+		pipelineName: args.PipelineName,
+	}
+}
+
 func (r GetPipelineApiRequest) Execute() (*IngestionPipeline, *http.Response, error) {
-	return r.ApiService.GetPipelineExecute(r)
+	return r.ApiService.getPipelineExecute(r)
 }
 
 /*
@@ -653,7 +796,7 @@ func (a *DataLakePipelinesApiService) GetPipeline(ctx context.Context, groupId s
 
 // Execute executes the request
 //  @return IngestionPipeline
-func (a *DataLakePipelinesApiService) GetPipelineExecute(r GetPipelineApiRequest) (*IngestionPipeline, *http.Response, error) {
+func (a *DataLakePipelinesApiService) getPipelineExecute(r GetPipelineApiRequest) (*IngestionPipeline, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -762,8 +905,18 @@ type GetPipelineRunApiParams struct {
 		PipelineRunId string
 }
 
+func (a *DataLakePipelinesApiService) GetPipelineRunWithParams(ctx context.Context, args *GetPipelineRunApiParams) GetPipelineRunApiRequest {
+	return GetPipelineRunApiRequest{
+		ApiService: a,
+		ctx: ctx,
+		groupId: args.GroupId,
+		pipelineName: args.PipelineName,
+		pipelineRunId: args.PipelineRunId,
+	}
+}
+
 func (r GetPipelineRunApiRequest) Execute() (*IngestionPipelineRun, *http.Response, error) {
-	return r.ApiService.GetPipelineRunExecute(r)
+	return r.ApiService.getPipelineRunExecute(r)
 }
 
 /*
@@ -789,7 +942,7 @@ func (a *DataLakePipelinesApiService) GetPipelineRun(ctx context.Context, groupI
 
 // Execute executes the request
 //  @return IngestionPipelineRun
-func (a *DataLakePipelinesApiService) GetPipelineRunExecute(r GetPipelineRunApiRequest) (*IngestionPipelineRun, *http.Response, error) {
+func (a *DataLakePipelinesApiService) getPipelineRunExecute(r GetPipelineRunApiRequest) (*IngestionPipelineRun, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -911,6 +1064,19 @@ type ListPipelineRunsApiParams struct {
 		CreatedBefore *time.Time
 }
 
+func (a *DataLakePipelinesApiService) ListPipelineRunsWithParams(ctx context.Context, args *ListPipelineRunsApiParams) ListPipelineRunsApiRequest {
+	return ListPipelineRunsApiRequest{
+		ApiService: a,
+		ctx: ctx,
+		groupId: args.GroupId,
+		pipelineName: args.PipelineName,
+		includeCount: args.IncludeCount,
+		itemsPerPage: args.ItemsPerPage,
+		pageNum: args.PageNum,
+		createdBefore: args.CreatedBefore,
+	}
+}
+
 // Flag that indicates whether the response returns the total number of items (**totalCount**) in the response.
 func (r ListPipelineRunsApiRequest) IncludeCount(includeCount bool) ListPipelineRunsApiRequest {
 	r.includeCount = &includeCount
@@ -936,7 +1102,7 @@ func (r ListPipelineRunsApiRequest) CreatedBefore(createdBefore time.Time) ListP
 }
 
 func (r ListPipelineRunsApiRequest) Execute() (*PaginatedPipelineRun, *http.Response, error) {
-	return r.ApiService.ListPipelineRunsExecute(r)
+	return r.ApiService.listPipelineRunsExecute(r)
 }
 
 /*
@@ -960,7 +1126,7 @@ func (a *DataLakePipelinesApiService) ListPipelineRuns(ctx context.Context, grou
 
 // Execute executes the request
 //  @return PaginatedPipelineRun
-func (a *DataLakePipelinesApiService) ListPipelineRunsExecute(r ListPipelineRunsApiRequest) (*PaginatedPipelineRun, *http.Response, error) {
+func (a *DataLakePipelinesApiService) listPipelineRunsExecute(r ListPipelineRunsApiRequest) (*PaginatedPipelineRun, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -1091,8 +1257,17 @@ type ListPipelineSchedulesApiParams struct {
 		PipelineName string
 }
 
+func (a *DataLakePipelinesApiService) ListPipelineSchedulesWithParams(ctx context.Context, args *ListPipelineSchedulesApiParams) ListPipelineSchedulesApiRequest {
+	return ListPipelineSchedulesApiRequest{
+		ApiService: a,
+		ctx: ctx,
+		groupId: args.GroupId,
+		pipelineName: args.PipelineName,
+	}
+}
+
 func (r ListPipelineSchedulesApiRequest) Execute() ([]PolicyItem, *http.Response, error) {
-	return r.ApiService.ListPipelineSchedulesExecute(r)
+	return r.ApiService.listPipelineSchedulesExecute(r)
 }
 
 /*
@@ -1116,7 +1291,7 @@ func (a *DataLakePipelinesApiService) ListPipelineSchedules(ctx context.Context,
 
 // Execute executes the request
 //  @return []PolicyItem
-func (a *DataLakePipelinesApiService) ListPipelineSchedulesExecute(r ListPipelineSchedulesApiRequest) ([]PolicyItem, *http.Response, error) {
+func (a *DataLakePipelinesApiService) listPipelineSchedulesExecute(r ListPipelineSchedulesApiRequest) ([]PolicyItem, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -1231,6 +1406,19 @@ type ListPipelineSnapshotsApiParams struct {
 		CompletedAfter *time.Time
 }
 
+func (a *DataLakePipelinesApiService) ListPipelineSnapshotsWithParams(ctx context.Context, args *ListPipelineSnapshotsApiParams) ListPipelineSnapshotsApiRequest {
+	return ListPipelineSnapshotsApiRequest{
+		ApiService: a,
+		ctx: ctx,
+		groupId: args.GroupId,
+		pipelineName: args.PipelineName,
+		includeCount: args.IncludeCount,
+		itemsPerPage: args.ItemsPerPage,
+		pageNum: args.PageNum,
+		completedAfter: args.CompletedAfter,
+	}
+}
+
 // Flag that indicates whether the response returns the total number of items (**totalCount**) in the response.
 func (r ListPipelineSnapshotsApiRequest) IncludeCount(includeCount bool) ListPipelineSnapshotsApiRequest {
 	r.includeCount = &includeCount
@@ -1256,7 +1444,7 @@ func (r ListPipelineSnapshotsApiRequest) CompletedAfter(completedAfter time.Time
 }
 
 func (r ListPipelineSnapshotsApiRequest) Execute() (*PaginatedBackupSnapshot, *http.Response, error) {
-	return r.ApiService.ListPipelineSnapshotsExecute(r)
+	return r.ApiService.listPipelineSnapshotsExecute(r)
 }
 
 /*
@@ -1280,7 +1468,7 @@ func (a *DataLakePipelinesApiService) ListPipelineSnapshots(ctx context.Context,
 
 // Execute executes the request
 //  @return PaginatedBackupSnapshot
-func (a *DataLakePipelinesApiService) ListPipelineSnapshotsExecute(r ListPipelineSnapshotsApiRequest) (*PaginatedBackupSnapshot, *http.Response, error) {
+func (a *DataLakePipelinesApiService) listPipelineSnapshotsExecute(r ListPipelineSnapshotsApiRequest) (*PaginatedBackupSnapshot, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -1409,8 +1597,16 @@ type ListPipelinesApiParams struct {
 		GroupId string
 }
 
+func (a *DataLakePipelinesApiService) ListPipelinesWithParams(ctx context.Context, args *ListPipelinesApiParams) ListPipelinesApiRequest {
+	return ListPipelinesApiRequest{
+		ApiService: a,
+		ctx: ctx,
+		groupId: args.GroupId,
+	}
+}
+
 func (r ListPipelinesApiRequest) Execute() ([]IngestionPipeline, *http.Response, error) {
-	return r.ApiService.ListPipelinesExecute(r)
+	return r.ApiService.listPipelinesExecute(r)
 }
 
 /*
@@ -1432,7 +1628,7 @@ func (a *DataLakePipelinesApiService) ListPipelines(ctx context.Context, groupId
 
 // Execute executes the request
 //  @return []IngestionPipeline
-func (a *DataLakePipelinesApiService) ListPipelinesExecute(r ListPipelinesApiRequest) ([]IngestionPipeline, *http.Response, error) {
+func (a *DataLakePipelinesApiService) listPipelinesExecute(r ListPipelinesApiRequest) ([]IngestionPipeline, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -1532,8 +1728,17 @@ type PausePipelineApiParams struct {
 		PipelineName string
 }
 
+func (a *DataLakePipelinesApiService) PausePipelineWithParams(ctx context.Context, args *PausePipelineApiParams) PausePipelineApiRequest {
+	return PausePipelineApiRequest{
+		ApiService: a,
+		ctx: ctx,
+		groupId: args.GroupId,
+		pipelineName: args.PipelineName,
+	}
+}
+
 func (r PausePipelineApiRequest) Execute() (*IngestionPipeline, *http.Response, error) {
-	return r.ApiService.PausePipelineExecute(r)
+	return r.ApiService.pausePipelineExecute(r)
 }
 
 /*
@@ -1557,7 +1762,7 @@ func (a *DataLakePipelinesApiService) PausePipeline(ctx context.Context, groupId
 
 // Execute executes the request
 //  @return IngestionPipeline
-func (a *DataLakePipelinesApiService) PausePipelineExecute(r PausePipelineApiRequest) (*IngestionPipeline, *http.Response, error) {
+func (a *DataLakePipelinesApiService) pausePipelineExecute(r PausePipelineApiRequest) (*IngestionPipeline, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -1664,8 +1869,17 @@ type ResumePipelineApiParams struct {
 		PipelineName string
 }
 
+func (a *DataLakePipelinesApiService) ResumePipelineWithParams(ctx context.Context, args *ResumePipelineApiParams) ResumePipelineApiRequest {
+	return ResumePipelineApiRequest{
+		ApiService: a,
+		ctx: ctx,
+		groupId: args.GroupId,
+		pipelineName: args.PipelineName,
+	}
+}
+
 func (r ResumePipelineApiRequest) Execute() (*IngestionPipeline, *http.Response, error) {
-	return r.ApiService.ResumePipelineExecute(r)
+	return r.ApiService.resumePipelineExecute(r)
 }
 
 /*
@@ -1689,7 +1903,7 @@ func (a *DataLakePipelinesApiService) ResumePipeline(ctx context.Context, groupI
 
 // Execute executes the request
 //  @return IngestionPipeline
-func (a *DataLakePipelinesApiService) ResumePipelineExecute(r ResumePipelineApiRequest) (*IngestionPipeline, *http.Response, error) {
+func (a *DataLakePipelinesApiService) resumePipelineExecute(r ResumePipelineApiRequest) (*IngestionPipeline, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -1798,6 +2012,16 @@ type TriggerSnapshotIngestionApiParams struct {
 		TriggerIngestionRequest *TriggerIngestionRequest
 }
 
+func (a *DataLakePipelinesApiService) TriggerSnapshotIngestionWithParams(ctx context.Context, args *TriggerSnapshotIngestionApiParams) TriggerSnapshotIngestionApiRequest {
+	return TriggerSnapshotIngestionApiRequest{
+		ApiService: a,
+		ctx: ctx,
+		groupId: args.GroupId,
+		pipelineName: args.PipelineName,
+		triggerIngestionRequest: args.TriggerIngestionRequest,
+	}
+}
+
 // Triggers a single ingestion run of a snapshot.
 func (r TriggerSnapshotIngestionApiRequest) TriggerIngestionRequest(triggerIngestionRequest TriggerIngestionRequest) TriggerSnapshotIngestionApiRequest {
 	r.triggerIngestionRequest = &triggerIngestionRequest
@@ -1805,7 +2029,7 @@ func (r TriggerSnapshotIngestionApiRequest) TriggerIngestionRequest(triggerInges
 }
 
 func (r TriggerSnapshotIngestionApiRequest) Execute() (*IngestionPipelineRun, *http.Response, error) {
-	return r.ApiService.TriggerSnapshotIngestionExecute(r)
+	return r.ApiService.triggerSnapshotIngestionExecute(r)
 }
 
 /*
@@ -1829,7 +2053,7 @@ func (a *DataLakePipelinesApiService) TriggerSnapshotIngestion(ctx context.Conte
 
 // Execute executes the request
 //  @return IngestionPipelineRun
-func (a *DataLakePipelinesApiService) TriggerSnapshotIngestionExecute(r TriggerSnapshotIngestionApiRequest) (*IngestionPipelineRun, *http.Response, error) {
+func (a *DataLakePipelinesApiService) triggerSnapshotIngestionExecute(r TriggerSnapshotIngestionApiRequest) (*IngestionPipelineRun, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -1943,6 +2167,16 @@ type UpdatePipelineApiParams struct {
 		IngestionPipeline *IngestionPipeline
 }
 
+func (a *DataLakePipelinesApiService) UpdatePipelineWithParams(ctx context.Context, args *UpdatePipelineApiParams) UpdatePipelineApiRequest {
+	return UpdatePipelineApiRequest{
+		ApiService: a,
+		ctx: ctx,
+		groupId: args.GroupId,
+		pipelineName: args.PipelineName,
+		ingestionPipeline: args.IngestionPipeline,
+	}
+}
+
 // Updates one Data Lake Pipeline.
 func (r UpdatePipelineApiRequest) IngestionPipeline(ingestionPipeline IngestionPipeline) UpdatePipelineApiRequest {
 	r.ingestionPipeline = &ingestionPipeline
@@ -1950,7 +2184,7 @@ func (r UpdatePipelineApiRequest) IngestionPipeline(ingestionPipeline IngestionP
 }
 
 func (r UpdatePipelineApiRequest) Execute() (*IngestionPipeline, *http.Response, error) {
-	return r.ApiService.UpdatePipelineExecute(r)
+	return r.ApiService.updatePipelineExecute(r)
 }
 
 /*
@@ -1974,7 +2208,7 @@ func (a *DataLakePipelinesApiService) UpdatePipeline(ctx context.Context, groupI
 
 // Execute executes the request
 //  @return IngestionPipeline
-func (a *DataLakePipelinesApiService) UpdatePipelineExecute(r UpdatePipelineApiRequest) (*IngestionPipeline, *http.Response, error) {
+func (a *DataLakePipelinesApiService) updatePipelineExecute(r UpdatePipelineApiRequest) (*IngestionPipeline, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPatch
 		localVarPostBody     interface{}

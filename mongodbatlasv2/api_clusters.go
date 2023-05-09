@@ -30,10 +30,18 @@ type ClustersApi interface {
 	@return GetClusterAdvancedConfigurationApiRequest
 	*/
 	GetClusterAdvancedConfiguration(ctx context.Context, groupId string, clusterName string) GetClusterAdvancedConfigurationApiRequest
+	/*
+	GetClusterAdvancedConfiguration Return One Advanced Configuration Options for One Cluster
 
-	// GetClusterAdvancedConfigurationExecute executes the request
-	//  @return ClusterDescriptionProcessArgs
-	GetClusterAdvancedConfigurationExecute(r GetClusterAdvancedConfigurationApiRequest) (*ClusterDescriptionProcessArgs, *http.Response, error)
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param GetClusterAdvancedConfigurationApiParams - Parameters for the request
+	@return GetClusterAdvancedConfigurationApiRequest
+	*/
+	GetClusterAdvancedConfigurationWithParams(ctx context.Context, args *GetClusterAdvancedConfigurationApiParams) GetClusterAdvancedConfigurationApiRequest
+
+	// Interface only available internally
+	getClusterAdvancedConfigurationExecute(r GetClusterAdvancedConfigurationApiRequest) (*ClusterDescriptionProcessArgs, *http.Response, error)
 
 	/*
 	GetClusterStatus Return Status of All Cluster Operations
@@ -46,10 +54,18 @@ type ClustersApi interface {
 	@return GetClusterStatusApiRequest
 	*/
 	GetClusterStatus(ctx context.Context, groupId string, clusterName string) GetClusterStatusApiRequest
+	/*
+	GetClusterStatus Return Status of All Cluster Operations
 
-	// GetClusterStatusExecute executes the request
-	//  @return ClusterStatus
-	GetClusterStatusExecute(r GetClusterStatusApiRequest) (*ClusterStatus, *http.Response, error)
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param GetClusterStatusApiParams - Parameters for the request
+	@return GetClusterStatusApiRequest
+	*/
+	GetClusterStatusWithParams(ctx context.Context, args *GetClusterStatusApiParams) GetClusterStatusApiRequest
+
+	// Interface only available internally
+	getClusterStatusExecute(r GetClusterStatusApiRequest) (*ClusterStatus, *http.Response, error)
 
 	/*
 	GetSampleDatasetLoadStatus Check Status of Cluster Sample Dataset Request
@@ -62,10 +78,18 @@ type ClustersApi interface {
 	@return GetSampleDatasetLoadStatusApiRequest
 	*/
 	GetSampleDatasetLoadStatus(ctx context.Context, groupId string, sampleDatasetId string) GetSampleDatasetLoadStatusApiRequest
+	/*
+	GetSampleDatasetLoadStatus Check Status of Cluster Sample Dataset Request
 
-	// GetSampleDatasetLoadStatusExecute executes the request
-	//  @return SampleDatasetStatus
-	GetSampleDatasetLoadStatusExecute(r GetSampleDatasetLoadStatusApiRequest) (*SampleDatasetStatus, *http.Response, error)
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param GetSampleDatasetLoadStatusApiParams - Parameters for the request
+	@return GetSampleDatasetLoadStatusApiRequest
+	*/
+	GetSampleDatasetLoadStatusWithParams(ctx context.Context, args *GetSampleDatasetLoadStatusApiParams) GetSampleDatasetLoadStatusApiRequest
+
+	// Interface only available internally
+	getSampleDatasetLoadStatusExecute(r GetSampleDatasetLoadStatusApiRequest) (*SampleDatasetStatus, *http.Response, error)
 
 	/*
 	ListCloudProviderRegions Return All Cloud Provider Regions
@@ -77,10 +101,18 @@ type ClustersApi interface {
 	@return ListCloudProviderRegionsApiRequest
 	*/
 	ListCloudProviderRegions(ctx context.Context, groupId string) ListCloudProviderRegionsApiRequest
+	/*
+	ListCloudProviderRegions Return All Cloud Provider Regions
 
-	// ListCloudProviderRegionsExecute executes the request
-	//  @return PaginatedApiAtlasProviderRegions
-	ListCloudProviderRegionsExecute(r ListCloudProviderRegionsApiRequest) (*PaginatedApiAtlasProviderRegions, *http.Response, error)
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param ListCloudProviderRegionsApiParams - Parameters for the request
+	@return ListCloudProviderRegionsApiRequest
+	*/
+	ListCloudProviderRegionsWithParams(ctx context.Context, args *ListCloudProviderRegionsApiParams) ListCloudProviderRegionsApiRequest
+
+	// Interface only available internally
+	listCloudProviderRegionsExecute(r ListCloudProviderRegionsApiRequest) (*PaginatedApiAtlasProviderRegions, *http.Response, error)
 
 	/*
 	ListClustersForAllProjects Return All Authorized Clusters in All Projects
@@ -91,10 +123,18 @@ type ClustersApi interface {
 	@return ListClustersForAllProjectsApiRequest
 	*/
 	ListClustersForAllProjects(ctx context.Context) ListClustersForAllProjectsApiRequest
+	/*
+	ListClustersForAllProjects Return All Authorized Clusters in All Projects
 
-	// ListClustersForAllProjectsExecute executes the request
-	//  @return PaginatedOrgGroup
-	ListClustersForAllProjectsExecute(r ListClustersForAllProjectsApiRequest) (*PaginatedOrgGroup, *http.Response, error)
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param ListClustersForAllProjectsApiParams - Parameters for the request
+	@return ListClustersForAllProjectsApiRequest
+	*/
+	ListClustersForAllProjectsWithParams(ctx context.Context, args *ListClustersForAllProjectsApiParams) ListClustersForAllProjectsApiRequest
+
+	// Interface only available internally
+	listClustersForAllProjectsExecute(r ListClustersForAllProjectsApiRequest) (*PaginatedOrgGroup, *http.Response, error)
 
 	/*
 	LoadSampleDataset Load Sample Dataset Request into Cluster
@@ -107,10 +147,18 @@ type ClustersApi interface {
 	@return LoadSampleDatasetApiRequest
 	*/
 	LoadSampleDataset(ctx context.Context, groupId string, name string) LoadSampleDatasetApiRequest
+	/*
+	LoadSampleDataset Load Sample Dataset Request into Cluster
 
-	// LoadSampleDatasetExecute executes the request
-	//  @return []SampleDatasetStatus
-	LoadSampleDatasetExecute(r LoadSampleDatasetApiRequest) ([]SampleDatasetStatus, *http.Response, error)
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param LoadSampleDatasetApiParams - Parameters for the request
+	@return LoadSampleDatasetApiRequest
+	*/
+	LoadSampleDatasetWithParams(ctx context.Context, args *LoadSampleDatasetApiParams) LoadSampleDatasetApiRequest
+
+	// Interface only available internally
+	loadSampleDatasetExecute(r LoadSampleDatasetApiRequest) ([]SampleDatasetStatus, *http.Response, error)
 
 	/*
 	UpdateClusterAdvancedConfiguration Update Advanced Configuration Options for One Cluster
@@ -123,10 +171,18 @@ type ClustersApi interface {
 	@return UpdateClusterAdvancedConfigurationApiRequest
 	*/
 	UpdateClusterAdvancedConfiguration(ctx context.Context, groupId string, clusterName string) UpdateClusterAdvancedConfigurationApiRequest
+	/*
+	UpdateClusterAdvancedConfiguration Update Advanced Configuration Options for One Cluster
 
-	// UpdateClusterAdvancedConfigurationExecute executes the request
-	//  @return ClusterDescriptionProcessArgs
-	UpdateClusterAdvancedConfigurationExecute(r UpdateClusterAdvancedConfigurationApiRequest) (*ClusterDescriptionProcessArgs, *http.Response, error)
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param UpdateClusterAdvancedConfigurationApiParams - Parameters for the request
+	@return UpdateClusterAdvancedConfigurationApiRequest
+	*/
+	UpdateClusterAdvancedConfigurationWithParams(ctx context.Context, args *UpdateClusterAdvancedConfigurationApiParams) UpdateClusterAdvancedConfigurationApiRequest
+
+	// Interface only available internally
+	updateClusterAdvancedConfigurationExecute(r UpdateClusterAdvancedConfigurationApiRequest) (*ClusterDescriptionProcessArgs, *http.Response, error)
 
 	/*
 	UpgradeSharedCluster Upgrade One Shared-tier Cluster
@@ -138,10 +194,18 @@ type ClustersApi interface {
 	@return UpgradeSharedClusterApiRequest
 	*/
 	UpgradeSharedCluster(ctx context.Context, groupId string) UpgradeSharedClusterApiRequest
+	/*
+	UpgradeSharedCluster Upgrade One Shared-tier Cluster
 
-	// UpgradeSharedClusterExecute executes the request
-	//  @return LegacyClusterDescription
-	UpgradeSharedClusterExecute(r UpgradeSharedClusterApiRequest) (*LegacyClusterDescription, *http.Response, error)
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param UpgradeSharedClusterApiParams - Parameters for the request
+	@return UpgradeSharedClusterApiRequest
+	*/
+	UpgradeSharedClusterWithParams(ctx context.Context, args *UpgradeSharedClusterApiParams) UpgradeSharedClusterApiRequest
+
+	// Interface only available internally
+	upgradeSharedClusterExecute(r UpgradeSharedClusterApiRequest) (*LegacyClusterDescription, *http.Response, error)
 
 	/*
 	UpgradeSharedClusterToServerless Upgrades One Shared-Tier Cluster to the Serverless Instance
@@ -153,10 +217,18 @@ type ClustersApi interface {
 	@return UpgradeSharedClusterToServerlessApiRequest
 	*/
 	UpgradeSharedClusterToServerless(ctx context.Context, groupId string) UpgradeSharedClusterToServerlessApiRequest
+	/*
+	UpgradeSharedClusterToServerless Upgrades One Shared-Tier Cluster to the Serverless Instance
 
-	// UpgradeSharedClusterToServerlessExecute executes the request
-	//  @return ServerlessInstanceDescription
-	UpgradeSharedClusterToServerlessExecute(r UpgradeSharedClusterToServerlessApiRequest) (*ServerlessInstanceDescription, *http.Response, error)
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param UpgradeSharedClusterToServerlessApiParams - Parameters for the request
+	@return UpgradeSharedClusterToServerlessApiRequest
+	*/
+	UpgradeSharedClusterToServerlessWithParams(ctx context.Context, args *UpgradeSharedClusterToServerlessApiParams) UpgradeSharedClusterToServerlessApiRequest
+
+	// Interface only available internally
+	upgradeSharedClusterToServerlessExecute(r UpgradeSharedClusterToServerlessApiRequest) (*ServerlessInstanceDescription, *http.Response, error)
 }
 
 // ClustersApiService ClustersApi service
@@ -174,8 +246,17 @@ type GetClusterAdvancedConfigurationApiParams struct {
 		ClusterName string
 }
 
+func (a *ClustersApiService) GetClusterAdvancedConfigurationWithParams(ctx context.Context, args *GetClusterAdvancedConfigurationApiParams) GetClusterAdvancedConfigurationApiRequest {
+	return GetClusterAdvancedConfigurationApiRequest{
+		ApiService: a,
+		ctx: ctx,
+		groupId: args.GroupId,
+		clusterName: args.ClusterName,
+	}
+}
+
 func (r GetClusterAdvancedConfigurationApiRequest) Execute() (*ClusterDescriptionProcessArgs, *http.Response, error) {
-	return r.ApiService.GetClusterAdvancedConfigurationExecute(r)
+	return r.ApiService.getClusterAdvancedConfigurationExecute(r)
 }
 
 /*
@@ -199,7 +280,7 @@ func (a *ClustersApiService) GetClusterAdvancedConfiguration(ctx context.Context
 
 // Execute executes the request
 //  @return ClusterDescriptionProcessArgs
-func (a *ClustersApiService) GetClusterAdvancedConfigurationExecute(r GetClusterAdvancedConfigurationApiRequest) (*ClusterDescriptionProcessArgs, *http.Response, error) {
+func (a *ClustersApiService) getClusterAdvancedConfigurationExecute(r GetClusterAdvancedConfigurationApiRequest) (*ClusterDescriptionProcessArgs, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -306,8 +387,17 @@ type GetClusterStatusApiParams struct {
 		ClusterName string
 }
 
+func (a *ClustersApiService) GetClusterStatusWithParams(ctx context.Context, args *GetClusterStatusApiParams) GetClusterStatusApiRequest {
+	return GetClusterStatusApiRequest{
+		ApiService: a,
+		ctx: ctx,
+		groupId: args.GroupId,
+		clusterName: args.ClusterName,
+	}
+}
+
 func (r GetClusterStatusApiRequest) Execute() (*ClusterStatus, *http.Response, error) {
-	return r.ApiService.GetClusterStatusExecute(r)
+	return r.ApiService.getClusterStatusExecute(r)
 }
 
 /*
@@ -331,7 +421,7 @@ func (a *ClustersApiService) GetClusterStatus(ctx context.Context, groupId strin
 
 // Execute executes the request
 //  @return ClusterStatus
-func (a *ClustersApiService) GetClusterStatusExecute(r GetClusterStatusApiRequest) (*ClusterStatus, *http.Response, error) {
+func (a *ClustersApiService) getClusterStatusExecute(r GetClusterStatusApiRequest) (*ClusterStatus, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -438,8 +528,17 @@ type GetSampleDatasetLoadStatusApiParams struct {
 		SampleDatasetId string
 }
 
+func (a *ClustersApiService) GetSampleDatasetLoadStatusWithParams(ctx context.Context, args *GetSampleDatasetLoadStatusApiParams) GetSampleDatasetLoadStatusApiRequest {
+	return GetSampleDatasetLoadStatusApiRequest{
+		ApiService: a,
+		ctx: ctx,
+		groupId: args.GroupId,
+		sampleDatasetId: args.SampleDatasetId,
+	}
+}
+
 func (r GetSampleDatasetLoadStatusApiRequest) Execute() (*SampleDatasetStatus, *http.Response, error) {
-	return r.ApiService.GetSampleDatasetLoadStatusExecute(r)
+	return r.ApiService.getSampleDatasetLoadStatusExecute(r)
 }
 
 /*
@@ -463,7 +562,7 @@ func (a *ClustersApiService) GetSampleDatasetLoadStatus(ctx context.Context, gro
 
 // Execute executes the request
 //  @return SampleDatasetStatus
-func (a *ClustersApiService) GetSampleDatasetLoadStatusExecute(r GetSampleDatasetLoadStatusApiRequest) (*SampleDatasetStatus, *http.Response, error) {
+func (a *ClustersApiService) getSampleDatasetLoadStatusExecute(r GetSampleDatasetLoadStatusApiRequest) (*SampleDatasetStatus, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -578,6 +677,19 @@ type ListCloudProviderRegionsApiParams struct {
 		Tier *string
 }
 
+func (a *ClustersApiService) ListCloudProviderRegionsWithParams(ctx context.Context, args *ListCloudProviderRegionsApiParams) ListCloudProviderRegionsApiRequest {
+	return ListCloudProviderRegionsApiRequest{
+		ApiService: a,
+		ctx: ctx,
+		groupId: args.GroupId,
+		includeCount: args.IncludeCount,
+		itemsPerPage: args.ItemsPerPage,
+		pageNum: args.PageNum,
+		providers: args.Providers,
+		tier: args.Tier,
+	}
+}
+
 // Flag that indicates whether the response returns the total number of items (**totalCount**) in the response.
 func (r ListCloudProviderRegionsApiRequest) IncludeCount(includeCount bool) ListCloudProviderRegionsApiRequest {
 	r.includeCount = &includeCount
@@ -609,7 +721,7 @@ func (r ListCloudProviderRegionsApiRequest) Tier(tier string) ListCloudProviderR
 }
 
 func (r ListCloudProviderRegionsApiRequest) Execute() (*PaginatedApiAtlasProviderRegions, *http.Response, error) {
-	return r.ApiService.ListCloudProviderRegionsExecute(r)
+	return r.ApiService.listCloudProviderRegionsExecute(r)
 }
 
 /*
@@ -631,7 +743,7 @@ func (a *ClustersApiService) ListCloudProviderRegions(ctx context.Context, group
 
 // Execute executes the request
 //  @return PaginatedApiAtlasProviderRegions
-func (a *ClustersApiService) ListCloudProviderRegionsExecute(r ListCloudProviderRegionsApiRequest) (*PaginatedApiAtlasProviderRegions, *http.Response, error) {
+func (a *ClustersApiService) listCloudProviderRegionsExecute(r ListCloudProviderRegionsApiRequest) (*PaginatedApiAtlasProviderRegions, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -768,6 +880,16 @@ type ListClustersForAllProjectsApiParams struct {
 		PageNum *int32
 }
 
+func (a *ClustersApiService) ListClustersForAllProjectsWithParams(ctx context.Context, args *ListClustersForAllProjectsApiParams) ListClustersForAllProjectsApiRequest {
+	return ListClustersForAllProjectsApiRequest{
+		ApiService: a,
+		ctx: ctx,
+		includeCount: args.IncludeCount,
+		itemsPerPage: args.ItemsPerPage,
+		pageNum: args.PageNum,
+	}
+}
+
 // Flag that indicates whether the response returns the total number of items (**totalCount**) in the response.
 func (r ListClustersForAllProjectsApiRequest) IncludeCount(includeCount bool) ListClustersForAllProjectsApiRequest {
 	r.includeCount = &includeCount
@@ -787,7 +909,7 @@ func (r ListClustersForAllProjectsApiRequest) PageNum(pageNum int32) ListCluster
 }
 
 func (r ListClustersForAllProjectsApiRequest) Execute() (*PaginatedOrgGroup, *http.Response, error) {
-	return r.ApiService.ListClustersForAllProjectsExecute(r)
+	return r.ApiService.listClustersForAllProjectsExecute(r)
 }
 
 /*
@@ -807,7 +929,7 @@ func (a *ClustersApiService) ListClustersForAllProjects(ctx context.Context) Lis
 
 // Execute executes the request
 //  @return PaginatedOrgGroup
-func (a *ClustersApiService) ListClustersForAllProjectsExecute(r ListClustersForAllProjectsApiRequest) (*PaginatedOrgGroup, *http.Response, error) {
+func (a *ClustersApiService) listClustersForAllProjectsExecute(r ListClustersForAllProjectsApiRequest) (*PaginatedOrgGroup, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -923,6 +1045,16 @@ type LoadSampleDatasetApiParams struct {
 		SampleDatasetStatus *SampleDatasetStatus
 }
 
+func (a *ClustersApiService) LoadSampleDatasetWithParams(ctx context.Context, args *LoadSampleDatasetApiParams) LoadSampleDatasetApiRequest {
+	return LoadSampleDatasetApiRequest{
+		ApiService: a,
+		ctx: ctx,
+		groupId: args.GroupId,
+		name: args.Name,
+		sampleDatasetStatus: args.SampleDatasetStatus,
+	}
+}
+
 // Cluster into which to load the sample dataset.
 func (r LoadSampleDatasetApiRequest) SampleDatasetStatus(sampleDatasetStatus SampleDatasetStatus) LoadSampleDatasetApiRequest {
 	r.sampleDatasetStatus = &sampleDatasetStatus
@@ -930,7 +1062,7 @@ func (r LoadSampleDatasetApiRequest) SampleDatasetStatus(sampleDatasetStatus Sam
 }
 
 func (r LoadSampleDatasetApiRequest) Execute() ([]SampleDatasetStatus, *http.Response, error) {
-	return r.ApiService.LoadSampleDatasetExecute(r)
+	return r.ApiService.loadSampleDatasetExecute(r)
 }
 
 /*
@@ -954,7 +1086,7 @@ func (a *ClustersApiService) LoadSampleDataset(ctx context.Context, groupId stri
 
 // Execute executes the request
 //  @return []SampleDatasetStatus
-func (a *ClustersApiService) LoadSampleDatasetExecute(r LoadSampleDatasetApiRequest) ([]SampleDatasetStatus, *http.Response, error) {
+func (a *ClustersApiService) loadSampleDatasetExecute(r LoadSampleDatasetApiRequest) ([]SampleDatasetStatus, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -1068,6 +1200,16 @@ type UpdateClusterAdvancedConfigurationApiParams struct {
 		ClusterDescriptionProcessArgs *ClusterDescriptionProcessArgs
 }
 
+func (a *ClustersApiService) UpdateClusterAdvancedConfigurationWithParams(ctx context.Context, args *UpdateClusterAdvancedConfigurationApiParams) UpdateClusterAdvancedConfigurationApiRequest {
+	return UpdateClusterAdvancedConfigurationApiRequest{
+		ApiService: a,
+		ctx: ctx,
+		groupId: args.GroupId,
+		clusterName: args.ClusterName,
+		clusterDescriptionProcessArgs: args.ClusterDescriptionProcessArgs,
+	}
+}
+
 // Advanced configuration details to add for one cluster in the specified project.
 func (r UpdateClusterAdvancedConfigurationApiRequest) ClusterDescriptionProcessArgs(clusterDescriptionProcessArgs ClusterDescriptionProcessArgs) UpdateClusterAdvancedConfigurationApiRequest {
 	r.clusterDescriptionProcessArgs = &clusterDescriptionProcessArgs
@@ -1075,7 +1217,7 @@ func (r UpdateClusterAdvancedConfigurationApiRequest) ClusterDescriptionProcessA
 }
 
 func (r UpdateClusterAdvancedConfigurationApiRequest) Execute() (*ClusterDescriptionProcessArgs, *http.Response, error) {
-	return r.ApiService.UpdateClusterAdvancedConfigurationExecute(r)
+	return r.ApiService.updateClusterAdvancedConfigurationExecute(r)
 }
 
 /*
@@ -1099,7 +1241,7 @@ func (a *ClustersApiService) UpdateClusterAdvancedConfiguration(ctx context.Cont
 
 // Execute executes the request
 //  @return ClusterDescriptionProcessArgs
-func (a *ClustersApiService) UpdateClusterAdvancedConfigurationExecute(r UpdateClusterAdvancedConfigurationApiRequest) (*ClusterDescriptionProcessArgs, *http.Response, error) {
+func (a *ClustersApiService) updateClusterAdvancedConfigurationExecute(r UpdateClusterAdvancedConfigurationApiRequest) (*ClusterDescriptionProcessArgs, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPatch
 		localVarPostBody     interface{}
@@ -1211,6 +1353,15 @@ type UpgradeSharedClusterApiParams struct {
 		LegacyClusterDescription *LegacyClusterDescription
 }
 
+func (a *ClustersApiService) UpgradeSharedClusterWithParams(ctx context.Context, args *UpgradeSharedClusterApiParams) UpgradeSharedClusterApiRequest {
+	return UpgradeSharedClusterApiRequest{
+		ApiService: a,
+		ctx: ctx,
+		groupId: args.GroupId,
+		legacyClusterDescription: args.LegacyClusterDescription,
+	}
+}
+
 // Details of the shared-tier cluster upgrade in the specified project.
 func (r UpgradeSharedClusterApiRequest) LegacyClusterDescription(legacyClusterDescription LegacyClusterDescription) UpgradeSharedClusterApiRequest {
 	r.legacyClusterDescription = &legacyClusterDescription
@@ -1218,7 +1369,7 @@ func (r UpgradeSharedClusterApiRequest) LegacyClusterDescription(legacyClusterDe
 }
 
 func (r UpgradeSharedClusterApiRequest) Execute() (*LegacyClusterDescription, *http.Response, error) {
-	return r.ApiService.UpgradeSharedClusterExecute(r)
+	return r.ApiService.upgradeSharedClusterExecute(r)
 }
 
 /*
@@ -1240,7 +1391,7 @@ func (a *ClustersApiService) UpgradeSharedCluster(ctx context.Context, groupId s
 
 // Execute executes the request
 //  @return LegacyClusterDescription
-func (a *ClustersApiService) UpgradeSharedClusterExecute(r UpgradeSharedClusterApiRequest) (*LegacyClusterDescription, *http.Response, error) {
+func (a *ClustersApiService) upgradeSharedClusterExecute(r UpgradeSharedClusterApiRequest) (*LegacyClusterDescription, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -1345,6 +1496,15 @@ type UpgradeSharedClusterToServerlessApiParams struct {
 		ServerlessInstanceDescription *ServerlessInstanceDescription
 }
 
+func (a *ClustersApiService) UpgradeSharedClusterToServerlessWithParams(ctx context.Context, args *UpgradeSharedClusterToServerlessApiParams) UpgradeSharedClusterToServerlessApiRequest {
+	return UpgradeSharedClusterToServerlessApiRequest{
+		ApiService: a,
+		ctx: ctx,
+		groupId: args.GroupId,
+		serverlessInstanceDescription: args.ServerlessInstanceDescription,
+	}
+}
+
 // Details of the shared-tier cluster upgrade in the specified project.
 func (r UpgradeSharedClusterToServerlessApiRequest) ServerlessInstanceDescription(serverlessInstanceDescription ServerlessInstanceDescription) UpgradeSharedClusterToServerlessApiRequest {
 	r.serverlessInstanceDescription = &serverlessInstanceDescription
@@ -1352,7 +1512,7 @@ func (r UpgradeSharedClusterToServerlessApiRequest) ServerlessInstanceDescriptio
 }
 
 func (r UpgradeSharedClusterToServerlessApiRequest) Execute() (*ServerlessInstanceDescription, *http.Response, error) {
-	return r.ApiService.UpgradeSharedClusterToServerlessExecute(r)
+	return r.ApiService.upgradeSharedClusterToServerlessExecute(r)
 }
 
 /*
@@ -1374,7 +1534,7 @@ func (a *ClustersApiService) UpgradeSharedClusterToServerless(ctx context.Contex
 
 // Execute executes the request
 //  @return ServerlessInstanceDescription
-func (a *ClustersApiService) UpgradeSharedClusterToServerlessExecute(r UpgradeSharedClusterToServerlessApiRequest) (*ServerlessInstanceDescription, *http.Response, error) {
+func (a *ClustersApiService) upgradeSharedClusterToServerlessExecute(r UpgradeSharedClusterToServerlessApiRequest) (*ServerlessInstanceDescription, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}

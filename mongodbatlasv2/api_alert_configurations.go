@@ -30,10 +30,18 @@ type AlertConfigurationsApi interface {
 	@return CreateAlertConfigurationApiRequest
 	*/
 	CreateAlertConfiguration(ctx context.Context, groupId string) CreateAlertConfigurationApiRequest
+	/*
+	CreateAlertConfiguration Create One Alert Configuration in One Project
 
-	// CreateAlertConfigurationExecute executes the request
-	//  @return AlertConfigViewForNdsGroup
-	CreateAlertConfigurationExecute(r CreateAlertConfigurationApiRequest) (*AlertConfigViewForNdsGroup, *http.Response, error)
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param CreateAlertConfigurationApiParams - Parameters for the request
+	@return CreateAlertConfigurationApiRequest
+	*/
+	CreateAlertConfigurationWithParams(ctx context.Context, args *CreateAlertConfigurationApiParams) CreateAlertConfigurationApiRequest
+
+	// Interface only available internally
+	createAlertConfigurationExecute(r CreateAlertConfigurationApiRequest) (*AlertConfigViewForNdsGroup, *http.Response, error)
 
 	/*
 	DeleteAlertConfiguration Remove One Alert Configuration from One Project
@@ -48,9 +56,18 @@ type AlertConfigurationsApi interface {
 	@return DeleteAlertConfigurationApiRequest
 	*/
 	DeleteAlertConfiguration(ctx context.Context, groupId string, alertConfigId string) DeleteAlertConfigurationApiRequest
+	/*
+	DeleteAlertConfiguration Remove One Alert Configuration from One Project
 
-	// DeleteAlertConfigurationExecute executes the request
-	DeleteAlertConfigurationExecute(r DeleteAlertConfigurationApiRequest) (*http.Response, error)
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param DeleteAlertConfigurationApiParams - Parameters for the request
+	@return DeleteAlertConfigurationApiRequest
+	*/
+	DeleteAlertConfigurationWithParams(ctx context.Context, args *DeleteAlertConfigurationApiParams) DeleteAlertConfigurationApiRequest
+
+	// Interface only available internally
+	deleteAlertConfigurationExecute(r DeleteAlertConfigurationApiRequest) (*http.Response, error)
 
 	/*
 	GetAlertConfiguration Return One Alert Configuration from One Project
@@ -65,10 +82,18 @@ type AlertConfigurationsApi interface {
 	@return GetAlertConfigurationApiRequest
 	*/
 	GetAlertConfiguration(ctx context.Context, groupId string, alertConfigId string) GetAlertConfigurationApiRequest
+	/*
+	GetAlertConfiguration Return One Alert Configuration from One Project
 
-	// GetAlertConfigurationExecute executes the request
-	//  @return AlertConfigViewForNdsGroup
-	GetAlertConfigurationExecute(r GetAlertConfigurationApiRequest) (*AlertConfigViewForNdsGroup, *http.Response, error)
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param GetAlertConfigurationApiParams - Parameters for the request
+	@return GetAlertConfigurationApiRequest
+	*/
+	GetAlertConfigurationWithParams(ctx context.Context, args *GetAlertConfigurationApiParams) GetAlertConfigurationApiRequest
+
+	// Interface only available internally
+	getAlertConfigurationExecute(r GetAlertConfigurationApiRequest) (*AlertConfigViewForNdsGroup, *http.Response, error)
 
 	/*
 	ListAlertConfigurationMatchersFieldNames Get All Alert Configuration Matchers Field Names
@@ -79,10 +104,18 @@ type AlertConfigurationsApi interface {
 	@return ListAlertConfigurationMatchersFieldNamesApiRequest
 	*/
 	ListAlertConfigurationMatchersFieldNames(ctx context.Context) ListAlertConfigurationMatchersFieldNamesApiRequest
+	/*
+	ListAlertConfigurationMatchersFieldNames Get All Alert Configuration Matchers Field Names
 
-	// ListAlertConfigurationMatchersFieldNamesExecute executes the request
-	//  @return []MatcherField
-	ListAlertConfigurationMatchersFieldNamesExecute(r ListAlertConfigurationMatchersFieldNamesApiRequest) ([]MatcherField, *http.Response, error)
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param ListAlertConfigurationMatchersFieldNamesApiParams - Parameters for the request
+	@return ListAlertConfigurationMatchersFieldNamesApiRequest
+	*/
+	ListAlertConfigurationMatchersFieldNamesWithParams(ctx context.Context, args *ListAlertConfigurationMatchersFieldNamesApiParams) ListAlertConfigurationMatchersFieldNamesApiRequest
+
+	// Interface only available internally
+	listAlertConfigurationMatchersFieldNamesExecute(r ListAlertConfigurationMatchersFieldNamesApiRequest) ([]MatcherField, *http.Response, error)
 
 	/*
 	ListAlertConfigurations Return All Alert Configurations for One Project
@@ -96,10 +129,18 @@ type AlertConfigurationsApi interface {
 	@return ListAlertConfigurationsApiRequest
 	*/
 	ListAlertConfigurations(ctx context.Context, groupId string) ListAlertConfigurationsApiRequest
+	/*
+	ListAlertConfigurations Return All Alert Configurations for One Project
 
-	// ListAlertConfigurationsExecute executes the request
-	//  @return PaginatedAlertConfig
-	ListAlertConfigurationsExecute(r ListAlertConfigurationsApiRequest) (*PaginatedAlertConfig, *http.Response, error)
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param ListAlertConfigurationsApiParams - Parameters for the request
+	@return ListAlertConfigurationsApiRequest
+	*/
+	ListAlertConfigurationsWithParams(ctx context.Context, args *ListAlertConfigurationsApiParams) ListAlertConfigurationsApiRequest
+
+	// Interface only available internally
+	listAlertConfigurationsExecute(r ListAlertConfigurationsApiRequest) (*PaginatedAlertConfig, *http.Response, error)
 
 	/*
 	ListAlertConfigurationsByAlertId Return All Alert Configurations Set for One Alert
@@ -114,10 +155,18 @@ type AlertConfigurationsApi interface {
 	@return ListAlertConfigurationsByAlertIdApiRequest
 	*/
 	ListAlertConfigurationsByAlertId(ctx context.Context, groupId string, alertId string) ListAlertConfigurationsByAlertIdApiRequest
+	/*
+	ListAlertConfigurationsByAlertId Return All Alert Configurations Set for One Alert
 
-	// ListAlertConfigurationsByAlertIdExecute executes the request
-	//  @return PaginatedAlertConfig
-	ListAlertConfigurationsByAlertIdExecute(r ListAlertConfigurationsByAlertIdApiRequest) (*PaginatedAlertConfig, *http.Response, error)
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param ListAlertConfigurationsByAlertIdApiParams - Parameters for the request
+	@return ListAlertConfigurationsByAlertIdApiRequest
+	*/
+	ListAlertConfigurationsByAlertIdWithParams(ctx context.Context, args *ListAlertConfigurationsByAlertIdApiParams) ListAlertConfigurationsByAlertIdApiRequest
+
+	// Interface only available internally
+	listAlertConfigurationsByAlertIdExecute(r ListAlertConfigurationsByAlertIdApiRequest) (*PaginatedAlertConfig, *http.Response, error)
 
 	/*
 	ToggleAlertConfiguration Toggle One State of One Alert Configuration in One Project
@@ -134,10 +183,18 @@ This resource remains under revision and may change. Refer to the [legacy docume
 	@return ToggleAlertConfigurationApiRequest
 	*/
 	ToggleAlertConfiguration(ctx context.Context, groupId string, alertConfigId string) ToggleAlertConfigurationApiRequest
+	/*
+	ToggleAlertConfiguration Toggle One State of One Alert Configuration in One Project
 
-	// ToggleAlertConfigurationExecute executes the request
-	//  @return AlertConfigViewForNdsGroup
-	ToggleAlertConfigurationExecute(r ToggleAlertConfigurationApiRequest) (*AlertConfigViewForNdsGroup, *http.Response, error)
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param ToggleAlertConfigurationApiParams - Parameters for the request
+	@return ToggleAlertConfigurationApiRequest
+	*/
+	ToggleAlertConfigurationWithParams(ctx context.Context, args *ToggleAlertConfigurationApiParams) ToggleAlertConfigurationApiRequest
+
+	// Interface only available internally
+	toggleAlertConfigurationExecute(r ToggleAlertConfigurationApiRequest) (*AlertConfigViewForNdsGroup, *http.Response, error)
 
 	/*
 	UpdateAlertConfiguration Update One Alert Configuration for One Project
@@ -154,10 +211,18 @@ This resource remains under revision and may change. Refer to the [legacy docume
 	@return UpdateAlertConfigurationApiRequest
 	*/
 	UpdateAlertConfiguration(ctx context.Context, groupId string, alertConfigId string) UpdateAlertConfigurationApiRequest
+	/*
+	UpdateAlertConfiguration Update One Alert Configuration for One Project
 
-	// UpdateAlertConfigurationExecute executes the request
-	//  @return AlertConfigViewForNdsGroup
-	UpdateAlertConfigurationExecute(r UpdateAlertConfigurationApiRequest) (*AlertConfigViewForNdsGroup, *http.Response, error)
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param UpdateAlertConfigurationApiParams - Parameters for the request
+	@return UpdateAlertConfigurationApiRequest
+	*/
+	UpdateAlertConfigurationWithParams(ctx context.Context, args *UpdateAlertConfigurationApiParams) UpdateAlertConfigurationApiRequest
+
+	// Interface only available internally
+	updateAlertConfigurationExecute(r UpdateAlertConfigurationApiRequest) (*AlertConfigViewForNdsGroup, *http.Response, error)
 }
 
 // AlertConfigurationsApiService AlertConfigurationsApi service
@@ -175,6 +240,15 @@ type CreateAlertConfigurationApiParams struct {
 		AlertConfigViewForNdsGroup *AlertConfigViewForNdsGroup
 }
 
+func (a *AlertConfigurationsApiService) CreateAlertConfigurationWithParams(ctx context.Context, args *CreateAlertConfigurationApiParams) CreateAlertConfigurationApiRequest {
+	return CreateAlertConfigurationApiRequest{
+		ApiService: a,
+		ctx: ctx,
+		groupId: args.GroupId,
+		alertConfigViewForNdsGroup: args.AlertConfigViewForNdsGroup,
+	}
+}
+
 // Creates one alert configuration for the specified project.
 func (r CreateAlertConfigurationApiRequest) AlertConfigViewForNdsGroup(alertConfigViewForNdsGroup AlertConfigViewForNdsGroup) CreateAlertConfigurationApiRequest {
 	r.alertConfigViewForNdsGroup = &alertConfigViewForNdsGroup
@@ -182,7 +256,7 @@ func (r CreateAlertConfigurationApiRequest) AlertConfigViewForNdsGroup(alertConf
 }
 
 func (r CreateAlertConfigurationApiRequest) Execute() (*AlertConfigViewForNdsGroup, *http.Response, error) {
-	return r.ApiService.CreateAlertConfigurationExecute(r)
+	return r.ApiService.createAlertConfigurationExecute(r)
 }
 
 /*
@@ -206,7 +280,7 @@ func (a *AlertConfigurationsApiService) CreateAlertConfiguration(ctx context.Con
 
 // Execute executes the request
 //  @return AlertConfigViewForNdsGroup
-func (a *AlertConfigurationsApiService) CreateAlertConfigurationExecute(r CreateAlertConfigurationApiRequest) (*AlertConfigViewForNdsGroup, *http.Response, error) {
+func (a *AlertConfigurationsApiService) createAlertConfigurationExecute(r CreateAlertConfigurationApiRequest) (*AlertConfigViewForNdsGroup, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -311,8 +385,17 @@ type DeleteAlertConfigurationApiParams struct {
 		AlertConfigId string
 }
 
+func (a *AlertConfigurationsApiService) DeleteAlertConfigurationWithParams(ctx context.Context, args *DeleteAlertConfigurationApiParams) DeleteAlertConfigurationApiRequest {
+	return DeleteAlertConfigurationApiRequest{
+		ApiService: a,
+		ctx: ctx,
+		groupId: args.GroupId,
+		alertConfigId: args.AlertConfigId,
+	}
+}
+
 func (r DeleteAlertConfigurationApiRequest) Execute() (*http.Response, error) {
-	return r.ApiService.DeleteAlertConfigurationExecute(r)
+	return r.ApiService.deleteAlertConfigurationExecute(r)
 }
 
 /*
@@ -337,7 +420,7 @@ func (a *AlertConfigurationsApiService) DeleteAlertConfiguration(ctx context.Con
 }
 
 // Execute executes the request
-func (a *AlertConfigurationsApiService) DeleteAlertConfigurationExecute(r DeleteAlertConfigurationApiRequest) (*http.Response, error) {
+func (a *AlertConfigurationsApiService) deleteAlertConfigurationExecute(r DeleteAlertConfigurationApiRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
@@ -434,8 +517,17 @@ type GetAlertConfigurationApiParams struct {
 		AlertConfigId string
 }
 
+func (a *AlertConfigurationsApiService) GetAlertConfigurationWithParams(ctx context.Context, args *GetAlertConfigurationApiParams) GetAlertConfigurationApiRequest {
+	return GetAlertConfigurationApiRequest{
+		ApiService: a,
+		ctx: ctx,
+		groupId: args.GroupId,
+		alertConfigId: args.AlertConfigId,
+	}
+}
+
 func (r GetAlertConfigurationApiRequest) Execute() (*AlertConfigViewForNdsGroup, *http.Response, error) {
-	return r.ApiService.GetAlertConfigurationExecute(r)
+	return r.ApiService.getAlertConfigurationExecute(r)
 }
 
 /*
@@ -461,7 +553,7 @@ func (a *AlertConfigurationsApiService) GetAlertConfiguration(ctx context.Contex
 
 // Execute executes the request
 //  @return AlertConfigViewForNdsGroup
-func (a *AlertConfigurationsApiService) GetAlertConfigurationExecute(r GetAlertConfigurationApiRequest) (*AlertConfigViewForNdsGroup, *http.Response, error) {
+func (a *AlertConfigurationsApiService) getAlertConfigurationExecute(r GetAlertConfigurationApiRequest) (*AlertConfigViewForNdsGroup, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -564,8 +656,15 @@ type ListAlertConfigurationMatchersFieldNamesApiRequest struct {
 type ListAlertConfigurationMatchersFieldNamesApiParams struct {
 }
 
+func (a *AlertConfigurationsApiService) ListAlertConfigurationMatchersFieldNamesWithParams(ctx context.Context, args *ListAlertConfigurationMatchersFieldNamesApiParams) ListAlertConfigurationMatchersFieldNamesApiRequest {
+	return ListAlertConfigurationMatchersFieldNamesApiRequest{
+		ApiService: a,
+		ctx: ctx,
+	}
+}
+
 func (r ListAlertConfigurationMatchersFieldNamesApiRequest) Execute() ([]MatcherField, *http.Response, error) {
-	return r.ApiService.ListAlertConfigurationMatchersFieldNamesExecute(r)
+	return r.ApiService.listAlertConfigurationMatchersFieldNamesExecute(r)
 }
 
 /*
@@ -585,7 +684,7 @@ func (a *AlertConfigurationsApiService) ListAlertConfigurationMatchersFieldNames
 
 // Execute executes the request
 //  @return []MatcherField
-func (a *AlertConfigurationsApiService) ListAlertConfigurationMatchersFieldNamesExecute(r ListAlertConfigurationMatchersFieldNamesApiRequest) ([]MatcherField, *http.Response, error) {
+func (a *AlertConfigurationsApiService) listAlertConfigurationMatchersFieldNamesExecute(r ListAlertConfigurationMatchersFieldNamesApiRequest) ([]MatcherField, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -682,6 +781,17 @@ type ListAlertConfigurationsApiParams struct {
 		PageNum *int32
 }
 
+func (a *AlertConfigurationsApiService) ListAlertConfigurationsWithParams(ctx context.Context, args *ListAlertConfigurationsApiParams) ListAlertConfigurationsApiRequest {
+	return ListAlertConfigurationsApiRequest{
+		ApiService: a,
+		ctx: ctx,
+		groupId: args.GroupId,
+		includeCount: args.IncludeCount,
+		itemsPerPage: args.ItemsPerPage,
+		pageNum: args.PageNum,
+	}
+}
+
 // Flag that indicates whether the response returns the total number of items (**totalCount**) in the response.
 func (r ListAlertConfigurationsApiRequest) IncludeCount(includeCount bool) ListAlertConfigurationsApiRequest {
 	r.includeCount = &includeCount
@@ -701,7 +811,7 @@ func (r ListAlertConfigurationsApiRequest) PageNum(pageNum int32) ListAlertConfi
 }
 
 func (r ListAlertConfigurationsApiRequest) Execute() (*PaginatedAlertConfig, *http.Response, error) {
-	return r.ApiService.ListAlertConfigurationsExecute(r)
+	return r.ApiService.listAlertConfigurationsExecute(r)
 }
 
 /*
@@ -725,7 +835,7 @@ func (a *AlertConfigurationsApiService) ListAlertConfigurations(ctx context.Cont
 
 // Execute executes the request
 //  @return PaginatedAlertConfig
-func (a *AlertConfigurationsApiService) ListAlertConfigurationsExecute(r ListAlertConfigurationsApiRequest) (*PaginatedAlertConfig, *http.Response, error) {
+func (a *AlertConfigurationsApiService) listAlertConfigurationsExecute(r ListAlertConfigurationsApiRequest) (*PaginatedAlertConfig, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -852,6 +962,18 @@ type ListAlertConfigurationsByAlertIdApiParams struct {
 		PageNum *int32
 }
 
+func (a *AlertConfigurationsApiService) ListAlertConfigurationsByAlertIdWithParams(ctx context.Context, args *ListAlertConfigurationsByAlertIdApiParams) ListAlertConfigurationsByAlertIdApiRequest {
+	return ListAlertConfigurationsByAlertIdApiRequest{
+		ApiService: a,
+		ctx: ctx,
+		groupId: args.GroupId,
+		alertId: args.AlertId,
+		includeCount: args.IncludeCount,
+		itemsPerPage: args.ItemsPerPage,
+		pageNum: args.PageNum,
+	}
+}
+
 // Flag that indicates whether the response returns the total number of items (**totalCount**) in the response.
 func (r ListAlertConfigurationsByAlertIdApiRequest) IncludeCount(includeCount bool) ListAlertConfigurationsByAlertIdApiRequest {
 	r.includeCount = &includeCount
@@ -871,7 +993,7 @@ func (r ListAlertConfigurationsByAlertIdApiRequest) PageNum(pageNum int32) ListA
 }
 
 func (r ListAlertConfigurationsByAlertIdApiRequest) Execute() (*PaginatedAlertConfig, *http.Response, error) {
-	return r.ApiService.ListAlertConfigurationsByAlertIdExecute(r)
+	return r.ApiService.listAlertConfigurationsByAlertIdExecute(r)
 }
 
 /*
@@ -897,7 +1019,7 @@ func (a *AlertConfigurationsApiService) ListAlertConfigurationsByAlertId(ctx con
 
 // Execute executes the request
 //  @return PaginatedAlertConfig
-func (a *AlertConfigurationsApiService) ListAlertConfigurationsByAlertIdExecute(r ListAlertConfigurationsByAlertIdApiRequest) (*PaginatedAlertConfig, *http.Response, error) {
+func (a *AlertConfigurationsApiService) listAlertConfigurationsByAlertIdExecute(r ListAlertConfigurationsByAlertIdApiRequest) (*PaginatedAlertConfig, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -1027,6 +1149,16 @@ type ToggleAlertConfigurationApiParams struct {
 		Toggle *Toggle
 }
 
+func (a *AlertConfigurationsApiService) ToggleAlertConfigurationWithParams(ctx context.Context, args *ToggleAlertConfigurationApiParams) ToggleAlertConfigurationApiRequest {
+	return ToggleAlertConfigurationApiRequest{
+		ApiService: a,
+		ctx: ctx,
+		groupId: args.GroupId,
+		alertConfigId: args.AlertConfigId,
+		toggle: args.Toggle,
+	}
+}
+
 // Enables or disables the specified alert configuration in the specified project.
 func (r ToggleAlertConfigurationApiRequest) Toggle(toggle Toggle) ToggleAlertConfigurationApiRequest {
 	r.toggle = &toggle
@@ -1034,7 +1166,7 @@ func (r ToggleAlertConfigurationApiRequest) Toggle(toggle Toggle) ToggleAlertCon
 }
 
 func (r ToggleAlertConfigurationApiRequest) Execute() (*AlertConfigViewForNdsGroup, *http.Response, error) {
-	return r.ApiService.ToggleAlertConfigurationExecute(r)
+	return r.ApiService.toggleAlertConfigurationExecute(r)
 }
 
 /*
@@ -1062,7 +1194,7 @@ func (a *AlertConfigurationsApiService) ToggleAlertConfiguration(ctx context.Con
 
 // Execute executes the request
 //  @return AlertConfigViewForNdsGroup
-func (a *AlertConfigurationsApiService) ToggleAlertConfigurationExecute(r ToggleAlertConfigurationApiRequest) (*AlertConfigViewForNdsGroup, *http.Response, error) {
+func (a *AlertConfigurationsApiService) toggleAlertConfigurationExecute(r ToggleAlertConfigurationApiRequest) (*AlertConfigViewForNdsGroup, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPatch
 		localVarPostBody     interface{}
@@ -1176,6 +1308,16 @@ type UpdateAlertConfigurationApiParams struct {
 		AlertConfigViewForNdsGroup *AlertConfigViewForNdsGroup
 }
 
+func (a *AlertConfigurationsApiService) UpdateAlertConfigurationWithParams(ctx context.Context, args *UpdateAlertConfigurationApiParams) UpdateAlertConfigurationApiRequest {
+	return UpdateAlertConfigurationApiRequest{
+		ApiService: a,
+		ctx: ctx,
+		groupId: args.GroupId,
+		alertConfigId: args.AlertConfigId,
+		alertConfigViewForNdsGroup: args.AlertConfigViewForNdsGroup,
+	}
+}
+
 // Updates one alert configuration in the specified project.
 func (r UpdateAlertConfigurationApiRequest) AlertConfigViewForNdsGroup(alertConfigViewForNdsGroup AlertConfigViewForNdsGroup) UpdateAlertConfigurationApiRequest {
 	r.alertConfigViewForNdsGroup = &alertConfigViewForNdsGroup
@@ -1183,7 +1325,7 @@ func (r UpdateAlertConfigurationApiRequest) AlertConfigViewForNdsGroup(alertConf
 }
 
 func (r UpdateAlertConfigurationApiRequest) Execute() (*AlertConfigViewForNdsGroup, *http.Response, error) {
-	return r.ApiService.UpdateAlertConfigurationExecute(r)
+	return r.ApiService.updateAlertConfigurationExecute(r)
 }
 
 /*
@@ -1211,7 +1353,7 @@ func (a *AlertConfigurationsApiService) UpdateAlertConfiguration(ctx context.Con
 
 // Execute executes the request
 //  @return AlertConfigViewForNdsGroup
-func (a *AlertConfigurationsApiService) UpdateAlertConfigurationExecute(r UpdateAlertConfigurationApiRequest) (*AlertConfigViewForNdsGroup, *http.Response, error) {
+func (a *AlertConfigurationsApiService) updateAlertConfigurationExecute(r UpdateAlertConfigurationApiRequest) (*AlertConfigViewForNdsGroup, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}

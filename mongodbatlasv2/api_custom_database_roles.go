@@ -28,10 +28,18 @@ type CustomDatabaseRolesApi interface {
 	@return CreateCustomDatabaseRoleApiRequest
 	*/
 	CreateCustomDatabaseRole(ctx context.Context, groupId string) CreateCustomDatabaseRoleApiRequest
+	/*
+	CreateCustomDatabaseRole Create One Custom Role
 
-	// CreateCustomDatabaseRoleExecute executes the request
-	//  @return CustomDBRole
-	CreateCustomDatabaseRoleExecute(r CreateCustomDatabaseRoleApiRequest) (*CustomDBRole, *http.Response, error)
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param CreateCustomDatabaseRoleApiParams - Parameters for the request
+	@return CreateCustomDatabaseRoleApiRequest
+	*/
+	CreateCustomDatabaseRoleWithParams(ctx context.Context, args *CreateCustomDatabaseRoleApiParams) CreateCustomDatabaseRoleApiRequest
+
+	// Interface only available internally
+	createCustomDatabaseRoleExecute(r CreateCustomDatabaseRoleApiRequest) (*CustomDBRole, *http.Response, error)
 
 	/*
 	DeleteCustomDatabaseRole Remove One Custom Role from One Project
@@ -44,9 +52,18 @@ type CustomDatabaseRolesApi interface {
 	@return DeleteCustomDatabaseRoleApiRequest
 	*/
 	DeleteCustomDatabaseRole(ctx context.Context, groupId string, roleName string) DeleteCustomDatabaseRoleApiRequest
+	/*
+	DeleteCustomDatabaseRole Remove One Custom Role from One Project
 
-	// DeleteCustomDatabaseRoleExecute executes the request
-	DeleteCustomDatabaseRoleExecute(r DeleteCustomDatabaseRoleApiRequest) (*http.Response, error)
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param DeleteCustomDatabaseRoleApiParams - Parameters for the request
+	@return DeleteCustomDatabaseRoleApiRequest
+	*/
+	DeleteCustomDatabaseRoleWithParams(ctx context.Context, args *DeleteCustomDatabaseRoleApiParams) DeleteCustomDatabaseRoleApiRequest
+
+	// Interface only available internally
+	deleteCustomDatabaseRoleExecute(r DeleteCustomDatabaseRoleApiRequest) (*http.Response, error)
 
 	/*
 	GetCustomDatabaseRole Return One Custom Role in One Project
@@ -59,10 +76,18 @@ type CustomDatabaseRolesApi interface {
 	@return GetCustomDatabaseRoleApiRequest
 	*/
 	GetCustomDatabaseRole(ctx context.Context, groupId string, roleName string) GetCustomDatabaseRoleApiRequest
+	/*
+	GetCustomDatabaseRole Return One Custom Role in One Project
 
-	// GetCustomDatabaseRoleExecute executes the request
-	//  @return CustomDBRole
-	GetCustomDatabaseRoleExecute(r GetCustomDatabaseRoleApiRequest) (*CustomDBRole, *http.Response, error)
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param GetCustomDatabaseRoleApiParams - Parameters for the request
+	@return GetCustomDatabaseRoleApiRequest
+	*/
+	GetCustomDatabaseRoleWithParams(ctx context.Context, args *GetCustomDatabaseRoleApiParams) GetCustomDatabaseRoleApiRequest
+
+	// Interface only available internally
+	getCustomDatabaseRoleExecute(r GetCustomDatabaseRoleApiRequest) (*CustomDBRole, *http.Response, error)
 
 	/*
 	ListCustomDatabaseRoles Return All Custom Roles in One Project
@@ -74,10 +99,18 @@ type CustomDatabaseRolesApi interface {
 	@return ListCustomDatabaseRolesApiRequest
 	*/
 	ListCustomDatabaseRoles(ctx context.Context, groupId string) ListCustomDatabaseRolesApiRequest
+	/*
+	ListCustomDatabaseRoles Return All Custom Roles in One Project
 
-	// ListCustomDatabaseRolesExecute executes the request
-	//  @return []CustomDBRole
-	ListCustomDatabaseRolesExecute(r ListCustomDatabaseRolesApiRequest) ([]CustomDBRole, *http.Response, error)
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param ListCustomDatabaseRolesApiParams - Parameters for the request
+	@return ListCustomDatabaseRolesApiRequest
+	*/
+	ListCustomDatabaseRolesWithParams(ctx context.Context, args *ListCustomDatabaseRolesApiParams) ListCustomDatabaseRolesApiRequest
+
+	// Interface only available internally
+	listCustomDatabaseRolesExecute(r ListCustomDatabaseRolesApiRequest) ([]CustomDBRole, *http.Response, error)
 
 	/*
 	UpdateCustomDatabaseRole Update One Custom Role in One Project
@@ -90,10 +123,18 @@ type CustomDatabaseRolesApi interface {
 	@return UpdateCustomDatabaseRoleApiRequest
 	*/
 	UpdateCustomDatabaseRole(ctx context.Context, groupId string, roleName string) UpdateCustomDatabaseRoleApiRequest
+	/*
+	UpdateCustomDatabaseRole Update One Custom Role in One Project
 
-	// UpdateCustomDatabaseRoleExecute executes the request
-	//  @return CustomDBRole
-	UpdateCustomDatabaseRoleExecute(r UpdateCustomDatabaseRoleApiRequest) (*CustomDBRole, *http.Response, error)
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param UpdateCustomDatabaseRoleApiParams - Parameters for the request
+	@return UpdateCustomDatabaseRoleApiRequest
+	*/
+	UpdateCustomDatabaseRoleWithParams(ctx context.Context, args *UpdateCustomDatabaseRoleApiParams) UpdateCustomDatabaseRoleApiRequest
+
+	// Interface only available internally
+	updateCustomDatabaseRoleExecute(r UpdateCustomDatabaseRoleApiRequest) (*CustomDBRole, *http.Response, error)
 }
 
 // CustomDatabaseRolesApiService CustomDatabaseRolesApi service
@@ -111,6 +152,15 @@ type CreateCustomDatabaseRoleApiParams struct {
 		CustomDBRole *CustomDBRole
 }
 
+func (a *CustomDatabaseRolesApiService) CreateCustomDatabaseRoleWithParams(ctx context.Context, args *CreateCustomDatabaseRoleApiParams) CreateCustomDatabaseRoleApiRequest {
+	return CreateCustomDatabaseRoleApiRequest{
+		ApiService: a,
+		ctx: ctx,
+		groupId: args.GroupId,
+		customDBRole: args.CustomDBRole,
+	}
+}
+
 // Creates one custom role in the specified project.
 func (r CreateCustomDatabaseRoleApiRequest) CustomDBRole(customDBRole CustomDBRole) CreateCustomDatabaseRoleApiRequest {
 	r.customDBRole = &customDBRole
@@ -118,7 +168,7 @@ func (r CreateCustomDatabaseRoleApiRequest) CustomDBRole(customDBRole CustomDBRo
 }
 
 func (r CreateCustomDatabaseRoleApiRequest) Execute() (*CustomDBRole, *http.Response, error) {
-	return r.ApiService.CreateCustomDatabaseRoleExecute(r)
+	return r.ApiService.createCustomDatabaseRoleExecute(r)
 }
 
 /*
@@ -140,7 +190,7 @@ func (a *CustomDatabaseRolesApiService) CreateCustomDatabaseRole(ctx context.Con
 
 // Execute executes the request
 //  @return CustomDBRole
-func (a *CustomDatabaseRolesApiService) CreateCustomDatabaseRoleExecute(r CreateCustomDatabaseRoleApiRequest) (*CustomDBRole, *http.Response, error) {
+func (a *CustomDatabaseRolesApiService) createCustomDatabaseRoleExecute(r CreateCustomDatabaseRoleApiRequest) (*CustomDBRole, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -245,8 +295,17 @@ type DeleteCustomDatabaseRoleApiParams struct {
 		RoleName string
 }
 
+func (a *CustomDatabaseRolesApiService) DeleteCustomDatabaseRoleWithParams(ctx context.Context, args *DeleteCustomDatabaseRoleApiParams) DeleteCustomDatabaseRoleApiRequest {
+	return DeleteCustomDatabaseRoleApiRequest{
+		ApiService: a,
+		ctx: ctx,
+		groupId: args.GroupId,
+		roleName: args.RoleName,
+	}
+}
+
 func (r DeleteCustomDatabaseRoleApiRequest) Execute() (*http.Response, error) {
-	return r.ApiService.DeleteCustomDatabaseRoleExecute(r)
+	return r.ApiService.deleteCustomDatabaseRoleExecute(r)
 }
 
 /*
@@ -269,7 +328,7 @@ func (a *CustomDatabaseRolesApiService) DeleteCustomDatabaseRole(ctx context.Con
 }
 
 // Execute executes the request
-func (a *CustomDatabaseRolesApiService) DeleteCustomDatabaseRoleExecute(r DeleteCustomDatabaseRoleApiRequest) (*http.Response, error) {
+func (a *CustomDatabaseRolesApiService) deleteCustomDatabaseRoleExecute(r DeleteCustomDatabaseRoleApiRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
@@ -360,8 +419,17 @@ type GetCustomDatabaseRoleApiParams struct {
 		RoleName string
 }
 
+func (a *CustomDatabaseRolesApiService) GetCustomDatabaseRoleWithParams(ctx context.Context, args *GetCustomDatabaseRoleApiParams) GetCustomDatabaseRoleApiRequest {
+	return GetCustomDatabaseRoleApiRequest{
+		ApiService: a,
+		ctx: ctx,
+		groupId: args.GroupId,
+		roleName: args.RoleName,
+	}
+}
+
 func (r GetCustomDatabaseRoleApiRequest) Execute() (*CustomDBRole, *http.Response, error) {
-	return r.ApiService.GetCustomDatabaseRoleExecute(r)
+	return r.ApiService.getCustomDatabaseRoleExecute(r)
 }
 
 /*
@@ -385,7 +453,7 @@ func (a *CustomDatabaseRolesApiService) GetCustomDatabaseRole(ctx context.Contex
 
 // Execute executes the request
 //  @return CustomDBRole
-func (a *CustomDatabaseRolesApiService) GetCustomDatabaseRoleExecute(r GetCustomDatabaseRoleApiRequest) (*CustomDBRole, *http.Response, error) {
+func (a *CustomDatabaseRolesApiService) getCustomDatabaseRoleExecute(r GetCustomDatabaseRoleApiRequest) (*CustomDBRole, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -484,8 +552,16 @@ type ListCustomDatabaseRolesApiParams struct {
 		GroupId string
 }
 
+func (a *CustomDatabaseRolesApiService) ListCustomDatabaseRolesWithParams(ctx context.Context, args *ListCustomDatabaseRolesApiParams) ListCustomDatabaseRolesApiRequest {
+	return ListCustomDatabaseRolesApiRequest{
+		ApiService: a,
+		ctx: ctx,
+		groupId: args.GroupId,
+	}
+}
+
 func (r ListCustomDatabaseRolesApiRequest) Execute() ([]CustomDBRole, *http.Response, error) {
-	return r.ApiService.ListCustomDatabaseRolesExecute(r)
+	return r.ApiService.listCustomDatabaseRolesExecute(r)
 }
 
 /*
@@ -507,7 +583,7 @@ func (a *CustomDatabaseRolesApiService) ListCustomDatabaseRoles(ctx context.Cont
 
 // Execute executes the request
 //  @return []CustomDBRole
-func (a *CustomDatabaseRolesApiService) ListCustomDatabaseRolesExecute(r ListCustomDatabaseRolesApiRequest) ([]CustomDBRole, *http.Response, error) {
+func (a *CustomDatabaseRolesApiService) listCustomDatabaseRolesExecute(r ListCustomDatabaseRolesApiRequest) ([]CustomDBRole, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -609,6 +685,16 @@ type UpdateCustomDatabaseRoleApiParams struct {
 		UpdateCustomDBRole *UpdateCustomDBRole
 }
 
+func (a *CustomDatabaseRolesApiService) UpdateCustomDatabaseRoleWithParams(ctx context.Context, args *UpdateCustomDatabaseRoleApiParams) UpdateCustomDatabaseRoleApiRequest {
+	return UpdateCustomDatabaseRoleApiRequest{
+		ApiService: a,
+		ctx: ctx,
+		groupId: args.GroupId,
+		roleName: args.RoleName,
+		updateCustomDBRole: args.UpdateCustomDBRole,
+	}
+}
+
 // Updates one custom role in the specified project.
 func (r UpdateCustomDatabaseRoleApiRequest) UpdateCustomDBRole(updateCustomDBRole UpdateCustomDBRole) UpdateCustomDatabaseRoleApiRequest {
 	r.updateCustomDBRole = &updateCustomDBRole
@@ -616,7 +702,7 @@ func (r UpdateCustomDatabaseRoleApiRequest) UpdateCustomDBRole(updateCustomDBRol
 }
 
 func (r UpdateCustomDatabaseRoleApiRequest) Execute() (*CustomDBRole, *http.Response, error) {
-	return r.ApiService.UpdateCustomDatabaseRoleExecute(r)
+	return r.ApiService.updateCustomDatabaseRoleExecute(r)
 }
 
 /*
@@ -640,7 +726,7 @@ func (a *CustomDatabaseRolesApiService) UpdateCustomDatabaseRole(ctx context.Con
 
 // Execute executes the request
 //  @return CustomDBRole
-func (a *CustomDatabaseRolesApiService) UpdateCustomDatabaseRoleExecute(r UpdateCustomDatabaseRoleApiRequest) (*CustomDBRole, *http.Response, error) {
+func (a *CustomDatabaseRolesApiService) updateCustomDatabaseRoleExecute(r UpdateCustomDatabaseRoleApiRequest) (*CustomDBRole, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPatch
 		localVarPostBody     interface{}

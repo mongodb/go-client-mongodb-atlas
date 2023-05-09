@@ -31,10 +31,18 @@ type ServerlessPrivateEndpointsApi interface {
 	@return CreateServerlessPrivateEndpointApiRequest
 	*/
 	CreateServerlessPrivateEndpoint(ctx context.Context, groupId string, instanceName string) CreateServerlessPrivateEndpointApiRequest
+	/*
+	CreateServerlessPrivateEndpoint Create One Private Endpoint for One Serverless Instance
 
-	// CreateServerlessPrivateEndpointExecute executes the request
-	//  @return ServerlessTenantEndpoint
-	CreateServerlessPrivateEndpointExecute(r CreateServerlessPrivateEndpointApiRequest) (*ServerlessTenantEndpoint, *http.Response, error)
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param CreateServerlessPrivateEndpointApiParams - Parameters for the request
+	@return CreateServerlessPrivateEndpointApiRequest
+	*/
+	CreateServerlessPrivateEndpointWithParams(ctx context.Context, args *CreateServerlessPrivateEndpointApiParams) CreateServerlessPrivateEndpointApiRequest
+
+	// Interface only available internally
+	createServerlessPrivateEndpointExecute(r CreateServerlessPrivateEndpointApiRequest) (*ServerlessTenantEndpoint, *http.Response, error)
 
 	/*
 	DeleteServerlessPrivateEndpoint Remove One Private Endpoint for One Serverless Instance
@@ -48,9 +56,18 @@ type ServerlessPrivateEndpointsApi interface {
 	@return DeleteServerlessPrivateEndpointApiRequest
 	*/
 	DeleteServerlessPrivateEndpoint(ctx context.Context, groupId string, instanceName string, endpointId string) DeleteServerlessPrivateEndpointApiRequest
+	/*
+	DeleteServerlessPrivateEndpoint Remove One Private Endpoint for One Serverless Instance
 
-	// DeleteServerlessPrivateEndpointExecute executes the request
-	DeleteServerlessPrivateEndpointExecute(r DeleteServerlessPrivateEndpointApiRequest) (*http.Response, error)
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param DeleteServerlessPrivateEndpointApiParams - Parameters for the request
+	@return DeleteServerlessPrivateEndpointApiRequest
+	*/
+	DeleteServerlessPrivateEndpointWithParams(ctx context.Context, args *DeleteServerlessPrivateEndpointApiParams) DeleteServerlessPrivateEndpointApiRequest
+
+	// Interface only available internally
+	deleteServerlessPrivateEndpointExecute(r DeleteServerlessPrivateEndpointApiRequest) (*http.Response, error)
 
 	/*
 	GetServerlessPrivateEndpoint Return One Private Endpoint for One Serverless Instance
@@ -64,10 +81,18 @@ type ServerlessPrivateEndpointsApi interface {
 	@return GetServerlessPrivateEndpointApiRequest
 	*/
 	GetServerlessPrivateEndpoint(ctx context.Context, groupId string, instanceName string, endpointId string) GetServerlessPrivateEndpointApiRequest
+	/*
+	GetServerlessPrivateEndpoint Return One Private Endpoint for One Serverless Instance
 
-	// GetServerlessPrivateEndpointExecute executes the request
-	//  @return ServerlessTenantEndpoint
-	GetServerlessPrivateEndpointExecute(r GetServerlessPrivateEndpointApiRequest) (*ServerlessTenantEndpoint, *http.Response, error)
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param GetServerlessPrivateEndpointApiParams - Parameters for the request
+	@return GetServerlessPrivateEndpointApiRequest
+	*/
+	GetServerlessPrivateEndpointWithParams(ctx context.Context, args *GetServerlessPrivateEndpointApiParams) GetServerlessPrivateEndpointApiRequest
+
+	// Interface only available internally
+	getServerlessPrivateEndpointExecute(r GetServerlessPrivateEndpointApiRequest) (*ServerlessTenantEndpoint, *http.Response, error)
 
 	/*
 	ListServerlessPrivateEndpoints Return All Private Endpoints for One Serverless Instance
@@ -80,10 +105,18 @@ type ServerlessPrivateEndpointsApi interface {
 	@return ListServerlessPrivateEndpointsApiRequest
 	*/
 	ListServerlessPrivateEndpoints(ctx context.Context, groupId string, instanceName string) ListServerlessPrivateEndpointsApiRequest
+	/*
+	ListServerlessPrivateEndpoints Return All Private Endpoints for One Serverless Instance
 
-	// ListServerlessPrivateEndpointsExecute executes the request
-	//  @return []ServerlessTenantEndpoint
-	ListServerlessPrivateEndpointsExecute(r ListServerlessPrivateEndpointsApiRequest) ([]ServerlessTenantEndpoint, *http.Response, error)
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param ListServerlessPrivateEndpointsApiParams - Parameters for the request
+	@return ListServerlessPrivateEndpointsApiRequest
+	*/
+	ListServerlessPrivateEndpointsWithParams(ctx context.Context, args *ListServerlessPrivateEndpointsApiParams) ListServerlessPrivateEndpointsApiRequest
+
+	// Interface only available internally
+	listServerlessPrivateEndpointsExecute(r ListServerlessPrivateEndpointsApiRequest) ([]ServerlessTenantEndpoint, *http.Response, error)
 
 	/*
 	UpdateServerlessPrivateEndpoint Update One Private Endpoint for One Serverless Instance
@@ -97,10 +130,18 @@ type ServerlessPrivateEndpointsApi interface {
 	@return UpdateServerlessPrivateEndpointApiRequest
 	*/
 	UpdateServerlessPrivateEndpoint(ctx context.Context, groupId string, instanceName string, endpointId string) UpdateServerlessPrivateEndpointApiRequest
+	/*
+	UpdateServerlessPrivateEndpoint Update One Private Endpoint for One Serverless Instance
 
-	// UpdateServerlessPrivateEndpointExecute executes the request
-	//  @return ServerlessTenantEndpoint
-	UpdateServerlessPrivateEndpointExecute(r UpdateServerlessPrivateEndpointApiRequest) (*ServerlessTenantEndpoint, *http.Response, error)
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param UpdateServerlessPrivateEndpointApiParams - Parameters for the request
+	@return UpdateServerlessPrivateEndpointApiRequest
+	*/
+	UpdateServerlessPrivateEndpointWithParams(ctx context.Context, args *UpdateServerlessPrivateEndpointApiParams) UpdateServerlessPrivateEndpointApiRequest
+
+	// Interface only available internally
+	updateServerlessPrivateEndpointExecute(r UpdateServerlessPrivateEndpointApiRequest) (*ServerlessTenantEndpoint, *http.Response, error)
 }
 
 // ServerlessPrivateEndpointsApiService ServerlessPrivateEndpointsApi service
@@ -120,6 +161,16 @@ type CreateServerlessPrivateEndpointApiParams struct {
 		ServerlessTenantEndpointCreate *ServerlessTenantEndpointCreate
 }
 
+func (a *ServerlessPrivateEndpointsApiService) CreateServerlessPrivateEndpointWithParams(ctx context.Context, args *CreateServerlessPrivateEndpointApiParams) CreateServerlessPrivateEndpointApiRequest {
+	return CreateServerlessPrivateEndpointApiRequest{
+		ApiService: a,
+		ctx: ctx,
+		groupId: args.GroupId,
+		instanceName: args.InstanceName,
+		serverlessTenantEndpointCreate: args.ServerlessTenantEndpointCreate,
+	}
+}
+
 // Information about the Private Endpoint to create for the Serverless Instance.
 func (r CreateServerlessPrivateEndpointApiRequest) ServerlessTenantEndpointCreate(serverlessTenantEndpointCreate ServerlessTenantEndpointCreate) CreateServerlessPrivateEndpointApiRequest {
 	r.serverlessTenantEndpointCreate = &serverlessTenantEndpointCreate
@@ -127,7 +178,7 @@ func (r CreateServerlessPrivateEndpointApiRequest) ServerlessTenantEndpointCreat
 }
 
 func (r CreateServerlessPrivateEndpointApiRequest) Execute() (*ServerlessTenantEndpoint, *http.Response, error) {
-	return r.ApiService.CreateServerlessPrivateEndpointExecute(r)
+	return r.ApiService.createServerlessPrivateEndpointExecute(r)
 }
 
 /*
@@ -153,7 +204,7 @@ func (a *ServerlessPrivateEndpointsApiService) CreateServerlessPrivateEndpoint(c
 
 // Execute executes the request
 //  @return ServerlessTenantEndpoint
-func (a *ServerlessPrivateEndpointsApiService) CreateServerlessPrivateEndpointExecute(r CreateServerlessPrivateEndpointApiRequest) (*ServerlessTenantEndpoint, *http.Response, error) {
+func (a *ServerlessPrivateEndpointsApiService) createServerlessPrivateEndpointExecute(r CreateServerlessPrivateEndpointApiRequest) (*ServerlessTenantEndpoint, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -264,8 +315,18 @@ type DeleteServerlessPrivateEndpointApiParams struct {
 		EndpointId string
 }
 
+func (a *ServerlessPrivateEndpointsApiService) DeleteServerlessPrivateEndpointWithParams(ctx context.Context, args *DeleteServerlessPrivateEndpointApiParams) DeleteServerlessPrivateEndpointApiRequest {
+	return DeleteServerlessPrivateEndpointApiRequest{
+		ApiService: a,
+		ctx: ctx,
+		groupId: args.GroupId,
+		instanceName: args.InstanceName,
+		endpointId: args.EndpointId,
+	}
+}
+
 func (r DeleteServerlessPrivateEndpointApiRequest) Execute() (*http.Response, error) {
-	return r.ApiService.DeleteServerlessPrivateEndpointExecute(r)
+	return r.ApiService.deleteServerlessPrivateEndpointExecute(r)
 }
 
 /*
@@ -290,7 +351,7 @@ func (a *ServerlessPrivateEndpointsApiService) DeleteServerlessPrivateEndpoint(c
 }
 
 // Execute executes the request
-func (a *ServerlessPrivateEndpointsApiService) DeleteServerlessPrivateEndpointExecute(r DeleteServerlessPrivateEndpointApiRequest) (*http.Response, error) {
+func (a *ServerlessPrivateEndpointsApiService) deleteServerlessPrivateEndpointExecute(r DeleteServerlessPrivateEndpointApiRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
@@ -393,8 +454,18 @@ type GetServerlessPrivateEndpointApiParams struct {
 		EndpointId string
 }
 
+func (a *ServerlessPrivateEndpointsApiService) GetServerlessPrivateEndpointWithParams(ctx context.Context, args *GetServerlessPrivateEndpointApiParams) GetServerlessPrivateEndpointApiRequest {
+	return GetServerlessPrivateEndpointApiRequest{
+		ApiService: a,
+		ctx: ctx,
+		groupId: args.GroupId,
+		instanceName: args.InstanceName,
+		endpointId: args.EndpointId,
+	}
+}
+
 func (r GetServerlessPrivateEndpointApiRequest) Execute() (*ServerlessTenantEndpoint, *http.Response, error) {
-	return r.ApiService.GetServerlessPrivateEndpointExecute(r)
+	return r.ApiService.getServerlessPrivateEndpointExecute(r)
 }
 
 /*
@@ -420,7 +491,7 @@ func (a *ServerlessPrivateEndpointsApiService) GetServerlessPrivateEndpoint(ctx 
 
 // Execute executes the request
 //  @return ServerlessTenantEndpoint
-func (a *ServerlessPrivateEndpointsApiService) GetServerlessPrivateEndpointExecute(r GetServerlessPrivateEndpointApiRequest) (*ServerlessTenantEndpoint, *http.Response, error) {
+func (a *ServerlessPrivateEndpointsApiService) getServerlessPrivateEndpointExecute(r GetServerlessPrivateEndpointApiRequest) (*ServerlessTenantEndpoint, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -531,8 +602,17 @@ type ListServerlessPrivateEndpointsApiParams struct {
 		InstanceName string
 }
 
+func (a *ServerlessPrivateEndpointsApiService) ListServerlessPrivateEndpointsWithParams(ctx context.Context, args *ListServerlessPrivateEndpointsApiParams) ListServerlessPrivateEndpointsApiRequest {
+	return ListServerlessPrivateEndpointsApiRequest{
+		ApiService: a,
+		ctx: ctx,
+		groupId: args.GroupId,
+		instanceName: args.InstanceName,
+	}
+}
+
 func (r ListServerlessPrivateEndpointsApiRequest) Execute() ([]ServerlessTenantEndpoint, *http.Response, error) {
-	return r.ApiService.ListServerlessPrivateEndpointsExecute(r)
+	return r.ApiService.listServerlessPrivateEndpointsExecute(r)
 }
 
 /*
@@ -556,7 +636,7 @@ func (a *ServerlessPrivateEndpointsApiService) ListServerlessPrivateEndpoints(ct
 
 // Execute executes the request
 //  @return []ServerlessTenantEndpoint
-func (a *ServerlessPrivateEndpointsApiService) ListServerlessPrivateEndpointsExecute(r ListServerlessPrivateEndpointsApiRequest) ([]ServerlessTenantEndpoint, *http.Response, error) {
+func (a *ServerlessPrivateEndpointsApiService) listServerlessPrivateEndpointsExecute(r ListServerlessPrivateEndpointsApiRequest) ([]ServerlessTenantEndpoint, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -664,13 +744,24 @@ type UpdateServerlessPrivateEndpointApiParams struct {
 		ServerlessTenantEndpointUpdate *ServerlessTenantEndpointUpdate
 }
 
+func (a *ServerlessPrivateEndpointsApiService) UpdateServerlessPrivateEndpointWithParams(ctx context.Context, args *UpdateServerlessPrivateEndpointApiParams) UpdateServerlessPrivateEndpointApiRequest {
+	return UpdateServerlessPrivateEndpointApiRequest{
+		ApiService: a,
+		ctx: ctx,
+		groupId: args.GroupId,
+		instanceName: args.InstanceName,
+		endpointId: args.EndpointId,
+		serverlessTenantEndpointUpdate: args.ServerlessTenantEndpointUpdate,
+	}
+}
+
 func (r UpdateServerlessPrivateEndpointApiRequest) ServerlessTenantEndpointUpdate(serverlessTenantEndpointUpdate ServerlessTenantEndpointUpdate) UpdateServerlessPrivateEndpointApiRequest {
 	r.serverlessTenantEndpointUpdate = &serverlessTenantEndpointUpdate
 	return r
 }
 
 func (r UpdateServerlessPrivateEndpointApiRequest) Execute() (*ServerlessTenantEndpoint, *http.Response, error) {
-	return r.ApiService.UpdateServerlessPrivateEndpointExecute(r)
+	return r.ApiService.updateServerlessPrivateEndpointExecute(r)
 }
 
 /*
@@ -696,7 +787,7 @@ func (a *ServerlessPrivateEndpointsApiService) UpdateServerlessPrivateEndpoint(c
 
 // Execute executes the request
 //  @return ServerlessTenantEndpoint
-func (a *ServerlessPrivateEndpointsApiService) UpdateServerlessPrivateEndpointExecute(r UpdateServerlessPrivateEndpointApiRequest) (*ServerlessTenantEndpoint, *http.Response, error) {
+func (a *ServerlessPrivateEndpointsApiService) updateServerlessPrivateEndpointExecute(r UpdateServerlessPrivateEndpointApiRequest) (*ServerlessTenantEndpoint, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPatch
 		localVarPostBody     interface{}

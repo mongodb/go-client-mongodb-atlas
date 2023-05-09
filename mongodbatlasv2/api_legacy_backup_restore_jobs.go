@@ -28,14 +28,23 @@ type LegacyBackupRestoreJobsApi interface {
 	@param clusterName Human-readable label that identifies the cluster with the snapshot you want to return.
 	@return CreateLegacyBackupRestoreJobApiRequest
 	
-	Deprecated: Method have been deprecated. Please check the latest resource version for LegacyBackupRestoreJobsApi
+	Deprecated: this method has been deprecated. Please check the latest resource version for LegacyBackupRestoreJobsApi
 	*/
 	CreateLegacyBackupRestoreJob(ctx context.Context, groupId string, clusterName string) CreateLegacyBackupRestoreJobApiRequest
+	/*
+	CreateLegacyBackupRestoreJob Create One Legacy Backup Restore Job
 
-	// CreateLegacyBackupRestoreJobExecute executes the request
-	//  @return PaginatedRestoreJob
-	// Deprecated
-	CreateLegacyBackupRestoreJobExecute(r CreateLegacyBackupRestoreJobApiRequest) (*PaginatedRestoreJob, *http.Response, error)
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param CreateLegacyBackupRestoreJobApiParams - Parameters for the request
+	@return CreateLegacyBackupRestoreJobApiRequest
+
+	Deprecated: this method has been deprecated. Please check the latest resource version for LegacyBackupRestoreJobsApi
+	*/
+	CreateLegacyBackupRestoreJobWithParams(ctx context.Context, args *CreateLegacyBackupRestoreJobApiParams) CreateLegacyBackupRestoreJobApiRequest
+
+	// Interface only available internally
+	createLegacyBackupRestoreJobExecute(r CreateLegacyBackupRestoreJobApiRequest) (*PaginatedRestoreJob, *http.Response, error)
 }
 
 // LegacyBackupRestoreJobsApiService LegacyBackupRestoreJobsApi service
@@ -55,6 +64,16 @@ type CreateLegacyBackupRestoreJobApiParams struct {
 		RestoreJob *RestoreJob
 }
 
+func (a *LegacyBackupRestoreJobsApiService) CreateLegacyBackupRestoreJobWithParams(ctx context.Context, args *CreateLegacyBackupRestoreJobApiParams) CreateLegacyBackupRestoreJobApiRequest {
+	return CreateLegacyBackupRestoreJobApiRequest{
+		ApiService: a,
+		ctx: ctx,
+		groupId: args.GroupId,
+		clusterName: args.ClusterName,
+		restoreJob: args.RestoreJob,
+	}
+}
+
 // Legacy backup to restore to one cluster in the specified project.
 func (r CreateLegacyBackupRestoreJobApiRequest) RestoreJob(restoreJob RestoreJob) CreateLegacyBackupRestoreJobApiRequest {
 	r.restoreJob = &restoreJob
@@ -62,7 +81,7 @@ func (r CreateLegacyBackupRestoreJobApiRequest) RestoreJob(restoreJob RestoreJob
 }
 
 func (r CreateLegacyBackupRestoreJobApiRequest) Execute() (*PaginatedRestoreJob, *http.Response, error) {
-	return r.ApiService.CreateLegacyBackupRestoreJobExecute(r)
+	return r.ApiService.createLegacyBackupRestoreJobExecute(r)
 }
 
 /*
@@ -89,7 +108,7 @@ func (a *LegacyBackupRestoreJobsApiService) CreateLegacyBackupRestoreJob(ctx con
 // Execute executes the request
 //  @return PaginatedRestoreJob
 // Deprecated
-func (a *LegacyBackupRestoreJobsApiService) CreateLegacyBackupRestoreJobExecute(r CreateLegacyBackupRestoreJobApiRequest) (*PaginatedRestoreJob, *http.Response, error) {
+func (a *LegacyBackupRestoreJobsApiService) createLegacyBackupRestoreJobExecute(r CreateLegacyBackupRestoreJobApiRequest) (*PaginatedRestoreJob, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}

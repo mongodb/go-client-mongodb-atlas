@@ -32,10 +32,18 @@ type MonitoringAndLogsApi interface {
 	@return GetAtlasProcessApiRequest
 	*/
 	GetAtlasProcess(ctx context.Context, groupId string, processId string) GetAtlasProcessApiRequest
+	/*
+	GetAtlasProcess Return One MongoDB Process by ID
 
-	// GetAtlasProcessExecute executes the request
-	//  @return HostViewAtlas
-	GetAtlasProcessExecute(r GetAtlasProcessApiRequest) (*HostViewAtlas, *http.Response, error)
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param GetAtlasProcessApiParams - Parameters for the request
+	@return GetAtlasProcessApiRequest
+	*/
+	GetAtlasProcessWithParams(ctx context.Context, args *GetAtlasProcessApiParams) GetAtlasProcessApiRequest
+
+	// Interface only available internally
+	getAtlasProcessExecute(r GetAtlasProcessApiRequest) (*HostViewAtlas, *http.Response, error)
 
 	/*
 	GetDatabase Return One Database for a MongoDB Process
@@ -49,10 +57,18 @@ type MonitoringAndLogsApi interface {
 	@return GetDatabaseApiRequest
 	*/
 	GetDatabase(ctx context.Context, groupId string, databaseName string, processId string) GetDatabaseApiRequest
+	/*
+	GetDatabase Return One Database for a MongoDB Process
 
-	// GetDatabaseExecute executes the request
-	//  @return Database
-	GetDatabaseExecute(r GetDatabaseApiRequest) (*Database, *http.Response, error)
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param GetDatabaseApiParams - Parameters for the request
+	@return GetDatabaseApiRequest
+	*/
+	GetDatabaseWithParams(ctx context.Context, args *GetDatabaseApiParams) GetDatabaseApiRequest
+
+	// Interface only available internally
+	getDatabaseExecute(r GetDatabaseApiRequest) (*Database, *http.Response, error)
 
 	/*
 	GetDatabaseMeasurements Return Measurements of One Database for One MongoDB Process
@@ -66,10 +82,18 @@ type MonitoringAndLogsApi interface {
 	@return GetDatabaseMeasurementsApiRequest
 	*/
 	GetDatabaseMeasurements(ctx context.Context, groupId string, databaseName string, processId string) GetDatabaseMeasurementsApiRequest
+	/*
+	GetDatabaseMeasurements Return Measurements of One Database for One MongoDB Process
 
-	// GetDatabaseMeasurementsExecute executes the request
-	//  @return MeasurementsGeneralViewAtlas
-	GetDatabaseMeasurementsExecute(r GetDatabaseMeasurementsApiRequest) (*MeasurementsGeneralViewAtlas, *http.Response, error)
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param GetDatabaseMeasurementsApiParams - Parameters for the request
+	@return GetDatabaseMeasurementsApiRequest
+	*/
+	GetDatabaseMeasurementsWithParams(ctx context.Context, args *GetDatabaseMeasurementsApiParams) GetDatabaseMeasurementsApiRequest
+
+	// Interface only available internally
+	getDatabaseMeasurementsExecute(r GetDatabaseMeasurementsApiRequest) (*MeasurementsGeneralViewAtlas, *http.Response, error)
 
 	/*
 	GetDiskMeasurements Return Measurements of One Disk for One MongoDB Process
@@ -89,10 +113,18 @@ To use this resource, the requesting API Key must have the Project Read Only rol
 	@return GetDiskMeasurementsApiRequest
 	*/
 	GetDiskMeasurements(ctx context.Context, groupId string, partitionName string, processId string) GetDiskMeasurementsApiRequest
+	/*
+	GetDiskMeasurements Return Measurements of One Disk for One MongoDB Process
 
-	// GetDiskMeasurementsExecute executes the request
-	//  @return MeasurementsGeneralViewAtlas
-	GetDiskMeasurementsExecute(r GetDiskMeasurementsApiRequest) (*MeasurementsGeneralViewAtlas, *http.Response, error)
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param GetDiskMeasurementsApiParams - Parameters for the request
+	@return GetDiskMeasurementsApiRequest
+	*/
+	GetDiskMeasurementsWithParams(ctx context.Context, args *GetDiskMeasurementsApiParams) GetDiskMeasurementsApiRequest
+
+	// Interface only available internally
+	getDiskMeasurementsExecute(r GetDiskMeasurementsApiRequest) (*MeasurementsGeneralViewAtlas, *http.Response, error)
 
 	/*
 	GetHostLogs Download Logs for One Multi-Cloud Cluster Host in One Project
@@ -106,10 +138,18 @@ To use this resource, the requesting API Key must have the Project Read Only rol
 	@return GetHostLogsApiRequest
 	*/
 	GetHostLogs(ctx context.Context, groupId string, hostName string, logName string) GetHostLogsApiRequest
+	/*
+	GetHostLogs Download Logs for One Multi-Cloud Cluster Host in One Project
 
-	// GetHostLogsExecute executes the request
-	//  @return *os.File
-	GetHostLogsExecute(r GetHostLogsApiRequest) (*os.File, *http.Response, error)
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param GetHostLogsApiParams - Parameters for the request
+	@return GetHostLogsApiRequest
+	*/
+	GetHostLogsWithParams(ctx context.Context, args *GetHostLogsApiParams) GetHostLogsApiRequest
+
+	// Interface only available internally
+	getHostLogsExecute(r GetHostLogsApiRequest) (*os.File, *http.Response, error)
 
 	/*
 	GetHostMeasurements Return Measurements for One MongoDB Process
@@ -128,10 +168,18 @@ To use this resource, the requesting API Key must have the Project Read Only rol
 	@return GetHostMeasurementsApiRequest
 	*/
 	GetHostMeasurements(ctx context.Context, groupId string, processId string) GetHostMeasurementsApiRequest
+	/*
+	GetHostMeasurements Return Measurements for One MongoDB Process
 
-	// GetHostMeasurementsExecute executes the request
-	//  @return MeasurementsGeneralViewAtlas
-	GetHostMeasurementsExecute(r GetHostMeasurementsApiRequest) (*MeasurementsGeneralViewAtlas, *http.Response, error)
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param GetHostMeasurementsApiParams - Parameters for the request
+	@return GetHostMeasurementsApiRequest
+	*/
+	GetHostMeasurementsWithParams(ctx context.Context, args *GetHostMeasurementsApiParams) GetHostMeasurementsApiRequest
+
+	// Interface only available internally
+	getHostMeasurementsExecute(r GetHostMeasurementsApiRequest) (*MeasurementsGeneralViewAtlas, *http.Response, error)
 
 	/*
 	GetIndexMetrics Return Atlas Search Metrics for One Index in One Specified Namespace
@@ -147,10 +195,18 @@ To use this resource, the requesting API Key must have the Project Read Only rol
 	@return GetIndexMetricsApiRequest
 	*/
 	GetIndexMetrics(ctx context.Context, processId string, indexName string, databaseName string, collectionName string, groupId string) GetIndexMetricsApiRequest
+	/*
+	GetIndexMetrics Return Atlas Search Metrics for One Index in One Specified Namespace
 
-	// GetIndexMetricsExecute executes the request
-	//  @return MeasurementsIndexes
-	GetIndexMetricsExecute(r GetIndexMetricsApiRequest) (*MeasurementsIndexes, *http.Response, error)
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param GetIndexMetricsApiParams - Parameters for the request
+	@return GetIndexMetricsApiRequest
+	*/
+	GetIndexMetricsWithParams(ctx context.Context, args *GetIndexMetricsApiParams) GetIndexMetricsApiRequest
+
+	// Interface only available internally
+	getIndexMetricsExecute(r GetIndexMetricsApiRequest) (*MeasurementsIndexes, *http.Response, error)
 
 	/*
 	GetMeasurements Return Atlas Search Hardware and Status Metrics
@@ -163,10 +219,18 @@ To use this resource, the requesting API Key must have the Project Read Only rol
 	@return GetMeasurementsApiRequest
 	*/
 	GetMeasurements(ctx context.Context, processId string, groupId string) GetMeasurementsApiRequest
+	/*
+	GetMeasurements Return Atlas Search Hardware and Status Metrics
 
-	// GetMeasurementsExecute executes the request
-	//  @return MeasurementsNonIndex
-	GetMeasurementsExecute(r GetMeasurementsApiRequest) (*MeasurementsNonIndex, *http.Response, error)
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param GetMeasurementsApiParams - Parameters for the request
+	@return GetMeasurementsApiRequest
+	*/
+	GetMeasurementsWithParams(ctx context.Context, args *GetMeasurementsApiParams) GetMeasurementsApiRequest
+
+	// Interface only available internally
+	getMeasurementsExecute(r GetMeasurementsApiRequest) (*MeasurementsNonIndex, *http.Response, error)
 
 	/*
 	ListAtlasProcesses Return All MongoDB Processes in One Project
@@ -178,10 +242,18 @@ To use this resource, the requesting API Key must have the Project Read Only rol
 	@return ListAtlasProcessesApiRequest
 	*/
 	ListAtlasProcesses(ctx context.Context, groupId string) ListAtlasProcessesApiRequest
+	/*
+	ListAtlasProcesses Return All MongoDB Processes in One Project
 
-	// ListAtlasProcessesExecute executes the request
-	//  @return PaginatedHostViewAtlas
-	ListAtlasProcessesExecute(r ListAtlasProcessesApiRequest) (*PaginatedHostViewAtlas, *http.Response, error)
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param ListAtlasProcessesApiParams - Parameters for the request
+	@return ListAtlasProcessesApiRequest
+	*/
+	ListAtlasProcessesWithParams(ctx context.Context, args *ListAtlasProcessesApiParams) ListAtlasProcessesApiRequest
+
+	// Interface only available internally
+	listAtlasProcessesExecute(r ListAtlasProcessesApiRequest) (*PaginatedHostViewAtlas, *http.Response, error)
 
 	/*
 	ListDatabases Return Available Databases for One MongoDB Process
@@ -194,10 +266,18 @@ To use this resource, the requesting API Key must have the Project Read Only rol
 	@return ListDatabasesApiRequest
 	*/
 	ListDatabases(ctx context.Context, groupId string, processId string) ListDatabasesApiRequest
+	/*
+	ListDatabases Return Available Databases for One MongoDB Process
 
-	// ListDatabasesExecute executes the request
-	//  @return PaginatedDatabase
-	ListDatabasesExecute(r ListDatabasesApiRequest) (*PaginatedDatabase, *http.Response, error)
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param ListDatabasesApiParams - Parameters for the request
+	@return ListDatabasesApiRequest
+	*/
+	ListDatabasesWithParams(ctx context.Context, args *ListDatabasesApiParams) ListDatabasesApiRequest
+
+	// Interface only available internally
+	listDatabasesExecute(r ListDatabasesApiRequest) (*PaginatedDatabase, *http.Response, error)
 
 	/*
 	ListDiskMeasurements Return Measurements of One Disk
@@ -217,10 +297,18 @@ To use this resource, the requesting API Key must have the Project Read Only rol
 	@return ListDiskMeasurementsApiRequest
 	*/
 	ListDiskMeasurements(ctx context.Context, partitionName string, groupId string, processId string) ListDiskMeasurementsApiRequest
+	/*
+	ListDiskMeasurements Return Measurements of One Disk
 
-	// ListDiskMeasurementsExecute executes the request
-	//  @return DiskPartition
-	ListDiskMeasurementsExecute(r ListDiskMeasurementsApiRequest) (*DiskPartition, *http.Response, error)
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param ListDiskMeasurementsApiParams - Parameters for the request
+	@return ListDiskMeasurementsApiRequest
+	*/
+	ListDiskMeasurementsWithParams(ctx context.Context, args *ListDiskMeasurementsApiParams) ListDiskMeasurementsApiRequest
+
+	// Interface only available internally
+	listDiskMeasurementsExecute(r ListDiskMeasurementsApiRequest) (*DiskPartition, *http.Response, error)
 
 	/*
 	ListDiskPartitions Return Available Disks for One MongoDB Process
@@ -233,10 +321,18 @@ To use this resource, the requesting API Key must have the Project Read Only rol
 	@return ListDiskPartitionsApiRequest
 	*/
 	ListDiskPartitions(ctx context.Context, groupId string, processId string) ListDiskPartitionsApiRequest
+	/*
+	ListDiskPartitions Return Available Disks for One MongoDB Process
 
-	// ListDiskPartitionsExecute executes the request
-	//  @return PaginatedDiskPartition
-	ListDiskPartitionsExecute(r ListDiskPartitionsApiRequest) (*PaginatedDiskPartition, *http.Response, error)
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param ListDiskPartitionsApiParams - Parameters for the request
+	@return ListDiskPartitionsApiRequest
+	*/
+	ListDiskPartitionsWithParams(ctx context.Context, args *ListDiskPartitionsApiParams) ListDiskPartitionsApiRequest
+
+	// Interface only available internally
+	listDiskPartitionsExecute(r ListDiskPartitionsApiRequest) (*PaginatedDiskPartition, *http.Response, error)
 
 	/*
 	ListIndexMetrics Return All Atlas Search Index Metrics for One Namespace
@@ -251,10 +347,18 @@ To use this resource, the requesting API Key must have the Project Read Only rol
 	@return ListIndexMetricsApiRequest
 	*/
 	ListIndexMetrics(ctx context.Context, processId string, databaseName string, collectionName string, groupId string) ListIndexMetricsApiRequest
+	/*
+	ListIndexMetrics Return All Atlas Search Index Metrics for One Namespace
 
-	// ListIndexMetricsExecute executes the request
-	//  @return MeasurementsIndexes
-	ListIndexMetricsExecute(r ListIndexMetricsApiRequest) (*MeasurementsIndexes, *http.Response, error)
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param ListIndexMetricsApiParams - Parameters for the request
+	@return ListIndexMetricsApiRequest
+	*/
+	ListIndexMetricsWithParams(ctx context.Context, args *ListIndexMetricsApiParams) ListIndexMetricsApiRequest
+
+	// Interface only available internally
+	listIndexMetricsExecute(r ListIndexMetricsApiRequest) (*MeasurementsIndexes, *http.Response, error)
 
 	/*
 	ListMetricTypes Return All Atlas Search Metric Types for One Process
@@ -267,10 +371,18 @@ To use this resource, the requesting API Key must have the Project Read Only rol
 	@return ListMetricTypesApiRequest
 	*/
 	ListMetricTypes(ctx context.Context, processId string, groupId string) ListMetricTypesApiRequest
+	/*
+	ListMetricTypes Return All Atlas Search Metric Types for One Process
 
-	// ListMetricTypesExecute executes the request
-	//  @return FTSMetrics
-	ListMetricTypesExecute(r ListMetricTypesApiRequest) (*FTSMetrics, *http.Response, error)
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param ListMetricTypesApiParams - Parameters for the request
+	@return ListMetricTypesApiRequest
+	*/
+	ListMetricTypesWithParams(ctx context.Context, args *ListMetricTypesApiParams) ListMetricTypesApiRequest
+
+	// Interface only available internally
+	listMetricTypesExecute(r ListMetricTypesApiRequest) (*FTSMetrics, *http.Response, error)
 }
 
 // MonitoringAndLogsApiService MonitoringAndLogsApi service
@@ -288,8 +400,17 @@ type GetAtlasProcessApiParams struct {
 		ProcessId string
 }
 
+func (a *MonitoringAndLogsApiService) GetAtlasProcessWithParams(ctx context.Context, args *GetAtlasProcessApiParams) GetAtlasProcessApiRequest {
+	return GetAtlasProcessApiRequest{
+		ApiService: a,
+		ctx: ctx,
+		groupId: args.GroupId,
+		processId: args.ProcessId,
+	}
+}
+
 func (r GetAtlasProcessApiRequest) Execute() (*HostViewAtlas, *http.Response, error) {
-	return r.ApiService.GetAtlasProcessExecute(r)
+	return r.ApiService.getAtlasProcessExecute(r)
 }
 
 /*
@@ -313,7 +434,7 @@ func (a *MonitoringAndLogsApiService) GetAtlasProcess(ctx context.Context, group
 
 // Execute executes the request
 //  @return HostViewAtlas
-func (a *MonitoringAndLogsApiService) GetAtlasProcessExecute(r GetAtlasProcessApiRequest) (*HostViewAtlas, *http.Response, error) {
+func (a *MonitoringAndLogsApiService) getAtlasProcessExecute(r GetAtlasProcessApiRequest) (*HostViewAtlas, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -416,8 +537,18 @@ type GetDatabaseApiParams struct {
 		ProcessId string
 }
 
+func (a *MonitoringAndLogsApiService) GetDatabaseWithParams(ctx context.Context, args *GetDatabaseApiParams) GetDatabaseApiRequest {
+	return GetDatabaseApiRequest{
+		ApiService: a,
+		ctx: ctx,
+		groupId: args.GroupId,
+		databaseName: args.DatabaseName,
+		processId: args.ProcessId,
+	}
+}
+
 func (r GetDatabaseApiRequest) Execute() (*Database, *http.Response, error) {
-	return r.ApiService.GetDatabaseExecute(r)
+	return r.ApiService.getDatabaseExecute(r)
 }
 
 /*
@@ -443,7 +574,7 @@ func (a *MonitoringAndLogsApiService) GetDatabase(ctx context.Context, groupId s
 
 // Execute executes the request
 //  @return Database
-func (a *MonitoringAndLogsApiService) GetDatabaseExecute(r GetDatabaseApiRequest) (*Database, *http.Response, error) {
+func (a *MonitoringAndLogsApiService) getDatabaseExecute(r GetDatabaseApiRequest) (*Database, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -549,6 +680,17 @@ type GetDatabaseMeasurementsApiParams struct {
 		M *[]string
 }
 
+func (a *MonitoringAndLogsApiService) GetDatabaseMeasurementsWithParams(ctx context.Context, args *GetDatabaseMeasurementsApiParams) GetDatabaseMeasurementsApiRequest {
+	return GetDatabaseMeasurementsApiRequest{
+		ApiService: a,
+		ctx: ctx,
+		groupId: args.GroupId,
+		databaseName: args.DatabaseName,
+		processId: args.ProcessId,
+		m: args.M,
+	}
+}
+
 // One or more types of measurement to request for this MongoDB process. If omitted, the resource returns all measurements. To specify multiple values for &#x60;m&#x60;, repeat the &#x60;m&#x60; parameter for each value. Specify measurements that apply to the specified host. MongoDB Cloud returns an error if you specified any invalid measurements.
 func (r GetDatabaseMeasurementsApiRequest) M(m []string) GetDatabaseMeasurementsApiRequest {
 	r.m = &m
@@ -556,7 +698,7 @@ func (r GetDatabaseMeasurementsApiRequest) M(m []string) GetDatabaseMeasurements
 }
 
 func (r GetDatabaseMeasurementsApiRequest) Execute() (*MeasurementsGeneralViewAtlas, *http.Response, error) {
-	return r.ApiService.GetDatabaseMeasurementsExecute(r)
+	return r.ApiService.getDatabaseMeasurementsExecute(r)
 }
 
 /*
@@ -582,7 +724,7 @@ func (a *MonitoringAndLogsApiService) GetDatabaseMeasurements(ctx context.Contex
 
 // Execute executes the request
 //  @return MeasurementsGeneralViewAtlas
-func (a *MonitoringAndLogsApiService) GetDatabaseMeasurementsExecute(r GetDatabaseMeasurementsApiRequest) (*MeasurementsGeneralViewAtlas, *http.Response, error) {
+func (a *MonitoringAndLogsApiService) getDatabaseMeasurementsExecute(r GetDatabaseMeasurementsApiRequest) (*MeasurementsGeneralViewAtlas, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -699,6 +841,17 @@ type GetDiskMeasurementsApiParams struct {
 		M *[]string
 }
 
+func (a *MonitoringAndLogsApiService) GetDiskMeasurementsWithParams(ctx context.Context, args *GetDiskMeasurementsApiParams) GetDiskMeasurementsApiRequest {
+	return GetDiskMeasurementsApiRequest{
+		ApiService: a,
+		ctx: ctx,
+		groupId: args.GroupId,
+		partitionName: args.PartitionName,
+		processId: args.ProcessId,
+		m: args.M,
+	}
+}
+
 // One or more types of measurement to request for this MongoDB process. If omitted, the resource returns all measurements. To specify multiple values for &#x60;m&#x60;, repeat the &#x60;m&#x60; parameter for each value. Specify measurements that apply to the specified host. MongoDB Cloud returns an error if you specified any invalid measurements.
 func (r GetDiskMeasurementsApiRequest) M(m []string) GetDiskMeasurementsApiRequest {
 	r.m = &m
@@ -706,7 +859,7 @@ func (r GetDiskMeasurementsApiRequest) M(m []string) GetDiskMeasurementsApiReque
 }
 
 func (r GetDiskMeasurementsApiRequest) Execute() (*MeasurementsGeneralViewAtlas, *http.Response, error) {
-	return r.ApiService.GetDiskMeasurementsExecute(r)
+	return r.ApiService.getDiskMeasurementsExecute(r)
 }
 
 /*
@@ -738,7 +891,7 @@ func (a *MonitoringAndLogsApiService) GetDiskMeasurements(ctx context.Context, g
 
 // Execute executes the request
 //  @return MeasurementsGeneralViewAtlas
-func (a *MonitoringAndLogsApiService) GetDiskMeasurementsExecute(r GetDiskMeasurementsApiRequest) (*MeasurementsGeneralViewAtlas, *http.Response, error) {
+func (a *MonitoringAndLogsApiService) getDiskMeasurementsExecute(r GetDiskMeasurementsApiRequest) (*MeasurementsGeneralViewAtlas, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -857,6 +1010,18 @@ type GetHostLogsApiParams struct {
 		StartDate *int64
 }
 
+func (a *MonitoringAndLogsApiService) GetHostLogsWithParams(ctx context.Context, args *GetHostLogsApiParams) GetHostLogsApiRequest {
+	return GetHostLogsApiRequest{
+		ApiService: a,
+		ctx: ctx,
+		groupId: args.GroupId,
+		hostName: args.HostName,
+		logName: args.LogName,
+		endDate: args.EndDate,
+		startDate: args.StartDate,
+	}
+}
+
 // Date and time when the period specifies the inclusive ending point for the range of log messages to retrieve. This parameter expresses its value in the number of seconds that have elapsed since the UNIX epoch.
 func (r GetHostLogsApiRequest) EndDate(endDate int64) GetHostLogsApiRequest {
 	r.endDate = &endDate
@@ -870,7 +1035,7 @@ func (r GetHostLogsApiRequest) StartDate(startDate int64) GetHostLogsApiRequest 
 }
 
 func (r GetHostLogsApiRequest) Execute() (*os.File, *http.Response, error) {
-	return r.ApiService.GetHostLogsExecute(r)
+	return r.ApiService.getHostLogsExecute(r)
 }
 
 /*
@@ -896,7 +1061,7 @@ func (a *MonitoringAndLogsApiService) GetHostLogs(ctx context.Context, groupId s
 
 // Execute executes the request
 //  @return *os.File
-func (a *MonitoringAndLogsApiService) GetHostLogsExecute(r GetHostLogsApiRequest) (*os.File, *http.Response, error) {
+func (a *MonitoringAndLogsApiService) getHostLogsExecute(r GetHostLogsApiRequest) (*os.File, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -1008,6 +1173,17 @@ type GetHostMeasurementsApiParams struct {
 		Period *time.Time
 }
 
+func (a *MonitoringAndLogsApiService) GetHostMeasurementsWithParams(ctx context.Context, args *GetHostMeasurementsApiParams) GetHostMeasurementsApiRequest {
+	return GetHostMeasurementsApiRequest{
+		ApiService: a,
+		ctx: ctx,
+		groupId: args.GroupId,
+		processId: args.ProcessId,
+		m: args.M,
+		period: args.Period,
+	}
+}
+
 // One or more types of measurement to request for this MongoDB process. If omitted, the resource returns all measurements. To specify multiple values for &#x60;m&#x60;, repeat the &#x60;m&#x60; parameter for each value. Specify measurements that apply to the specified host. MongoDB Cloud returns an error if you specified any invalid measurements.
 func (r GetHostMeasurementsApiRequest) M(m []string) GetHostMeasurementsApiRequest {
 	r.m = &m
@@ -1021,7 +1197,7 @@ func (r GetHostMeasurementsApiRequest) Period(period time.Time) GetHostMeasureme
 }
 
 func (r GetHostMeasurementsApiRequest) Execute() (*MeasurementsGeneralViewAtlas, *http.Response, error) {
-	return r.ApiService.GetHostMeasurementsExecute(r)
+	return r.ApiService.getHostMeasurementsExecute(r)
 }
 
 /*
@@ -1051,7 +1227,7 @@ func (a *MonitoringAndLogsApiService) GetHostMeasurements(ctx context.Context, g
 
 // Execute executes the request
 //  @return MeasurementsGeneralViewAtlas
-func (a *MonitoringAndLogsApiService) GetHostMeasurementsExecute(r GetHostMeasurementsApiRequest) (*MeasurementsGeneralViewAtlas, *http.Response, error) {
+func (a *MonitoringAndLogsApiService) getHostMeasurementsExecute(r GetHostMeasurementsApiRequest) (*MeasurementsGeneralViewAtlas, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -1182,6 +1358,23 @@ type GetIndexMetricsApiParams struct {
 		End *time.Time
 }
 
+func (a *MonitoringAndLogsApiService) GetIndexMetricsWithParams(ctx context.Context, args *GetIndexMetricsApiParams) GetIndexMetricsApiRequest {
+	return GetIndexMetricsApiRequest{
+		ApiService: a,
+		ctx: ctx,
+		processId: args.ProcessId,
+		indexName: args.IndexName,
+		databaseName: args.DatabaseName,
+		collectionName: args.CollectionName,
+		groupId: args.GroupId,
+		granularity: args.Granularity,
+		metrics: args.Metrics,
+		period: args.Period,
+		start: args.Start,
+		end: args.End,
+	}
+}
+
 // Duration that specifies the interval at which Atlas reports the metrics. This parameter expresses its value in the ISO 8601 duration format in UTC.
 func (r GetIndexMetricsApiRequest) Granularity(granularity string) GetIndexMetricsApiRequest {
 	r.granularity = &granularity
@@ -1213,7 +1406,7 @@ func (r GetIndexMetricsApiRequest) End(end time.Time) GetIndexMetricsApiRequest 
 }
 
 func (r GetIndexMetricsApiRequest) Execute() (*MeasurementsIndexes, *http.Response, error) {
-	return r.ApiService.GetIndexMetricsExecute(r)
+	return r.ApiService.getIndexMetricsExecute(r)
 }
 
 /*
@@ -1243,7 +1436,7 @@ func (a *MonitoringAndLogsApiService) GetIndexMetrics(ctx context.Context, proce
 
 // Execute executes the request
 //  @return MeasurementsIndexes
-func (a *MonitoringAndLogsApiService) GetIndexMetricsExecute(r GetIndexMetricsApiRequest) (*MeasurementsIndexes, *http.Response, error) {
+func (a *MonitoringAndLogsApiService) getIndexMetricsExecute(r GetIndexMetricsApiRequest) (*MeasurementsIndexes, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -1387,6 +1580,20 @@ type GetMeasurementsApiParams struct {
 		End *time.Time
 }
 
+func (a *MonitoringAndLogsApiService) GetMeasurementsWithParams(ctx context.Context, args *GetMeasurementsApiParams) GetMeasurementsApiRequest {
+	return GetMeasurementsApiRequest{
+		ApiService: a,
+		ctx: ctx,
+		processId: args.ProcessId,
+		groupId: args.GroupId,
+		granularity: args.Granularity,
+		metrics: args.Metrics,
+		period: args.Period,
+		start: args.Start,
+		end: args.End,
+	}
+}
+
 // Duration that specifies the interval at which Atlas reports the metrics. This parameter expresses its value in the ISO 8601 duration format in UTC.
 func (r GetMeasurementsApiRequest) Granularity(granularity string) GetMeasurementsApiRequest {
 	r.granularity = &granularity
@@ -1418,7 +1625,7 @@ func (r GetMeasurementsApiRequest) End(end time.Time) GetMeasurementsApiRequest 
 }
 
 func (r GetMeasurementsApiRequest) Execute() (*MeasurementsNonIndex, *http.Response, error) {
-	return r.ApiService.GetMeasurementsExecute(r)
+	return r.ApiService.getMeasurementsExecute(r)
 }
 
 /*
@@ -1442,7 +1649,7 @@ func (a *MonitoringAndLogsApiService) GetMeasurements(ctx context.Context, proce
 
 // Execute executes the request
 //  @return MeasurementsNonIndex
-func (a *MonitoringAndLogsApiService) GetMeasurementsExecute(r GetMeasurementsApiRequest) (*MeasurementsNonIndex, *http.Response, error) {
+func (a *MonitoringAndLogsApiService) getMeasurementsExecute(r GetMeasurementsApiRequest) (*MeasurementsNonIndex, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -1577,6 +1784,17 @@ type ListAtlasProcessesApiParams struct {
 		PageNum *int32
 }
 
+func (a *MonitoringAndLogsApiService) ListAtlasProcessesWithParams(ctx context.Context, args *ListAtlasProcessesApiParams) ListAtlasProcessesApiRequest {
+	return ListAtlasProcessesApiRequest{
+		ApiService: a,
+		ctx: ctx,
+		groupId: args.GroupId,
+		includeCount: args.IncludeCount,
+		itemsPerPage: args.ItemsPerPage,
+		pageNum: args.PageNum,
+	}
+}
+
 // Flag that indicates whether the response returns the total number of items (**totalCount**) in the response.
 func (r ListAtlasProcessesApiRequest) IncludeCount(includeCount bool) ListAtlasProcessesApiRequest {
 	r.includeCount = &includeCount
@@ -1596,7 +1814,7 @@ func (r ListAtlasProcessesApiRequest) PageNum(pageNum int32) ListAtlasProcessesA
 }
 
 func (r ListAtlasProcessesApiRequest) Execute() (*PaginatedHostViewAtlas, *http.Response, error) {
-	return r.ApiService.ListAtlasProcessesExecute(r)
+	return r.ApiService.listAtlasProcessesExecute(r)
 }
 
 /*
@@ -1618,7 +1836,7 @@ func (a *MonitoringAndLogsApiService) ListAtlasProcesses(ctx context.Context, gr
 
 // Execute executes the request
 //  @return PaginatedHostViewAtlas
-func (a *MonitoringAndLogsApiService) ListAtlasProcessesExecute(r ListAtlasProcessesApiRequest) (*PaginatedHostViewAtlas, *http.Response, error) {
+func (a *MonitoringAndLogsApiService) listAtlasProcessesExecute(r ListAtlasProcessesApiRequest) (*PaginatedHostViewAtlas, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -1745,6 +1963,18 @@ type ListDatabasesApiParams struct {
 		PageNum *int32
 }
 
+func (a *MonitoringAndLogsApiService) ListDatabasesWithParams(ctx context.Context, args *ListDatabasesApiParams) ListDatabasesApiRequest {
+	return ListDatabasesApiRequest{
+		ApiService: a,
+		ctx: ctx,
+		groupId: args.GroupId,
+		processId: args.ProcessId,
+		includeCount: args.IncludeCount,
+		itemsPerPage: args.ItemsPerPage,
+		pageNum: args.PageNum,
+	}
+}
+
 // Flag that indicates whether the response returns the total number of items (**totalCount**) in the response.
 func (r ListDatabasesApiRequest) IncludeCount(includeCount bool) ListDatabasesApiRequest {
 	r.includeCount = &includeCount
@@ -1764,7 +1994,7 @@ func (r ListDatabasesApiRequest) PageNum(pageNum int32) ListDatabasesApiRequest 
 }
 
 func (r ListDatabasesApiRequest) Execute() (*PaginatedDatabase, *http.Response, error) {
-	return r.ApiService.ListDatabasesExecute(r)
+	return r.ApiService.listDatabasesExecute(r)
 }
 
 /*
@@ -1788,7 +2018,7 @@ func (a *MonitoringAndLogsApiService) ListDatabases(ctx context.Context, groupId
 
 // Execute executes the request
 //  @return PaginatedDatabase
-func (a *MonitoringAndLogsApiService) ListDatabasesExecute(r ListDatabasesApiRequest) (*PaginatedDatabase, *http.Response, error) {
+func (a *MonitoringAndLogsApiService) listDatabasesExecute(r ListDatabasesApiRequest) (*PaginatedDatabase, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -1912,8 +2142,18 @@ type ListDiskMeasurementsApiParams struct {
 		ProcessId string
 }
 
+func (a *MonitoringAndLogsApiService) ListDiskMeasurementsWithParams(ctx context.Context, args *ListDiskMeasurementsApiParams) ListDiskMeasurementsApiRequest {
+	return ListDiskMeasurementsApiRequest{
+		ApiService: a,
+		ctx: ctx,
+		partitionName: args.PartitionName,
+		groupId: args.GroupId,
+		processId: args.ProcessId,
+	}
+}
+
 func (r ListDiskMeasurementsApiRequest) Execute() (*DiskPartition, *http.Response, error) {
-	return r.ApiService.ListDiskMeasurementsExecute(r)
+	return r.ApiService.listDiskMeasurementsExecute(r)
 }
 
 /*
@@ -1945,7 +2185,7 @@ func (a *MonitoringAndLogsApiService) ListDiskMeasurements(ctx context.Context, 
 
 // Execute executes the request
 //  @return DiskPartition
-func (a *MonitoringAndLogsApiService) ListDiskMeasurementsExecute(r ListDiskMeasurementsApiRequest) (*DiskPartition, *http.Response, error) {
+func (a *MonitoringAndLogsApiService) listDiskMeasurementsExecute(r ListDiskMeasurementsApiRequest) (*DiskPartition, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -2053,6 +2293,18 @@ type ListDiskPartitionsApiParams struct {
 		PageNum *int32
 }
 
+func (a *MonitoringAndLogsApiService) ListDiskPartitionsWithParams(ctx context.Context, args *ListDiskPartitionsApiParams) ListDiskPartitionsApiRequest {
+	return ListDiskPartitionsApiRequest{
+		ApiService: a,
+		ctx: ctx,
+		groupId: args.GroupId,
+		processId: args.ProcessId,
+		includeCount: args.IncludeCount,
+		itemsPerPage: args.ItemsPerPage,
+		pageNum: args.PageNum,
+	}
+}
+
 // Flag that indicates whether the response returns the total number of items (**totalCount**) in the response.
 func (r ListDiskPartitionsApiRequest) IncludeCount(includeCount bool) ListDiskPartitionsApiRequest {
 	r.includeCount = &includeCount
@@ -2072,7 +2324,7 @@ func (r ListDiskPartitionsApiRequest) PageNum(pageNum int32) ListDiskPartitionsA
 }
 
 func (r ListDiskPartitionsApiRequest) Execute() (*PaginatedDiskPartition, *http.Response, error) {
-	return r.ApiService.ListDiskPartitionsExecute(r)
+	return r.ApiService.listDiskPartitionsExecute(r)
 }
 
 /*
@@ -2096,7 +2348,7 @@ func (a *MonitoringAndLogsApiService) ListDiskPartitions(ctx context.Context, gr
 
 // Execute executes the request
 //  @return PaginatedDiskPartition
-func (a *MonitoringAndLogsApiService) ListDiskPartitionsExecute(r ListDiskPartitionsApiRequest) (*PaginatedDiskPartition, *http.Response, error) {
+func (a *MonitoringAndLogsApiService) listDiskPartitionsExecute(r ListDiskPartitionsApiRequest) (*PaginatedDiskPartition, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -2232,6 +2484,22 @@ type ListIndexMetricsApiParams struct {
 		End *time.Time
 }
 
+func (a *MonitoringAndLogsApiService) ListIndexMetricsWithParams(ctx context.Context, args *ListIndexMetricsApiParams) ListIndexMetricsApiRequest {
+	return ListIndexMetricsApiRequest{
+		ApiService: a,
+		ctx: ctx,
+		processId: args.ProcessId,
+		databaseName: args.DatabaseName,
+		collectionName: args.CollectionName,
+		groupId: args.GroupId,
+		granularity: args.Granularity,
+		metrics: args.Metrics,
+		period: args.Period,
+		start: args.Start,
+		end: args.End,
+	}
+}
+
 // Duration that specifies the interval at which Atlas reports the metrics. This parameter expresses its value in the ISO 8601 duration format in UTC.
 func (r ListIndexMetricsApiRequest) Granularity(granularity string) ListIndexMetricsApiRequest {
 	r.granularity = &granularity
@@ -2263,7 +2531,7 @@ func (r ListIndexMetricsApiRequest) End(end time.Time) ListIndexMetricsApiReques
 }
 
 func (r ListIndexMetricsApiRequest) Execute() (*MeasurementsIndexes, *http.Response, error) {
-	return r.ApiService.ListIndexMetricsExecute(r)
+	return r.ApiService.listIndexMetricsExecute(r)
 }
 
 /*
@@ -2291,7 +2559,7 @@ func (a *MonitoringAndLogsApiService) ListIndexMetrics(ctx context.Context, proc
 
 // Execute executes the request
 //  @return MeasurementsIndexes
-func (a *MonitoringAndLogsApiService) ListIndexMetricsExecute(r ListIndexMetricsApiRequest) (*MeasurementsIndexes, *http.Response, error) {
+func (a *MonitoringAndLogsApiService) listIndexMetricsExecute(r ListIndexMetricsApiRequest) (*MeasurementsIndexes, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -2424,8 +2692,17 @@ type ListMetricTypesApiParams struct {
 		GroupId string
 }
 
+func (a *MonitoringAndLogsApiService) ListMetricTypesWithParams(ctx context.Context, args *ListMetricTypesApiParams) ListMetricTypesApiRequest {
+	return ListMetricTypesApiRequest{
+		ApiService: a,
+		ctx: ctx,
+		processId: args.ProcessId,
+		groupId: args.GroupId,
+	}
+}
+
 func (r ListMetricTypesApiRequest) Execute() (*FTSMetrics, *http.Response, error) {
-	return r.ApiService.ListMetricTypesExecute(r)
+	return r.ApiService.listMetricTypesExecute(r)
 }
 
 /*
@@ -2449,7 +2726,7 @@ func (a *MonitoringAndLogsApiService) ListMetricTypes(ctx context.Context, proce
 
 // Execute executes the request
 //  @return FTSMetrics
-func (a *MonitoringAndLogsApiService) ListMetricTypesExecute(r ListMetricTypesApiRequest) (*FTSMetrics, *http.Response, error) {
+func (a *MonitoringAndLogsApiService) listMetricTypesExecute(r ListMetricTypesApiRequest) (*FTSMetrics, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}

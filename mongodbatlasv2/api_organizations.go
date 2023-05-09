@@ -27,10 +27,18 @@ type OrganizationsApi interface {
 	@return CreateOrganizationApiRequest
 	*/
 	CreateOrganization(ctx context.Context) CreateOrganizationApiRequest
+	/*
+	CreateOrganization Create One Organization
 
-	// CreateOrganizationExecute executes the request
-	//  @return CreateOrganizationResponse
-	CreateOrganizationExecute(r CreateOrganizationApiRequest) (*CreateOrganizationResponse, *http.Response, error)
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param CreateOrganizationApiParams - Parameters for the request
+	@return CreateOrganizationApiRequest
+	*/
+	CreateOrganizationWithParams(ctx context.Context, args *CreateOrganizationApiParams) CreateOrganizationApiRequest
+
+	// Interface only available internally
+	createOrganizationExecute(r CreateOrganizationApiRequest) (*CreateOrganizationResponse, *http.Response, error)
 
 	/*
 	CreateOrganizationInvitation Invite One MongoDB Cloud User to Join One Atlas Organization
@@ -42,10 +50,18 @@ type OrganizationsApi interface {
 	@return CreateOrganizationInvitationApiRequest
 	*/
 	CreateOrganizationInvitation(ctx context.Context, orgId string) CreateOrganizationInvitationApiRequest
+	/*
+	CreateOrganizationInvitation Invite One MongoDB Cloud User to Join One Atlas Organization
 
-	// CreateOrganizationInvitationExecute executes the request
-	//  @return OrganizationInvitation
-	CreateOrganizationInvitationExecute(r CreateOrganizationInvitationApiRequest) (*OrganizationInvitation, *http.Response, error)
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param CreateOrganizationInvitationApiParams - Parameters for the request
+	@return CreateOrganizationInvitationApiRequest
+	*/
+	CreateOrganizationInvitationWithParams(ctx context.Context, args *CreateOrganizationInvitationApiParams) CreateOrganizationInvitationApiRequest
+
+	// Interface only available internally
+	createOrganizationInvitationExecute(r CreateOrganizationInvitationApiRequest) (*OrganizationInvitation, *http.Response, error)
 
 	/*
 	DeleteOrganization Remove One Organization
@@ -61,9 +77,18 @@ type OrganizationsApi interface {
 	@return DeleteOrganizationApiRequest
 	*/
 	DeleteOrganization(ctx context.Context, orgId string) DeleteOrganizationApiRequest
+	/*
+	DeleteOrganization Remove One Organization
 
-	// DeleteOrganizationExecute executes the request
-	DeleteOrganizationExecute(r DeleteOrganizationApiRequest) (*http.Response, error)
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param DeleteOrganizationApiParams - Parameters for the request
+	@return DeleteOrganizationApiRequest
+	*/
+	DeleteOrganizationWithParams(ctx context.Context, args *DeleteOrganizationApiParams) DeleteOrganizationApiRequest
+
+	// Interface only available internally
+	deleteOrganizationExecute(r DeleteOrganizationApiRequest) (*http.Response, error)
 
 	/*
 	DeleteOrganizationInvitation Cancel One Organization Invitation
@@ -76,9 +101,18 @@ type OrganizationsApi interface {
 	@return DeleteOrganizationInvitationApiRequest
 	*/
 	DeleteOrganizationInvitation(ctx context.Context, orgId string, invitationId string) DeleteOrganizationInvitationApiRequest
+	/*
+	DeleteOrganizationInvitation Cancel One Organization Invitation
 
-	// DeleteOrganizationInvitationExecute executes the request
-	DeleteOrganizationInvitationExecute(r DeleteOrganizationInvitationApiRequest) (*http.Response, error)
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param DeleteOrganizationInvitationApiParams - Parameters for the request
+	@return DeleteOrganizationInvitationApiRequest
+	*/
+	DeleteOrganizationInvitationWithParams(ctx context.Context, args *DeleteOrganizationInvitationApiParams) DeleteOrganizationInvitationApiRequest
+
+	// Interface only available internally
+	deleteOrganizationInvitationExecute(r DeleteOrganizationInvitationApiRequest) (*http.Response, error)
 
 	/*
 	GetOrganization Return One Organization
@@ -90,10 +124,18 @@ type OrganizationsApi interface {
 	@return GetOrganizationApiRequest
 	*/
 	GetOrganization(ctx context.Context, orgId string) GetOrganizationApiRequest
+	/*
+	GetOrganization Return One Organization
 
-	// GetOrganizationExecute executes the request
-	//  @return Organization
-	GetOrganizationExecute(r GetOrganizationApiRequest) (*Organization, *http.Response, error)
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param GetOrganizationApiParams - Parameters for the request
+	@return GetOrganizationApiRequest
+	*/
+	GetOrganizationWithParams(ctx context.Context, args *GetOrganizationApiParams) GetOrganizationApiRequest
+
+	// Interface only available internally
+	getOrganizationExecute(r GetOrganizationApiRequest) (*Organization, *http.Response, error)
 
 	/*
 	GetOrganizationInvitation Return One Organization Invitation
@@ -106,10 +148,18 @@ type OrganizationsApi interface {
 	@return GetOrganizationInvitationApiRequest
 	*/
 	GetOrganizationInvitation(ctx context.Context, orgId string, invitationId string) GetOrganizationInvitationApiRequest
+	/*
+	GetOrganizationInvitation Return One Organization Invitation
 
-	// GetOrganizationInvitationExecute executes the request
-	//  @return OrganizationInvitation
-	GetOrganizationInvitationExecute(r GetOrganizationInvitationApiRequest) (*OrganizationInvitation, *http.Response, error)
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param GetOrganizationInvitationApiParams - Parameters for the request
+	@return GetOrganizationInvitationApiRequest
+	*/
+	GetOrganizationInvitationWithParams(ctx context.Context, args *GetOrganizationInvitationApiParams) GetOrganizationInvitationApiRequest
+
+	// Interface only available internally
+	getOrganizationInvitationExecute(r GetOrganizationInvitationApiRequest) (*OrganizationInvitation, *http.Response, error)
 
 	/*
 	GetOrganizationSettings Return Settings for One Organization
@@ -121,10 +171,18 @@ type OrganizationsApi interface {
 	@return GetOrganizationSettingsApiRequest
 	*/
 	GetOrganizationSettings(ctx context.Context, orgId string) GetOrganizationSettingsApiRequest
+	/*
+	GetOrganizationSettings Return Settings for One Organization
 
-	// GetOrganizationSettingsExecute executes the request
-	//  @return OrganizationSettings
-	GetOrganizationSettingsExecute(r GetOrganizationSettingsApiRequest) (*OrganizationSettings, *http.Response, error)
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param GetOrganizationSettingsApiParams - Parameters for the request
+	@return GetOrganizationSettingsApiRequest
+	*/
+	GetOrganizationSettingsWithParams(ctx context.Context, args *GetOrganizationSettingsApiParams) GetOrganizationSettingsApiRequest
+
+	// Interface only available internally
+	getOrganizationSettingsExecute(r GetOrganizationSettingsApiRequest) (*OrganizationSettings, *http.Response, error)
 
 	/*
 	ListOrganizationInvitations Return All Organization Invitations
@@ -136,10 +194,18 @@ type OrganizationsApi interface {
 	@return ListOrganizationInvitationsApiRequest
 	*/
 	ListOrganizationInvitations(ctx context.Context, orgId string) ListOrganizationInvitationsApiRequest
+	/*
+	ListOrganizationInvitations Return All Organization Invitations
 
-	// ListOrganizationInvitationsExecute executes the request
-	//  @return []OrganizationInvitation
-	ListOrganizationInvitationsExecute(r ListOrganizationInvitationsApiRequest) ([]OrganizationInvitation, *http.Response, error)
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param ListOrganizationInvitationsApiParams - Parameters for the request
+	@return ListOrganizationInvitationsApiRequest
+	*/
+	ListOrganizationInvitationsWithParams(ctx context.Context, args *ListOrganizationInvitationsApiParams) ListOrganizationInvitationsApiRequest
+
+	// Interface only available internally
+	listOrganizationInvitationsExecute(r ListOrganizationInvitationsApiRequest) ([]OrganizationInvitation, *http.Response, error)
 
 	/*
 	ListOrganizationProjects Return One or More Projects in One Organization
@@ -158,10 +224,18 @@ To use this resource, the requesting API Key must have the Organization Member r
 	@return ListOrganizationProjectsApiRequest
 	*/
 	ListOrganizationProjects(ctx context.Context, orgId string) ListOrganizationProjectsApiRequest
+	/*
+	ListOrganizationProjects Return One or More Projects in One Organization
 
-	// ListOrganizationProjectsExecute executes the request
-	//  @return PaginatedAtlasGroup
-	ListOrganizationProjectsExecute(r ListOrganizationProjectsApiRequest) (*PaginatedAtlasGroup, *http.Response, error)
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param ListOrganizationProjectsApiParams - Parameters for the request
+	@return ListOrganizationProjectsApiRequest
+	*/
+	ListOrganizationProjectsWithParams(ctx context.Context, args *ListOrganizationProjectsApiParams) ListOrganizationProjectsApiRequest
+
+	// Interface only available internally
+	listOrganizationProjectsExecute(r ListOrganizationProjectsApiRequest) (*PaginatedAtlasGroup, *http.Response, error)
 
 	/*
 	ListOrganizationUsers Return All MongoDB Cloud Users in One Organization
@@ -173,10 +247,18 @@ To use this resource, the requesting API Key must have the Organization Member r
 	@return ListOrganizationUsersApiRequest
 	*/
 	ListOrganizationUsers(ctx context.Context, orgId string) ListOrganizationUsersApiRequest
+	/*
+	ListOrganizationUsers Return All MongoDB Cloud Users in One Organization
 
-	// ListOrganizationUsersExecute executes the request
-	//  @return PaginatedAppUser
-	ListOrganizationUsersExecute(r ListOrganizationUsersApiRequest) (*PaginatedAppUser, *http.Response, error)
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param ListOrganizationUsersApiParams - Parameters for the request
+	@return ListOrganizationUsersApiRequest
+	*/
+	ListOrganizationUsersWithParams(ctx context.Context, args *ListOrganizationUsersApiParams) ListOrganizationUsersApiRequest
+
+	// Interface only available internally
+	listOrganizationUsersExecute(r ListOrganizationUsersApiRequest) (*PaginatedAppUser, *http.Response, error)
 
 	/*
 	ListOrganizations Return All Organizations
@@ -187,10 +269,18 @@ To use this resource, the requesting API Key must have the Organization Member r
 	@return ListOrganizationsApiRequest
 	*/
 	ListOrganizations(ctx context.Context) ListOrganizationsApiRequest
+	/*
+	ListOrganizations Return All Organizations
 
-	// ListOrganizationsExecute executes the request
-	//  @return PaginatedOrganization
-	ListOrganizationsExecute(r ListOrganizationsApiRequest) (*PaginatedOrganization, *http.Response, error)
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param ListOrganizationsApiParams - Parameters for the request
+	@return ListOrganizationsApiRequest
+	*/
+	ListOrganizationsWithParams(ctx context.Context, args *ListOrganizationsApiParams) ListOrganizationsApiRequest
+
+	// Interface only available internally
+	listOrganizationsExecute(r ListOrganizationsApiRequest) (*PaginatedOrganization, *http.Response, error)
 
 	/*
 	RenameOrganization Rename One Organization
@@ -202,10 +292,18 @@ To use this resource, the requesting API Key must have the Organization Member r
 	@return RenameOrganizationApiRequest
 	*/
 	RenameOrganization(ctx context.Context, orgId string) RenameOrganizationApiRequest
+	/*
+	RenameOrganization Rename One Organization
 
-	// RenameOrganizationExecute executes the request
-	//  @return Organization
-	RenameOrganizationExecute(r RenameOrganizationApiRequest) (*Organization, *http.Response, error)
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param RenameOrganizationApiParams - Parameters for the request
+	@return RenameOrganizationApiRequest
+	*/
+	RenameOrganizationWithParams(ctx context.Context, args *RenameOrganizationApiParams) RenameOrganizationApiRequest
+
+	// Interface only available internally
+	renameOrganizationExecute(r RenameOrganizationApiRequest) (*Organization, *http.Response, error)
 
 	/*
 	UpdateOrganizationInvitation Update One Organization Invitation
@@ -217,10 +315,18 @@ To use this resource, the requesting API Key must have the Organization Member r
 	@return UpdateOrganizationInvitationApiRequest
 	*/
 	UpdateOrganizationInvitation(ctx context.Context, orgId string) UpdateOrganizationInvitationApiRequest
+	/*
+	UpdateOrganizationInvitation Update One Organization Invitation
 
-	// UpdateOrganizationInvitationExecute executes the request
-	//  @return OrganizationInvitation
-	UpdateOrganizationInvitationExecute(r UpdateOrganizationInvitationApiRequest) (*OrganizationInvitation, *http.Response, error)
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param UpdateOrganizationInvitationApiParams - Parameters for the request
+	@return UpdateOrganizationInvitationApiRequest
+	*/
+	UpdateOrganizationInvitationWithParams(ctx context.Context, args *UpdateOrganizationInvitationApiParams) UpdateOrganizationInvitationApiRequest
+
+	// Interface only available internally
+	updateOrganizationInvitationExecute(r UpdateOrganizationInvitationApiRequest) (*OrganizationInvitation, *http.Response, error)
 
 	/*
 	UpdateOrganizationInvitationById Update One Organization Invitation by Invitation ID
@@ -233,10 +339,18 @@ To use this resource, the requesting API Key must have the Organization Member r
 	@return UpdateOrganizationInvitationByIdApiRequest
 	*/
 	UpdateOrganizationInvitationById(ctx context.Context, orgId string, invitationId string) UpdateOrganizationInvitationByIdApiRequest
+	/*
+	UpdateOrganizationInvitationById Update One Organization Invitation by Invitation ID
 
-	// UpdateOrganizationInvitationByIdExecute executes the request
-	//  @return OrganizationInvitation
-	UpdateOrganizationInvitationByIdExecute(r UpdateOrganizationInvitationByIdApiRequest) (*OrganizationInvitation, *http.Response, error)
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param UpdateOrganizationInvitationByIdApiParams - Parameters for the request
+	@return UpdateOrganizationInvitationByIdApiRequest
+	*/
+	UpdateOrganizationInvitationByIdWithParams(ctx context.Context, args *UpdateOrganizationInvitationByIdApiParams) UpdateOrganizationInvitationByIdApiRequest
+
+	// Interface only available internally
+	updateOrganizationInvitationByIdExecute(r UpdateOrganizationInvitationByIdApiRequest) (*OrganizationInvitation, *http.Response, error)
 
 	/*
 	UpdateOrganizationSettings Update Settings for One Organization
@@ -248,10 +362,18 @@ To use this resource, the requesting API Key must have the Organization Member r
 	@return UpdateOrganizationSettingsApiRequest
 	*/
 	UpdateOrganizationSettings(ctx context.Context, orgId string) UpdateOrganizationSettingsApiRequest
+	/*
+	UpdateOrganizationSettings Update Settings for One Organization
 
-	// UpdateOrganizationSettingsExecute executes the request
-	//  @return OrganizationSettings
-	UpdateOrganizationSettingsExecute(r UpdateOrganizationSettingsApiRequest) (*OrganizationSettings, *http.Response, error)
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param UpdateOrganizationSettingsApiParams - Parameters for the request
+	@return UpdateOrganizationSettingsApiRequest
+	*/
+	UpdateOrganizationSettingsWithParams(ctx context.Context, args *UpdateOrganizationSettingsApiParams) UpdateOrganizationSettingsApiRequest
+
+	// Interface only available internally
+	updateOrganizationSettingsExecute(r UpdateOrganizationSettingsApiRequest) (*OrganizationSettings, *http.Response, error)
 }
 
 // OrganizationsApiService OrganizationsApi service
@@ -267,6 +389,14 @@ type CreateOrganizationApiParams struct {
 		CreateOrganizationRequest *CreateOrganizationRequest
 }
 
+func (a *OrganizationsApiService) CreateOrganizationWithParams(ctx context.Context, args *CreateOrganizationApiParams) CreateOrganizationApiRequest {
+	return CreateOrganizationApiRequest{
+		ApiService: a,
+		ctx: ctx,
+		createOrganizationRequest: args.CreateOrganizationRequest,
+	}
+}
+
 // Organization that you want to create.
 func (r CreateOrganizationApiRequest) CreateOrganizationRequest(createOrganizationRequest CreateOrganizationRequest) CreateOrganizationApiRequest {
 	r.createOrganizationRequest = &createOrganizationRequest
@@ -274,7 +404,7 @@ func (r CreateOrganizationApiRequest) CreateOrganizationRequest(createOrganizati
 }
 
 func (r CreateOrganizationApiRequest) Execute() (*CreateOrganizationResponse, *http.Response, error) {
-	return r.ApiService.CreateOrganizationExecute(r)
+	return r.ApiService.createOrganizationExecute(r)
 }
 
 /*
@@ -294,7 +424,7 @@ func (a *OrganizationsApiService) CreateOrganization(ctx context.Context) Create
 
 // Execute executes the request
 //  @return CreateOrganizationResponse
-func (a *OrganizationsApiService) CreateOrganizationExecute(r CreateOrganizationApiRequest) (*CreateOrganizationResponse, *http.Response, error) {
+func (a *OrganizationsApiService) createOrganizationExecute(r CreateOrganizationApiRequest) (*CreateOrganizationResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -392,6 +522,15 @@ type CreateOrganizationInvitationApiParams struct {
 		OrganizationInvitationRequest *OrganizationInvitationRequest
 }
 
+func (a *OrganizationsApiService) CreateOrganizationInvitationWithParams(ctx context.Context, args *CreateOrganizationInvitationApiParams) CreateOrganizationInvitationApiRequest {
+	return CreateOrganizationInvitationApiRequest{
+		ApiService: a,
+		ctx: ctx,
+		orgId: args.OrgId,
+		organizationInvitationRequest: args.OrganizationInvitationRequest,
+	}
+}
+
 // Invites one MongoDB Cloud user to join the specified organization.
 func (r CreateOrganizationInvitationApiRequest) OrganizationInvitationRequest(organizationInvitationRequest OrganizationInvitationRequest) CreateOrganizationInvitationApiRequest {
 	r.organizationInvitationRequest = &organizationInvitationRequest
@@ -399,7 +538,7 @@ func (r CreateOrganizationInvitationApiRequest) OrganizationInvitationRequest(or
 }
 
 func (r CreateOrganizationInvitationApiRequest) Execute() (*OrganizationInvitation, *http.Response, error) {
-	return r.ApiService.CreateOrganizationInvitationExecute(r)
+	return r.ApiService.createOrganizationInvitationExecute(r)
 }
 
 /*
@@ -421,7 +560,7 @@ func (a *OrganizationsApiService) CreateOrganizationInvitation(ctx context.Conte
 
 // Execute executes the request
 //  @return OrganizationInvitation
-func (a *OrganizationsApiService) CreateOrganizationInvitationExecute(r CreateOrganizationInvitationApiRequest) (*OrganizationInvitation, *http.Response, error) {
+func (a *OrganizationsApiService) createOrganizationInvitationExecute(r CreateOrganizationInvitationApiRequest) (*OrganizationInvitation, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -524,8 +663,16 @@ type DeleteOrganizationApiParams struct {
 		OrgId string
 }
 
+func (a *OrganizationsApiService) DeleteOrganizationWithParams(ctx context.Context, args *DeleteOrganizationApiParams) DeleteOrganizationApiRequest {
+	return DeleteOrganizationApiRequest{
+		ApiService: a,
+		ctx: ctx,
+		orgId: args.OrgId,
+	}
+}
+
 func (r DeleteOrganizationApiRequest) Execute() (*http.Response, error) {
-	return r.ApiService.DeleteOrganizationExecute(r)
+	return r.ApiService.deleteOrganizationExecute(r)
 }
 
 /*
@@ -550,7 +697,7 @@ func (a *OrganizationsApiService) DeleteOrganization(ctx context.Context, orgId 
 }
 
 // Execute executes the request
-func (a *OrganizationsApiService) DeleteOrganizationExecute(r DeleteOrganizationApiRequest) (*http.Response, error) {
+func (a *OrganizationsApiService) deleteOrganizationExecute(r DeleteOrganizationApiRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
@@ -640,8 +787,17 @@ type DeleteOrganizationInvitationApiParams struct {
 		InvitationId string
 }
 
+func (a *OrganizationsApiService) DeleteOrganizationInvitationWithParams(ctx context.Context, args *DeleteOrganizationInvitationApiParams) DeleteOrganizationInvitationApiRequest {
+	return DeleteOrganizationInvitationApiRequest{
+		ApiService: a,
+		ctx: ctx,
+		orgId: args.OrgId,
+		invitationId: args.InvitationId,
+	}
+}
+
 func (r DeleteOrganizationInvitationApiRequest) Execute() (*http.Response, error) {
-	return r.ApiService.DeleteOrganizationInvitationExecute(r)
+	return r.ApiService.deleteOrganizationInvitationExecute(r)
 }
 
 /*
@@ -664,7 +820,7 @@ func (a *OrganizationsApiService) DeleteOrganizationInvitation(ctx context.Conte
 }
 
 // Execute executes the request
-func (a *OrganizationsApiService) DeleteOrganizationInvitationExecute(r DeleteOrganizationInvitationApiRequest) (*http.Response, error) {
+func (a *OrganizationsApiService) deleteOrganizationInvitationExecute(r DeleteOrganizationInvitationApiRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
@@ -753,8 +909,16 @@ type GetOrganizationApiParams struct {
 		OrgId string
 }
 
+func (a *OrganizationsApiService) GetOrganizationWithParams(ctx context.Context, args *GetOrganizationApiParams) GetOrganizationApiRequest {
+	return GetOrganizationApiRequest{
+		ApiService: a,
+		ctx: ctx,
+		orgId: args.OrgId,
+	}
+}
+
 func (r GetOrganizationApiRequest) Execute() (*Organization, *http.Response, error) {
-	return r.ApiService.GetOrganizationExecute(r)
+	return r.ApiService.getOrganizationExecute(r)
 }
 
 /*
@@ -776,7 +940,7 @@ func (a *OrganizationsApiService) GetOrganization(ctx context.Context, orgId str
 
 // Execute executes the request
 //  @return Organization
-func (a *OrganizationsApiService) GetOrganizationExecute(r GetOrganizationApiRequest) (*Organization, *http.Response, error) {
+func (a *OrganizationsApiService) getOrganizationExecute(r GetOrganizationApiRequest) (*Organization, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -876,8 +1040,17 @@ type GetOrganizationInvitationApiParams struct {
 		InvitationId string
 }
 
+func (a *OrganizationsApiService) GetOrganizationInvitationWithParams(ctx context.Context, args *GetOrganizationInvitationApiParams) GetOrganizationInvitationApiRequest {
+	return GetOrganizationInvitationApiRequest{
+		ApiService: a,
+		ctx: ctx,
+		orgId: args.OrgId,
+		invitationId: args.InvitationId,
+	}
+}
+
 func (r GetOrganizationInvitationApiRequest) Execute() (*OrganizationInvitation, *http.Response, error) {
-	return r.ApiService.GetOrganizationInvitationExecute(r)
+	return r.ApiService.getOrganizationInvitationExecute(r)
 }
 
 /*
@@ -901,7 +1074,7 @@ func (a *OrganizationsApiService) GetOrganizationInvitation(ctx context.Context,
 
 // Execute executes the request
 //  @return OrganizationInvitation
-func (a *OrganizationsApiService) GetOrganizationInvitationExecute(r GetOrganizationInvitationApiRequest) (*OrganizationInvitation, *http.Response, error) {
+func (a *OrganizationsApiService) getOrganizationInvitationExecute(r GetOrganizationInvitationApiRequest) (*OrganizationInvitation, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -1006,8 +1179,16 @@ type GetOrganizationSettingsApiParams struct {
 		OrgId string
 }
 
+func (a *OrganizationsApiService) GetOrganizationSettingsWithParams(ctx context.Context, args *GetOrganizationSettingsApiParams) GetOrganizationSettingsApiRequest {
+	return GetOrganizationSettingsApiRequest{
+		ApiService: a,
+		ctx: ctx,
+		orgId: args.OrgId,
+	}
+}
+
 func (r GetOrganizationSettingsApiRequest) Execute() (*OrganizationSettings, *http.Response, error) {
-	return r.ApiService.GetOrganizationSettingsExecute(r)
+	return r.ApiService.getOrganizationSettingsExecute(r)
 }
 
 /*
@@ -1029,7 +1210,7 @@ func (a *OrganizationsApiService) GetOrganizationSettings(ctx context.Context, o
 
 // Execute executes the request
 //  @return OrganizationSettings
-func (a *OrganizationsApiService) GetOrganizationSettingsExecute(r GetOrganizationSettingsApiRequest) (*OrganizationSettings, *http.Response, error) {
+func (a *OrganizationsApiService) getOrganizationSettingsExecute(r GetOrganizationSettingsApiRequest) (*OrganizationSettings, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -1129,6 +1310,15 @@ type ListOrganizationInvitationsApiParams struct {
 		Username *string
 }
 
+func (a *OrganizationsApiService) ListOrganizationInvitationsWithParams(ctx context.Context, args *ListOrganizationInvitationsApiParams) ListOrganizationInvitationsApiRequest {
+	return ListOrganizationInvitationsApiRequest{
+		ApiService: a,
+		ctx: ctx,
+		orgId: args.OrgId,
+		username: args.Username,
+	}
+}
+
 // Email address of the user account invited to this organization. If you exclude this parameter, this resource returns all pending invitations.
 func (r ListOrganizationInvitationsApiRequest) Username(username string) ListOrganizationInvitationsApiRequest {
 	r.username = &username
@@ -1136,7 +1326,7 @@ func (r ListOrganizationInvitationsApiRequest) Username(username string) ListOrg
 }
 
 func (r ListOrganizationInvitationsApiRequest) Execute() ([]OrganizationInvitation, *http.Response, error) {
-	return r.ApiService.ListOrganizationInvitationsExecute(r)
+	return r.ApiService.listOrganizationInvitationsExecute(r)
 }
 
 /*
@@ -1158,7 +1348,7 @@ func (a *OrganizationsApiService) ListOrganizationInvitations(ctx context.Contex
 
 // Execute executes the request
 //  @return []OrganizationInvitation
-func (a *OrganizationsApiService) ListOrganizationInvitationsExecute(r ListOrganizationInvitationsApiRequest) ([]OrganizationInvitation, *http.Response, error) {
+func (a *OrganizationsApiService) listOrganizationInvitationsExecute(r ListOrganizationInvitationsApiRequest) ([]OrganizationInvitation, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -1267,6 +1457,18 @@ type ListOrganizationProjectsApiParams struct {
 		Name *string
 }
 
+func (a *OrganizationsApiService) ListOrganizationProjectsWithParams(ctx context.Context, args *ListOrganizationProjectsApiParams) ListOrganizationProjectsApiRequest {
+	return ListOrganizationProjectsApiRequest{
+		ApiService: a,
+		ctx: ctx,
+		orgId: args.OrgId,
+		includeCount: args.IncludeCount,
+		itemsPerPage: args.ItemsPerPage,
+		pageNum: args.PageNum,
+		name: args.Name,
+	}
+}
+
 // Flag that indicates whether the response returns the total number of items (**totalCount**) in the response.
 func (r ListOrganizationProjectsApiRequest) IncludeCount(includeCount bool) ListOrganizationProjectsApiRequest {
 	r.includeCount = &includeCount
@@ -1292,7 +1494,7 @@ func (r ListOrganizationProjectsApiRequest) Name(name string) ListOrganizationPr
 }
 
 func (r ListOrganizationProjectsApiRequest) Execute() (*PaginatedAtlasGroup, *http.Response, error) {
-	return r.ApiService.ListOrganizationProjectsExecute(r)
+	return r.ApiService.listOrganizationProjectsExecute(r)
 }
 
 /*
@@ -1321,7 +1523,7 @@ func (a *OrganizationsApiService) ListOrganizationProjects(ctx context.Context, 
 
 // Execute executes the request
 //  @return PaginatedAtlasGroup
-func (a *OrganizationsApiService) ListOrganizationProjectsExecute(r ListOrganizationProjectsApiRequest) (*PaginatedAtlasGroup, *http.Response, error) {
+func (a *OrganizationsApiService) listOrganizationProjectsExecute(r ListOrganizationProjectsApiRequest) (*PaginatedAtlasGroup, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -1449,6 +1651,17 @@ type ListOrganizationUsersApiParams struct {
 		PageNum *int32
 }
 
+func (a *OrganizationsApiService) ListOrganizationUsersWithParams(ctx context.Context, args *ListOrganizationUsersApiParams) ListOrganizationUsersApiRequest {
+	return ListOrganizationUsersApiRequest{
+		ApiService: a,
+		ctx: ctx,
+		orgId: args.OrgId,
+		includeCount: args.IncludeCount,
+		itemsPerPage: args.ItemsPerPage,
+		pageNum: args.PageNum,
+	}
+}
+
 // Flag that indicates whether the response returns the total number of items (**totalCount**) in the response.
 func (r ListOrganizationUsersApiRequest) IncludeCount(includeCount bool) ListOrganizationUsersApiRequest {
 	r.includeCount = &includeCount
@@ -1468,7 +1681,7 @@ func (r ListOrganizationUsersApiRequest) PageNum(pageNum int32) ListOrganization
 }
 
 func (r ListOrganizationUsersApiRequest) Execute() (*PaginatedAppUser, *http.Response, error) {
-	return r.ApiService.ListOrganizationUsersExecute(r)
+	return r.ApiService.listOrganizationUsersExecute(r)
 }
 
 /*
@@ -1490,7 +1703,7 @@ func (a *OrganizationsApiService) ListOrganizationUsers(ctx context.Context, org
 
 // Execute executes the request
 //  @return PaginatedAppUser
-func (a *OrganizationsApiService) ListOrganizationUsersExecute(r ListOrganizationUsersApiRequest) (*PaginatedAppUser, *http.Response, error) {
+func (a *OrganizationsApiService) listOrganizationUsersExecute(r ListOrganizationUsersApiRequest) (*PaginatedAppUser, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -1615,6 +1828,17 @@ type ListOrganizationsApiParams struct {
 		Name *string
 }
 
+func (a *OrganizationsApiService) ListOrganizationsWithParams(ctx context.Context, args *ListOrganizationsApiParams) ListOrganizationsApiRequest {
+	return ListOrganizationsApiRequest{
+		ApiService: a,
+		ctx: ctx,
+		includeCount: args.IncludeCount,
+		itemsPerPage: args.ItemsPerPage,
+		pageNum: args.PageNum,
+		name: args.Name,
+	}
+}
+
 // Flag that indicates whether the response returns the total number of items (**totalCount**) in the response.
 func (r ListOrganizationsApiRequest) IncludeCount(includeCount bool) ListOrganizationsApiRequest {
 	r.includeCount = &includeCount
@@ -1640,7 +1864,7 @@ func (r ListOrganizationsApiRequest) Name(name string) ListOrganizationsApiReque
 }
 
 func (r ListOrganizationsApiRequest) Execute() (*PaginatedOrganization, *http.Response, error) {
-	return r.ApiService.ListOrganizationsExecute(r)
+	return r.ApiService.listOrganizationsExecute(r)
 }
 
 /*
@@ -1660,7 +1884,7 @@ func (a *OrganizationsApiService) ListOrganizations(ctx context.Context) ListOrg
 
 // Execute executes the request
 //  @return PaginatedOrganization
-func (a *OrganizationsApiService) ListOrganizationsExecute(r ListOrganizationsApiRequest) (*PaginatedOrganization, *http.Response, error) {
+func (a *OrganizationsApiService) listOrganizationsExecute(r ListOrganizationsApiRequest) (*PaginatedOrganization, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -1777,6 +2001,15 @@ type RenameOrganizationApiParams struct {
 		Organization *Organization
 }
 
+func (a *OrganizationsApiService) RenameOrganizationWithParams(ctx context.Context, args *RenameOrganizationApiParams) RenameOrganizationApiRequest {
+	return RenameOrganizationApiRequest{
+		ApiService: a,
+		ctx: ctx,
+		orgId: args.OrgId,
+		organization: args.Organization,
+	}
+}
+
 // Details to update on the specified organization.
 func (r RenameOrganizationApiRequest) Organization(organization Organization) RenameOrganizationApiRequest {
 	r.organization = &organization
@@ -1784,7 +2017,7 @@ func (r RenameOrganizationApiRequest) Organization(organization Organization) Re
 }
 
 func (r RenameOrganizationApiRequest) Execute() (*Organization, *http.Response, error) {
-	return r.ApiService.RenameOrganizationExecute(r)
+	return r.ApiService.renameOrganizationExecute(r)
 }
 
 /*
@@ -1806,7 +2039,7 @@ func (a *OrganizationsApiService) RenameOrganization(ctx context.Context, orgId 
 
 // Execute executes the request
 //  @return Organization
-func (a *OrganizationsApiService) RenameOrganizationExecute(r RenameOrganizationApiRequest) (*Organization, *http.Response, error) {
+func (a *OrganizationsApiService) renameOrganizationExecute(r RenameOrganizationApiRequest) (*Organization, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPatch
 		localVarPostBody     interface{}
@@ -1911,6 +2144,15 @@ type UpdateOrganizationInvitationApiParams struct {
 		OrganizationInvitationRequest *OrganizationInvitationRequest
 }
 
+func (a *OrganizationsApiService) UpdateOrganizationInvitationWithParams(ctx context.Context, args *UpdateOrganizationInvitationApiParams) UpdateOrganizationInvitationApiRequest {
+	return UpdateOrganizationInvitationApiRequest{
+		ApiService: a,
+		ctx: ctx,
+		orgId: args.OrgId,
+		organizationInvitationRequest: args.OrganizationInvitationRequest,
+	}
+}
+
 // Updates the details of one pending invitation to the specified organization.
 func (r UpdateOrganizationInvitationApiRequest) OrganizationInvitationRequest(organizationInvitationRequest OrganizationInvitationRequest) UpdateOrganizationInvitationApiRequest {
 	r.organizationInvitationRequest = &organizationInvitationRequest
@@ -1918,7 +2160,7 @@ func (r UpdateOrganizationInvitationApiRequest) OrganizationInvitationRequest(or
 }
 
 func (r UpdateOrganizationInvitationApiRequest) Execute() (*OrganizationInvitation, *http.Response, error) {
-	return r.ApiService.UpdateOrganizationInvitationExecute(r)
+	return r.ApiService.updateOrganizationInvitationExecute(r)
 }
 
 /*
@@ -1940,7 +2182,7 @@ func (a *OrganizationsApiService) UpdateOrganizationInvitation(ctx context.Conte
 
 // Execute executes the request
 //  @return OrganizationInvitation
-func (a *OrganizationsApiService) UpdateOrganizationInvitationExecute(r UpdateOrganizationInvitationApiRequest) (*OrganizationInvitation, *http.Response, error) {
+func (a *OrganizationsApiService) updateOrganizationInvitationExecute(r UpdateOrganizationInvitationApiRequest) (*OrganizationInvitation, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPatch
 		localVarPostBody     interface{}
@@ -2047,6 +2289,16 @@ type UpdateOrganizationInvitationByIdApiParams struct {
 		OrganizationInvitationUpdateRequest *OrganizationInvitationUpdateRequest
 }
 
+func (a *OrganizationsApiService) UpdateOrganizationInvitationByIdWithParams(ctx context.Context, args *UpdateOrganizationInvitationByIdApiParams) UpdateOrganizationInvitationByIdApiRequest {
+	return UpdateOrganizationInvitationByIdApiRequest{
+		ApiService: a,
+		ctx: ctx,
+		orgId: args.OrgId,
+		invitationId: args.InvitationId,
+		organizationInvitationUpdateRequest: args.OrganizationInvitationUpdateRequest,
+	}
+}
+
 // Updates the details of one pending invitation to the specified organization.
 func (r UpdateOrganizationInvitationByIdApiRequest) OrganizationInvitationUpdateRequest(organizationInvitationUpdateRequest OrganizationInvitationUpdateRequest) UpdateOrganizationInvitationByIdApiRequest {
 	r.organizationInvitationUpdateRequest = &organizationInvitationUpdateRequest
@@ -2054,7 +2306,7 @@ func (r UpdateOrganizationInvitationByIdApiRequest) OrganizationInvitationUpdate
 }
 
 func (r UpdateOrganizationInvitationByIdApiRequest) Execute() (*OrganizationInvitation, *http.Response, error) {
-	return r.ApiService.UpdateOrganizationInvitationByIdExecute(r)
+	return r.ApiService.updateOrganizationInvitationByIdExecute(r)
 }
 
 /*
@@ -2078,7 +2330,7 @@ func (a *OrganizationsApiService) UpdateOrganizationInvitationById(ctx context.C
 
 // Execute executes the request
 //  @return OrganizationInvitation
-func (a *OrganizationsApiService) UpdateOrganizationInvitationByIdExecute(r UpdateOrganizationInvitationByIdApiRequest) (*OrganizationInvitation, *http.Response, error) {
+func (a *OrganizationsApiService) updateOrganizationInvitationByIdExecute(r UpdateOrganizationInvitationByIdApiRequest) (*OrganizationInvitation, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPatch
 		localVarPostBody     interface{}
@@ -2190,6 +2442,15 @@ type UpdateOrganizationSettingsApiParams struct {
 		OrganizationSettings *OrganizationSettings
 }
 
+func (a *OrganizationsApiService) UpdateOrganizationSettingsWithParams(ctx context.Context, args *UpdateOrganizationSettingsApiParams) UpdateOrganizationSettingsApiRequest {
+	return UpdateOrganizationSettingsApiRequest{
+		ApiService: a,
+		ctx: ctx,
+		orgId: args.OrgId,
+		organizationSettings: args.OrganizationSettings,
+	}
+}
+
 // Details to update on the specified organization&#39;s settings.
 func (r UpdateOrganizationSettingsApiRequest) OrganizationSettings(organizationSettings OrganizationSettings) UpdateOrganizationSettingsApiRequest {
 	r.organizationSettings = &organizationSettings
@@ -2197,7 +2458,7 @@ func (r UpdateOrganizationSettingsApiRequest) OrganizationSettings(organizationS
 }
 
 func (r UpdateOrganizationSettingsApiRequest) Execute() (*OrganizationSettings, *http.Response, error) {
-	return r.ApiService.UpdateOrganizationSettingsExecute(r)
+	return r.ApiService.updateOrganizationSettingsExecute(r)
 }
 
 /*
@@ -2219,7 +2480,7 @@ func (a *OrganizationsApiService) UpdateOrganizationSettings(ctx context.Context
 
 // Execute executes the request
 //  @return OrganizationSettings
-func (a *OrganizationsApiService) UpdateOrganizationSettingsExecute(r UpdateOrganizationSettingsApiRequest) (*OrganizationSettings, *http.Response, error) {
+func (a *OrganizationsApiService) updateOrganizationSettingsExecute(r UpdateOrganizationSettingsApiRequest) (*OrganizationSettings, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPatch
 		localVarPostBody     interface{}

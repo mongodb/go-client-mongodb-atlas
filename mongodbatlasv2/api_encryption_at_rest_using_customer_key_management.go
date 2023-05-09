@@ -30,10 +30,18 @@ type EncryptionAtRestUsingCustomerKeyManagementApi interface {
 	@return GetEncryptionAtRestApiRequest
 	*/
 	GetEncryptionAtRest(ctx context.Context, groupId string) GetEncryptionAtRestApiRequest
+	/*
+	GetEncryptionAtRest Return One Configuration for Encryption at Rest using Customer-Managed Keys for One Project
 
-	// GetEncryptionAtRestExecute executes the request
-	//  @return EncryptionAtRest
-	GetEncryptionAtRestExecute(r GetEncryptionAtRestApiRequest) (*EncryptionAtRest, *http.Response, error)
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param GetEncryptionAtRestApiParams - Parameters for the request
+	@return GetEncryptionAtRestApiRequest
+	*/
+	GetEncryptionAtRestWithParams(ctx context.Context, args *GetEncryptionAtRestApiParams) GetEncryptionAtRestApiRequest
+
+	// Interface only available internally
+	getEncryptionAtRestExecute(r GetEncryptionAtRestApiRequest) (*EncryptionAtRest, *http.Response, error)
 
 	/*
 	UpdateEncryptionAtRest Update Configuration for Encryption at Rest using Customer-Managed Keys for One Project
@@ -47,10 +55,18 @@ type EncryptionAtRestUsingCustomerKeyManagementApi interface {
 	@return UpdateEncryptionAtRestApiRequest
 	*/
 	UpdateEncryptionAtRest(ctx context.Context, groupId string) UpdateEncryptionAtRestApiRequest
+	/*
+	UpdateEncryptionAtRest Update Configuration for Encryption at Rest using Customer-Managed Keys for One Project
 
-	// UpdateEncryptionAtRestExecute executes the request
-	//  @return EncryptionAtRest
-	UpdateEncryptionAtRestExecute(r UpdateEncryptionAtRestApiRequest) (*EncryptionAtRest, *http.Response, error)
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param UpdateEncryptionAtRestApiParams - Parameters for the request
+	@return UpdateEncryptionAtRestApiRequest
+	*/
+	UpdateEncryptionAtRestWithParams(ctx context.Context, args *UpdateEncryptionAtRestApiParams) UpdateEncryptionAtRestApiRequest
+
+	// Interface only available internally
+	updateEncryptionAtRestExecute(r UpdateEncryptionAtRestApiRequest) (*EncryptionAtRest, *http.Response, error)
 }
 
 // EncryptionAtRestUsingCustomerKeyManagementApiService EncryptionAtRestUsingCustomerKeyManagementApi service
@@ -66,8 +82,16 @@ type GetEncryptionAtRestApiParams struct {
 		GroupId string
 }
 
+func (a *EncryptionAtRestUsingCustomerKeyManagementApiService) GetEncryptionAtRestWithParams(ctx context.Context, args *GetEncryptionAtRestApiParams) GetEncryptionAtRestApiRequest {
+	return GetEncryptionAtRestApiRequest{
+		ApiService: a,
+		ctx: ctx,
+		groupId: args.GroupId,
+	}
+}
+
 func (r GetEncryptionAtRestApiRequest) Execute() (*EncryptionAtRest, *http.Response, error) {
-	return r.ApiService.GetEncryptionAtRestExecute(r)
+	return r.ApiService.getEncryptionAtRestExecute(r)
 }
 
 /*
@@ -91,7 +115,7 @@ func (a *EncryptionAtRestUsingCustomerKeyManagementApiService) GetEncryptionAtRe
 
 // Execute executes the request
 //  @return EncryptionAtRest
-func (a *EncryptionAtRestUsingCustomerKeyManagementApiService) GetEncryptionAtRestExecute(r GetEncryptionAtRestApiRequest) (*EncryptionAtRest, *http.Response, error) {
+func (a *EncryptionAtRestUsingCustomerKeyManagementApiService) getEncryptionAtRestExecute(r GetEncryptionAtRestApiRequest) (*EncryptionAtRest, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -191,6 +215,15 @@ type UpdateEncryptionAtRestApiParams struct {
 		EncryptionAtRest *EncryptionAtRest
 }
 
+func (a *EncryptionAtRestUsingCustomerKeyManagementApiService) UpdateEncryptionAtRestWithParams(ctx context.Context, args *UpdateEncryptionAtRestApiParams) UpdateEncryptionAtRestApiRequest {
+	return UpdateEncryptionAtRestApiRequest{
+		ApiService: a,
+		ctx: ctx,
+		groupId: args.GroupId,
+		encryptionAtRest: args.EncryptionAtRest,
+	}
+}
+
 // Required parameters depend on whether someone has enabled Encryption at Rest using Customer Key Management:  If you have enabled Encryption at Rest using Customer Key Management (CMK), Atlas requires all of the parameters for the desired encryption provider.  - To use AWS Key Management Service (KMS), MongoDB Cloud requires all the fields in the **awsKms** object. - To use Azure Key Vault, MongoDB Cloud requires all the fields in the **azureKeyVault** object. - To use Google Cloud Key Management Service (KMS), MongoDB Cloud requires all the fields in the **googleCloudKms** object.  If you enabled Encryption at Rest using Customer Key  Management, administrators can pass only the changed fields for the **awsKms**, **azureKeyVault**, or **googleCloudKms** object to update the configuration to this endpoint.
 func (r UpdateEncryptionAtRestApiRequest) EncryptionAtRest(encryptionAtRest EncryptionAtRest) UpdateEncryptionAtRestApiRequest {
 	r.encryptionAtRest = &encryptionAtRest
@@ -198,7 +231,7 @@ func (r UpdateEncryptionAtRestApiRequest) EncryptionAtRest(encryptionAtRest Encr
 }
 
 func (r UpdateEncryptionAtRestApiRequest) Execute() (*EncryptionAtRest, *http.Response, error) {
-	return r.ApiService.UpdateEncryptionAtRestExecute(r)
+	return r.ApiService.updateEncryptionAtRestExecute(r)
 }
 
 /*
@@ -222,7 +255,7 @@ func (a *EncryptionAtRestUsingCustomerKeyManagementApiService) UpdateEncryptionA
 
 // Execute executes the request
 //  @return EncryptionAtRest
-func (a *EncryptionAtRestUsingCustomerKeyManagementApiService) UpdateEncryptionAtRestExecute(r UpdateEncryptionAtRestApiRequest) (*EncryptionAtRest, *http.Response, error) {
+func (a *EncryptionAtRestUsingCustomerKeyManagementApiService) updateEncryptionAtRestExecute(r UpdateEncryptionAtRestApiRequest) (*EncryptionAtRest, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPatch
 		localVarPostBody     interface{}

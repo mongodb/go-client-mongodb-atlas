@@ -29,10 +29,18 @@ type SharedTierSnapshotsApi interface {
 	@return DownloadSharedClusterBackupApiRequest
 	*/
 	DownloadSharedClusterBackup(ctx context.Context, clusterName string, groupId string) DownloadSharedClusterBackupApiRequest
+	/*
+	DownloadSharedClusterBackup Download One M2 or M5 Cluster Snapshot
 
-	// DownloadSharedClusterBackupExecute executes the request
-	//  @return TenantRestore
-	DownloadSharedClusterBackupExecute(r DownloadSharedClusterBackupApiRequest) (*TenantRestore, *http.Response, error)
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param DownloadSharedClusterBackupApiParams - Parameters for the request
+	@return DownloadSharedClusterBackupApiRequest
+	*/
+	DownloadSharedClusterBackupWithParams(ctx context.Context, args *DownloadSharedClusterBackupApiParams) DownloadSharedClusterBackupApiRequest
+
+	// Interface only available internally
+	downloadSharedClusterBackupExecute(r DownloadSharedClusterBackupApiRequest) (*TenantRestore, *http.Response, error)
 
 	/*
 	GetSharedClusterBackup Return One Snapshot for One M2 or M5 Cluster
@@ -46,10 +54,18 @@ type SharedTierSnapshotsApi interface {
 	@return GetSharedClusterBackupApiRequest
 	*/
 	GetSharedClusterBackup(ctx context.Context, groupId string, clusterName string, snapshotId string) GetSharedClusterBackupApiRequest
+	/*
+	GetSharedClusterBackup Return One Snapshot for One M2 or M5 Cluster
 
-	// GetSharedClusterBackupExecute executes the request
-	//  @return TenantSnapshot
-	GetSharedClusterBackupExecute(r GetSharedClusterBackupApiRequest) (*TenantSnapshot, *http.Response, error)
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param GetSharedClusterBackupApiParams - Parameters for the request
+	@return GetSharedClusterBackupApiRequest
+	*/
+	GetSharedClusterBackupWithParams(ctx context.Context, args *GetSharedClusterBackupApiParams) GetSharedClusterBackupApiRequest
+
+	// Interface only available internally
+	getSharedClusterBackupExecute(r GetSharedClusterBackupApiRequest) (*TenantSnapshot, *http.Response, error)
 
 	/*
 	ListSharedClusterBackups Return All Snapshots for One M2 or M5 Cluster
@@ -62,10 +78,18 @@ type SharedTierSnapshotsApi interface {
 	@return ListSharedClusterBackupsApiRequest
 	*/
 	ListSharedClusterBackups(ctx context.Context, groupId string, clusterName string) ListSharedClusterBackupsApiRequest
+	/*
+	ListSharedClusterBackups Return All Snapshots for One M2 or M5 Cluster
 
-	// ListSharedClusterBackupsExecute executes the request
-	//  @return PaginatedTenantSnapshot
-	ListSharedClusterBackupsExecute(r ListSharedClusterBackupsApiRequest) (*PaginatedTenantSnapshot, *http.Response, error)
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param ListSharedClusterBackupsApiParams - Parameters for the request
+	@return ListSharedClusterBackupsApiRequest
+	*/
+	ListSharedClusterBackupsWithParams(ctx context.Context, args *ListSharedClusterBackupsApiParams) ListSharedClusterBackupsApiRequest
+
+	// Interface only available internally
+	listSharedClusterBackupsExecute(r ListSharedClusterBackupsApiRequest) (*PaginatedTenantSnapshot, *http.Response, error)
 }
 
 // SharedTierSnapshotsApiService SharedTierSnapshotsApi service
@@ -85,6 +109,16 @@ type DownloadSharedClusterBackupApiParams struct {
 		TenantRestore *TenantRestore
 }
 
+func (a *SharedTierSnapshotsApiService) DownloadSharedClusterBackupWithParams(ctx context.Context, args *DownloadSharedClusterBackupApiParams) DownloadSharedClusterBackupApiRequest {
+	return DownloadSharedClusterBackupApiRequest{
+		ApiService: a,
+		ctx: ctx,
+		clusterName: args.ClusterName,
+		groupId: args.GroupId,
+		tenantRestore: args.TenantRestore,
+	}
+}
+
 // Snapshot to be downloaded.
 func (r DownloadSharedClusterBackupApiRequest) TenantRestore(tenantRestore TenantRestore) DownloadSharedClusterBackupApiRequest {
 	r.tenantRestore = &tenantRestore
@@ -92,7 +126,7 @@ func (r DownloadSharedClusterBackupApiRequest) TenantRestore(tenantRestore Tenan
 }
 
 func (r DownloadSharedClusterBackupApiRequest) Execute() (*TenantRestore, *http.Response, error) {
-	return r.ApiService.DownloadSharedClusterBackupExecute(r)
+	return r.ApiService.downloadSharedClusterBackupExecute(r)
 }
 
 /*
@@ -116,7 +150,7 @@ func (a *SharedTierSnapshotsApiService) DownloadSharedClusterBackup(ctx context.
 
 // Execute executes the request
 //  @return TenantRestore
-func (a *SharedTierSnapshotsApiService) DownloadSharedClusterBackupExecute(r DownloadSharedClusterBackupApiRequest) (*TenantRestore, *http.Response, error) {
+func (a *SharedTierSnapshotsApiService) downloadSharedClusterBackupExecute(r DownloadSharedClusterBackupApiRequest) (*TenantRestore, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -230,8 +264,18 @@ type GetSharedClusterBackupApiParams struct {
 		SnapshotId string
 }
 
+func (a *SharedTierSnapshotsApiService) GetSharedClusterBackupWithParams(ctx context.Context, args *GetSharedClusterBackupApiParams) GetSharedClusterBackupApiRequest {
+	return GetSharedClusterBackupApiRequest{
+		ApiService: a,
+		ctx: ctx,
+		groupId: args.GroupId,
+		clusterName: args.ClusterName,
+		snapshotId: args.SnapshotId,
+	}
+}
+
 func (r GetSharedClusterBackupApiRequest) Execute() (*TenantSnapshot, *http.Response, error) {
-	return r.ApiService.GetSharedClusterBackupExecute(r)
+	return r.ApiService.getSharedClusterBackupExecute(r)
 }
 
 /*
@@ -257,7 +301,7 @@ func (a *SharedTierSnapshotsApiService) GetSharedClusterBackup(ctx context.Conte
 
 // Execute executes the request
 //  @return TenantSnapshot
-func (a *SharedTierSnapshotsApiService) GetSharedClusterBackupExecute(r GetSharedClusterBackupApiRequest) (*TenantSnapshot, *http.Response, error) {
+func (a *SharedTierSnapshotsApiService) getSharedClusterBackupExecute(r GetSharedClusterBackupApiRequest) (*TenantSnapshot, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -371,8 +415,17 @@ type ListSharedClusterBackupsApiParams struct {
 		ClusterName string
 }
 
+func (a *SharedTierSnapshotsApiService) ListSharedClusterBackupsWithParams(ctx context.Context, args *ListSharedClusterBackupsApiParams) ListSharedClusterBackupsApiRequest {
+	return ListSharedClusterBackupsApiRequest{
+		ApiService: a,
+		ctx: ctx,
+		groupId: args.GroupId,
+		clusterName: args.ClusterName,
+	}
+}
+
 func (r ListSharedClusterBackupsApiRequest) Execute() (*PaginatedTenantSnapshot, *http.Response, error) {
-	return r.ApiService.ListSharedClusterBackupsExecute(r)
+	return r.ApiService.listSharedClusterBackupsExecute(r)
 }
 
 /*
@@ -396,7 +449,7 @@ func (a *SharedTierSnapshotsApiService) ListSharedClusterBackups(ctx context.Con
 
 // Execute executes the request
 //  @return PaginatedTenantSnapshot
-func (a *SharedTierSnapshotsApiService) ListSharedClusterBackupsExecute(r ListSharedClusterBackupsApiRequest) (*PaginatedTenantSnapshot, *http.Response, error) {
+func (a *SharedTierSnapshotsApiService) listSharedClusterBackupsExecute(r ListSharedClusterBackupsApiRequest) (*PaginatedTenantSnapshot, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
