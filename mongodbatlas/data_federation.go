@@ -92,21 +92,20 @@ type DataFederationDatabaseView struct {
 
 // DataFederationStore represents data stores for the data federation.
 type DataFederationStore struct {
-	ReadPreference           *ReadPreferences `json:"readPreference,omitempty"`
-	IncludeTags              *bool            `json:"includeTags,omitempty"`
-	AdditionalStorageClasses []*string        `json:"additionalStorageClasses,omitempty"`
-	Name                     string           `json:"name,omitempty"`
-	Provider                 string           `json:"provider,omitempty"`
-	ClusterName              string           `json:"clusterName,omitempty"`
-	Region                   string           `json:"region,omitempty"`
-	Bucket                   string           `json:"bucket,omitempty"`
-	Prefix                   string           `json:"prefix,omitempty"`
-	Delimiter                string           `json:"delimiter,omitempty"`
-	ProjectID                string           `json:"projectId,omitempty"`
+	ReadPreference           *ReadPreference `json:"readPreference,omitempty"`
+	IncludeTags              *bool           `json:"includeTags,omitempty"`
+	AdditionalStorageClasses []*string       `json:"additionalStorageClasses,omitempty"`
+	Name                     string          `json:"name,omitempty"`
+	Provider                 string          `json:"provider,omitempty"`
+	ClusterName              string          `json:"clusterName,omitempty"`
+	Region                   string          `json:"region,omitempty"`
+	Bucket                   string          `json:"bucket,omitempty"`
+	Prefix                   string          `json:"prefix,omitempty"`
+	Delimiter                string          `json:"delimiter,omitempty"`
 }
 
-// ReadPreferences describes how to route read requests to the cluster.
-type ReadPreferences struct {
+// ReadPreference describes how to route read requests to the cluster.
+type ReadPreference struct {
 	MaxStalenessSeconds int32     `json:"maxStalenessSeconds,omitempty"`
 	Mode                string    `json:"mode,omitempty"`
 	TagSets             []*TagSet `json:"tagSets,omitempty"`
