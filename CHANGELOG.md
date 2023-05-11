@@ -1,5 +1,20 @@
 # Changelog
 
+## [v0.26.0](https://github.com/mongodb/go-client-mongodb-atlas/tree/v0.26.0) (May 11, 2023)
+
+[Full Changelog](https://github.com/mongodb/go-client-mongodb-atlas/compare/v0.25.0...v0.26.0)
+
+**Closed issues:**
+
+- `setListOptions` does not include options from embedded `ListOptions` [\#381](https://github.com/mongodb/go-client-mongodb-atlas/issues/381)
+
+**Merged pull requests:**
+
+- INTMDB-801: Add Data Federation to the go client [\#472](https://github.com/mongodb/go-client-mongodb-atlas/pull/472) ([andreaangiolillo](https://github.com/andreaangiolillo))
+- task: lower stale action permissions [\#469](https://github.com/mongodb/go-client-mongodb-atlas/pull/469) ([gssbzn](https://github.com/gssbzn))
+- test: update actions to use the new go action values [\#468](https://github.com/mongodb/go-client-mongodb-atlas/pull/468) ([gssbzn](https://github.com/gssbzn))
+- Revert "CLOUDP-169104: Fix encoding for AWS IAM usernames \(\#452\)" [\#465](https://github.com/mongodb/go-client-mongodb-atlas/pull/465) ([matt-condon](https://github.com/matt-condon))
+
 ## [v0.25.0](https://github.com/mongodb/go-client-mongodb-atlas/tree/v0.25.0) (April 17, 2023)
 
 [Full Changelog](https://github.com/mongodb/go-client-mongodb-atlas/compare/v0.24.0...v0.25.0)
