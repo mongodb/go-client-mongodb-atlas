@@ -118,7 +118,7 @@ type TagSet struct {
 	Value string `json:"value,omitempty"`
 }
 
-// DataFederationUpdateOptions specifies the optional parameters to Update method
+// DataFederationUpdateOptions specifies the optional parameters to Update method.
 type DataFederationUpdateOptions struct {
 	// Flag that indicates whether this request should check if the requesting IAM role can read from the S3 bucket.
 	// AWS checks if the role can list the objects in the bucket before writing to it.
