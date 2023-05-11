@@ -102,6 +102,7 @@ type DataFederationStore struct {
 	Bucket                   string          `json:"bucket,omitempty"`
 	Prefix                   string          `json:"prefix,omitempty"`
 	Delimiter                string          `json:"delimiter,omitempty"`
+	ProjectID                string          `json:"projectId,omitempty"`
 }
 
 // ReadPreference describes how to route read requests to the cluster.
