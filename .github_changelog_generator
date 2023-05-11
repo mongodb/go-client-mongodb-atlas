@@ -1,4 +1,4 @@
-future-release=v0.25.0
-since-tag=v0.24.0
+future-release=v0.26.0
+since-tag=v0.25.0
 date-format=%B %d, %Y
 base=CHANGELOG.md
