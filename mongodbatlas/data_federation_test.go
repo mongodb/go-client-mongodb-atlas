@@ -661,7 +661,7 @@ func TestDataFederation_Update(t *testing.T) {
 			},
 		},
 	}
-	dataFederationInstance, _, err := client.DataFederation.Update(ctx, groupID, tenantName, requestBody)
+	dataFederationInstance, _, err := client.DataFederation.Update(ctx, groupID, tenantName, requestBody, nil)
 	if err != nil {
 		t.Fatalf("DataFederation.Update returned error: %v", err)
 	}

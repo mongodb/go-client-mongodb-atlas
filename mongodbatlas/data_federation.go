@@ -31,7 +31,7 @@ type DataFederationService interface {
 	List(context.Context, string) ([]*DataFederationInstance, *Response, error)
 	Get(context.Context, string, string) (*DataFederationInstance, *Response, error)
 	Create(context.Context, string, *DataFederationInstance) (*DataFederationInstance, *Response, error)
-	Update(context.Context, string, string, *DataFederationInstance) (*DataFederationInstance, *Response, error)
+	Update(context.Context, string, string, *DataFederationInstance, *DataFederationUpdateOptions) (*DataFederationInstance, *Response, error)
 	Delete(context.Context, string, string) (*Response, error)
 }
 
@@ -118,6 +118,14 @@ type TagSet struct {
 	Value string `json:"value,omitempty"`
 }
 
+// DataFederationUpdateOptions specifies the optional parameters to Update method
+type DataFederationUpdateOptions struct {
+	// Flag that indicates whether this request should check if the requesting IAM role can read from the S3 bucket.
+	// AWS checks if the role can list the objects in the bucket before writing to it.
+	// Some IAM roles only need write permissions. This flag allows you to skip that check.
+	SkipRoleValidation bool `url:"skipRoleValidation"`
+}
+
 // List gets the details of all federated database instances in the specified project.
 //
 // See more: https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Data-Federation/operation/listFederatedDatabases
@@ -198,7 +206,7 @@ func (s *DataFederationServiceOp) Create(ctx context.Context, groupID string, cr
 // Update updates the details of one federated database instance in the specified project.
 //
 // See more: https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Data-Federation/operation/updateFederatedDatabase
-func (s *DataFederationServiceOp) Update(ctx context.Context, groupID, name string, updateRequest *DataFederationInstance) (*DataFederationInstance, *Response, error) {
+func (s *DataFederationServiceOp) Update(ctx context.Context, groupID, name string, updateRequest *DataFederationInstance, option *DataFederationUpdateOptions) (*DataFederationInstance, *Response, error) {
 	if groupID == "" {
 		return nil, nil, NewArgError("groupID", "must be set")
 	}
@@ -212,7 +220,19 @@ func (s *DataFederationServiceOp) Update(ctx context.Context, groupID, name stri
 	basePath := fmt.Sprintf(dataFederationBasePath, groupID)
 	path := fmt.Sprintf("%s/%s", basePath, name)
 
-	req, err := s.Client.NewRequest(ctx, http.MethodPatch, path, updateRequest)
+	if option == nil {
+		option = &DataFederationUpdateOptions{
+			SkipRoleValidation: true,
+		}
+	}
+
+	// Add query params from DataFederationUpdateOptions
+	pathWithOptions, err := setListOptions(path, option)
+	if err != nil {
+		return nil, nil, err
+	}
+
+	req, err := s.Client.NewRequest(ctx, http.MethodPatch, pathWithOptions, updateRequest)
 	if err != nil {
 		return nil, nil, err
 	}
