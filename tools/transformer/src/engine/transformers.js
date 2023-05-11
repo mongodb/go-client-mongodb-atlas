@@ -1,4 +1,4 @@
-const { getObjectFromReference } = require("../engine/readers");
+const { getObjectFromReference, getObjectNameFromReference } = require("../engine/readers");
 
 function filterObjectProperties(object, filter = (_k, _v) => true) {
   const filteredObj = Object.keys(object)
@@ -84,15 +84,15 @@ function mergeObjects(...objs) {
   return mergedObj;
 }
 
-function removeParentFromAllOf(child, parent, api) {
+function removeParentFromAllOf(child, parentName) {
   if (!child.allOf) {
     return false;
   }
 
   const initialLength = child.allOf.length;
   child.allOf = child.allOf.filter((childAllOfItem) => {
-    const obj = getObjectFromReference(childAllOfItem, api);
-    return obj !== parent;
+    const objName = getObjectNameFromReference(childAllOfItem);
+    return objName !== parentName;
   });
 
   if (initialLength === child.allOf.length) {

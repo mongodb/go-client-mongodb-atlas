@@ -104,8 +104,9 @@ function getObjectFromReference(obj, api) {
 
 function getObjectNameFromReference(obj) {
   if (obj && obj["$ref"]) {
-    return obj["$ref"].replace("#/components/schemas/", "");
+    return getObjectNameFromReferenceString(obj["$ref"]);
   }
+  return null;
 }
 
 function getObjectNameFromReferenceString(objString) {

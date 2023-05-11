@@ -52,7 +52,7 @@ function transformAllOf(objectPath, api) {
         `Missing object reference: ${childRef} for ${parentName}`
       );
     }
-    if (removeParentFromAllOf(childObject, parentObject, api)) {
+    if (removeParentFromAllOf(childObject, parentName)) {
       console.debug(
         `AllOf: Moving ${parentName} (parent) properties into ${childName} (child) properties`
       );
