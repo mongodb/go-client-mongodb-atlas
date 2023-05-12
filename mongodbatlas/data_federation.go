@@ -21,7 +21,8 @@ import (
 )
 
 const (
-	dataFederationBasePath = "api/atlas/v1.0/groups/%s/dataFederation"
+	dataFederationBasePath           = "api/atlas/v1.0/groups/%s/dataFederation"
+	dataFederationQueryLimitBasePath = "api/atlas/v1.0/groups/%s/dataFederation/%s/limits"
 )
 
 // DataFederationService is an interface for interfacing with the Data Federation endpoints of the MongoDB Atlas API.
@@ -33,6 +34,10 @@ type DataFederationService interface {
 	Create(context.Context, string, *DataFederationInstance) (*DataFederationInstance, *Response, error)
 	Update(context.Context, string, string, *DataFederationInstance, *DataFederationUpdateOptions) (*DataFederationInstance, *Response, error)
 	Delete(context.Context, string, string) (*Response, error)
+	ListQueryLimit(context.Context, string, string) ([]*DataFederationQueryLimit, *Response, error)
+	GetQueryLimit(context.Context, string, string, string) (*DataFederationQueryLimit, *Response, error)
+	ConfigureQueryLimit(context.Context, string, string, string, *DataFederationQueryLimit) (*DataFederationQueryLimit, *Response, error)
+	DeleteQueryLimit(context.Context, string, string, string) (*Response, error)
 }
 
 // DataFederationServiceOp handles communication with the DataFederationService related methods of the
@@ -124,6 +129,18 @@ type DataFederationUpdateOptions struct {
 	// AWS checks if the role can list the objects in the bucket before writing to it.
 	// Some IAM roles only need write permissions. This flag allows you to skip that check.
 	SkipRoleValidation bool `url:"skipRoleValidation"`
+}
+
+// DataFederationQueryLimit Details of a tenant-level query limit for Data Federation.
+type DataFederationQueryLimit struct {
+	CurrentUsage     int64  `json:"currentUsage,omitempty"`
+	DefaultLimit     int64  `json:"defaultLimit,omitempty"`
+	LastModifiedDate string `json:"lastModifiedDate,omitempty"`
+	MaximumLimit     int64  `json:"maximumLimit,omitempty"`
+	Name             string `json:"name,omitempty"`
+	OverrunPolicy    string `json:"overrunPolicy,omitempty"`
+	TenantName       string `json:"tenantName,omitempty"`
+	Value            int64  `json:"value,omitempty"`
 }
 
 // List gets the details of all federated database instances in the specified project.
@@ -268,4 +285,113 @@ func (s *DataFederationServiceOp) Delete(ctx context.Context, groupID, name stri
 	resp, err := s.Client.Do(ctx, req, nil)
 
 	return resp, err
+}
+
+// ConfigureQueryLimit Creates or updates one query limit for one federated database instance.
+//
+// See more: https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Data-Federation/operation/createOneDataFederationQueryLimit
+func (s *DataFederationServiceOp) ConfigureQueryLimit(ctx context.Context, groupID string, name string, limitName string, queryLimit *DataFederationQueryLimit) (*DataFederationQueryLimit, *Response, error) {
+	if groupID == "" {
+		return nil, nil, NewArgError("groupID", "must be set")
+	}
+	if name == "" {
+		return nil, nil, NewArgError("name", "must be set")
+	}
+	if limitName == "" {
+		return nil, nil, NewArgError("limitName", "must be set")
+	}
+	if queryLimit == nil {
+		return nil, nil, NewArgError("queryLimit", "must be set")
+	}
+
+	basePath := fmt.Sprintf(dataFederationQueryLimitBasePath, groupID, name)
+	path := fmt.Sprintf("%s/%s", basePath, limitName)
+	req, err := s.Client.NewRequest(ctx, http.MethodPatch, path, queryLimit)
+	if err != nil {
+		return nil, nil, err
+	}
+
+	root := new(DataFederationQueryLimit)
+	resp, err := s.Client.Do(ctx, req, &root)
+	if err != nil {
+		return nil, resp, err
+	}
+
+	return root, resp, err
+}
+
+func (s *DataFederationServiceOp) DeleteQueryLimit(ctx context.Context, groupID string, name string, limitName string) (*Response, error) {
+	if groupID == "" {
+		return nil, NewArgError("groupId", "must be set")
+	}
+	if name == "" {
+		return nil, NewArgError("name", "must be set")
+	}
+	if limitName == "" {
+		return nil, NewArgError("limitName", "must be set")
+	}
+
+	basePath := fmt.Sprintf(dataFederationQueryLimitBasePath, groupID, name)
+	path := fmt.Sprintf("%s/%s", basePath, limitName)
+
+	req, err := s.Client.NewRequest(ctx, http.MethodDelete, path, nil)
+	if err != nil {
+		return nil, err
+	}
+
+	resp, err := s.Client.Do(ctx, req, nil)
+
+	return resp, err
+}
+
+func (s *DataFederationServiceOp) GetQueryLimit(ctx context.Context, groupID string, name string, limitName string) (*DataFederationQueryLimit, *Response, error) {
+	if groupID == "" {
+		return nil, nil, NewArgError("groupID", "must be set")
+	}
+	if name == "" {
+		return nil, nil, NewArgError("name", "must be set")
+	}
+	if limitName == "" {
+		return nil, nil, NewArgError("limitName", "must be set")
+	}
+
+	basePath := fmt.Sprintf(dataFederationQueryLimitBasePath, groupID, name)
+	path := fmt.Sprintf("%s/%s", basePath, limitName)
+
+	req, err := s.Client.NewRequest(ctx, http.MethodGet, path, nil)
+	if err != nil {
+		return nil, nil, err
+	}
+
+	root := new(DataFederationQueryLimit)
+	resp, err := s.Client.Do(ctx, req, &root)
+	if err != nil {
+		return nil, resp, err
+	}
+
+	return root, resp, err
+}
+
+func (s *DataFederationServiceOp) ListQueryLimit(ctx context.Context, groupID string, name string) ([]*DataFederationQueryLimit, *Response, error) {
+	if groupID == "" {
+		return nil, nil, NewArgError("groupID", "must be set")
+	}
+	if name == "" {
+		return nil, nil, NewArgError("name", "must be set")
+	}
+
+	path := fmt.Sprintf(dataFederationQueryLimitBasePath, groupID, name)
+
+	req, err := s.Client.NewRequest(ctx, http.MethodGet, path, nil)
+	if err != nil {
+		return nil, nil, err
+	}
+
+	var root []*DataFederationQueryLimit
+	resp, err := s.Client.Do(ctx, req, &root)
+	if err != nil {
+		return nil, resp, err
+	}
+
+	return root, resp, err
 }
