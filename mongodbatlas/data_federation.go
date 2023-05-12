@@ -290,7 +290,7 @@ func (s *DataFederationServiceOp) Delete(ctx context.Context, groupID, name stri
 // ConfigureQueryLimit Creates or updates one query limit for one federated database instance.
 //
 // See more: https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Data-Federation/operation/createOneDataFederationQueryLimit
-func (s *DataFederationServiceOp) ConfigureQueryLimit(ctx context.Context, groupID string, name string, limitName string, queryLimit *DataFederationQueryLimit) (*DataFederationQueryLimit, *Response, error) {
+func (s *DataFederationServiceOp) ConfigureQueryLimit(ctx context.Context, groupID, name, limitName string, queryLimit *DataFederationQueryLimit) (*DataFederationQueryLimit, *Response, error) {
 	if groupID == "" {
 		return nil, nil, NewArgError("groupID", "must be set")
 	}
@@ -320,7 +320,7 @@ func (s *DataFederationServiceOp) ConfigureQueryLimit(ctx context.Context, group
 	return root, resp, err
 }
 
-func (s *DataFederationServiceOp) DeleteQueryLimit(ctx context.Context, groupID string, name string, limitName string) (*Response, error) {
+func (s *DataFederationServiceOp) DeleteQueryLimit(ctx context.Context, groupID, name, limitName string) (*Response, error) {
 	if groupID == "" {
 		return nil, NewArgError("groupId", "must be set")
 	}
@@ -344,7 +344,7 @@ func (s *DataFederationServiceOp) DeleteQueryLimit(ctx context.Context, groupID 
 	return resp, err
 }
 
-func (s *DataFederationServiceOp) GetQueryLimit(ctx context.Context, groupID string, name string, limitName string) (*DataFederationQueryLimit, *Response, error) {
+func (s *DataFederationServiceOp) GetQueryLimit(ctx context.Context, groupID, name, limitName string) (*DataFederationQueryLimit, *Response, error) {
 	if groupID == "" {
 		return nil, nil, NewArgError("groupID", "must be set")
 	}
@@ -372,7 +372,7 @@ func (s *DataFederationServiceOp) GetQueryLimit(ctx context.Context, groupID str
 	return root, resp, err
 }
 
-func (s *DataFederationServiceOp) ListQueryLimit(ctx context.Context, groupID string, name string) ([]*DataFederationQueryLimit, *Response, error) {
+func (s *DataFederationServiceOp) ListQueryLimit(ctx context.Context, groupID, name string) ([]*DataFederationQueryLimit, *Response, error) {
 	if groupID == "" {
 		return nil, nil, NewArgError("groupID", "must be set")
 	}
