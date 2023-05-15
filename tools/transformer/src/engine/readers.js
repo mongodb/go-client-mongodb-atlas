@@ -142,6 +142,13 @@ function getObjectFromYamlPath(path, obj) {
   return currObj;
 }
 
+function isInlineModel(path) {
+  const pathStack = path.split(".").reverse();
+  pathStack.pop();
+  
+  return !(pathStack.pop() == "components" && pathStack.pop() == "schemas");
+}
+
 module.exports = {
   getNameFromYamlPath,
   getObjectFromYamlPath,
@@ -150,4 +157,6 @@ module.exports = {
   getAllObjects,
   getObjectNameFromReference,
   getObjectNameFromReferenceString,
+  getObjectProperties,
+  isInlineModel,
 };

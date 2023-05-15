@@ -4,12 +4,13 @@ const {
   getObjectFromYamlPath,
   getObjectNameFromReference,
   getAllObjects,
+  getObjectProperties,
+  isInlineModel,
 } = require("../engine/readers");
 
 const {
   removeParentFromAllOf,
   flattenAllOfObject,
-  filterObjectProperties,
 } = require("../engine/transformers");
 
 /**
@@ -28,7 +29,9 @@ function applyAllOfTransformations(api) {
   );
 
   for (let { path } of allOfTransformations) {
-    transformAllOf(path, api);
+    if(!isInlineModel(path)) {
+      transformAllOf(path, api);
+    }
   }
   return api;
 }
@@ -71,15 +74,7 @@ function transformAllOf(objectPath, api) {
 }
 
 function isTransformable(obj) {
-  return obj.properties && obj.oneOf;
-}
-
-function getObjectProperties(obj) {
-  const exclusionList = ["oneOf", "discriminator"];
-
-  return filterObjectProperties(obj, (key, _v) => {
-    return !(key in exclusionList);
-  });
+  return obj.oneOf;
 }
 
 module.exports = {

@@ -60,7 +60,9 @@ function flattenAllOfObject(obj, apiObject) {
 
   for (let parent of obj.allOf) {
     parent = expandReference(parent, apiObject);
-    obj.properties = mergeObjects(obj.properties, parent.properties);
+    if(obj.properties) {
+      obj.properties = mergeObjects(obj.properties, parent.properties);
+    }
 
     if (parent.required) {
       parent.required.forEach((item) => obj.required.add(item));
