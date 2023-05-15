@@ -343,6 +343,8 @@ func TestDataFederation_Create(t *testing.T) {
 					"region" : "VIRGINIA_USA"
 			  	},
 			  	"name": "UserMetricData",
+			  	"state": "ACTIVE",
+			  	"hostnames": ["test.mongodb-dev.net"],
 			  	"storage": {
 				  	"databases": [
 						{
@@ -471,7 +473,9 @@ func TestDataFederation_Create(t *testing.T) {
 			CloudProvider: "AWS",
 			Region:        "VIRGINIA_USA",
 		},
-		Name: "UserMetricData",
+		Name:      "UserMetricData",
+		State:     "ACTIVE",
+		Hostnames: []string{"test.mongodb-dev.net"},
 		Storage: &DataFederationStorage{
 			Databases: []*DataFederationDatabase{
 				{
