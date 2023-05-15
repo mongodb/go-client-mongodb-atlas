@@ -95,16 +95,21 @@ type DataFederationDatabaseView struct {
 // DataFederationStore represents data stores for the data federation.
 type DataFederationStore struct {
 	ReadPreference           *ReadPreference `json:"readPreference,omitempty"`
-	IncludeTags              *bool           `json:"includeTags,omitempty"`
 	AdditionalStorageClasses []*string       `json:"additionalStorageClasses,omitempty"`
+	Urls                     []*string       `json:"urls,omitempty"`
 	Name                     string          `json:"name,omitempty"`
 	Provider                 string          `json:"provider,omitempty"`
 	ClusterName              string          `json:"clusterName,omitempty"`
+	ClusterID                string          `json:"clusterId,omitempty"`
 	Region                   string          `json:"region,omitempty"`
 	Bucket                   string          `json:"bucket,omitempty"`
 	Prefix                   string          `json:"prefix,omitempty"`
 	Delimiter                string          `json:"delimiter,omitempty"`
 	ProjectID                string          `json:"projectId,omitempty"`
+	DefaultFormat            string          `json:"defaultFormat,omitempty"`
+	IncludeTags              *bool           `json:"includeTags,omitempty"`
+	Public                   *bool           `json:"public,omitempty"`
+	AllowInsecure            *bool           `json:"allowInsecure,omitempty"`
 }
 
 // ReadPreference describes how to route read requests to the cluster.
