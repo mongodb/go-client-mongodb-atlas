@@ -1,4 +1,7 @@
-const { getObjectFromReference, getObjectNameFromReference } = require("../engine/readers");
+const {
+  getObjectFromReference,
+  getObjectNameFromReference,
+} = require("../engine/readers");
 
 function filterObjectProperties(object, filter = (_k, _v) => true) {
   const filteredObj = Object.keys(object)
@@ -60,7 +63,7 @@ function flattenAllOfObject(obj, apiObject) {
 
   for (let parent of obj.allOf) {
     parent = expandReference(parent, apiObject);
-    if(obj.properties) {
+    if (obj.properties) {
       obj.properties = mergeObjects(obj.properties, parent.properties);
     }
 

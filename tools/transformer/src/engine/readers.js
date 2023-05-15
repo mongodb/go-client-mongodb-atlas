@@ -145,7 +145,7 @@ function getObjectFromYamlPath(path, obj) {
 function isInlineModel(path) {
   const pathStack = path.split(".").reverse();
   pathStack.pop();
-  
+
   return !(pathStack.pop() == "components" && pathStack.pop() == "schemas");
 }
 

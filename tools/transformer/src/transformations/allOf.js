@@ -29,7 +29,7 @@ function applyAllOfTransformations(api) {
   );
 
   for (let { path } of allOfTransformations) {
-    if(!isInlineModel(path)) {
+    if (!isInlineModel(path)) {
       transformAllOf(path, api);
     }
   }
