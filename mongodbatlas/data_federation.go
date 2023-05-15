@@ -47,6 +47,8 @@ type DataFederationInstance struct {
 	DataProcessRegion   *DataProcessRegion     `json:"dataProcessRegion,omitempty"`
 	Storage             *DataFederationStorage `json:"storage,omitempty"`
 	Name                string                 `json:"name,omitempty"`
+	State               string                 `json:"state,omitempty"`
+	Hostnames           []string               `json:"hostnames,omitempty"`
 }
 
 // DataFederationStorage represents the storage configuration for a data lake.
