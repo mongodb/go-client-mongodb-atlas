@@ -42,9 +42,9 @@ test("Transform AllOf model", () => {
 test("Transform already transformed model ", () => {
   // First transform
   transformAllOf(".components.schemas.ApiAtlasRegionConfigView", api);
-
-  //Second transform with no effect
+  // Second transform with no effect
   transformAllOf(".components.schemas.ApiAtlasRegionConfigView", api);
+
   expect(api.components.schemas.ApiAtlasRegionConfigView).toMatchInlineSnapshot(
     cases.ParentAllOf
   );
