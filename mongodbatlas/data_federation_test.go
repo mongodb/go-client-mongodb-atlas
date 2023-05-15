@@ -835,7 +835,7 @@ func TestDataFederationQueryLimit_Get(t *testing.T) {
 	}
 }
 
-func TestDataFederation_Configure_Create(t *testing.T) {
+func TestDataFederation_Configure(t *testing.T) {
 	client, mux, teardown := setup()
 	defer teardown()
 
