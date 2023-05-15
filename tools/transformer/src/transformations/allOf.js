@@ -5,7 +5,7 @@ const {
   getObjectNameFromReference,
   getAllObjects,
   getObjectProperties,
-  isInlineModel,
+  isSchema,
 } = require("../engine/readers");
 
 const {
@@ -29,7 +29,7 @@ function applyAllOfTransformations(api) {
   );
 
   for (let { path } of allOfTransformations) {
-    if (!isInlineModel(path)) {
+    if (isSchema(path)) {
       transformAllOf(path, api);
     }
   }
