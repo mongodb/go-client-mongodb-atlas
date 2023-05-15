@@ -104,8 +104,9 @@ function getObjectFromReference(obj, api) {
 
 function getObjectNameFromReference(obj) {
   if (obj && obj["$ref"]) {
-    return obj["$ref"].replace("#/components/schemas/", "");
+    return getObjectNameFromReferenceString(obj["$ref"]);
   }
+  return null;
 }
 
 function getObjectNameFromReferenceString(objString) {
@@ -141,6 +142,17 @@ function getObjectFromYamlPath(path, obj) {
   return currObj;
 }
 
+function isSchema(path) {
+  const pathStack = path.split(".").reverse();
+  pathStack.pop();
+
+  if (pathStack.length != 3) {
+    return false;
+  }
+
+  return pathStack.pop() == "components" && pathStack.pop() == "schemas";
+}
+
 module.exports = {
   getNameFromYamlPath,
   getObjectFromYamlPath,
@@ -149,4 +161,6 @@ module.exports = {
   getAllObjects,
   getObjectNameFromReference,
   getObjectNameFromReferenceString,
+  getObjectProperties,
+  isSchema,
 };

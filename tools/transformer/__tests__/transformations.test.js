@@ -39,11 +39,18 @@ test("Transform AllOf model", () => {
   ).toMatchInlineSnapshot(cases.ChildAllOf);
 });
 
-test("Fail Transform AllOf with wrong object structure", () => {
+test("Transform already transformed model ", () => {
+  // First transform
   transformAllOf(".components.schemas.ApiAtlasRegionConfigView", api);
-  expect(() =>
-    transformAllOf(".components.schemas.ApiAtlasRegionConfigView", api)
-  ).toThrow(/Invalid object for AllOf Transformation/);
+  // Second transform with no effect
+  transformAllOf(".components.schemas.ApiAtlasRegionConfigView", api);
+
+  expect(api.components.schemas.ApiAtlasRegionConfigView).toMatchInlineSnapshot(
+    cases.ParentAllOf
+  );
+  expect(
+    api.components.schemas.ApiAtlasAWSRegionConfigView
+  ).toMatchInlineSnapshot(cases.ChildAllOf);
 });
 
 test("applyModelNameTransformations", () => {
