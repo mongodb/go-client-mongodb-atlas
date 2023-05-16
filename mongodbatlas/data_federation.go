@@ -34,7 +34,7 @@ type DataFederationService interface {
 	Create(context.Context, string, *DataFederationInstance) (*DataFederationInstance, *Response, error)
 	Update(context.Context, string, string, *DataFederationInstance, *DataFederationUpdateOptions) (*DataFederationInstance, *Response, error)
 	Delete(context.Context, string, string) (*Response, error)
-	ListQueryLimit(context.Context, string, string) ([]*DataFederationQueryLimit, *Response, error)
+	ListQueryLimits(context.Context, string, string) ([]*DataFederationQueryLimit, *Response, error)
 	GetQueryLimit(context.Context, string, string, string) (*DataFederationQueryLimit, *Response, error)
 	ConfigureQueryLimit(context.Context, string, string, string, *DataFederationQueryLimit) (*DataFederationQueryLimit, *Response, error)
 	DeleteQueryLimit(context.Context, string, string, string) (*Response, error)
@@ -374,7 +374,7 @@ func (s *DataFederationServiceOp) GetQueryLimit(ctx context.Context, groupID, na
 	return root, resp, err
 }
 
-func (s *DataFederationServiceOp) ListQueryLimit(ctx context.Context, groupID, name string) ([]*DataFederationQueryLimit, *Response, error) {
+func (s *DataFederationServiceOp) ListQueryLimits(ctx context.Context, groupID, name string) ([]*DataFederationQueryLimit, *Response, error) {
 	if groupID == "" {
 		return nil, nil, NewArgError("groupID", "must be set")
 	}

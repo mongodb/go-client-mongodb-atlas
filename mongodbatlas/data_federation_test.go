@@ -777,7 +777,7 @@ func TestDataFederationQueryLimit_List(t *testing.T) {
     	}]`)
 	})
 
-	dataFederationQueryLimits, _, err := client.DataFederation.ListQueryLimit(ctx, groupID, tenantName)
+	dataFederationQueryLimits, _, err := client.DataFederation.ListQueryLimits(ctx, groupID, tenantName)
 	if err != nil {
 		t.Fatalf("DataFederation.ListQueryLimit returned error: %v", err)
 	}
