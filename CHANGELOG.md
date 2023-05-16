@@ -1,5 +1,14 @@
 # Changelog
 
+## [v0.26.1](https://github.com/mongodb/go-client-mongodb-atlas/tree/v0.26.1) (May 16, 2023)
+
+[Full Changelog](https://github.com/mongodb/go-client-mongodb-atlas/compare/v0.26.0...v0.26.1)
+
+**Merged pull requests:**
+
+- INTMDB-801: Add Missing fields in the data federation store struct [\#478](https://github.com/mongodb/go-client-mongodb-atlas/pull/478) ([andreaangiolillo](https://github.com/andreaangiolillo))
+- INTMDB-801: Add State and Hostnames fields to Data Federation [\#477](https://github.com/mongodb/go-client-mongodb-atlas/pull/477) ([andreaangiolillo](https://github.com/andreaangiolillo))
+
 ## [v0.26.0](https://github.com/mongodb/go-client-mongodb-atlas/tree/v0.26.0) (May 11, 2023)
 
 [Full Changelog](https://github.com/mongodb/go-client-mongodb-atlas/compare/v0.25.0...v0.26.0)
