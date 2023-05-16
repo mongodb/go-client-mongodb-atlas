@@ -135,6 +135,7 @@ type Client struct {
 	ProcessDatabaseMeasurements         ProcessDatabaseMeasurementsService
 	Indexes                             IndexesService
 	Logs                                LogsService
+	LogCollections                      LogCollectionService
 	DataLakes                           DataLakeService
 	OnlineArchives                      OnlineArchiveService
 	Search                              SearchService
@@ -286,6 +287,7 @@ func NewClient(httpClient *http.Client) *Client {
 	c.ProcessDatabaseMeasurements = &ProcessDatabaseMeasurementsServiceOp{Client: c}
 	c.Indexes = &IndexesServiceOp{Client: c}
 	c.Logs = &LogsServiceOp{Client: c}
+	c.LogCollections = &LogCollectionServiceOp{Client: c}
 	c.DataLakes = &DataLakeServiceOp{Client: c}
 	c.OnlineArchives = &OnlineArchiveServiceOp{Client: c}
 	c.Search = &SearchServiceOp{Client: c}
