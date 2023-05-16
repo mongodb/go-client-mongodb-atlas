@@ -239,7 +239,13 @@ func TestDataFederation_Get(t *testing.T) {
 						  	"prefix": "/metrics",
 						  	"delimiter": "/",
 						  	"includeTags": false,
-							"additionalStorageClasses" : ["STANDARD_IA"]
+							"additionalStorageClasses" : ["STANDARD_IA"],
+							"clusterName": "test",
+							"clusterId": "test",
+							"public": false,
+							"allowInsecure": false,
+							"defaultFormat": "test",
+							"urls": ["test"]
 						}
 					]
 				}
@@ -308,6 +314,12 @@ func TestDataFederation_Get(t *testing.T) {
 					Delimiter:                "/",
 					IncludeTags:              pointer(false),
 					AdditionalStorageClasses: []*string{pointer("STANDARD_IA")},
+					ClusterName:              "test",
+					ClusterID:                "test",
+					DefaultFormat:            "test",
+					Public:                   pointer(false),
+					AllowInsecure:            pointer(false),
+					Urls:                     []*string{pointer("test")},
 				},
 			},
 		},
