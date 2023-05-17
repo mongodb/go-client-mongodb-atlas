@@ -62,10 +62,10 @@ type DataLakePipelineTransformation struct {
 
 // DataLakePipelineSink represents ingestion destination of a Data Lake Pipeline.
 type DataLakePipelineSink struct {
-	Type             string                          `json:"type,omitempty"`             // Type of ingestion destination of this Data Lake Pipeline.
-	MetadataProvider string                          `json:"metadataProvider,omitempty"` // Target cloud provider for this Data Lake Pipeline.
-	MetadataRegion   string                          `json:"metadataRegion,omitempty"`   // Target cloud provider region for this Data Lake Pipeline.
-	PartitionFields  *DataLakePipelinePartitionField `json:"partitionFields,omitempty"`  // Ordered fields used to physically organize data in the destination.
+	Type             string                            `json:"type,omitempty"`             // Type of ingestion destination of this Data Lake Pipeline.
+	MetadataProvider string                            `json:"metadataProvider,omitempty"` // Target cloud provider for this Data Lake Pipeline.
+	MetadataRegion   string                            `json:"metadataRegion,omitempty"`   // Target cloud provider region for this Data Lake Pipeline.
+	PartitionFields  []*DataLakePipelinePartitionField `json:"partitionFields,omitempty"`  // Ordered fields used to physically organize data in the destination.
 }
 
 // DataLakePipelinePartitionField represents ordered fields used to physically organize data in the destination.
