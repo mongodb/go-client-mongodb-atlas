@@ -80,7 +80,7 @@ type DataLakePipelineSource struct {
 	ClusterName    string `json:"clusterName,omitempty"`    // Human-readable name that identifies the cluster.
 	CollectionName string `json:"collectionName,omitempty"` // Human-readable name that identifies the collection.
 	DatabaseName   string `json:"databaseName,omitempty"`   // Human-readable name that identifies the database.
-	GroupId        string `json:"groupId,omitempty"`        // Unique 24-hexadecimal character string that identifies the project.
+	GroupID        string `json:"groupId,omitempty"`        // Unique 24-hexadecimal character string that identifies the project.
 }
 
 // ListDataLakePipelineSnapshotOptions specifies the optional parameters to ListSnapshots method.
@@ -152,7 +152,7 @@ func (s *DataLakePipelineServiceOp) List(ctx context.Context, groupID string) ([
 // ListSnapshots gets a list of backup snapshots that you can use to trigger an on demand pipeline run.
 //
 // See more: https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Data-Lake-Pipelines/operation/listPipelineSchedules
-func (s *DataLakePipelineServiceOp) ListSnapshots(ctx context.Context, groupID string, name string, options *ListDataLakePipelineSnapshotOptions) (*DataLakePipelineSnapshotsResponse, *Response, error) {
+func (s *DataLakePipelineServiceOp) ListSnapshots(ctx context.Context, groupID, name string, options *ListDataLakePipelineSnapshotOptions) (*DataLakePipelineSnapshotsResponse, *Response, error) {
 	if groupID == "" {
 		return nil, nil, NewArgError("groupID", "must be set")
 	}
@@ -187,7 +187,7 @@ func (s *DataLakePipelineServiceOp) ListSnapshots(ctx context.Context, groupID s
 // ListIngestionSchedules gets a list of backup schedule policy items that you can use as a Data Lake Pipeline source.
 //
 // See more: https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Data-Lake-Pipelines/operation/listPipelineSchedules
-func (s *DataLakePipelineServiceOp) ListIngestionSchedules(ctx context.Context, groupID string, name string) ([]*DataLakePipelineIngestionSchedule, *Response, error) {
+func (s *DataLakePipelineServiceOp) ListIngestionSchedules(ctx context.Context, groupID, name string) ([]*DataLakePipelineIngestionSchedule, *Response, error) {
 	if groupID == "" {
 		return nil, nil, NewArgError("groupID", "must be set")
 	}

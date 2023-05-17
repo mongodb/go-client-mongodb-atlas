@@ -85,7 +85,7 @@ func TestDataLakesPipeline_List(t *testing.T) {
 				ClusterName:    "test",
 				CollectionName: "test",
 				DatabaseName:   "test",
-				GroupId:        groupID,
+				GroupID:        groupID,
 			},
 			Transformations: []*DataLakePipelineTransformation{
 				{
@@ -163,7 +163,7 @@ func TestDataLakesPipeline_Get(t *testing.T) {
 			ClusterName:    "test",
 			CollectionName: "test",
 			DatabaseName:   "test",
-			GroupId:        groupID,
+			GroupID:        groupID,
 		},
 		Transformations: []*DataLakePipelineTransformation{
 			{
@@ -260,7 +260,7 @@ func TestDataLakesPipeline_Create(t *testing.T) {
 			ClusterName:    "test",
 			CollectionName: "test",
 			DatabaseName:   "test",
-			GroupId:        groupID,
+			GroupID:        groupID,
 		},
 		Transformations: []*DataLakePipelineTransformation{
 			{
@@ -358,7 +358,7 @@ func TestDataLakesPipeline_Update(t *testing.T) {
 			ClusterName:    "test",
 			CollectionName: "test",
 			DatabaseName:   "test",
-			GroupId:        groupID,
+			GroupID:        groupID,
 		},
 		Transformations: []*DataLakePipelineTransformation{
 			{
