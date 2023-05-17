@@ -767,3 +767,148 @@ func TestDataFederation_Delete(t *testing.T) {
 		t.Fatalf("DataFederation.Delete returned error: %v", err)
 	}
 }
+
+func TestDataFederationQueryLimit_List(t *testing.T) {
+	client, mux, teardown := setup()
+	defer teardown()
+
+	groupID := "6c7498dg87d9e6526801572b"
+	tenantName := "TestInstance"
+
+	path := fmt.Sprintf("/api/atlas/v1.0/groups/%s/dataFederation/%s/limits", groupID, tenantName)
+
+	mux.HandleFunc(path, func(w http.ResponseWriter, r *http.Request) {
+		testMethod(t, r, http.MethodGet)
+		fmt.Fprint(w, `[{
+        	"currentUsage": 0,
+        	"lastModifiedDate": "2023-05-12T10:41:03Z",
+			"name": "bytesProcessed.daily",
+        	"overrunPolicy": "BLOCK",
+        	"tenantName": "TestInstance",
+        	"value": 2147483648
+    	}]`)
+	})
+
+	dataFederationQueryLimits, _, err := client.DataFederation.ListQueryLimits(ctx, groupID, tenantName)
+	if err != nil {
+		t.Fatalf("DataFederation.ListQueryLimit returned error: %v", err)
+	}
+
+	expected := []*DataFederationQueryLimit{
+		{
+			CurrentUsage:     0,
+			LastModifiedDate: "2023-05-12T10:41:03Z",
+			Name:             "bytesProcessed.daily",
+			OverrunPolicy:    "BLOCK",
+			TenantName:       "TestInstance",
+			Value:            2147483648,
+		},
+	}
+
+	if diff := deep.Equal(dataFederationQueryLimits, expected); diff != nil {
+		t.Error(diff)
+	}
+}
+
+func TestDataFederationQueryLimit_Get(t *testing.T) {
+	client, mux, teardown := setup()
+	defer teardown()
+
+	groupID := "6c7498dg87d9e6526801572b"
+	tenantName := "TestInstance"
+	limitName := "bytesProcessed.daily"
+
+	path := fmt.Sprintf("/api/atlas/v1.0/groups/%s/dataFederation/%s/limits/%s", groupID, tenantName, limitName)
+
+	mux.HandleFunc(path, func(w http.ResponseWriter, r *http.Request) {
+		testMethod(t, r, http.MethodGet)
+		fmt.Fprint(w, `{
+    		"currentUsage": 0,
+    		"lastModifiedDate": "2023-05-12T10:41:03Z",
+    		"name": "bytesProcessed.daily",
+    		"overrunPolicy": "BLOCK",
+    		"tenantName": "TestInstance",
+    		"value": 2147483648
+		}`)
+	})
+
+	dataFederationQueryLimits, _, err := client.DataFederation.GetQueryLimit(ctx, groupID, tenantName, limitName)
+	if err != nil {
+		t.Fatalf("DataFederation.GetQueryLimit returned error: %v", err)
+	}
+
+	expected := DataFederationQueryLimit{
+		CurrentUsage:     0,
+		LastModifiedDate: "2023-05-12T10:41:03Z",
+		Name:             "bytesProcessed.daily",
+		OverrunPolicy:    "BLOCK",
+		TenantName:       "TestInstance",
+		Value:            2147483648,
+	}
+
+	if diff := deep.Equal(*dataFederationQueryLimits, expected); diff != nil {
+		t.Error(diff)
+	}
+}
+
+func TestDataFederation_Configure(t *testing.T) {
+	client, mux, teardown := setup()
+	defer teardown()
+
+	groupID := "6c7498dg87d9e6526801572b"
+	tenantName := "TestInstance"
+	limitName := "bytesProcessed.daily"
+
+	path := fmt.Sprintf("/api/atlas/v1.0/groups/%s/dataFederation/%s/limits/%s", groupID, tenantName, limitName)
+
+	mux.HandleFunc(path, func(w http.ResponseWriter, r *http.Request) {
+		testMethod(t, r, http.MethodPatch)
+		fmt.Fprint(w, `{
+    		"currentUsage": 0,
+    		"lastModifiedDate": "2023-05-12T10:41:03Z",
+    		"name": "bytesProcessed.daily",
+    		"overrunPolicy": "BLOCK",
+    		"tenantName": "TestInstance",
+    		"value": 2147483648
+		}`)
+	})
+
+	requestBody := &DataFederationQueryLimit{OverrunPolicy: "BLOCK", Value: 2147483648}
+	dataFederationQueryLimit, _, err := client.DataFederation.ConfigureQueryLimit(ctx, groupID, tenantName, limitName, requestBody)
+	if err != nil {
+		t.Fatalf("DataFederation.ConfigureQueryLimit returned error: %v", err)
+	}
+
+	expected := DataFederationQueryLimit{
+		CurrentUsage:     0,
+		LastModifiedDate: "2023-05-12T10:41:03Z",
+		Name:             "bytesProcessed.daily",
+		OverrunPolicy:    "BLOCK",
+		TenantName:       "TestInstance",
+		Value:            2147483648,
+	}
+
+	if diff := deep.Equal(*dataFederationQueryLimit, expected); diff != nil {
+		t.Error(diff)
+	}
+}
+
+func TestDataFederationQueryLimit_Delete(t *testing.T) {
+	client, mux, teardown := setup()
+	defer teardown()
+
+	groupID := "6c7498dg87d9e6526801572b"
+	tenantName := "TestInstance"
+	limitName := "bytesProcessed.daily"
+
+	path := fmt.Sprintf("/api/atlas/v1.0/groups/%s/dataFederation/%s/limits/%s", groupID, tenantName, limitName)
+
+	mux.HandleFunc(path, func(w http.ResponseWriter, r *http.Request) {
+		testMethod(t, r, http.MethodDelete)
+	})
+
+	_, err := client.DataFederation.DeleteQueryLimit(ctx, groupID, tenantName, limitName)
+	if err != nil {
+		t.Fatalf("DataFederation.DeleteQueryLimit returned error: %v", err)
+	}
+}
