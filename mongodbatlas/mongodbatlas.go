@@ -155,6 +155,7 @@ type Client struct {
 	FederatedSettings                   FederatedSettingsService
 	DataFederation                      DataFederationService
 	ClusterOutageSimulation             ClusterOutageSimulationService
+	DataLakePipeline                    DataLakePipelineService
 
 	onRequestCompleted  RequestCompletionCallback
 	onResponseProcessed ResponseProcessedCallback
@@ -306,6 +307,7 @@ func NewClient(httpClient *http.Client) *Client {
 	c.FederatedSettings = &FederatedSettingsServiceOp{Client: c}
 	c.ClusterOutageSimulation = &ClusterOutageSimulationServiceOp{Client: c}
 	c.DataFederation = &DataFederationServiceOp{Client: c}
+	c.DataLakePipeline = &DataLakePipelineServiceOp{Client: c}
 	return c
 }
 
