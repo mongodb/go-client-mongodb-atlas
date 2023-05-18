@@ -80,6 +80,7 @@ type DataLakePipelineSource struct {
 	ClusterName    string `json:"clusterName,omitempty"`    // Human-readable name that identifies the cluster.
 	CollectionName string `json:"collectionName,omitempty"` // Human-readable name that identifies the collection.
 	DatabaseName   string `json:"databaseName,omitempty"`   // Human-readable name that identifies the database.
+	PolicyItemID   string `json:"policyItemId,omitempty"`   // Unique 24-hexadecimal character string that identifies a policy item.
 	GroupID        string `json:"groupId,omitempty"`        // Unique 24-hexadecimal character string that identifies the project.
 }
 
