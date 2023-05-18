@@ -19,7 +19,7 @@ jobs:
       - name: lint
         uses: golangci/golangci-lint-action@v3.4.0
         with:
-          version: v1.50.1
+          version: v1.52.2
 
   tests-on-unix:
     needs: golangci-lint # run after golangci-lint action to not produce duplicated errors
@@ -27,9 +27,8 @@ jobs:
     strategy:
       matrix:
         golang:
-          - "1.18"
-          - "1.19"
-          - "1.20"
+          - 'stable'
+          - 'oldstable'
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
