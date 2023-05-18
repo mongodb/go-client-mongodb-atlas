@@ -62,10 +62,10 @@ type DataLakePipelineTransformation struct {
 
 // DataLakePipelineSink represents ingestion destination of a Data Lake Pipeline.
 type DataLakePipelineSink struct {
-	Type             string                          `json:"type,omitempty"`             // Type of ingestion destination of this Data Lake Pipeline.
-	MetadataProvider string                          `json:"metadataProvider,omitempty"` // Target cloud provider for this Data Lake Pipeline.
-	MetadataRegion   string                          `json:"metadataRegion,omitempty"`   // Target cloud provider region for this Data Lake Pipeline.
-	PartitionFields  *DataLakePipelinePartitionField `json:"partitionFields,omitempty"`  // Ordered fields used to physically organize data in the destination.
+	Type             string                            `json:"type,omitempty"`             // Type of ingestion destination of this Data Lake Pipeline.
+	MetadataProvider string                            `json:"metadataProvider,omitempty"` // Target cloud provider for this Data Lake Pipeline.
+	MetadataRegion   string                            `json:"metadataRegion,omitempty"`   // Target cloud provider region for this Data Lake Pipeline.
+	PartitionFields  []*DataLakePipelinePartitionField `json:"partitionFields,omitempty"`  // Ordered fields used to physically organize data in the destination.
 }
 
 // DataLakePipelinePartitionField represents ordered fields used to physically organize data in the destination.
@@ -80,6 +80,7 @@ type DataLakePipelineSource struct {
 	ClusterName    string `json:"clusterName,omitempty"`    // Human-readable name that identifies the cluster.
 	CollectionName string `json:"collectionName,omitempty"` // Human-readable name that identifies the collection.
 	DatabaseName   string `json:"databaseName,omitempty"`   // Human-readable name that identifies the database.
+	PolicyItemID   string `json:"policyItemId,omitempty"`   // Unique 24-hexadecimal character string that identifies a policy item.
 	GroupID        string `json:"groupId,omitempty"`        // Unique 24-hexadecimal character string that identifies the project.
 }
 
