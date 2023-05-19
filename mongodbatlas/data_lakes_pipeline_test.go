@@ -178,6 +178,63 @@ func TestDataLakesPipeline_Get(t *testing.T) {
 	}
 }
 
+func TestDataLakesPipeline_GetRun(t *testing.T) {
+	client, mux, teardown := setup()
+	defer teardown()
+
+	groupID := "6c7498dg87d9e6526801572b"
+	name := "test"
+	id := "1"
+
+	path := fmt.Sprintf("/api/atlas/v1.0/groups/%s/pipelines/%s/runs/%s", groupID, name, id)
+
+	mux.HandleFunc(path, func(w http.ResponseWriter, r *http.Request) {
+		testMethod(t, r, http.MethodGet)
+		fmt.Fprint(w, `{
+			  "_id": "32b6e34b3d91647abb20e7b8",
+			  "backupFrequencyType": "HOURLY",
+			  "createdDate": "2019-08-24T14:15:22Z",
+			  "datasetName": "test",
+			  "groupId": "32b6e34b3d91647abb20e7b8",
+			  "lastUpdatedDate": "2019-08-24T14:15:22Z",
+			  "phase": "SNAPSHOT",
+			  "pipelineId": "32b6e34b3d91647abb20e7b8",
+			  "snapshotId": "32b6e34b3d91647abb20e7b8",
+			  "state": "PENDING",
+			  "stats": {
+				"bytesExported": 0,
+				"numDocs": 0
+			  }
+		}`)
+	})
+
+	pipeline, _, err := client.DataLakePipeline.GetRun(ctx, groupID, name, id)
+	if err != nil {
+		t.Fatalf("DataLakePipeline.GetRun returned error: %v", err)
+	}
+
+	expected := &DataLakePipelineRun{
+		ID:                  "32b6e34b3d91647abb20e7b8",
+		BackupFrequencyType: "HOURLY",
+		CreatedDate:         "2019-08-24T14:15:22Z",
+		DatasetName:         "test",
+		GroupId:             "32b6e34b3d91647abb20e7b8",
+		LastUpdatedDate:     "2019-08-24T14:15:22Z",
+		Phase:               "SNAPSHOT",
+		PipelineId:          "32b6e34b3d91647abb20e7b8",
+		SnapshotId:          "32b6e34b3d91647abb20e7b8",
+		State:               "PENDING",
+		Stats: &DataLakePipelineRunStats{
+			BytesExported: 0,
+			NumDocs:       0,
+		},
+	}
+
+	if diff := deep.Equal(pipeline, expected); diff != nil {
+		t.Error(diff)
+	}
+}
+
 func TestDataLakesPipeline_Create(t *testing.T) {
 	client, mux, teardown := setup()
 	defer teardown()
@@ -515,6 +572,83 @@ func TestDataLakesPipeline_ListIngestionSchedules(t *testing.T) {
 			FrequencyInterval: 1,
 			RetentionValue:    0,
 		},
+	}
+
+	if diff := deep.Equal(pipelines, expected); diff != nil {
+		t.Error(diff)
+	}
+}
+
+func TestDataLakesPipeline_ListRuns(t *testing.T) {
+	client, mux, teardown := setup()
+	defer teardown()
+
+	groupID := "6c7498dg87d9e6526801572b"
+	name := "test"
+
+	path := fmt.Sprintf("/api/atlas/v1.0/groups/%s/pipelines/%s/runs", groupID, name)
+
+	mux.HandleFunc(path, func(w http.ResponseWriter, r *http.Request) {
+		testMethod(t, r, http.MethodGet)
+		fmt.Fprint(w, `{
+				  "links": [
+					{
+					  "href": "https://cloud.mongodb.com/api/atlas",
+					  "rel": "self"
+					}
+				  ],
+				  "results": [
+					{
+					  "_id": "32b6e34b3d91647abb20e7b8",
+					  "backupFrequencyType": "HOURLY",
+					  "createdDate": "2019-08-24T14:15:22Z",
+					  "datasetName": "test",
+					  "groupId": "32b6e34b3d91647abb20e7b8",
+					  "lastUpdatedDate": "2019-08-24T14:15:22Z",
+					  "phase": "SNAPSHOT",
+					  "pipelineId": "32b6e34b3d91647abb20e7b8",
+					  "snapshotId": "32b6e34b3d91647abb20e7b8",
+					  "state": "PENDING",
+					  "stats": {
+						"bytesExported": 0,
+						"numDocs": 0
+					  }
+					}
+				  ],
+				  "totalCount": 1
+				}`)
+	})
+
+	pipelines, _, err := client.DataLakePipeline.ListRuns(ctx, groupID, name)
+	if err != nil {
+		t.Fatalf("DataLakePipeline.ListRuns returned error: %v", err)
+	}
+
+	expected := &DataLakePipelineRunsResponse{
+		Links: []*Link{
+			{
+				Rel:  "self",
+				Href: "https://cloud.mongodb.com/api/atlas"},
+		},
+		Results: []*DataLakePipelineRun{
+			{
+				ID:                  "32b6e34b3d91647abb20e7b8",
+				BackupFrequencyType: "HOURLY",
+				CreatedDate:         "2019-08-24T14:15:22Z",
+				DatasetName:         "test",
+				GroupId:             "32b6e34b3d91647abb20e7b8",
+				LastUpdatedDate:     "2019-08-24T14:15:22Z",
+				Phase:               "SNAPSHOT",
+				PipelineId:          "32b6e34b3d91647abb20e7b8",
+				SnapshotId:          "32b6e34b3d91647abb20e7b8",
+				State:               "PENDING",
+				Stats: &DataLakePipelineRunStats{
+					BytesExported: 0,
+					NumDocs:       0,
+				},
+			},
+		},
+		TotalCount: 1,
 	}
 
 	if diff := deep.Equal(pipelines, expected); diff != nil {

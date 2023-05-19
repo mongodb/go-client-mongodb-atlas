@@ -20,7 +20,10 @@ import (
 	"net/http"
 )
 
-const dataLakesPipelineBasePath = "api/atlas/v1.0/groups/%s/pipelines"
+const (
+	dataLakesPipelineBasePath = "api/atlas/v1.0/groups/%s/pipelines"
+	dataLakesPipelineRunPath  = dataLakesPipelineBasePath + "/%s/runs"
+)
 
 // DataLakePipelineService is an interface for interfacing with the Data Lake Pipeline endpoints of the MongoDB Atlas API.
 //
@@ -29,7 +32,9 @@ type DataLakePipelineService interface {
 	List(context.Context, string) ([]*DataLakePipeline, *Response, error)
 	ListSnapshots(context.Context, string, string, *ListDataLakePipelineSnapshotOptions) (*DataLakePipelineSnapshotsResponse, *Response, error)
 	ListIngestionSchedules(context.Context, string, string) ([]*DataLakePipelineIngestionSchedule, *Response, error)
+	ListRuns(context.Context, string, string) (*DataLakePipelineRunsResponse, *Response, error)
 	Get(context.Context, string, string) (*DataLakePipeline, *Response, error)
+	GetRun(context.Context, string, string, string) (*DataLakePipelineRun, *Response, error)
 	Create(context.Context, string, *DataLakePipeline) (*DataLakePipeline, *Response, error)
 	Update(context.Context, string, string, *DataLakePipeline) (*DataLakePipeline, *Response, error)
 	Delete(context.Context, string, string) (*Response, error)
@@ -126,6 +131,34 @@ type DataLakePipelineIngestionSchedule struct {
 	RetentionValue    int32  `json:"retentionValue,omitempty"`    // Duration in days, weeks, or months that MongoDB Cloud retains the snapshot.
 }
 
+// DataLakePipelineRunsResponse represents the response of DataLakePipelineService.ListRuns.
+type DataLakePipelineRunsResponse struct {
+	Links      []*Link                `json:"links,omitempty"`      // List of one or more Uniform Resource Locators (URLs) that point to API sub-resources, related API resources, or both.
+	Results    []*DataLakePipelineRun `json:"results,omitempty"`    // List of returned documents that MongoDB Cloud providers when completing this request.
+	TotalCount int                    `json:"totalCount,omitempty"` // Number of documents returned in this response.
+}
+
+// DataLakePipelineRun represents a DataLake Pipeline Run.
+type DataLakePipelineRun struct {
+	ID                  string                    `json:"_id,omitempty"`                 // Unique 24-hexadecimal character string that identifies a Data Lake Pipeline run.
+	BackupFrequencyType string                    `json:"backupFrequencyType,omitempty"` // Backup schedule interval of the Data Lake Pipeline.
+	CreatedDate         string                    `json:"createdDate,omitempty"`         // Timestamp that indicates when the pipeline run was created.
+	DatasetName         string                    `json:"datasetName,omitempty"`         // Human-readable label that identifies the dataset that Atlas generates during this pipeline run.
+	GroupId             string                    `json:"groupId,omitempty"`             // Unique 24-hexadecimal character string that identifies the project.
+	LastUpdatedDate     string                    `json:"lastUpdatedDate,omitempty"`     // Timestamp that indicates the last time that the pipeline run was updated.
+	Phase               string                    `json:"phase,omitempty"`               // Processing phase of the Data Lake Pipeline.
+	PipelineId          string                    `json:"pipelineId,omitempty"`          // Unique 24-hexadecimal character string that identifies a Data Lake Pipeline.
+	SnapshotId          string                    `json:"snapshotId,omitempty"`          // Unique 24-hexadecimal character string that identifies the snapshot of a cluster.
+	State               string                    `json:"state,omitempty"`               // State of the pipeline run.
+	Stats               *DataLakePipelineRunStats `json:"stats,omitempty"`               // Runtime statistics for this Data Lake Pipeline run.
+}
+
+// DataLakePipelineRunStats represents runtime statistics for this Data Lake Pipeline run.
+type DataLakePipelineRunStats struct {
+	BytesExported int64 `json:"bytesExported,omitempty"` // Total data size in bytes exported for this pipeline run.
+	NumDocs       int64 `json:"numDocs,omitempty"`       // Number of docs ingested for a this pipeline run.
+}
+
 // List gets a list of Data Lake Pipelines.
 //
 // See more: https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Data-Lake-Pipelines/operation/listPipelines
@@ -214,6 +247,32 @@ func (s *DataLakePipelineServiceOp) ListIngestionSchedules(ctx context.Context, 
 	return root, resp, nil
 }
 
+// ListRuns gets a list of past Data Lake Pipeline runs.
+//
+// https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Data-Lake-Pipelines/operation/listPipelineRuns
+func (s *DataLakePipelineServiceOp) ListRuns(ctx context.Context, groupID, name string) (*DataLakePipelineRunsResponse, *Response, error) {
+	if groupID == "" {
+		return nil, nil, NewArgError("groupID", "must be set")
+	}
+	if name == "" {
+		return nil, nil, NewArgError("name", "must be set")
+	}
+
+	path := fmt.Sprintf(dataLakesPipelineRunPath, groupID, name)
+	req, err := s.Client.NewRequest(ctx, http.MethodGet, path, nil)
+	if err != nil {
+		return nil, nil, err
+	}
+
+	root := new(DataLakePipelineRunsResponse)
+	resp, err := s.Client.Do(ctx, req, root)
+	if err != nil {
+		return nil, resp, err
+	}
+
+	return root, resp, err
+}
+
 // Get gets the details of one Data Lake Pipeline within the specified project.
 //
 // See more: https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Data-Lake-Pipelines/operation/getPipeline
@@ -234,6 +293,38 @@ func (s *DataLakePipelineServiceOp) Get(ctx context.Context, groupID, name strin
 	}
 
 	root := new(DataLakePipeline)
+	resp, err := s.Client.Do(ctx, req, root)
+	if err != nil {
+		return nil, resp, err
+	}
+
+	return root, resp, err
+}
+
+// GetRun gets the details of one Data Lake Pipeline run within the specified project.
+//
+// See more: https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Data-Lake-Pipelines/operation/getPipelineRun
+func (s *DataLakePipelineServiceOp) GetRun(ctx context.Context, groupID, name, id string) (*DataLakePipelineRun, *Response, error) {
+	if groupID == "" {
+		return nil, nil, NewArgError("groupID", "must be set")
+	}
+	if name == "" {
+		return nil, nil, NewArgError("name", "must be set")
+	}
+
+	if id == "" {
+		return nil, nil, NewArgError("id", "must be set")
+	}
+
+	basePath := fmt.Sprintf(dataLakesPipelineRunPath, groupID, name)
+	path := fmt.Sprintf("%s/%s", basePath, id)
+
+	req, err := s.Client.NewRequest(ctx, http.MethodGet, path, nil)
+	if err != nil {
+		return nil, nil, err
+	}
+
+	root := new(DataLakePipelineRun)
 	resp, err := s.Client.Do(ctx, req, root)
 	if err != nil {
 		return nil, resp, err
