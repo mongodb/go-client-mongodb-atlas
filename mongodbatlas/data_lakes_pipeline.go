@@ -144,11 +144,11 @@ type DataLakePipelineRun struct {
 	BackupFrequencyType string                    `json:"backupFrequencyType,omitempty"` // Backup schedule interval of the Data Lake Pipeline.
 	CreatedDate         string                    `json:"createdDate,omitempty"`         // Timestamp that indicates when the pipeline run was created.
 	DatasetName         string                    `json:"datasetName,omitempty"`         // Human-readable label that identifies the dataset that Atlas generates during this pipeline run.
-	GroupId             string                    `json:"groupId,omitempty"`             // Unique 24-hexadecimal character string that identifies the project.
+	GroupID             string                    `json:"groupId,omitempty"`             // Unique 24-hexadecimal character string that identifies the project.
 	LastUpdatedDate     string                    `json:"lastUpdatedDate,omitempty"`     // Timestamp that indicates the last time that the pipeline run was updated.
 	Phase               string                    `json:"phase,omitempty"`               // Processing phase of the Data Lake Pipeline.
-	PipelineId          string                    `json:"pipelineId,omitempty"`          // Unique 24-hexadecimal character string that identifies a Data Lake Pipeline.
-	SnapshotId          string                    `json:"snapshotId,omitempty"`          // Unique 24-hexadecimal character string that identifies the snapshot of a cluster.
+	PipelineID          string                    `json:"pipelineId,omitempty"`          // Unique 24-hexadecimal character string that identifies a Data Lake Pipeline.
+	SnapshotID          string                    `json:"snapshotId,omitempty"`          // Unique 24-hexadecimal character string that identifies the snapshot of a cluster.
 	State               string                    `json:"state,omitempty"`               // State of the pipeline run.
 	Stats               *DataLakePipelineRunStats `json:"stats,omitempty"`               // Runtime statistics for this Data Lake Pipeline run.
 }
