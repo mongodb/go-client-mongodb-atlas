@@ -1,5 +1,13 @@
 # Changelog
 
+## [v0.28.0](https://github.com/mongodb/go-client-mongodb-atlas/tree/v0.28.0) (May 29, 2023)
+
+[Full Changelog](https://github.com/mongodb/go-client-mongodb-atlas/compare/v0.27.0...v0.28.0)
+
+**Merged pull requests:**
+
+- CLOUDP-179698 Add tags to serverless [\#491](https://github.com/mongodb/go-client-mongodb-atlas/pull/491) ([fmenezes](https://github.com/fmenezes))
+
 ## [v0.27.0](https://github.com/mongodb/go-client-mongodb-atlas/tree/v0.27.0) (May 29, 2023)
 
 [Full Changelog](https://github.com/mongodb/go-client-mongodb-atlas/compare/v0.26.1...v0.27.0)
