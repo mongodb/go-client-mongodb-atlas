@@ -41,6 +41,7 @@ func TestAdvancedClusters_List(t *testing.T) {
 				  ],
 				  "results": [
 					{
+					  "tags": [ { "key": "key1", "value": "value1" } ],
 					  "backupEnabled": true,
 					  "biConnector": {
 						"enabled": false,
@@ -104,6 +105,7 @@ func TestAdvancedClusters_List(t *testing.T) {
 					  "stateName": "CREATING"
 					},
 					{
+						  "tags": [ { "key": "key1", "value": "value1" } ],
 						  "backupEnabled": true,
 						  "biConnector": {
 							"enabled": false,
@@ -243,7 +245,12 @@ func TestAdvancedClusters_List(t *testing.T) {
 				Paused:                   &paused,
 				PitEnabled:               &pitEnabled,
 				StateName:                "CREATING",
-
+				Tags: []*Tag{
+					{
+						Key:   "key1",
+						Value: "value1",
+					},
+				},
 				ReplicationSpecs: []*AdvancedReplicationSpec{
 					{
 						ID:        "1",
@@ -307,6 +314,12 @@ func TestAdvancedClusters_List(t *testing.T) {
 				Paused:                   &paused,
 				PitEnabled:               &pitEnabled,
 				StateName:                "CREATING",
+				Tags: []*Tag{
+					{
+						Key:   "key1",
+						Value: "value1",
+					},
+				},
 				ReplicationSpecs: []*AdvancedReplicationSpec{
 					{
 						ID:        "2",
@@ -616,6 +629,7 @@ func TestAdvancedClusters_Create(t *testing.T) {
 	mux.HandleFunc(fmt.Sprintf("/api/atlas/v1.5/groups/%s/clusters", groupID), func(w http.ResponseWriter, r *http.Request) {
 		testMethod(t, r, http.MethodPost)
 		fmt.Fprint(w, `{
+						  "tags": [ { "key": "key1", "value": "value1" } ],
 						  "backupEnabled": true,
 						  "biConnector": {
 							"enabled": false,
@@ -739,6 +753,12 @@ func TestAdvancedClusters_Create(t *testing.T) {
 		Paused:                   &paused,
 		PitEnabled:               &pitEnabled,
 		StateName:                "CREATING",
+		Tags: []*Tag{
+			{
+				Key:   "key1",
+				Value: "value1",
+			},
+		},
 		ReplicationSpecs: []*AdvancedReplicationSpec{
 			{
 				ID:        "2",
@@ -839,6 +859,12 @@ func TestAdvancedClusters_Create(t *testing.T) {
 		Paused:                   &paused,
 		PitEnabled:               &pitEnabled,
 		StateName:                "CREATING",
+		Tags: []*Tag{
+			{
+				Key:   "key1",
+				Value: "value1",
+			},
+		},
 		ReplicationSpecs: []*AdvancedReplicationSpec{
 			{
 				ID:        "2",
