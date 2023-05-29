@@ -64,6 +64,7 @@ type AdvancedCluster struct {
 	RootCertType                 string                     `json:"rootCertType,omitempty"`
 	VersionReleaseSystem         string                     `json:"versionReleaseSystem,omitempty"`
 	TerminationProtectionEnabled *bool                      `json:"terminationProtectionEnabled,omitempty"`
+	Tags                         []*Tag                     `json:"tags,omitempty"`
 }
 
 type AdvancedReplicationSpec struct {
