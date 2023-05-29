@@ -57,7 +57,8 @@ func TestServerlessInstances_List(t *testing.T) {
 				  "backingProviderName": "AWS",
 				  "regionName": "US_EAST_1"
 				},
-				"stateName": "IDLE"
+				"stateName": "IDLE",
+				"tags": [ { "key": "key1", "value": "value1" } ]
 			  },{ 
 				"connectionStrings": {
 				  "standardSrv" : "mongodb+srv://instance1.example.com"
@@ -76,7 +77,8 @@ func TestServerlessInstances_List(t *testing.T) {
 				  "backingProviderName": "AWS",
 				  "regionName": "US_EAST_1"
 				},
-				"stateName": "IDLE"
+				"stateName": "IDLE",
+				"tags": [ { "key": "key1", "value": "value1" } ]
 			  }],
 			"totalCount": 2
 		}`)
@@ -104,6 +106,12 @@ func TestServerlessInstances_List(t *testing.T) {
 				StateName:         "IDLE",
 				ConnectionStrings: &ConnectionStrings{StandardSrv: "mongodb+srv://instance1.example.com"},
 				CreateDate:        "2021-06-25T21:32:06Z",
+				Tags: []*Tag{
+					{
+						Key:   "key1",
+						Value: "value1",
+					},
+				},
 				Links: []*Link{
 					{
 						Rel:  "self",
@@ -120,6 +128,12 @@ func TestServerlessInstances_List(t *testing.T) {
 				StateName:         "IDLE",
 				ConnectionStrings: &ConnectionStrings{StandardSrv: "mongodb+srv://instance1.example.com"},
 				CreateDate:        "2021-06-25T21:32:06Z",
+				Tags: []*Tag{
+					{
+						Key:   "key1",
+						Value: "value1",
+					},
+				},
 				Links: []*Link{
 					{
 						Rel:  "self",
@@ -217,7 +231,8 @@ func TestServerlessInstances_Create(t *testing.T) {
 				  "backingProviderName": "AWS",
 				  "regionName": "US_EAST_1"
 				},
-				"stateName": "IDLE"
+				"stateName": "IDLE",
+				"tags": [ { "key": "key1", "value": "value1" } ]
 		}`)
 	})
 
@@ -244,6 +259,12 @@ func TestServerlessInstances_Create(t *testing.T) {
 			{
 				Rel:  "self",
 				Href: "http://cloud.mongodb.com/api/atlas/v1.0/groups/{groupId}/serverless/{instanceName1}",
+			},
+		},
+		Tags: []*Tag{
+			{
+				Key:   "key1",
+				Value: "value1",
 			},
 		},
 	}
@@ -287,7 +308,8 @@ func TestServerlessInstances_Update(t *testing.T) {
 			  "serverlessContinuousBackupEnabled" : true
 			},
 			"stateName" : "IDLE",
-			"terminationProtectionEnabled": true
+			"terminationProtectionEnabled": true,
+			"tags": [ { "key": "key1", "value": "value1" } ]
 		}`)
 	})
 
@@ -324,6 +346,12 @@ func TestServerlessInstances_Update(t *testing.T) {
 			{
 				Rel:  "http://cloud.mongodb.com/snapshots",
 				Href: "http://cloud.mongodb.com/api/atlas/v1.0/groups/{groupId}/serverless/{instanceName1}/backup/snapshots",
+			},
+		},
+		Tags: []*Tag{
+			{
+				Key:   "key1",
+				Value: "value1",
 			},
 		},
 	}
