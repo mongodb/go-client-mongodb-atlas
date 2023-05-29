@@ -458,8 +458,8 @@ func TestClusters_Create(t *testing.T) {
 			"stateName":            "IDLE",
 			"versionReleaseSystem": "LTS",
 			"rootCertType":         "ISRGROOTX1",
-			"tags": []map[string]interface{}{
-				{
+			"tags": []interface{}{
+				map[string]interface{}{
 					"key":   "key1",
 					"value": "value1",
 				},
