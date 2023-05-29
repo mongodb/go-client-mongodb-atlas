@@ -105,7 +105,8 @@ func TestClusters_ListClusters(t *testing.T) {
 					},
 					"srvAddress": "mongodb+srv://mongo-shard-00-00.mongodb.net:27017,mongo-shard-00-01.mongodb.net:27017,mongo-shard-00-02.mongodb.net:27017",
 					"stateName": "IDLE",
-					"versionReleaseSystem": "LTS"
+					"versionReleaseSystem": "LTS",
+					"tags": [ { "key": "key1", "value": "value1" } ]
 				},
 				{
 					"autoScaling": {
@@ -181,7 +182,8 @@ func TestClusters_ListClusters(t *testing.T) {
 					},
 					"srvAddress": "mongodb+srv://mongo-shard-00-00.mongodb.net:27017,mongo-shard-00-01.mongodb.net:27017,mongo-shard-00-02.mongodb.net:27017",
 					"stateName": "IDLE",
-					"versionReleaseSystem": "LTS"
+					"versionReleaseSystem": "LTS",
+					"tags": [ { "key": "key1", "value": "value1" } ]
 				}
 			],
 			"totalCount": 2
@@ -263,6 +265,12 @@ func TestClusters_ListClusters(t *testing.T) {
 		SrvAddress:           "mongodb+srv://mongo-shard-00-00.mongodb.net:27017,mongo-shard-00-01.mongodb.net:27017,mongo-shard-00-02.mongodb.net:27017",
 		StateName:            "IDLE",
 		VersionReleaseSystem: "LTS",
+		Tags: []*Tag{
+			{
+				Key:   "key1",
+				Value: "value1",
+			},
+		},
 	}
 
 	expected := []Cluster{cluster1, cluster1}
@@ -391,6 +399,12 @@ func TestClusters_Create(t *testing.T) {
 		StateName:            "IDLE",
 		VersionReleaseSystem: "LTS",
 		RootCertType:         "ISRGROOTX1",
+		Tags: []*Tag{
+			{
+				Key:   "key1",
+				Value: "value1",
+			},
+		},
 	}
 
 	mux.HandleFunc(fmt.Sprintf("/api/atlas/v1.0/groups/%s/clusters", groupID), func(w http.ResponseWriter, r *http.Request) {
@@ -444,6 +458,12 @@ func TestClusters_Create(t *testing.T) {
 			"stateName":            "IDLE",
 			"versionReleaseSystem": "LTS",
 			"rootCertType":         "ISRGROOTX1",
+			"tags": []interface{}{
+				map[string]interface{}{
+					"key":   "key1",
+					"value": "value1",
+				},
+			},
 		}
 
 		jsonBlob := `
@@ -496,7 +516,10 @@ func TestClusters_Create(t *testing.T) {
             },
             "srvAddress": "mongodb+srv://mongo-shard-00-00.mongodb.net:27017,mongo-shard-00-01.mongodb.net:27017,mongo-shard-00-02.mongodb.net:27017",
             "stateName": "IDLE",
-            "versionReleaseSystem": "LTS"
+            "versionReleaseSystem": "LTS",
+            "tags": [
+                { "key": "key1", "value": "value2" }
+            ]
 		}
 		`
 
@@ -529,6 +552,10 @@ func TestClusters_Create(t *testing.T) {
 
 	if pitEnabled := cluster.PitEnabled; *pitEnabled {
 		t.Errorf("expected pitEnabled 'false', received '%t'", *pitEnabled)
+	}
+
+	if cluster.Tags == nil || len(cluster.Tags) == 0 {
+		t.Errorf("expected tags, received none")
 	}
 }
 

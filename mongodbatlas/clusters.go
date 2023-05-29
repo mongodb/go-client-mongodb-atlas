@@ -172,6 +172,7 @@ type Cluster struct {
 	VersionReleaseSystem         string                   `json:"versionReleaseSystem,omitempty"`
 	RootCertType                 string                   `json:"rootCertType,omitempty"`
 	TerminationProtectionEnabled *bool                    `json:"terminationProtectionEnabled,omitempty"`
+	Tags                         []*Tag                   `json:"tags,omitempty"`
 }
 
 // ProcessArgs represents the advanced configuration options for the cluster.
@@ -186,6 +187,11 @@ type ProcessArgs struct {
 	SampleSizeBIConnector            *int64   `json:"sampleSizeBIConnector,omitempty"`
 	SampleRefreshIntervalBIConnector *int64   `json:"sampleRefreshIntervalBIConnector,omitempty"`
 	OplogMinRetentionHours           *float64 `json:"oplogMinRetentionHours,omitempty"`
+}
+
+type Tag struct {
+	Key   string `json:"key,omitempty"`
+	Value string `json:"value,omitempty"`
 }
 
 // ClusterStatus is the status of the operations on the cluster.
