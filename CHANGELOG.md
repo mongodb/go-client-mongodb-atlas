@@ -1,5 +1,19 @@
 # Changelog
 
+## [v0.27.0](https://github.com/mongodb/go-client-mongodb-atlas/tree/v0.27.0) (May 29, 2023)
+
+[Full Changelog](https://github.com/mongodb/go-client-mongodb-atlas/compare/v0.26.1...v0.27.0)
+
+**Merged pull requests:**
+
+- CLOUDP-179698 Add tags to advanced clusters [\#489](https://github.com/mongodb/go-client-mongodb-atlas/pull/489) ([fmenezes](https://github.com/fmenezes))
+- CLOUDP-179698 Add tags to clusters [\#488](https://github.com/mongodb/go-client-mongodb-atlas/pull/488) ([fmenezes](https://github.com/fmenezes))
+- INTMDB-805: Add support for Pipeline Run [\#485](https://github.com/mongodb/go-client-mongodb-atlas/pull/485) ([andreaangiolillo](https://github.com/andreaangiolillo))
+- INTMDB-804: struct fixes [\#483](https://github.com/mongodb/go-client-mongodb-atlas/pull/483) ([andreaangiolillo](https://github.com/andreaangiolillo))
+- INTMDB-804: Add Data lakes pipeline support [\#482](https://github.com/mongodb/go-client-mongodb-atlas/pull/482) ([andreaangiolillo](https://github.com/andreaangiolillo))
+- INTMDB-802: Add Data Federation Query Limit [\#475](https://github.com/mongodb/go-client-mongodb-atlas/pull/475) ([maastha](https://github.com/maastha))
+- CLOUDP-175576: Remove v2 SDKs mentions from master [\#473](https://github.com/mongodb/go-client-mongodb-atlas/pull/473) ([wtrocki](https://github.com/wtrocki))
+
 ## [v0.26.1](https://github.com/mongodb/go-client-mongodb-atlas/tree/v0.26.1) (May 16, 2023)
 
 [Full Changelog](https://github.com/mongodb/go-client-mongodb-atlas/compare/v0.26.0...v0.26.1)
