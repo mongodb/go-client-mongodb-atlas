@@ -42,7 +42,7 @@ type ClustersService interface {
 	Get(ctx context.Context, groupID, clusterName string) (*Cluster, *Response, error)
 	Create(ctx context.Context, groupID string, cluster *Cluster) (*Cluster, *Response, error)
 	Update(ctx context.Context, groupID, clusterName string, cluster *Cluster) (*Cluster, *Response, error)
-	Delete(ctx context.Context, groupID, clusterName string) (*Response, error)
+	Delete(ctx context.Context, groupID, clusterName string, options *DeleteAdvanceClusterOptions) (*Response, error)
 	UpdateProcessArgs(ctx context.Context, groupID, clusterName string, args *ProcessArgs) (*ProcessArgs, *Response, error)
 	GetProcessArgs(ctx context.Context, groupID, clusterName string) (*ProcessArgs, *Response, error)
 	Status(ctx context.Context, groupID, clusterName string) (ClusterStatus, *Response, error)
@@ -421,8 +421,8 @@ func (s *ClustersServiceOp) Update(ctx context.Context, groupID, clusterName str
 
 // Delete the cluster specified to {CLUSTER-NAME} from the project associated to {GROUP-ID}.
 //
-// See more: https://docs.atlas.mongodb.com/reference/api/clusters-delete-one/
-func (s *ClustersServiceOp) Delete(ctx context.Context, groupID, clusterName string) (*Response, error) {
+// See more: https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Clusters/operation/deleteLegacyCluster
+func (s *ClustersServiceOp) Delete(ctx context.Context, groupID, clusterName string, options *DeleteAdvanceClusterOptions) (*Response, error) {
 	if groupID == "" {
 		return nil, NewArgError("groupId", "must be set")
 	}
@@ -433,6 +433,18 @@ func (s *ClustersServiceOp) Delete(ctx context.Context, groupID, clusterName str
 	basePath := fmt.Sprintf(clustersPath, groupID)
 	escapedEntry := url.PathEscape(clusterName)
 	path := fmt.Sprintf("%s/%s", basePath, escapedEntry)
+
+	if options == nil {
+		options = &DeleteAdvanceClusterOptions{
+			RetainBackups: false,
+		}
+	}
+
+	// Add query params from options
+	path, err := setListOptions(path, options)
+	if err != nil {
+		return nil, err
+	}
 
 	req, err := s.Client.NewRequest(ctx, http.MethodDelete, path, nil)
 	if err != nil {
