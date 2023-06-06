@@ -1266,7 +1266,7 @@ func TestAdvancedClusters_Delete(t *testing.T) {
 	})
 
 	options := &DeleteAdvanceClusterOptions{
-		RetainBackups: true,
+		RetainBackups: pointer(true),
 	}
 	_, err := client.AdvancedClusters.Delete(ctx, groupID, clusterName, options)
 	if err != nil {

@@ -746,7 +746,7 @@ func TestClusters_Delete(t *testing.T) {
 	})
 
 	options := &DeleteAdvanceClusterOptions{
-		RetainBackups: true,
+		RetainBackups: pointer(true),
 	}
 
 	_, err := client.Clusters.Delete(ctx, groupID, name, options)
