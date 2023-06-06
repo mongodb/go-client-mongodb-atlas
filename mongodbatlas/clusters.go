@@ -434,12 +434,6 @@ func (s *ClustersServiceOp) Delete(ctx context.Context, groupID, clusterName str
 	escapedEntry := url.PathEscape(clusterName)
 	path := fmt.Sprintf("%s/%s", basePath, escapedEntry)
 
-	if options == nil {
-		options = &DeleteAdvanceClusterOptions{
-			RetainBackups: false,
-		}
-	}
-
 	// Add query params from options
 	path, err := setListOptions(path, options)
 	if err != nil {

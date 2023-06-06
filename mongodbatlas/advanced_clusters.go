@@ -111,7 +111,7 @@ type AdvancedClustersResponse struct {
 
 type DeleteAdvanceClusterOptions struct {
 	// Flag that indicates whether to retain backup snapshots for the deleted dedicated cluster.
-	RetainBackups bool `url:"retainBackups,omitempty"`
+	RetainBackups *bool `url:"retainBackups,omitempty"`
 }
 
 // List all clusters in the project associated to {GROUP-ID}.
@@ -243,12 +243,6 @@ func (s *AdvancedClustersServiceOp) Delete(ctx context.Context, groupID, cluster
 	basePath := fmt.Sprintf(advancedClustersPath, groupID)
 	escapedEntry := url.PathEscape(clusterName)
 	path := fmt.Sprintf("%s/%s", basePath, escapedEntry)
-
-	if options == nil {
-		options = &DeleteAdvanceClusterOptions{
-			RetainBackups: false,
-		}
-	}
 
 	// Add query params from options
 	path, err := setListOptions(path, options)
