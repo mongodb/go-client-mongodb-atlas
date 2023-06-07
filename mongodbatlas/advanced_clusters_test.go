@@ -1265,7 +1265,10 @@ func TestAdvancedClusters_Delete(t *testing.T) {
 		testMethod(t, r, http.MethodDelete)
 	})
 
-	_, err := client.AdvancedClusters.Delete(ctx, groupID, clusterName)
+	options := &DeleteAdvanceClusterOptions{
+		RetainBackups: pointer(true),
+	}
+	_, err := client.AdvancedClusters.Delete(ctx, groupID, clusterName, options)
 	if err != nil {
 		t.Fatalf("Cluster.Delete returned error: %v", err)
 	}
