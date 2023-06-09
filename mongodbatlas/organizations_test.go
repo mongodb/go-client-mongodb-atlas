@@ -210,6 +210,45 @@ func TestOrganizationsServiceOp_Get(t *testing.T) {
 	}
 }
 
+func TestOrganizationsServiceOp_Update(t *testing.T) {
+	client, mux, teardown := setup()
+	defer teardown()
+
+	mux.HandleFunc(fmt.Sprintf("/%s/%s", orgsBasePath, orgID), func(w http.ResponseWriter, r *http.Request) {
+		testMethod(t, r, http.MethodPatch)
+		_, _ = fmt.Fprint(w, `{
+		"id": "5a0a1e7e0f2912c554080adc",
+		"lastActiveAgent": "2016-03-09T18:19:37Z",
+		"links": [{
+			"href": "https://cloud.mongodb.com/api/public/v1.0/orgs/5a0a1e7e0f2912c554080adc",
+			"rel": "self"
+		}],
+		"name": "test"
+	  }`)
+	})
+
+	body := &Organization{Name: "test"}
+	response, _, err := client.Organizations.Update(ctx, orgID, body)
+	if err != nil {
+		t.Fatalf("Organizations.Update returned error: %v", err)
+	}
+
+	expected := &Organization{
+		ID: "5a0a1e7e0f2912c554080adc",
+		Links: []*Link{
+			{
+				Href: "https://cloud.mongodb.com/api/public/v1.0/orgs/5a0a1e7e0f2912c554080adc",
+				Rel:  "self",
+			},
+		},
+		Name: "test",
+	}
+
+	if diff := deep.Equal(response, expected); diff != nil {
+		t.Error(diff)
+	}
+}
+
 func TestOrganizationsServiceOp_Projects(t *testing.T) {
 	client, mux, teardown := setup()
 	defer teardown()
