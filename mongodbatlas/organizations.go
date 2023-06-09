@@ -29,6 +29,7 @@ type OrganizationsService interface {
 	List(context.Context, *OrganizationsListOptions) (*Organizations, *Response, error)
 	Invitations(context.Context, string, *InvitationOptions) ([]*Invitation, *Response, error)
 	Get(context.Context, string) (*Organization, *Response, error)
+	Update(context.Context, string, *Organization) (*Organization, *Response, error)
 	Create(context.Context, *CreateOrganizationRequest) (*CreateOrganizationResponse, *Response, error)
 	Invitation(context.Context, string, string) (*Invitation, *Response, error)
 	Projects(context.Context, string, *ProjectsListOptions) (*Projects, *Response, error)
@@ -125,6 +126,30 @@ func (s *OrganizationsServiceOp) Get(ctx context.Context, orgID string) (*Organi
 	path := fmt.Sprintf("%s/%s", orgsBasePath, orgID)
 
 	req, err := s.Client.NewRequest(ctx, http.MethodGet, path, nil)
+	if err != nil {
+		return nil, nil, err
+	}
+
+	root := new(Organization)
+	resp, err := s.Client.Do(ctx, req, root)
+	if err != nil {
+		return nil, resp, err
+	}
+
+	return root, resp, err
+}
+
+// Update updates a single organization.
+//
+// See more: https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Organizations/operation/renameOrganization
+func (s *OrganizationsServiceOp) Update(ctx context.Context, orgID string, org *Organization) (*Organization, *Response, error) {
+	if orgID == "" {
+		return nil, nil, NewArgError("orgID", "must be set")
+	}
+
+	path := fmt.Sprintf("%s/%s", orgsBasePath, orgID)
+
+	req, err := s.Client.NewRequest(ctx, http.MethodPatch, path, org)
 	if err != nil {
 		return nil, nil, err
 	}
