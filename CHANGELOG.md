@@ -1,5 +1,17 @@
 # Changelog
 
+## [v0.29.0](https://github.com/mongodb/go-client-mongodb-atlas/tree/v0.29.0) (June 09, 2023)
+
+[Full Changelog](https://github.com/mongodb/go-client-mongodb-atlas/compare/v0.28.0...v0.29.0)
+
+**Breaking changes:**
+
+- INTMDB-781: Query Parameter Add: retainBackups in Cluster and Advanced\_Cluster [\#493](https://github.com/mongodb/go-client-mongodb-atlas/pull/493) ([andreaangiolillo](https://github.com/andreaangiolillo))
+
+**Merged pull requests:**
+
+- INTMDB-860: \[GO SDK\] Add missing endpoint to organization resource [\#495](https://github.com/mongodb/go-client-mongodb-atlas/pull/495) ([andreaangiolillo](https://github.com/andreaangiolillo))
+
 ## [v0.28.0](https://github.com/mongodb/go-client-mongodb-atlas/tree/v0.28.0) (May 29, 2023)
 
 [Full Changelog](https://github.com/mongodb/go-client-mongodb-atlas/compare/v0.27.0...v0.28.0)
