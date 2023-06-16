@@ -8,9 +8,9 @@ Note that `go-client-mongodb-atlas` only supports the two most recent major vers
 
 ## Maintenance Update
 
-`go-client-mongodb-atlas` is currently under limited maintenance. 
-For new projects please use an official [atlas-sdk-go](https://github.com/mongodb/atlas-sdk-go)
-Please follow an official [migration guide](https://github.com/mongodb/atlas-sdk-go/blob/main/docs/doc_3_migration.md) 
+`go-client-mongodb-atlas` is now deprecated and receives limited maintenance. 
+For new projects, please use the official [Atlas Go SDK](https://github.com/mongodb/atlas-sdk-go).
+To learn how to migrate from go-client-mongodb-atlas to the Atlas Go SDK, see the [migration guide](https://github.com/mongodb/atlas-sdk-go/blob/main/docs/doc_3_migration.md).
 
 ## Usage
 
