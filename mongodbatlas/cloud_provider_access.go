@@ -24,9 +24,10 @@ const cloudProviderAccessPath = "api/atlas/v1.0/groups/%s/cloudProviderAccess"
 
 // CloudProviderAccessService provides access to the cloud provider access functions in the Atlas API.
 //
-// See more: https://docs.atlas.mongodb.com/reference/api/cloud-provider-access/
+// See more: https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Cloud-Provider-Access
 type CloudProviderAccessService interface {
 	ListRoles(context.Context, string) (*CloudProviderAccessRoles, *Response, error)
+	GetRole(context.Context, string, string) (*CloudProviderAccessRoles, *Response, error)
 	CreateRole(context.Context, string, *CloudProviderAccessRoleRequest) (*AWSIAMRole, *Response, error)
 	AuthorizeRole(context.Context, string, string, *CloudProviderAuthorizationRequest) (*AWSIAMRole, *Response, error)
 	DeauthorizeRole(context.Context, *CloudProviderDeauthorizationRequest) (*Response, error)
@@ -78,9 +79,37 @@ type CloudProviderDeauthorizationRequest struct {
 	RoleID       string
 }
 
-// ListRoles retrieve existing AWS IAM roles.
+// GetRole Returns the Amazon Web Services (AWS) Identity and Access Management (IAM) role
+// with the specified id and with access to the specified project.
 //
-// See more: https://docs.atlas.mongodb.com/reference/api/cloud-provider-access-get-roles/
+// See more: https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Cloud-Provider-Access/operation/getCloudProviderAccessRole
+func (s *CloudProviderAccessServiceOp) GetRole(ctx context.Context, groupID, roleID string) (*CloudProviderAccessRoles, *Response, error) {
+	if groupID == "" {
+		return nil, nil, NewArgError("groupId", "must be set")
+	}
+	if roleID == "" {
+		return nil, nil, NewArgError("roleID", "must be set")
+	}
+
+	basePath := fmt.Sprintf(cloudProviderAccessPath, groupID)
+	path := fmt.Sprintf("%s/%s", basePath, roleID)
+	req, err := s.Client.NewRequest(ctx, http.MethodGet, path, nil)
+	if err != nil {
+		return nil, nil, err
+	}
+
+	root := new(CloudProviderAccessRoles)
+	resp, err := s.Client.Do(ctx, req, root)
+	if err != nil {
+		return nil, resp, err
+	}
+
+	return root, resp, nil
+}
+
+// ListRoles retrieves existing AWS IAM roles.
+//
+// See more: https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Cloud-Provider-Access/operation/listCloudProviderAccessRoles
 func (s *CloudProviderAccessServiceOp) ListRoles(ctx context.Context, groupID string) (*CloudProviderAccessRoles, *Response, error) {
 	path := fmt.Sprintf(cloudProviderAccessPath, groupID)
 
@@ -100,7 +129,7 @@ func (s *CloudProviderAccessServiceOp) ListRoles(ctx context.Context, groupID st
 
 // CreateRole creates an AWS IAM role.
 //
-// See more: https://docs.atlas.mongodb.com/reference/api/cloud-provider-access-create-one-role/
+// See more: https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Cloud-Provider-Access/operation/createCloudProviderAccessRole
 func (s *CloudProviderAccessServiceOp) CreateRole(ctx context.Context, groupID string, request *CloudProviderAccessRoleRequest) (*AWSIAMRole, *Response, error) {
 	if request == nil {
 		return nil, nil, NewArgError("request", "must be set")
@@ -124,7 +153,7 @@ func (s *CloudProviderAccessServiceOp) CreateRole(ctx context.Context, groupID s
 
 // AuthorizeRole authorizes and configure an AWS Assumed IAM role.
 //
-// See more: https://docs.atlas.mongodb.com/reference/api/cloud-provider-access-authorize-one-role/
+// See more: https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Cloud-Provider-Access/operation/authorizeCloudProviderAccessRole
 func (s *CloudProviderAccessServiceOp) AuthorizeRole(ctx context.Context, groupID, roleID string, request *CloudProviderAuthorizationRequest) (*AWSIAMRole, *Response, error) {
 	if roleID == "" {
 		return nil, nil, NewArgError("roleID", "must be set")
@@ -153,7 +182,7 @@ func (s *CloudProviderAccessServiceOp) AuthorizeRole(ctx context.Context, groupI
 
 // DeauthorizeRole deauthorizes an AWS Assumed IAM role.
 //
-// See more: https://docs.atlas.mongodb.com/reference/api/cloud-provider-access-deauthorize-one-role/
+// See more: https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Cloud-Provider-Access/operation/deauthorizeCloudProviderAccessRole
 func (s *CloudProviderAccessServiceOp) DeauthorizeRole(ctx context.Context, request *CloudProviderDeauthorizationRequest) (*Response, error) {
 	if request.RoleID == "" {
 		return nil, NewArgError("roleID", "must be set")
