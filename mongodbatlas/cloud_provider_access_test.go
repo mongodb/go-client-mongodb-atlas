@@ -89,7 +89,7 @@ func TestCloudProviderAccessServiceOp_GetRole(t *testing.T) {
 
 	roles, _, err := client.CloudProviderAccess.GetRole(ctx, groupID, roleID)
 	if err != nil {
-		t.Fatalf("CloudProviderAccess.ListRoles returned error: %v", err)
+		t.Fatalf("CloudProviderAccess.GetRole returned error: %v", err)
 	}
 
 	expected := &CloudProviderAccessRoles{
