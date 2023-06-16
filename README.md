@@ -9,7 +9,8 @@ Note that `go-client-mongodb-atlas` only supports the two most recent major vers
 ## Maintenance Update
 
 `go-client-mongodb-atlas` is currently under limited maintenance. 
-We recommend migrating to https://github.com/mongodb/atlas-sdk-go for the latest features.
+For new projects please use an official [atlas-sdk-go](https://github.com/mongodb/atlas-sdk-go)
+Please follow an official [migration guide](https://github.com/mongodb/atlas-sdk-go/blob/main/docs/doc_3_migration.md) 
 
 ## Usage
 
