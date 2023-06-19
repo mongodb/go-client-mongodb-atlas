@@ -774,7 +774,7 @@ func TestClusters_UpdateProcessArgs(t *testing.T) {
 		OplogMinRetentionHours:           pointer(100.0),
 		SampleSizeBIConnector:            pointer(int64(5000)),
 		SampleRefreshIntervalBIConnector: pointer(int64(300)),
-		TransactionLifetimeLimitSeconds:  pointer(float64(30)),
+		TransactionLifetimeLimitSeconds:  pointer(int64(30)),
 	}
 
 	mux.HandleFunc(fmt.Sprintf("/api/atlas/v1.0/groups/%s/clusters/%s/processArgs", groupID, clusterName), func(w http.ResponseWriter, r *http.Request) {
@@ -872,7 +872,7 @@ func TestClusters_GetProcessArgs(t *testing.T) {
 		OplogSizeMB:                      pointer(int64(2000)),
 		SampleSizeBIConnector:            pointer(int64(5000)),
 		SampleRefreshIntervalBIConnector: pointer(int64(300)),
-		TransactionLifetimeLimitSeconds:  pointer(float64(30)),
+		TransactionLifetimeLimitSeconds:  pointer(int64(30)),
 	}
 
 	if diff := deep.Equal(processArgs, expected); diff != nil {

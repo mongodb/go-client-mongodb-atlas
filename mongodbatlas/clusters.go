@@ -186,8 +186,8 @@ type ProcessArgs struct {
 	OplogSizeMB                      *int64   `json:"oplogSizeMB,omitempty"`
 	SampleSizeBIConnector            *int64   `json:"sampleSizeBIConnector,omitempty"`
 	SampleRefreshIntervalBIConnector *int64   `json:"sampleRefreshIntervalBIConnector,omitempty"`
+	TransactionLifetimeLimitSeconds  *int64   `json:"transactionLifetimeLimitSeconds,omitempty"`
 	OplogMinRetentionHours           *float64 `json:"oplogMinRetentionHours,omitempty"`
-	TransactionLifetimeLimitSeconds  *float64 `json:"transactionLifetimeLimitSeconds,omitempty"`
 }
 
 type Tag struct {
