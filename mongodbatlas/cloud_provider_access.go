@@ -27,7 +27,7 @@ const cloudProviderAccessPath = "api/atlas/v1.0/groups/%s/cloudProviderAccess"
 // See more: https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Cloud-Provider-Access
 type CloudProviderAccessService interface {
 	ListRoles(context.Context, string) (*CloudProviderAccessRoles, *Response, error)
-	GetRole(context.Context, string, string) (*CloudProviderAccessRoles, *Response, error)
+	GetRole(context.Context, string, string) (*AWSIAMRole, *Response, error)
 	CreateRole(context.Context, string, *CloudProviderAccessRoleRequest) (*AWSIAMRole, *Response, error)
 	AuthorizeRole(context.Context, string, string, *CloudProviderAuthorizationRequest) (*AWSIAMRole, *Response, error)
 	DeauthorizeRole(context.Context, *CloudProviderDeauthorizationRequest) (*Response, error)
@@ -83,7 +83,7 @@ type CloudProviderDeauthorizationRequest struct {
 // with the specified id and with access to the specified project.
 //
 // See more: https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Cloud-Provider-Access/operation/getCloudProviderAccessRole
-func (s *CloudProviderAccessServiceOp) GetRole(ctx context.Context, groupID, roleID string) (*CloudProviderAccessRoles, *Response, error) {
+func (s *CloudProviderAccessServiceOp) GetRole(ctx context.Context, groupID, roleID string) (*AWSIAMRole, *Response, error) {
 	if groupID == "" {
 		return nil, nil, NewArgError("groupId", "must be set")
 	}
@@ -98,7 +98,7 @@ func (s *CloudProviderAccessServiceOp) GetRole(ctx context.Context, groupID, rol
 		return nil, nil, err
 	}
 
-	root := new(CloudProviderAccessRoles)
+	root := new(AWSIAMRole)
 	resp, err := s.Client.Do(ctx, req, root)
 	if err != nil {
 		return nil, resp, err

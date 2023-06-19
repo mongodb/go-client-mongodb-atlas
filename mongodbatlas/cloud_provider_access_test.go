@@ -74,7 +74,6 @@ func TestCloudProviderAccessServiceOp_GetRole(t *testing.T) {
 	mux.HandleFunc(fmt.Sprintf("/api/atlas/v1.0/groups/1/cloudProviderAccess/%s", roleID), func(w http.ResponseWriter, r *http.Request) {
 		testMethod(t, r, http.MethodGet)
 		fmt.Fprint(w, `{
-		  "awsIamRoles": [{
 			"atlasAWSAccountArn": "arn:aws:iam::123456789012:root",
 			"atlasAssumedRoleExternalId": "3192be49-6e76-4b7d-a7b8-b486a8fc4483",
 			"authorizedDate": "2020-08-03T20:42:49Z",
@@ -83,7 +82,6 @@ func TestCloudProviderAccessServiceOp_GetRole(t *testing.T) {
 			"iamAssumedRoleArn": "arn:aws:iam::772401394250:role/my-test-aws-role",
 			"providerName": "AWS",
 			"roleId": "5f232b94af0a6b41747bcc2d"
-		  }]
 		}`)
 	})
 
@@ -92,19 +90,15 @@ func TestCloudProviderAccessServiceOp_GetRole(t *testing.T) {
 		t.Fatalf("CloudProviderAccess.GetRole returned error: %v", err)
 	}
 
-	expected := &CloudProviderAccessRoles{
-		AWSIAMRoles: []AWSIAMRole{
-			{
-				AtlasAWSAccountARN:         "arn:aws:iam::123456789012:root",
-				AtlasAssumedRoleExternalID: "3192be49-6e76-4b7d-a7b8-b486a8fc4483",
-				AuthorizedDate:             "2020-08-03T20:42:49Z",
-				CreatedDate:                "2020-07-30T20:20:36Z",
-				FeatureUsages:              []*FeatureUsage{},
-				IAMAssumedRoleARN:          "arn:aws:iam::772401394250:role/my-test-aws-role",
-				ProviderName:               "AWS",
-				RoleID:                     "5f232b94af0a6b41747bcc2d",
-			},
-		},
+	expected := &AWSIAMRole{
+		AtlasAWSAccountARN:         "arn:aws:iam::123456789012:root",
+		AtlasAssumedRoleExternalID: "3192be49-6e76-4b7d-a7b8-b486a8fc4483",
+		AuthorizedDate:             "2020-08-03T20:42:49Z",
+		CreatedDate:                "2020-07-30T20:20:36Z",
+		FeatureUsages:              []*FeatureUsage{},
+		IAMAssumedRoleARN:          "arn:aws:iam::772401394250:role/my-test-aws-role",
+		ProviderName:               "AWS",
+		RoleID:                     "5f232b94af0a6b41747bcc2d",
 	}
 	if diff := deep.Equal(roles, expected); diff != nil {
 		t.Error(diff)
