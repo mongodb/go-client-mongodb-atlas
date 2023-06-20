@@ -6,10 +6,10 @@ A Go HTTP client for the [MongoDB Atlas API](https://docs.atlas.mongodb.com/api/
 
 Note that `go-client-mongodb-atlas` only supports the two most recent major versions of Go.
 
-## Maintenance Update
+## Maintenance 
 
-`go-client-mongodb-atlas` is now deprecated and receives limited maintenance. 
-For new projects, please use the official [Atlas Go SDK](https://github.com/mongodb/atlas-sdk-go).
+`go-client-mongodb-atlas` is targeting Atlas API V1 and v1.5.
+For new projects, please consider the official [Atlas Go SDK](https://github.com/mongodb/atlas-sdk-go)
 To learn how to migrate from go-client-mongodb-atlas to the Atlas Go SDK, see the [migration guide](https://github.com/mongodb/atlas-sdk-go/blob/main/docs/doc_3_migration.md).
 
 ## Usage
