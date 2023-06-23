@@ -197,7 +197,19 @@ type OnlineArchive struct {
 	GroupID         string                 `json:"groupId,omitempty"`
 	PartitionFields []*PartitionFields     `json:"partitionFields,omitempty"`
 	Paused          *bool                  `json:"paused,omitempty"`
+	Schedule        *OnlineArchiveSchedule `json:"schedule,omitempty"`
 	State           string                 `json:"state,omitempty"`
+}
+
+// OnlineArchiveSchedule represents the frequency and duration when archiving process occurs.
+type OnlineArchiveSchedule struct {
+	Type        string `json:"type,omitempty"`
+	DayOfMonth  int32  `json:"dayOfMonth,omitempty"`
+	DayOfWeek   int32  `json:"dayOfWeek,omitempty"`
+	EndHour     *int32 `json:"endHour,omitempty"`
+	EndMinute   *int32 `json:"endMinute,omitempty"`
+	StartHour   *int32 `json:"startHour,omitempty"`
+	StartMinute *int32 `json:"startMinute,omitempty"`
 }
 
 // OnlineArchiveCriteria criteria to use for archiving data.
