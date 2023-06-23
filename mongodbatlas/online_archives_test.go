@@ -94,7 +94,14 @@ func TestOnlineArchiveServiceOp_List(t *testing.T) {
 					 "order": 2
 				 }
 			 ],
-			 "paused": false
+			 "paused": false,
+			 "schedule": {
+			 	"type": "DAILY",
+				"endHour": 1,
+				"endMinute": 1,
+				"startHour": 1,
+				"startMinute": 1
+             }
 		  }
 		],
 		"totalCount": 2 
@@ -171,6 +178,13 @@ func TestOnlineArchiveServiceOp_List(t *testing.T) {
 					},
 				},
 				Paused: pointer(false),
+				Schedule: &OnlineArchiveSchedule{
+					EndHour:     1,
+					EndMinute:   1,
+					StartHour:   1,
+					StartMinute: 1,
+					Type:        "DAILY",
+				},
 			},
 		},
 		TotalCount: 2,

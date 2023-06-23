@@ -192,12 +192,22 @@ type OnlineArchive struct {
 	ClusterName     string                 `json:"clusterName,omitempty"`
 	CollName        string                 `json:"collName,omitempty"`
 	CollectionType  string                 `json:"collectionType,omitempty"`
-	Criteria        *OnlineArchiveCriteria `json:"criteria,omitempty"`
 	DBName          string                 `json:"dbName,omitempty"`
 	GroupID         string                 `json:"groupId,omitempty"`
-	PartitionFields []*PartitionFields     `json:"partitionFields,omitempty"`
-	Paused          *bool                  `json:"paused,omitempty"`
 	State           string                 `json:"state,omitempty"`
+	Paused          *bool                  `json:"paused,omitempty"`
+	Criteria        *OnlineArchiveCriteria `json:"criteria,omitempty"`
+	Schedule        *OnlineArchiveSchedule `json:"schedule,omitempty"`
+	PartitionFields []*PartitionFields     `json:"partitionFields,omitempty"`
+}
+
+// OnlineArchiveSchedule represents the frequency and duration when archiving process occurs.
+type OnlineArchiveSchedule struct {
+	EndHour     int32  `json:"endHour,omitempty"`
+	EndMinute   int32  `json:"endMinute,omitempty"`
+	StartHour   int32  `json:"startHour,omitempty"`
+	StartMinute int32  `json:"startMinute,omitempty"`
+	Type        string `json:"type,omitempty"`
 }
 
 // OnlineArchiveCriteria criteria to use for archiving data.
