@@ -203,6 +203,8 @@ type OnlineArchive struct {
 
 // OnlineArchiveSchedule represents the frequency and duration when archiving process occurs.
 type OnlineArchiveSchedule struct {
+	DayOfMonth  int32  `json:"dayOfMonth,omitempty"`
+	DayOfWeek   int32  `json:"dayOfWeek,omitempty"`
 	EndHour     int32  `json:"endHour,omitempty"`
 	EndMinute   int32  `json:"endMinute,omitempty"`
 	StartHour   int32  `json:"startHour,omitempty"`
