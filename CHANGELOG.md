@@ -1,5 +1,19 @@
 # Changelog
 
+## [v0.30.0](https://github.com/mongodb/go-client-mongodb-atlas/tree/v0.30.0) (July 03, 2023)
+
+[Full Changelog](https://github.com/mongodb/go-client-mongodb-atlas/compare/v0.29.0...v0.30.0)
+
+**Merged pull requests:**
+
+- INTMDB-838: Add FederationSettingsId to org [\#503](https://github.com/mongodb/go-client-mongodb-atlas/pull/503) ([andreaangiolillo](https://github.com/andreaangiolillo))
+- INTMDB-828: Add Schedule Parameter to Online Archive [\#502](https://github.com/mongodb/go-client-mongodb-atlas/pull/502) ([andreaangiolillo](https://github.com/andreaangiolillo))
+- INTMDB-874:  Support transactionLifetimeLimitSeconds parameter in Cluster and Advanced Cluser [\#501](https://github.com/mongodb/go-client-mongodb-atlas/pull/501) ([andreaangiolillo](https://github.com/andreaangiolillo))
+- INTMDB-137: Fix output of CloudProviderAccessService.GetRole [\#500](https://github.com/mongodb/go-client-mongodb-atlas/pull/500) ([andreaangiolillo](https://github.com/andreaangiolillo))
+- CLOUDP-185079: notify users about new SDK [\#499](https://github.com/mongodb/go-client-mongodb-atlas/pull/499) ([wtrocki](https://github.com/wtrocki))
+- INTMDB-137: Add Get Role to CloudProviderAccessService [\#498](https://github.com/mongodb/go-client-mongodb-atlas/pull/498) ([andreaangiolillo](https://github.com/andreaangiolillo))
+- chore\(deps\): bump golangci/golangci-lint-action from 3.5.0 to 3.6.0 [\#497](https://github.com/mongodb/go-client-mongodb-atlas/pull/497) ([dependabot[bot]](https://github.com/apps/dependabot))
+
 ## [v0.29.0](https://github.com/mongodb/go-client-mongodb-atlas/tree/v0.29.0) (June 09, 2023)
 
 [Full Changelog](https://github.com/mongodb/go-client-mongodb-atlas/compare/v0.28.0...v0.29.0)
