@@ -76,16 +76,18 @@ type Organizations struct {
 
 // CreateOrganizationRequest struct for CreateOrganizationRequest.
 type CreateOrganizationRequest struct {
-	APIKey     *APIKeyInput `json:"apiKey,omitempty"`
-	Name       string       `json:"name"`
-	OrgOwnerID *string      `json:"orgOwnerId,omitempty"`
+	APIKey               *APIKeyInput `json:"apiKey,omitempty"`
+	FederationSettingsID *string      `json:"federationSettingsId,omitempty"`
+	Name                 string       `json:"name"`
+	OrgOwnerID           *string      `json:"orgOwnerId,omitempty"`
 }
 
 // CreateOrganizationResponse struct for CreateOrganizationResponse.
 type CreateOrganizationResponse struct {
-	APIKey       *APIKey       `json:"apiKey,omitempty"`
-	OrgOwnerID   *string       `json:"orgOwnerId,omitempty"`
-	Organization *Organization `json:"organization,omitempty"`
+	APIKey               *APIKey       `json:"apiKey,omitempty"`
+	FederationSettingsID *string       `json:"federationSettingsId,omitempty"`
+	OrgOwnerID           *string       `json:"orgOwnerId,omitempty"`
+	Organization         *Organization `json:"organization,omitempty"`
 }
 
 // List gets all organizations.
