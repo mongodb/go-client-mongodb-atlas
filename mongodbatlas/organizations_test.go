@@ -480,7 +480,7 @@ func TestOrganizationsServiceOp_Create(t *testing.T) {
 			Roles: []string{"ORG_OWNER"},
 		},
 		Name:                 "test",
-		FederationSettingsId: pointer("1"),
+		FederationSettingsID: pointer("1"),
 	}
 
 	response, _, err := client.Organizations.Create(ctx, body)
@@ -502,7 +502,7 @@ func TestOrganizationsServiceOp_Create(t *testing.T) {
 			ID:   "32b6e34b3d91647abb20e7b8",
 			Name: "test",
 		},
-		FederationSettingsId: pointer("1"),
+		FederationSettingsID: pointer("1"),
 	}
 
 	if diff := deep.Equal(response, expected); diff != nil {
