@@ -465,7 +465,8 @@ func TestOrganizationsServiceOp_Create(t *testing.T) {
 					"roleName": "ORG_OWNER"
 				  }
 				]
-			  },			  
+			  },
+			  "federationSettingsId": "1",
 			  "organization": {
 				"id": "32b6e34b3d91647abb20e7b8",								
 				"name": "test"
@@ -478,7 +479,8 @@ func TestOrganizationsServiceOp_Create(t *testing.T) {
 			Desc:  "string",
 			Roles: []string{"ORG_OWNER"},
 		},
-		Name: "test",
+		Name:                 "test",
+		FederationSettingsId: pointer("1"),
 	}
 
 	response, _, err := client.Organizations.Create(ctx, body)
@@ -500,6 +502,7 @@ func TestOrganizationsServiceOp_Create(t *testing.T) {
 			ID:   "32b6e34b3d91647abb20e7b8",
 			Name: "test",
 		},
+		FederationSettingsId: pointer("1"),
 	}
 
 	if diff := deep.Equal(response, expected); diff != nil {
