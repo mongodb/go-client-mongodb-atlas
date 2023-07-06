@@ -43,6 +43,7 @@ type ProjectsService interface {
 	GetOneProject(context.Context, string) (*Project, *Response, error)
 	GetOneProjectByName(context.Context, string) (*Project, *Response, error)
 	Create(context.Context, *Project, *CreateProjectOptions) (*Project, *Response, error)
+	Update(context.Context, string, *ProjectUpdateRequest) (*Project, *Response, error)
 	Delete(context.Context, string) (*Response, error)
 	GetProjectTeamsAssigned(context.Context, string) (*TeamsAssigned, *Response, error)
 	AddTeamsToProject(context.Context, string, []*ProjectTeam) (*TeamsAssigned, *Response, error)
@@ -104,6 +105,11 @@ type TeamsAssigned struct {
 
 type CreateProjectOptions struct {
 	ProjectOwnerID string `url:"projectOwnerId,omitempty"` // Unique 24-hexadecimal digit string that identifies the Atlas user account to be granted the Project Owner role on the specified project.
+}
+
+// ProjectUpdateRequest represents an update request used in ProjectsService.Update.
+type ProjectUpdateRequest struct {
+	Name string `json:"name"`
 }
 
 // GetAllProjects gets all project.
@@ -195,6 +201,33 @@ func (s *ProjectsServiceOp) Create(ctx context.Context, createRequest *Project, 
 	}
 
 	req, err := s.Client.NewRequest(ctx, http.MethodPost, path, createRequest)
+	if err != nil {
+		return nil, nil, err
+	}
+
+	root := new(Project)
+	resp, err := s.Client.Do(ctx, req, root)
+	if err != nil {
+		return nil, resp, err
+	}
+
+	return root, resp, err
+}
+
+// Update updates a project.
+//
+// https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Projects/operation/updateProject
+func (s *ProjectsServiceOp) Update(ctx context.Context, projectID string, updateRequest *ProjectUpdateRequest) (*Project, *Response, error) {
+	if updateRequest == nil {
+		return nil, nil, NewArgError("updateRequest", "cannot be nil")
+	}
+
+	if projectID == "" {
+		return nil, nil, NewArgError("projectID", "must be set")
+	}
+
+	basePath := fmt.Sprintf("%s/%s", projectBasePath, projectID)
+	req, err := s.Client.NewRequest(ctx, http.MethodPatch, basePath, updateRequest)
 	if err != nil {
 		return nil, nil, err
 	}
