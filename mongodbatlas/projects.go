@@ -43,6 +43,7 @@ type ProjectsService interface {
 	GetOneProject(context.Context, string) (*Project, *Response, error)
 	GetOneProjectByName(context.Context, string) (*Project, *Response, error)
 	Create(context.Context, *Project, *CreateProjectOptions) (*Project, *Response, error)
+	Update(context.Context, string, *Project) (*Project, *Response, error)
 	Delete(context.Context, string) (*Response, error)
 	GetProjectTeamsAssigned(context.Context, string) (*TeamsAssigned, *Response, error)
 	AddTeamsToProject(context.Context, string, []*ProjectTeam) (*TeamsAssigned, *Response, error)
@@ -195,6 +196,33 @@ func (s *ProjectsServiceOp) Create(ctx context.Context, createRequest *Project, 
 	}
 
 	req, err := s.Client.NewRequest(ctx, http.MethodPost, path, createRequest)
+	if err != nil {
+		return nil, nil, err
+	}
+
+	root := new(Project)
+	resp, err := s.Client.Do(ctx, req, root)
+	if err != nil {
+		return nil, resp, err
+	}
+
+	return root, resp, err
+}
+
+// Update updates a project.
+//
+// https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Projects/operation/updateProject
+func (s *ProjectsServiceOp) Update(ctx context.Context, projectID string, createRequest *Project) (*Project, *Response, error) {
+	if createRequest == nil {
+		return nil, nil, NewArgError("createRequest", "cannot be nil")
+	}
+
+	if projectID == "" {
+		return nil, nil, NewArgError("projectID", "must be set")
+	}
+
+	basePath := fmt.Sprintf("%s/%s", projectBasePath, projectID)
+	req, err := s.Client.NewRequest(ctx, http.MethodPatch, basePath, createRequest)
 	if err != nil {
 		return nil, nil, err
 	}

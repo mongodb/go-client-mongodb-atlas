@@ -247,6 +247,55 @@ func TestProject_Create(t *testing.T) {
 	}
 }
 
+func TestProject_Update(t *testing.T) {
+	client, mux, teardown := setup()
+	defer teardown()
+
+	projectID := "5a0a1e7e0f2912c554080adc"
+	updateRequest := &Project{
+		Name: "test",
+	}
+
+	mux.HandleFunc(fmt.Sprintf("/api/atlas/v1.0/groups/%s", projectID), func(w http.ResponseWriter, r *http.Request) {
+		fmt.Fprint(w, `{
+			"clusterCount": 2,
+			"created": "2016-07-14T14:19:33Z",
+			"id": "5a0a1e7e0f2912c554080adc",
+			"links": [{
+				"href": "https://cloud.mongodb.com/api/atlas/v1.0/groups/5a0a1e7e0f2912c554080ae6",
+				"rel": "self"
+			}],
+			"name": "test",
+			"orgId": "5a0a1e7e0f2912c554080adc",
+			"withDefaultAlertsSettings": true
+		}`)
+	})
+
+	project, _, err := client.Projects.Update(ctx, projectID, updateRequest)
+	if err != nil {
+		t.Fatalf("Projects.Update returned error: %v", err)
+	}
+
+	expected := &Project{
+		ClusterCount: 2,
+		Created:      "2016-07-14T14:19:33Z",
+		ID:           projectID,
+		Links: []*Link{
+			{
+				Href: "https://cloud.mongodb.com/api/atlas/v1.0/groups/5a0a1e7e0f2912c554080ae6",
+				Rel:  "self",
+			},
+		},
+		Name:                      "test",
+		OrgID:                     "5a0a1e7e0f2912c554080adc",
+		WithDefaultAlertsSettings: pointer(true),
+	}
+
+	if diff := deep.Equal(project, expected); diff != nil {
+		t.Error(diff)
+	}
+}
+
 func TestProject_Create_without_opts(t *testing.T) {
 	client, mux, teardown := setup()
 	defer teardown()
