@@ -1,5 +1,13 @@
 # Changelog
 
+## [v0.31.0](https://github.com/mongodb/go-client-mongodb-atlas/tree/v0.31.0) (July 06, 2023)
+
+[Full Changelog](https://github.com/mongodb/go-client-mongodb-atlas/compare/v0.30.0...v0.31.0)
+
+**Merged pull requests:**
+
+- INTMDB-914: Add update to project [\#505](https://github.com/mongodb/go-client-mongodb-atlas/pull/505) ([andreaangiolillo](https://github.com/andreaangiolillo))
+
 ## [v0.30.0](https://github.com/mongodb/go-client-mongodb-atlas/tree/v0.30.0) (July 03, 2023)
 
 [Full Changelog](https://github.com/mongodb/go-client-mongodb-atlas/compare/v0.29.0...v0.30.0)
