@@ -252,7 +252,7 @@ func TestProject_Update(t *testing.T) {
 	defer teardown()
 
 	projectID := "5a0a1e7e0f2912c554080adc"
-	updateRequest := &Project{
+	updateRequest := &ProjectUpdateRequest{
 		Name: "test",
 	}
 
