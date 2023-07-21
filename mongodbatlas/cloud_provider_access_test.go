@@ -49,7 +49,7 @@ func TestCloudProviderAccessServiceOp_ListRoles(t *testing.T) {
 	}
 
 	expected := &CloudProviderAccessRoles{
-		AWSIAMRoles: []IAMRole{
+		AWSIAMRoles: []CloudProviderAccessRole{
 			{
 				AtlasAWSAccountARN:         "arn:aws:iam::123456789012:root",
 				AtlasAssumedRoleExternalID: "3192be49-6e76-4b7d-a7b8-b486a8fc4483",
@@ -90,7 +90,7 @@ func TestCloudProviderAccessServiceOp_GetRoleAWS(t *testing.T) {
 		t.Fatalf("CloudProviderAccess.GetRole returned error: %v", err)
 	}
 
-	expected := &IAMRole{
+	expected := &CloudProviderAccessRole{
 		AtlasAWSAccountARN:         "arn:aws:iam::123456789012:root",
 		AtlasAssumedRoleExternalID: "3192be49-6e76-4b7d-a7b8-b486a8fc4483",
 		AuthorizedDate:             "2020-08-03T20:42:49Z",
@@ -130,17 +130,17 @@ func TestCloudProviderAccessServiceOp_GetRoleAzure(t *testing.T) {
 		t.Fatalf("CloudProviderAccess.GetRole returned error: %v", err)
 	}
 
-	expected := &IAMRole{
+	expected := &CloudProviderAccessRole{
 		AtlasAssumedRoleExternalID: "test",
 		IAMAssumedRoleARN:          "arn:aws:iam::123456789012:root",
 		CreatedDate:                "2019-08-24T14:15:22Z",
 		LastUpdatedDate:            "2019-08-24T14:15:22Z",
 		AtlasAzureAppID:            pointer("test"),
-		ServicePrincipalID:         pointer("test"),
-		TenantID:                   pointer("test"),
+		AzureServicePrincipalID:    pointer("test"),
+		AzureTenantID:              pointer("test"),
 		ProviderName:               "AZURE",
 		RoleID:                     "32b6e34b3d91647abb20e7b8",
-		ID:                         pointer("32b6e34b3d91647abb20e7b8"),
+		AzureID:                    pointer("32b6e34b3d91647abb20e7b8"),
 	}
 	if diff := deep.Equal(roles, expected); diff != nil {
 		t.Error(diff)
@@ -152,10 +152,10 @@ func TestCloudProviderAccessServiceOp_CreateRoleAzure(t *testing.T) {
 	defer teardown()
 
 	createRequest := &CloudProviderAccessRoleRequest{
-		ProviderName:       "AZURE",
-		AtlasAzureAppID:    pointer("test"),
-		ServicePrincipalID: pointer("test"),
-		TenantID:           pointer("test"),
+		ProviderName:            "AZURE",
+		AtlasAzureAppID:         pointer("test"),
+		AzureServicePrincipalID: pointer("test"),
+		AzureTenantID:           pointer("test"),
 	}
 
 	mux.HandleFunc("/api/atlas/v1.0/groups/1/cloudProviderAccess", func(w http.ResponseWriter, r *http.Request) {
@@ -197,17 +197,17 @@ func TestCloudProviderAccessServiceOp_CreateRoleAzure(t *testing.T) {
 		t.Fatalf("CloudProviderAccess.CreateRole returned error: %v", err)
 	}
 
-	expected := &IAMRole{
+	expected := &CloudProviderAccessRole{
 		AtlasAssumedRoleExternalID: "test",
 		IAMAssumedRoleARN:          "arn:aws:iam::123456789012:root",
 		CreatedDate:                "2019-08-24T14:15:22Z",
 		LastUpdatedDate:            "2019-08-24T14:15:22Z",
 		AtlasAzureAppID:            pointer("test"),
-		ServicePrincipalID:         pointer("test"),
-		TenantID:                   pointer("test"),
+		AzureServicePrincipalID:    pointer("test"),
+		AzureTenantID:              pointer("test"),
 		ProviderName:               "AZURE",
 		RoleID:                     "32b6e34b3d91647abb20e7b8",
-		ID:                         pointer("32b6e34b3d91647abb20e7b8"),
+		AzureID:                    pointer("32b6e34b3d91647abb20e7b8"),
 	}
 	if diff := deep.Equal(role, expected); diff != nil {
 		t.Error(diff)
@@ -258,7 +258,7 @@ func TestCloudProviderAccessServiceOp_CreateRoleAWS(t *testing.T) {
 		t.Fatalf("CloudProviderAccess.CreateRole returned error: %v", err)
 	}
 
-	expected := &IAMRole{
+	expected := &CloudProviderAccessRole{
 		AtlasAWSAccountARN:         "arn:aws:iam::123456789012:root",
 		AtlasAssumedRoleExternalID: "3192be49-6e76-4b7d-a7b8-b486a8fc4483",
 		IAMAssumedRoleARN:          "test",
@@ -318,7 +318,7 @@ func TestCloudProviderAccessServiceOp_AuthorizeRole(t *testing.T) {
 		t.Fatalf("CloudProviderAccess.AuthorizeRole returned error: %v", err)
 	}
 
-	expected := &IAMRole{
+	expected := &CloudProviderAccessRole{
 		AtlasAWSAccountARN:         "arn:aws:iam::123456789012:user/test.user",
 		AtlasAssumedRoleExternalID: "3192be49-6e76-4b7d-a7b8-b486a8fc4483",
 		AuthorizedDate:             "2020-07-30T22:17:09Z",
