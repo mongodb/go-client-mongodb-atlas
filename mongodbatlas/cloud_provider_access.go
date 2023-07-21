@@ -46,7 +46,7 @@ type CloudProviderAccessRoles struct {
 // CloudProviderAccessRole is the response from the CloudProviderAccessService.ListRoles.
 type CloudProviderAccessRole struct {
 	AtlasAWSAccountARN         string          `json:"atlasAWSAccountArn,omitempty"`         // ARN associated with the Atlas AWS account used to assume IAM roles in your AWS account.
-	AtlasAssumedRoleExternalID string          `json:"atlasAssumedRoleExternalId,omitempty"` // Unique external AzureID Atlas uses when assuming the IAM role in your AWS account.
+	AtlasAssumedRoleExternalID string          `json:"atlasAssumedRoleExternalId,omitempty"` // Unique external ID Atlas uses when assuming the IAM role in your AWS account.
 	AuthorizedDate             string          `json:"authorizedDate,omitempty"`             //	Date on which this role was authorized.
 	CreatedDate                string          `json:"createdDate,omitempty"`                // Date on which this role was created.
 	FeatureUsages              []*FeatureUsage `json:"featureUsages,omitempty"`              // Atlas features this AWS IAM role is linked to.
@@ -54,10 +54,10 @@ type CloudProviderAccessRole struct {
 	ProviderName               string          `json:"providerName,omitempty"`               // Name of the cloud provider. Currently limited to AWS.
 	RoleID                     string          `json:"roleId,omitempty"`                     // Unique 24-hexadecimal digit string that identifies the role.
 	AzureID                    *string         `json:"_id,omitempty"`                        // Unique 24-hexadecimal digit string that identifies the Azure Service Principal in Atlas.
-	AtlasAzureAppID            *string         `json:"atlasAzureAppId,omitempty"`            // Azure Active Directory Application AzureID of Atlas.
+	AtlasAzureAppID            *string         `json:"atlasAzureAppId,omitempty"`            // Azure Active Directory Application ID of Atlas.
 	LastUpdatedDate            string          `json:"lastUpdatedDate,omitempty"`            // UUID string that identifies the Azure Service Principal.
 	AzureServicePrincipalID    *string         `json:"servicePrincipalId,omitempty"`         // Unique ID of this role.
-	AzureTenantID              *string         `json:"tenantId,omitempty"`                   // UUID String that identifies the Azure Active Directory Tenant AzureID.
+	AzureTenantID              *string         `json:"tenantId,omitempty"`                   // UUID String that identifies the Azure Active Directory Tenant ID.
 }
 
 // FeatureUsage represents where the role sis being used.
