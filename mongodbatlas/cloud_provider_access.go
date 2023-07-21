@@ -52,7 +52,12 @@ type AWSIAMRole struct {
 	FeatureUsages              []*FeatureUsage `json:"featureUsages,omitempty"`              // Atlas features this AWS IAM role is linked to.
 	IAMAssumedRoleARN          string          `json:"iamAssumedRoleArn,omitempty"`          // ARN of the IAM Role that Atlas assumes when accessing resources in your AWS account.
 	ProviderName               string          `json:"providerName,omitempty"`               // Name of the cloud provider. Currently limited to AWS.
-	RoleID                     string          `json:"roleId,omitempty"`                     // Unique ID of this role.
+	RoleID                     string          `json:"roleId,omitempty"`                     // Unique 24-hexadecimal digit string that identifies the role.
+	ID                         *string         `json:"_id,omitempty"`                        // Unique 24-hexadecimal digit string that identifies the Azure Service Principal in Atlas.
+	AtlasAzureAppID            *string         `json:"atlasAzureAppId,omitempty"`            // Azure Active Directory Application ID of Atlas.
+	LastUpdatedDate            string          `json:"lastUpdatedDate,omitempty"`            // UUID string that identifies the Azure Service Principal.
+	ServicePrincipalID         *string         `json:"servicePrincipalId,omitempty"`         // Unique ID of this role.
+	TenantID                   *string         `json:"tenantId,omitempty"`                   // UUID String that identifies the Azure Active Directory Tenant ID.
 }
 
 // FeatureUsage represents where the role sis being used.
@@ -63,7 +68,12 @@ type FeatureUsage struct {
 
 // CloudProviderAccessRoleRequest represent a new role creation.
 type CloudProviderAccessRoleRequest struct {
-	ProviderName string `json:"providerName"`
+	ProviderName       string  `json:"providerName"`                 // Human-readable label that identifies the cloud provider of the role.
+	IamAssumedRoleArn  *string `json:"iamAssumedRoleArn,omitempty"`  // Amazon Resource Name (ARN) that identifies the Amazon Web Services (AWS) Identity and Access Management (IAM) role that MongoDB Cloud assumes when it accesses resources in your AWS account.
+	AtlasAzureAppID    *string `json:"atlasAzureAppId,omitempty"`    // Date and time when this Azure Service Principal was last updated. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+	ServicePrincipalID *string `json:"servicePrincipalId,omitempty"` // Unique ID of this role.
+	TenantID           *string `json:"tenantId,omitempty"`           // UUID String that identifies the Azure Active Directory Tenant ID.
+
 }
 
 // CloudProviderAuthorizationRequest represents an authorization request.

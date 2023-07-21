@@ -67,7 +67,7 @@ func TestCloudProviderAccessServiceOp_ListRoles(t *testing.T) {
 	}
 }
 
-func TestCloudProviderAccessServiceOp_GetRole(t *testing.T) {
+func TestCloudProviderAccessServiceOp_GetRoleAWS(t *testing.T) {
 	client, mux, teardown := setup()
 	defer teardown()
 	roleID := "1"
@@ -105,17 +105,128 @@ func TestCloudProviderAccessServiceOp_GetRole(t *testing.T) {
 	}
 }
 
-func TestCloudProviderAccessServiceOp_CreateRole(t *testing.T) {
+func TestCloudProviderAccessServiceOp_GetRoleAzure(t *testing.T) {
+	client, mux, teardown := setup()
+	defer teardown()
+	roleID := "1"
+	mux.HandleFunc(fmt.Sprintf("/api/atlas/v1.0/groups/1/cloudProviderAccess/%s", roleID), func(w http.ResponseWriter, r *http.Request) {
+		testMethod(t, r, http.MethodGet)
+		fmt.Fprint(w, `{
+			"providerName": "AZURE",
+			"atlasAssumedRoleExternalId": "test",
+			"createdDate": "2019-08-24T14:15:22Z",
+			"iamAssumedRoleArn": "arn:aws:iam::123456789012:root",
+			"roleId": "32b6e34b3d91647abb20e7b8",
+			"_id": "32b6e34b3d91647abb20e7b8",
+			"atlasAzureAppId": "test",
+			"lastUpdatedDate": "2019-08-24T14:15:22Z",
+			"servicePrincipalId": "test",
+			"tenantId": "test"
+		}`)
+	})
+
+	roles, _, err := client.CloudProviderAccess.GetRole(ctx, groupID, roleID)
+	if err != nil {
+		t.Fatalf("CloudProviderAccess.GetRole returned error: %v", err)
+	}
+
+	expected := &AWSIAMRole{
+		AtlasAssumedRoleExternalID: "test",
+		IAMAssumedRoleARN:          "arn:aws:iam::123456789012:root",
+		CreatedDate:                "2019-08-24T14:15:22Z",
+		LastUpdatedDate:            "2019-08-24T14:15:22Z",
+		AtlasAzureAppID:            pointer("test"),
+		ServicePrincipalID:         pointer("test"),
+		TenantID:                   pointer("test"),
+		ProviderName:               "AZURE",
+		RoleID:                     "32b6e34b3d91647abb20e7b8",
+		ID:                         pointer("32b6e34b3d91647abb20e7b8"),
+	}
+	if diff := deep.Equal(roles, expected); diff != nil {
+		t.Error(diff)
+	}
+}
+
+func TestCloudProviderAccessServiceOp_CreateRoleAzure(t *testing.T) {
 	client, mux, teardown := setup()
 	defer teardown()
 
 	createRequest := &CloudProviderAccessRoleRequest{
-		ProviderName: "AWS",
+		ProviderName:       "AZURE",
+		AtlasAzureAppID:    pointer("test"),
+		ServicePrincipalID: pointer("test"),
+		TenantID:           pointer("test"),
 	}
 
 	mux.HandleFunc("/api/atlas/v1.0/groups/1/cloudProviderAccess", func(w http.ResponseWriter, r *http.Request) {
 		expected := map[string]interface{}{
-			"providerName": "AWS",
+			"providerName":       "AZURE",
+			"atlasAzureAppId":    "test",
+			"servicePrincipalId": "test",
+			"tenantId":           "test",
+		}
+
+		jsonBlob := `{
+			"providerName": "AZURE",
+			"atlasAssumedRoleExternalId": "test",
+			"createdDate": "2019-08-24T14:15:22Z",
+			"iamAssumedRoleArn": "arn:aws:iam::123456789012:root",
+			"roleId": "32b6e34b3d91647abb20e7b8",
+			"_id": "32b6e34b3d91647abb20e7b8",
+			"atlasAzureAppId": "test",
+			"lastUpdatedDate": "2019-08-24T14:15:22Z",
+			"servicePrincipalId": "test",
+			"tenantId": "test"
+			}`
+
+		var v map[string]interface{}
+		err := json.NewDecoder(r.Body).Decode(&v)
+		if err != nil {
+			t.Fatalf("decode json: %v", err)
+		}
+
+		if diff := deep.Equal(v, expected); diff != nil {
+			t.Error(diff)
+		}
+
+		fmt.Fprint(w, jsonBlob)
+	})
+
+	role, _, err := client.CloudProviderAccess.CreateRole(ctx, "1", createRequest)
+	if err != nil {
+		t.Fatalf("CloudProviderAccess.CreateRole returned error: %v", err)
+	}
+
+	expected := &AWSIAMRole{
+		AtlasAssumedRoleExternalID: "test",
+		IAMAssumedRoleARN:          "arn:aws:iam::123456789012:root",
+		CreatedDate:                "2019-08-24T14:15:22Z",
+		LastUpdatedDate:            "2019-08-24T14:15:22Z",
+		AtlasAzureAppID:            pointer("test"),
+		ServicePrincipalID:         pointer("test"),
+		TenantID:                   pointer("test"),
+		ProviderName:               "AZURE",
+		RoleID:                     "32b6e34b3d91647abb20e7b8",
+		ID:                         pointer("32b6e34b3d91647abb20e7b8"),
+	}
+	if diff := deep.Equal(role, expected); diff != nil {
+		t.Error(diff)
+	}
+}
+
+func TestCloudProviderAccessServiceOp_CreateRoleAWS(t *testing.T) {
+	client, mux, teardown := setup()
+	defer teardown()
+
+	createRequest := &CloudProviderAccessRoleRequest{
+		ProviderName:      "AWS",
+		IamAssumedRoleArn: pointer("test"),
+	}
+
+	mux.HandleFunc("/api/atlas/v1.0/groups/1/cloudProviderAccess", func(w http.ResponseWriter, r *http.Request) {
+		expected := map[string]interface{}{
+			"providerName":      "AWS",
+			"iamAssumedRoleArn": "test",
 		}
 
 		jsonBlob := `{
@@ -124,7 +235,7 @@ func TestCloudProviderAccessServiceOp_CreateRole(t *testing.T) {
 		  "authorizedDate": null,
 		  "createdDate": "2020-07-30T20:20:36Z",
 		  "featureUsages": [],
-		  "iamAssumedRoleArn": null,
+		  "iamAssumedRoleArn": "test",
 		  "providerName": "AWS",
 		  "roleId": "5f232b94af0a6b41747bcc2d"
 		}`
@@ -150,6 +261,7 @@ func TestCloudProviderAccessServiceOp_CreateRole(t *testing.T) {
 	expected := &AWSIAMRole{
 		AtlasAWSAccountARN:         "arn:aws:iam::123456789012:root",
 		AtlasAssumedRoleExternalID: "3192be49-6e76-4b7d-a7b8-b486a8fc4483",
+		IAMAssumedRoleARN:          "test",
 		CreatedDate:                "2020-07-30T20:20:36Z",
 		FeatureUsages:              []*FeatureUsage{},
 		ProviderName:               "AWS",
