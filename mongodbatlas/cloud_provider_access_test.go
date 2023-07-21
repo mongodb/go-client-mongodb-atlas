@@ -49,7 +49,7 @@ func TestCloudProviderAccessServiceOp_ListRoles(t *testing.T) {
 	}
 
 	expected := &CloudProviderAccessRoles{
-		AWSIAMRoles: []AWSIAMRole{
+		AWSIAMRoles: []IAMRole{
 			{
 				AtlasAWSAccountARN:         "arn:aws:iam::123456789012:root",
 				AtlasAssumedRoleExternalID: "3192be49-6e76-4b7d-a7b8-b486a8fc4483",
@@ -90,7 +90,7 @@ func TestCloudProviderAccessServiceOp_GetRoleAWS(t *testing.T) {
 		t.Fatalf("CloudProviderAccess.GetRole returned error: %v", err)
 	}
 
-	expected := &AWSIAMRole{
+	expected := &IAMRole{
 		AtlasAWSAccountARN:         "arn:aws:iam::123456789012:root",
 		AtlasAssumedRoleExternalID: "3192be49-6e76-4b7d-a7b8-b486a8fc4483",
 		AuthorizedDate:             "2020-08-03T20:42:49Z",
@@ -130,7 +130,7 @@ func TestCloudProviderAccessServiceOp_GetRoleAzure(t *testing.T) {
 		t.Fatalf("CloudProviderAccess.GetRole returned error: %v", err)
 	}
 
-	expected := &AWSIAMRole{
+	expected := &IAMRole{
 		AtlasAssumedRoleExternalID: "test",
 		IAMAssumedRoleARN:          "arn:aws:iam::123456789012:root",
 		CreatedDate:                "2019-08-24T14:15:22Z",
@@ -197,7 +197,7 @@ func TestCloudProviderAccessServiceOp_CreateRoleAzure(t *testing.T) {
 		t.Fatalf("CloudProviderAccess.CreateRole returned error: %v", err)
 	}
 
-	expected := &AWSIAMRole{
+	expected := &IAMRole{
 		AtlasAssumedRoleExternalID: "test",
 		IAMAssumedRoleARN:          "arn:aws:iam::123456789012:root",
 		CreatedDate:                "2019-08-24T14:15:22Z",
@@ -258,7 +258,7 @@ func TestCloudProviderAccessServiceOp_CreateRoleAWS(t *testing.T) {
 		t.Fatalf("CloudProviderAccess.CreateRole returned error: %v", err)
 	}
 
-	expected := &AWSIAMRole{
+	expected := &IAMRole{
 		AtlasAWSAccountARN:         "arn:aws:iam::123456789012:root",
 		AtlasAssumedRoleExternalID: "3192be49-6e76-4b7d-a7b8-b486a8fc4483",
 		IAMAssumedRoleARN:          "test",
@@ -318,7 +318,7 @@ func TestCloudProviderAccessServiceOp_AuthorizeRole(t *testing.T) {
 		t.Fatalf("CloudProviderAccess.AuthorizeRole returned error: %v", err)
 	}
 
-	expected := &AWSIAMRole{
+	expected := &IAMRole{
 		AtlasAWSAccountARN:         "arn:aws:iam::123456789012:user/test.user",
 		AtlasAssumedRoleExternalID: "3192be49-6e76-4b7d-a7b8-b486a8fc4483",
 		AuthorizedDate:             "2020-07-30T22:17:09Z",

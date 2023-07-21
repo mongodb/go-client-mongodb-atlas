@@ -27,9 +27,9 @@ const cloudProviderAccessPath = "api/atlas/v1.0/groups/%s/cloudProviderAccess"
 // See more: https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Cloud-Provider-Access
 type CloudProviderAccessService interface {
 	ListRoles(context.Context, string) (*CloudProviderAccessRoles, *Response, error)
-	GetRole(context.Context, string, string) (*AWSIAMRole, *Response, error)
-	CreateRole(context.Context, string, *CloudProviderAccessRoleRequest) (*AWSIAMRole, *Response, error)
-	AuthorizeRole(context.Context, string, string, *CloudProviderAuthorizationRequest) (*AWSIAMRole, *Response, error)
+	GetRole(context.Context, string, string) (*IAMRole, *Response, error)
+	CreateRole(context.Context, string, *CloudProviderAccessRoleRequest) (*IAMRole, *Response, error)
+	AuthorizeRole(context.Context, string, string, *CloudProviderAuthorizationRequest) (*IAMRole, *Response, error)
 	DeauthorizeRole(context.Context, *CloudProviderDeauthorizationRequest) (*Response, error)
 }
 
@@ -40,11 +40,11 @@ var _ CloudProviderAccessService = &CloudProviderAccessServiceOp{}
 
 // CloudProviderAccessRoles an array of awsIamRoles objects.
 type CloudProviderAccessRoles struct {
-	AWSIAMRoles []AWSIAMRole `json:"awsIamRoles,omitempty"` // Unique identifier of AWS security group in this access list entry.
+	AWSIAMRoles []IAMRole `json:"awsIamRoles,omitempty"` // Unique identifier of AWS security group in this access list entry.
 }
 
-// AWSIAMRole is the response from the CloudProviderAccessService.ListRoles.
-type AWSIAMRole struct {
+// IAMRole is the response from the CloudProviderAccessService.ListRoles.
+type IAMRole struct {
 	AtlasAWSAccountARN         string          `json:"atlasAWSAccountArn,omitempty"`         // ARN associated with the Atlas AWS account used to assume IAM roles in your AWS account.
 	AtlasAssumedRoleExternalID string          `json:"atlasAssumedRoleExternalId,omitempty"` // Unique external ID Atlas uses when assuming the IAM role in your AWS account.
 	AuthorizedDate             string          `json:"authorizedDate,omitempty"`             //	Date on which this role was authorized.
@@ -93,7 +93,7 @@ type CloudProviderDeauthorizationRequest struct {
 // with the specified id and with access to the specified project.
 //
 // See more: https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Cloud-Provider-Access/operation/getCloudProviderAccessRole
-func (s *CloudProviderAccessServiceOp) GetRole(ctx context.Context, groupID, roleID string) (*AWSIAMRole, *Response, error) {
+func (s *CloudProviderAccessServiceOp) GetRole(ctx context.Context, groupID, roleID string) (*IAMRole, *Response, error) {
 	if groupID == "" {
 		return nil, nil, NewArgError("groupId", "must be set")
 	}
@@ -108,7 +108,7 @@ func (s *CloudProviderAccessServiceOp) GetRole(ctx context.Context, groupID, rol
 		return nil, nil, err
 	}
 
-	root := new(AWSIAMRole)
+	root := new(IAMRole)
 	resp, err := s.Client.Do(ctx, req, root)
 	if err != nil {
 		return nil, resp, err
@@ -140,7 +140,7 @@ func (s *CloudProviderAccessServiceOp) ListRoles(ctx context.Context, groupID st
 // CreateRole creates an AWS IAM role.
 //
 // See more: https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Cloud-Provider-Access/operation/createCloudProviderAccessRole
-func (s *CloudProviderAccessServiceOp) CreateRole(ctx context.Context, groupID string, request *CloudProviderAccessRoleRequest) (*AWSIAMRole, *Response, error) {
+func (s *CloudProviderAccessServiceOp) CreateRole(ctx context.Context, groupID string, request *CloudProviderAccessRoleRequest) (*IAMRole, *Response, error) {
 	if request == nil {
 		return nil, nil, NewArgError("request", "must be set")
 	}
@@ -152,7 +152,7 @@ func (s *CloudProviderAccessServiceOp) CreateRole(ctx context.Context, groupID s
 		return nil, nil, err
 	}
 
-	root := new(AWSIAMRole)
+	root := new(IAMRole)
 	resp, err := s.Client.Do(ctx, req, root)
 	if err != nil {
 		return nil, resp, err
@@ -164,7 +164,7 @@ func (s *CloudProviderAccessServiceOp) CreateRole(ctx context.Context, groupID s
 // AuthorizeRole authorizes and configure an AWS Assumed IAM role.
 //
 // See more: https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Cloud-Provider-Access/operation/authorizeCloudProviderAccessRole
-func (s *CloudProviderAccessServiceOp) AuthorizeRole(ctx context.Context, groupID, roleID string, request *CloudProviderAuthorizationRequest) (*AWSIAMRole, *Response, error) {
+func (s *CloudProviderAccessServiceOp) AuthorizeRole(ctx context.Context, groupID, roleID string, request *CloudProviderAuthorizationRequest) (*IAMRole, *Response, error) {
 	if roleID == "" {
 		return nil, nil, NewArgError("roleID", "must be set")
 	}
@@ -181,7 +181,7 @@ func (s *CloudProviderAccessServiceOp) AuthorizeRole(ctx context.Context, groupI
 		return nil, nil, err
 	}
 
-	root := new(AWSIAMRole)
+	root := new(IAMRole)
 	resp, err := s.Client.Do(ctx, req, root)
 	if err != nil {
 		return nil, resp, err
