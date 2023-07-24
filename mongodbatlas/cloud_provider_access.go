@@ -69,7 +69,7 @@ type FeatureUsage struct {
 // CloudProviderAccessRoleRequest represent a new role creation.
 type CloudProviderAccessRoleRequest struct {
 	ProviderName            string  `json:"providerName"`                 // Human-readable label that identifies the cloud provider of the role.
-	IamAssumedRoleArn       *string `json:"iamAssumedRoleArn,omitempty"`  // Amazon Resource Name (ARN) that identifies the Amazon Web Services (AWS) Identity and Access Management (IAM) role that MongoDB Cloud assumes when it accesses resources in your AWS account.
+	IAMAssumedRoleARN       *string `json:"iamAssumedRoleArn,omitempty"`  // Amazon Resource Name (ARN) that identifies the Amazon Web Services (AWS) Identity and Access Management (IAM) role that MongoDB Cloud assumes when it accesses resources in your AWS account.
 	AtlasAzureAppID         *string `json:"atlasAzureAppId,omitempty"`    // Date and time when this Azure Service Principal was last updated. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
 	AzureServicePrincipalID *string `json:"servicePrincipalId,omitempty"` // Unique AzureID of this role.
 	AzureTenantID           *string `json:"tenantId,omitempty"`           // UUID String that identifies the Azure Active Directory Tenant AzureID.

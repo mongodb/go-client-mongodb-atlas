@@ -220,7 +220,7 @@ func TestCloudProviderAccessServiceOp_CreateRoleAWS(t *testing.T) {
 
 	createRequest := &CloudProviderAccessRoleRequest{
 		ProviderName:      "AWS",
-		IamAssumedRoleArn: pointer("test"),
+		IAMAssumedRoleARN: pointer("test"),
 	}
 
 	mux.HandleFunc("/api/atlas/v1.0/groups/1/cloudProviderAccess", func(w http.ResponseWriter, r *http.Request) {
@@ -278,9 +278,9 @@ func TestCloudProviderAccessServiceOp_AuthorizeRole(t *testing.T) {
 
 	roleID := "5f232b94af0a6b41747bcc2d"
 
-	request := &CloudProviderAuthorizationRequest{
+	request := &CloudProviderAccessRoleRequest{
 		ProviderName:      "AWS",
-		IAMAssumedRoleARN: "arn:aws:iam::772401394250:role/test-user-role",
+		IAMAssumedRoleARN: pointer("arn:aws:iam::772401394250:role/test-user-role"),
 	}
 
 	mux.HandleFunc(fmt.Sprintf("/api/atlas/v1.0/groups/1/cloudProviderAccess/%s", roleID), func(w http.ResponseWriter, r *http.Request) {
