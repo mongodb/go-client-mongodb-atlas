@@ -40,7 +40,8 @@ var _ CloudProviderAccessService = &CloudProviderAccessServiceOp{}
 
 // CloudProviderAccessRoles an array of awsIamRoles objects.
 type CloudProviderAccessRoles struct {
-	AWSIAMRoles []CloudProviderAccessRole `json:"awsIamRoles,omitempty"` // Unique identifier of AWS security group in this access list entry.
+	AWSIAMRoles            []CloudProviderAccessRole `json:"awsIamRoles,omitempty"`            // Unique identifier of AWS security group in this access list entry.
+	AzureServicePrincipals []CloudProviderAccessRole `json:"azureServicePrincipals,omitempty"` // Unique identifier of Azure security group in this access list entry.
 }
 
 // CloudProviderAccessRole is the response from the CloudProviderAccessService.ListRoles.
