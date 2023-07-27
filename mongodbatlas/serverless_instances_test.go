@@ -357,6 +357,10 @@ func TestServerlessInstances_Update(t *testing.T) {
 		},
 	}
 
+	if diff := deep.Equal(serverlessInstance, expected); diff != nil {
+		t.Error(diff)
+	}
+
 	// Testing for removing tags
 	client, mux, teardown = setup()
 	defer teardown()
