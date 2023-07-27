@@ -57,7 +57,7 @@ type ServerlessCreateRequestParams struct {
 type ServerlessUpdateRequestParams struct {
 	ServerlessBackupOptions      *ServerlessBackupOptions `json:"serverlessBackupOptions"`
 	TerminationProtectionEnabled *bool                    `json:"terminationProtectionEnabled,omitempty"`
-	Tag                          []*Tag                   `json:"tags,omitempty"`
+	Tag                          []*Tag                   `json:"tags"`
 }
 
 // ServerlessProviderSettings represents the Provider Settings of serverless instances.
