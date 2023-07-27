@@ -316,6 +316,7 @@ func TestServerlessInstances_Update(t *testing.T) {
 	bodyParam := &ServerlessUpdateRequestParams{
 		ServerlessBackupOptions:      &ServerlessBackupOptions{ServerlessContinuousBackupEnabled: pointer(true)},
 		TerminationProtectionEnabled: pointer(true),
+		Tag:                          &[]*Tag{{Key: "key1", Value: "value1"}},
 	}
 
 	serverlessInstance, _, err := client.ServerlessInstances.Update(ctx, groupID, "sample", bodyParam)
@@ -354,6 +355,34 @@ func TestServerlessInstances_Update(t *testing.T) {
 				Value: "value1",
 			},
 		},
+	}
+
+	// Testing for removing tags
+	client, mux, teardown = setup()
+	defer teardown()
+
+	if diff := deep.Equal(serverlessInstance, expected); diff != nil {
+		t.Error(diff)
+	}
+
+	mux.HandleFunc(fmt.Sprintf("/"+serverlessInstancesPath+"/%s", groupID, "sample"), func(w http.ResponseWriter, r *http.Request) {
+		testMethod(t, r, http.MethodPatch)
+		fmt.Fprint(w, `{
+			"tags": []
+		}`)
+	})
+
+	bodyParam = &ServerlessUpdateRequestParams{
+		Tag: &[]*Tag{},
+	}
+
+	serverlessInstance, _, err = client.ServerlessInstances.Update(ctx, groupID, "sample", bodyParam)
+	if err != nil {
+		t.Fatalf("ServerlessInstances.Get returned error: %v", err)
+	}
+
+	expected = &Cluster{
+		Tags: &[]*Tag{},
 	}
 
 	if diff := deep.Equal(serverlessInstance, expected); diff != nil {
