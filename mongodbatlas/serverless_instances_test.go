@@ -106,7 +106,7 @@ func TestServerlessInstances_List(t *testing.T) {
 				StateName:         "IDLE",
 				ConnectionStrings: &ConnectionStrings{StandardSrv: "mongodb+srv://instance1.example.com"},
 				CreateDate:        "2021-06-25T21:32:06Z",
-				Tags: []*Tag{
+				Tags: &[]*Tag{
 					{
 						Key:   "key1",
 						Value: "value1",
@@ -128,7 +128,7 @@ func TestServerlessInstances_List(t *testing.T) {
 				StateName:         "IDLE",
 				ConnectionStrings: &ConnectionStrings{StandardSrv: "mongodb+srv://instance1.example.com"},
 				CreateDate:        "2021-06-25T21:32:06Z",
-				Tags: []*Tag{
+				Tags: &[]*Tag{
 					{
 						Key:   "key1",
 						Value: "value1",
@@ -261,7 +261,7 @@ func TestServerlessInstances_Create(t *testing.T) {
 				Href: "http://cloud.mongodb.com/api/atlas/v1.0/groups/{groupId}/serverless/{instanceName1}",
 			},
 		},
-		Tags: []*Tag{
+		Tags: &[]*Tag{
 			{
 				Key:   "key1",
 				Value: "value1",
@@ -275,90 +275,122 @@ func TestServerlessInstances_Create(t *testing.T) {
 }
 
 func TestServerlessInstances_Update(t *testing.T) {
-	client, mux, teardown := setup()
-	defer teardown()
+	t.Run("default", func(t *testing.T) {
+		client, mux, teardown := setup()
+		defer teardown()
 
-	mux.HandleFunc(fmt.Sprintf("/"+serverlessInstancesPath+"/%s", groupID, "sample"), func(w http.ResponseWriter, r *http.Request) {
-		testMethod(t, r, http.MethodPatch)
-		fmt.Fprint(w, `{
-			"connectionStrings" : {
-			  "standardSrv" : "mongodb+srv://instanceName1.example.com"
+		mux.HandleFunc(fmt.Sprintf("/"+serverlessInstancesPath+"/%s", groupID, "sample"), func(w http.ResponseWriter, r *http.Request) {
+			testMethod(t, r, http.MethodPatch)
+			fmt.Fprint(w, `{
+				"connectionStrings" : {
+				"standardSrv" : "mongodb+srv://instanceName1.example.com"
+				},
+				"createDate" : "2021-06-25T21:31:10Z",
+				"groupId" : "1",
+				"id" : "1",
+				"links" : [ {
+				"href" : "http://cloud.mongodb.com/api/atlas/v1.0/groups/{groupId}/serverless/{instanceName1}",
+				"rel" : "self"
+				}, {
+				"href" : "http://cloud.mongodb.com/api/atlas/v1.0/groups/{groupId}/serverless/{instanceName1}/backup/restoreJobs",
+				"rel" : "http://cloud.mongodb.com/restoreJobs"
+				}, {
+				"href" : "http://cloud.mongodb.com/api/atlas/v1.0/groups/{groupId}/serverless/{instanceName1}/backup/snapshots",
+				"rel" : "http://cloud.mongodb.com/snapshots"
+				}],
+				"mongoDBVersion" : "5.0.0",
+				"name" : "sample",
+				"providerSettings" : {
+				"providerName" : "SERVERLESS",
+				"backingProviderName" : "AWS",
+				"regionName" : "US_EAST_1"
+				},
+				"serverlessBackupOptions" : {
+				"serverlessContinuousBackupEnabled" : true
+				},
+				"stateName" : "IDLE",
+				"terminationProtectionEnabled": true,
+				"tags": [ { "key": "key1", "value": "value1" } ]
+			}`)
+		})
+
+		bodyParam := &ServerlessUpdateRequestParams{
+			ServerlessBackupOptions:      &ServerlessBackupOptions{ServerlessContinuousBackupEnabled: pointer(true)},
+			TerminationProtectionEnabled: pointer(true),
+			Tag:                          &[]*Tag{{Key: "key1", Value: "value1"}},
+		}
+
+		serverlessInstance, _, err := client.ServerlessInstances.Update(ctx, groupID, "sample", bodyParam)
+		if err != nil {
+			t.Fatalf("ServerlessInstances.Get returned error: %v", err)
+		}
+
+		expected := &Cluster{
+			ID:                           id,
+			GroupID:                      groupID,
+			MongoDBVersion:               "5.0.0",
+			Name:                         "sample",
+			ProviderSettings:             &ProviderSettings{RegionName: "US_EAST_1", BackingProviderName: "AWS", ProviderName: "SERVERLESS"},
+			StateName:                    "IDLE",
+			ConnectionStrings:            &ConnectionStrings{StandardSrv: "mongodb+srv://instanceName1.example.com"},
+			CreateDate:                   "2021-06-25T21:31:10Z",
+			ServerlessBackupOptions:      &ServerlessBackupOptions{ServerlessContinuousBackupEnabled: pointer(true)},
+			TerminationProtectionEnabled: pointer(true),
+			Links: []*Link{
+				{
+					Rel:  "self",
+					Href: "http://cloud.mongodb.com/api/atlas/v1.0/groups/{groupId}/serverless/{instanceName1}",
+				},
+				{
+					Rel:  "http://cloud.mongodb.com/restoreJobs",
+					Href: "http://cloud.mongodb.com/api/atlas/v1.0/groups/{groupId}/serverless/{instanceName1}/backup/restoreJobs",
+				},
+				{
+					Rel:  "http://cloud.mongodb.com/snapshots",
+					Href: "http://cloud.mongodb.com/api/atlas/v1.0/groups/{groupId}/serverless/{instanceName1}/backup/snapshots",
+				},
 			},
-			"createDate" : "2021-06-25T21:31:10Z",
-			"groupId" : "1",
-			"id" : "1",
-			"links" : [ {
-			  "href" : "http://cloud.mongodb.com/api/atlas/v1.0/groups/{groupId}/serverless/{instanceName1}",
-			  "rel" : "self"
-			}, {
-			  "href" : "http://cloud.mongodb.com/api/atlas/v1.0/groups/{groupId}/serverless/{instanceName1}/backup/restoreJobs",
-			  "rel" : "http://cloud.mongodb.com/restoreJobs"
-			}, {
-			  "href" : "http://cloud.mongodb.com/api/atlas/v1.0/groups/{groupId}/serverless/{instanceName1}/backup/snapshots",
-			  "rel" : "http://cloud.mongodb.com/snapshots"
-			}],
-			"mongoDBVersion" : "5.0.0",
-			"name" : "sample",
-			"providerSettings" : {
-			  "providerName" : "SERVERLESS",
-			  "backingProviderName" : "AWS",
-			  "regionName" : "US_EAST_1"
+			Tags: &[]*Tag{
+				{
+					Key:   "key1",
+					Value: "value1",
+				},
 			},
-			"serverlessBackupOptions" : {
-			  "serverlessContinuousBackupEnabled" : true
-			},
-			"stateName" : "IDLE",
-			"terminationProtectionEnabled": true,
-			"tags": [ { "key": "key1", "value": "value1" } ]
-		}`)
+		}
+
+		if diff := deep.Equal(serverlessInstance, expected); diff != nil {
+			t.Error(diff)
+		}
 	})
 
-	bodyParam := &ServerlessUpdateRequestParams{
-		ServerlessBackupOptions:      &ServerlessBackupOptions{ServerlessContinuousBackupEnabled: pointer(true)},
-		TerminationProtectionEnabled: pointer(true),
-	}
+	t.Run("with empty array of tags", func(t *testing.T) {
+		client, mux, teardown := setup()
+		defer teardown()
 
-	serverlessInstance, _, err := client.ServerlessInstances.Update(ctx, groupID, "sample", bodyParam)
-	if err != nil {
-		t.Fatalf("ServerlessInstances.Get returned error: %v", err)
-	}
+		mux.HandleFunc(fmt.Sprintf("/"+serverlessInstancesPath+"/%s", groupID, "sample"), func(w http.ResponseWriter, r *http.Request) {
+			testMethod(t, r, http.MethodPatch)
+			fmt.Fprint(w, `{
+				"tags": []
+			}`)
+		})
 
-	expected := &Cluster{
-		ID:                           id,
-		GroupID:                      groupID,
-		MongoDBVersion:               "5.0.0",
-		Name:                         "sample",
-		ProviderSettings:             &ProviderSettings{RegionName: "US_EAST_1", BackingProviderName: "AWS", ProviderName: "SERVERLESS"},
-		StateName:                    "IDLE",
-		ConnectionStrings:            &ConnectionStrings{StandardSrv: "mongodb+srv://instanceName1.example.com"},
-		CreateDate:                   "2021-06-25T21:31:10Z",
-		ServerlessBackupOptions:      &ServerlessBackupOptions{ServerlessContinuousBackupEnabled: pointer(true)},
-		TerminationProtectionEnabled: pointer(true),
-		Links: []*Link{
-			{
-				Rel:  "self",
-				Href: "http://cloud.mongodb.com/api/atlas/v1.0/groups/{groupId}/serverless/{instanceName1}",
-			},
-			{
-				Rel:  "http://cloud.mongodb.com/restoreJobs",
-				Href: "http://cloud.mongodb.com/api/atlas/v1.0/groups/{groupId}/serverless/{instanceName1}/backup/restoreJobs",
-			},
-			{
-				Rel:  "http://cloud.mongodb.com/snapshots",
-				Href: "http://cloud.mongodb.com/api/atlas/v1.0/groups/{groupId}/serverless/{instanceName1}/backup/snapshots",
-			},
-		},
-		Tags: []*Tag{
-			{
-				Key:   "key1",
-				Value: "value1",
-			},
-		},
-	}
+		bodyParam := &ServerlessUpdateRequestParams{
+			Tag: &[]*Tag{},
+		}
 
-	if diff := deep.Equal(serverlessInstance, expected); diff != nil {
-		t.Error(diff)
-	}
+		serverlessInstance, _, err := client.ServerlessInstances.Update(ctx, groupID, "sample", bodyParam)
+		if err != nil {
+			t.Fatalf("ServerlessInstances.Get returned error: %v", err)
+		}
+
+		expected := &Cluster{
+			Tags: &[]*Tag{},
+		}
+
+		if diff := deep.Equal(serverlessInstance, expected); diff != nil {
+			t.Error(diff)
+		}
+	})
 }
 
 func TestServerlessInstances_Delete(t *testing.T) {
