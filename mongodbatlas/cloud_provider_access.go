@@ -29,7 +29,7 @@ type CloudProviderAccessService interface {
 	ListRoles(context.Context, string) (*CloudProviderAccessRoles, *Response, error)
 	GetRole(context.Context, string, string) (*CloudProviderAccessRole, *Response, error)
 	CreateRole(context.Context, string, *CloudProviderAccessRoleRequest) (*CloudProviderAccessRole, *Response, error)
-	AuthorizeRole(context.Context, string, string, *CloudProviderAuthorizationRequest) (*CloudProviderAccessRole, *Response, error)
+	AuthorizeRole(context.Context, string, string, *CloudProviderAccessRoleRequest) (*CloudProviderAccessRole, *Response, error)
 	DeauthorizeRole(context.Context, *CloudProviderDeauthorizationRequest) (*Response, error)
 }
 
@@ -40,7 +40,8 @@ var _ CloudProviderAccessService = &CloudProviderAccessServiceOp{}
 
 // CloudProviderAccessRoles an array of awsIamRoles objects.
 type CloudProviderAccessRoles struct {
-	AWSIAMRoles []CloudProviderAccessRole `json:"awsIamRoles,omitempty"` // Unique identifier of AWS security group in this access list entry.
+	AWSIAMRoles            []CloudProviderAccessRole `json:"awsIamRoles,omitempty"`            // Unique identifier of AWS security group in this access list entry.
+	AzureServicePrincipals []CloudProviderAccessRole `json:"azureServicePrincipals,omitempty"` // Unique identifier of Azure security group in this access list entry.
 }
 
 // CloudProviderAccessRole is the response from the CloudProviderAccessService.ListRoles.
@@ -69,17 +70,11 @@ type FeatureUsage struct {
 // CloudProviderAccessRoleRequest represent a new role creation.
 type CloudProviderAccessRoleRequest struct {
 	ProviderName            string  `json:"providerName"`                 // Human-readable label that identifies the cloud provider of the role.
-	IamAssumedRoleArn       *string `json:"iamAssumedRoleArn,omitempty"`  // Amazon Resource Name (ARN) that identifies the Amazon Web Services (AWS) Identity and Access Management (IAM) role that MongoDB Cloud assumes when it accesses resources in your AWS account.
+	IAMAssumedRoleARN       *string `json:"iamAssumedRoleArn,omitempty"`  // Amazon Resource Name (ARN) that identifies the Amazon Web Services (AWS) Identity and Access Management (IAM) role that MongoDB Cloud assumes when it accesses resources in your AWS account.
 	AtlasAzureAppID         *string `json:"atlasAzureAppId,omitempty"`    // Date and time when this Azure Service Principal was last updated. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
 	AzureServicePrincipalID *string `json:"servicePrincipalId,omitempty"` // Unique AzureID of this role.
 	AzureTenantID           *string `json:"tenantId,omitempty"`           // UUID String that identifies the Azure Active Directory Tenant AzureID.
 
-}
-
-// CloudProviderAuthorizationRequest represents an authorization request.
-type CloudProviderAuthorizationRequest struct {
-	ProviderName      string `json:"providerName"`
-	IAMAssumedRoleARN string `json:"iamAssumedRoleArn"`
 }
 
 // CloudProviderDeauthorizationRequest represents a request to remove authorization.
@@ -164,7 +159,7 @@ func (s *CloudProviderAccessServiceOp) CreateRole(ctx context.Context, groupID s
 // AuthorizeRole authorizes and configure an AWS Assumed IAM role.
 //
 // See more: https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Cloud-Provider-Access/operation/authorizeCloudProviderAccessRole
-func (s *CloudProviderAccessServiceOp) AuthorizeRole(ctx context.Context, groupID, roleID string, request *CloudProviderAuthorizationRequest) (*CloudProviderAccessRole, *Response, error) {
+func (s *CloudProviderAccessServiceOp) AuthorizeRole(ctx context.Context, groupID, roleID string, request *CloudProviderAccessRoleRequest) (*CloudProviderAccessRole, *Response, error) {
 	if roleID == "" {
 		return nil, nil, NewArgError("roleID", "must be set")
 	}
