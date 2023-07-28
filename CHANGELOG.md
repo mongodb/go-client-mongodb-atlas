@@ -1,5 +1,18 @@
 # Changelog
 
+## [v0.32.0](https://github.com/mongodb/go-client-mongodb-atlas/tree/v0.32.0) (July 28, 2023)
+
+[Full Changelog](https://github.com/mongodb/go-client-mongodb-atlas/compare/v0.31.0...v0.32.0)
+
+**Breaking changes:**
+
+- fix: Removed omitempty from tags in ServerlessUpdateRequestParams [\#509](https://github.com/mongodb/go-client-mongodb-atlas/pull/509) ([cveticm](https://github.com/cveticm))
+- INTMDB-545!: add Azure support to cloudProviderAccess [\#507](https://github.com/mongodb/go-client-mongodb-atlas/pull/507) ([andreaangiolillo](https://github.com/andreaangiolillo))
+
+**Merged pull requests:**
+
+- INTMDB-545: Update CloudProviderAccessService to support azure [\#508](https://github.com/mongodb/go-client-mongodb-atlas/pull/508) ([andreaangiolillo](https://github.com/andreaangiolillo))
+
 ## [v0.31.0](https://github.com/mongodb/go-client-mongodb-atlas/tree/v0.31.0) (July 06, 2023)
 
 [Full Changelog](https://github.com/mongodb/go-client-mongodb-atlas/compare/v0.30.0...v0.31.0)
