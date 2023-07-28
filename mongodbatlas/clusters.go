@@ -172,7 +172,7 @@ type Cluster struct {
 	VersionReleaseSystem         string                   `json:"versionReleaseSystem,omitempty"`
 	RootCertType                 string                   `json:"rootCertType,omitempty"`
 	TerminationProtectionEnabled *bool                    `json:"terminationProtectionEnabled,omitempty"`
-	Tags                         []*Tag                   `json:"tags,omitempty"`
+	Tags                         *[]*Tag                  `json:"tags,omitempty"`
 }
 
 // ProcessArgs represents the advanced configuration options for the cluster.

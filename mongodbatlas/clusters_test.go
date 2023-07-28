@@ -265,7 +265,7 @@ func TestClusters_ListClusters(t *testing.T) {
 		SrvAddress:           "mongodb+srv://mongo-shard-00-00.mongodb.net:27017,mongo-shard-00-01.mongodb.net:27017,mongo-shard-00-02.mongodb.net:27017",
 		StateName:            "IDLE",
 		VersionReleaseSystem: "LTS",
-		Tags: []*Tag{
+		Tags: &[]*Tag{
 			{
 				Key:   "key1",
 				Value: "value1",
@@ -399,7 +399,7 @@ func TestClusters_Create(t *testing.T) {
 		StateName:            "IDLE",
 		VersionReleaseSystem: "LTS",
 		RootCertType:         "ISRGROOTX1",
-		Tags: []*Tag{
+		Tags: &[]*Tag{
 			{
 				Key:   "key1",
 				Value: "value1",
@@ -554,7 +554,7 @@ func TestClusters_Create(t *testing.T) {
 		t.Errorf("expected pitEnabled 'false', received '%t'", *pitEnabled)
 	}
 
-	if cluster.Tags == nil || len(cluster.Tags) == 0 {
+	if cluster.Tags == nil || len((*cluster.Tags)) == 0 {
 		t.Errorf("expected tags, received none")
 	}
 }
