@@ -6,7 +6,9 @@
 
 ## Generating CHANGELOG
 
-Run:
+1. Change future-release= and since-tag in .github_changelog_generator
+
+2. Run:
 
 ```bash
 github_changelog_generator -u mongodb -p go-client-mongodb-atlas
