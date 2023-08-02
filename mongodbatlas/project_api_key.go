@@ -42,6 +42,7 @@ var _ ProjectAPIKeysService = &ProjectAPIKeysOp{}
 // AssignAPIKey contains the roles to be assigned to an Organization API key into a Project.
 type AssignAPIKey struct {
 	Roles []string `json:"roles"`
+	Desc  string   `json:"desc,omitempty"`
 }
 
 // List all API-KEY in the organization associated to {GROUP-ID}.
