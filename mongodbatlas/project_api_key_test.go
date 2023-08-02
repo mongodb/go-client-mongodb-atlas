@@ -119,14 +119,40 @@ func TestProjectAPIKeys_Assign(t *testing.T) {
 
 	groupID := "5953c5f380eef53887615f9a"
 	keyID := "5d1d12c087d9d63e6d682438"
-
+	jsonBlob := `
+		{
+			"desc": "test-apikey",
+			"id": "5c47503320eef5699e1cce8d",
+			"privateKey": "********-****-****-db2c132ca78d",
+			"publicKey": "ewmaqvdo",
+			"roles": [
+				{
+					"groupId": "1",
+					"roleName": "GROUP_OWNER"
+				},
+				{
+					"orgId": "1",
+					"roleName": "ORG_MEMBER"
+				}
+			]
+		}
+		`
 	mux.HandleFunc(fmt.Sprintf("/api/atlas/v1.0/groups/%s/apiKeys/%s", groupID, keyID), func(w http.ResponseWriter, r *http.Request) {
 		testMethod(t, r, http.MethodPatch)
+		fmt.Fprint(w, jsonBlob)
 	})
 
-	_, err := client.ProjectAPIKeys.Assign(ctx, groupID, keyID, &AssignAPIKey{})
+	apiKey, _, err := client.ProjectAPIKeys.Assign(ctx, groupID, keyID, &AssignAPIKey{})
 	if err != nil {
 		t.Errorf("ProjectAPIKeys.Assign returned error: %v", err)
+	}
+
+	if desc := apiKey.Desc; desc != "test-apikey" {
+		t.Errorf("expected username '%s', received '%s'", "test-apikeye", desc)
+	}
+
+	if pk := apiKey.PublicKey; pk != "ewmaqvdo" {
+		t.Errorf("expected publicKey '%s', received '%s'", orgID, pk)
 	}
 }
 

@@ -29,7 +29,7 @@ const projectAPIKeysPath = "api/atlas/v1.0/groups/%s/apiKeys" //nolint:gosec // 
 type ProjectAPIKeysService interface {
 	List(context.Context, string, *ListOptions) ([]APIKey, *Response, error)
 	Create(context.Context, string, *APIKeyInput) (*APIKey, *Response, error)
-	Assign(context.Context, string, string, *AssignAPIKey) (*Response, error)
+	Assign(context.Context, string, string, *AssignAPIKey) (*APIKey, *Response, error)
 	Unassign(context.Context, string, string) (*Response, error)
 }
 
@@ -101,13 +101,13 @@ func (s *ProjectAPIKeysOp) Create(ctx context.Context, groupID string, createReq
 // Assign an API-KEY related to {GROUP-ID} to a the project with {API-KEY-ID}.
 //
 // See more: https://docs.atlas.mongodb.com/reference/api/projectApiKeys/assign-one-org-apiKey-to-one-project/
-func (s *ProjectAPIKeysOp) Assign(ctx context.Context, groupID, keyID string, assignAPIKeyRequest *AssignAPIKey) (*Response, error) {
+func (s *ProjectAPIKeysOp) Assign(ctx context.Context, groupID, keyID string, assignAPIKeyRequest *AssignAPIKey) (*APIKey, *Response, error) {
 	if groupID == "" {
-		return nil, NewArgError("groupID", "must be set")
+		return nil, nil, NewArgError("groupID", "must be set")
 	}
 
 	if keyID == "" {
-		return nil, NewArgError("keyID", "must be set")
+		return nil, nil, NewArgError("keyID", "must be set")
 	}
 
 	basePath := fmt.Sprintf(projectAPIKeysPath, groupID)
@@ -116,12 +116,16 @@ func (s *ProjectAPIKeysOp) Assign(ctx context.Context, groupID, keyID string, as
 
 	req, err := s.Client.NewRequest(ctx, http.MethodPatch, path, assignAPIKeyRequest)
 	if err != nil {
-		return nil, err
+		return nil, nil, err
 	}
 
-	resp, err := s.Client.Do(ctx, req, nil)
+	root := new(APIKey)
+	resp, err := s.Client.Do(ctx, req, root)
+	if err != nil {
+		return nil, resp, err
+	}
 
-	return resp, err
+	return root, resp, err
 }
 
 // Unassign an API-KEY related to {GROUP-ID} to a the project with {API-KEY-ID}.
