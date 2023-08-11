@@ -72,6 +72,7 @@ type DatabaseUser struct {
 	Scopes          []Scope `json:"scopes"`
 	Password        string  `json:"password,omitempty"`
 	Username        string  `json:"username,omitempty"`
+	OIDCAuthType    string  `json:"oidcAuthType,omitempty"`
 }
 
 // GetAuthDB determines the authentication database based on the type of user.
