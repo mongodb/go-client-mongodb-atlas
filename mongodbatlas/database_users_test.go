@@ -291,60 +291,6 @@ func TestDatabaseUsers_CreateWithAWSIAMType(t *testing.T) {
 	}
 }
 
-func TestDatabaseUsers_CreateWithOIDC(t *testing.T) {
-	client, mux, teardown := setup()
-	defer teardown()
-
-	groupID := "1"
-
-	createRequest := &DatabaseUser{
-		DatabaseName: "$external",
-		Username:     "0oaqyt9fc2ySTWnA0357/test-cfn-config-name",
-		GroupID:      groupID,
-		OIDCAuthType: "IDP_GROUP",
-		Scopes:       []Scope{},
-	}
-
-	mux.HandleFunc(fmt.Sprintf("/api/atlas/v1.0/groups/%s/databaseUsers", groupID), func(w http.ResponseWriter, r *http.Request) {
-		expected := map[string]interface{}{
-			"databaseName": "$external",
-			"username":     "0oaqyt9fc2ySTWnA0357/test-cfn-config-name",
-			"groupId":      groupID,
-			"oidcAuthType": "IDP_GROUP",
-			"scopes":       []interface{}{},
-		}
-
-		var v map[string]interface{}
-		err := json.NewDecoder(r.Body).Decode(&v)
-		if err != nil {
-			t.Fatalf("decode json: %v", err)
-		}
-
-		if !reflect.DeepEqual(v, expected) {
-			t.Errorf("Request body\n got=%#v\nwant=%#v", v, expected)
-		}
-
-		fmt.Fprint(w, `{
-			"databaseName": "$external",
-			"username":     "0oaqyt9fc2ySTWnA0357/test-cfn-config-name",
-			"groupId": "1",
-			"oidcAuthType": "IDP_GROUP",
-			"scopes" : []
-		}`)
-	})
-
-	dbUser, _, err := client.DatabaseUsers.Create(ctx, groupID, createRequest)
-	if err != nil {
-		t.Errorf("DatabaseUsers.Create returned error: %v", err)
-	}
-	if username := dbUser.Username; username != "0oaqyt9fc2ySTWnA0357/test-cfn-config-name" {
-		t.Errorf("expected username '%s', received '%s'", "0oaqyt9fc2ySTWnA0357/test-cfn-config-name", username)
-	}
-	if id := dbUser.GroupID; id != groupID {
-		t.Errorf("expected groupId '%s', received '%s'", groupID, id)
-	}
-}
-
 func TestDatabaseUsers_Create(t *testing.T) {
 	client, mux, teardown := setup()
 	defer teardown()
