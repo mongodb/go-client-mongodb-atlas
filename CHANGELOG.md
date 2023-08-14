@@ -1,5 +1,13 @@
 # Changelog
 
+## [v0.33.0](https://github.com/mongodb/go-client-mongodb-atlas/tree/v0.33.0) (August 14, 2023)
+
+[Full Changelog](https://github.com/mongodb/go-client-mongodb-atlas/compare/v0.32.0...v0.33.0)
+
+**Merged pull requests:**
+
+- INTMDB-931: Add support for OIDCAuthType to database user [\#512](https://github.com/mongodb/go-client-mongodb-atlas/pull/512) ([andreaangiolillo](https://github.com/andreaangiolillo))
+
 ## [v0.32.0](https://github.com/mongodb/go-client-mongodb-atlas/tree/v0.32.0) (July 28, 2023)
 
 [Full Changelog](https://github.com/mongodb/go-client-mongodb-atlas/compare/v0.31.0...v0.32.0)
