@@ -118,6 +118,7 @@ type Notification struct {
 	SMSEnabled               *bool    `json:"smsEnabled,omitempty"`               // Flag indicating if text message notifications should be sent. Populated for ORG, GROUP, and USER notifications types.
 	TeamID                   string   `json:"teamId,omitempty"`                   // Unique identifier of a team.
 	TeamName                 string   `json:"teamName,omitempty"`                 // Label for the team that receives this notification.
+	NotifierID               string   `json:"notifierId,omitempty"`               // The notifierId is a system-generated unique identifier assigned to each notification method.
 	TypeName                 string   `json:"typeName,omitempty"`                 // Type of alert notification.
 	Username                 string   `json:"username,omitempty"`                 // Name of the Atlas user to which to send notifications. Only a user in the project that owns the alert configuration is allowed here. Populated for the USER notifications type.
 	VictorOpsAPIKey          string   `json:"victorOpsApiKey,omitempty"`          // VictorOps API key. Populated for the VICTOR_OPS notifications type. If the key later becomes invalid, Atlas sends an email to the project owner and eventually removes the key.

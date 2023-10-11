@@ -36,6 +36,7 @@ func TestAlertConfiguration_Create(t *testing.T) {
 			"notifications": []interface{}{
 				map[string]interface{}{
 					"typeName":     "GROUP",
+					"notifierId":   "6462742adc47d365036da07c",
 					"intervalMin":  float64(5),
 					"delayMin":     float64(0),
 					"smsEnabled":   false,
@@ -69,6 +70,7 @@ func TestAlertConfiguration_Create(t *testing.T) {
 					"intervalMin": 5,
 					"smsEnabled": false,
 					"typeName": "GROUP",
+					"notifierId": "6462742adc47d365036da07c",
 					"roles" : ["GROUP_CHARTS_ADMIN", "GROUP_CLUSTER_MANAGER"]
 				}
 			],
@@ -82,6 +84,7 @@ func TestAlertConfiguration_Create(t *testing.T) {
 		Notifications: []Notification{
 			{
 				TypeName:     "GROUP",
+				NotifierID:   "6462742adc47d365036da07c",
 				IntervalMin:  5,
 				DelayMin:     pointer(0),
 				SMSEnabled:   pointer(false),
@@ -111,6 +114,7 @@ func TestAlertConfiguration_Create(t *testing.T) {
 				IntervalMin:  5,
 				SMSEnabled:   pointer(false),
 				TypeName:     "GROUP",
+				NotifierID:   "6462742adc47d365036da07c",
 				Roles:        []string{"GROUP_CHARTS_ADMIN", "GROUP_CLUSTER_MANAGER"},
 			},
 		},
@@ -220,6 +224,7 @@ func TestAlertConfiguration_GetAnAlertConfig(t *testing.T) {
 			"notifications": [
 				{
 					"typeName": "SMS",
+					"notifierId": "6462742adc47d365036da07c",
 					"intervalMin": 5,
 					"delayMin": 0,
 					"mobileNumber": "2343454567",
@@ -258,6 +263,7 @@ func TestAlertConfiguration_GetAnAlertConfig(t *testing.T) {
 		Notifications: []Notification{
 			{
 				TypeName:     "SMS",
+				NotifierID:   "6462742adc47d365036da07c",
 				IntervalMin:  5,
 				DelayMin:     pointer(0),
 				MobileNumber: "2343454567",
