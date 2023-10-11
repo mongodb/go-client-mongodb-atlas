@@ -40,8 +40,8 @@ const (
 	plainMediaType = "text/plain"
 	gzipMediaType  = "application/gzip"
 	libraryName    = "go-mongodbatlas"
-	// Version the version of the current API client. Should be set to the next version planned to be released.
-	Version = "0.33.0"
+	// Version of the current API client. Should be set to the next version planned to be released.
+	Version = "0.34.0"
 )
 
 var (

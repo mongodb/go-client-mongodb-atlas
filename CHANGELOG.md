@@ -1,5 +1,15 @@
 # Changelog
 
+## [v0.34.0](https://github.com/mongodb/go-client-mongodb-atlas/tree/v0.34.0) (October 11, 2023)
+
+[Full Changelog](https://github.com/mongodb/go-client-mongodb-atlas/compare/v0.33.0...v0.34.0)
+
+**Merged pull requests:**
+
+- feat: add notifierId parameter in alert configuration notifications [\#516](https://github.com/mongodb/go-client-mongodb-atlas/pull/516) ([AgustinBettati](https://github.com/AgustinBettati))
+- chore\(deps\): bump actions/checkout from 3 to 4 [\#515](https://github.com/mongodb/go-client-mongodb-atlas/pull/515) ([dependabot[bot]](https://github.com/apps/dependabot))
+- chore\(deps\): bump golangci/golangci-lint-action from 3.6.0 to 3.7.0 [\#514](https://github.com/mongodb/go-client-mongodb-atlas/pull/514) ([dependabot[bot]](https://github.com/apps/dependabot))
+
 ## [v0.33.0](https://github.com/mongodb/go-client-mongodb-atlas/tree/v0.33.0) (August 14, 2023)
 
 [Full Changelog](https://github.com/mongodb/go-client-mongodb-atlas/compare/v0.32.0...v0.33.0)
