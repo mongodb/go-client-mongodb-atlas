@@ -32,6 +32,7 @@ func TestClusters_ListClusters(t *testing.T) {
 		fmt.Fprint(w, `{
 			"results": [
 				{
+					"acceptDataRisksAndForceReplicaSetReconfig": "2017-10-23T21:26:17Z",
 					"autoScaling": {
 						"diskGBEnabled": true,
 						"compute": {
@@ -109,6 +110,7 @@ func TestClusters_ListClusters(t *testing.T) {
 					"tags": [ { "key": "key1", "value": "value1" } ]
 				},
 				{
+					"acceptDataRisksAndForceReplicaSetReconfig": "2017-10-23T21:26:17Z",
 					"autoScaling": {
 						"diskGBEnabled": true,
 						"compute": {
@@ -196,6 +198,7 @@ func TestClusters_ListClusters(t *testing.T) {
 	}
 
 	cluster1 := Cluster{
+		AcceptDataRisksAndForceReplicaSetReconfig: "2017-10-23T21:26:17Z",
 		AutoScaling: &AutoScaling{
 			DiskGBEnabled: pointer(true),
 			Compute: &Compute{
@@ -363,6 +366,7 @@ func TestClusters_Create(t *testing.T) {
 
 	createRequest := &Cluster{
 		ID: "1",
+		AcceptDataRisksAndForceReplicaSetReconfig: "2017-10-23T21:26:17Z",
 		AutoScaling: &AutoScaling{DiskGBEnabled: pointer(true),
 			Compute: &Compute{Enabled: pointer(true), ScaleDownEnabled: pointer(true)}},
 		BackupEnabled:            pointer(true),
@@ -410,6 +414,7 @@ func TestClusters_Create(t *testing.T) {
 	mux.HandleFunc(fmt.Sprintf("/api/atlas/v1.0/groups/%s/clusters", groupID), func(w http.ResponseWriter, r *http.Request) {
 		expected := map[string]interface{}{
 			"id": "1",
+			"acceptDataRisksAndForceReplicaSetReconfig": "2017-10-23T21:26:17Z",
 			"autoScaling": map[string]interface{}{
 				"diskGBEnabled": true,
 				"compute": map[string]interface{}{
@@ -469,6 +474,7 @@ func TestClusters_Create(t *testing.T) {
 		jsonBlob := `
 		{	
 			"id":"1",
+			"acceptDataRisksAndForceReplicaSetReconfig": "2017-10-23T21:26:17Z",
 			"autoScaling": {
                 "diskGBEnabled": true,
 				"compute": {
@@ -565,6 +571,7 @@ func TestClusters_Update(t *testing.T) {
 
 	updateRequest := &Cluster{
 		ID: "1",
+		AcceptDataRisksAndForceReplicaSetReconfig: "2017-10-23T21:26:17Z",
 		AutoScaling: &AutoScaling{DiskGBEnabled: pointer(true),
 			Compute: &Compute{Enabled: pointer(true), ScaleDownEnabled: pointer(true)}},
 		BackupEnabled:            pointer(true),
@@ -605,6 +612,7 @@ func TestClusters_Update(t *testing.T) {
 	mux.HandleFunc(fmt.Sprintf("/api/atlas/v1.0/groups/%s/clusters/%s", groupID, clusterName), func(w http.ResponseWriter, r *http.Request) {
 		expected := map[string]interface{}{
 			"id": "1",
+			"acceptDataRisksAndForceReplicaSetReconfig": "2017-10-23T21:26:17Z",
 			"autoScaling": map[string]interface{}{
 				"diskGBEnabled": true,
 				"compute": map[string]interface{}{
@@ -656,6 +664,7 @@ func TestClusters_Update(t *testing.T) {
 
 		jsonBlob := `
 		{
+			"acceptDataRisksAndForceReplicaSetReconfig": "2017-10-23T21:26:17Z",
 			"autoScaling": {
                 "diskGBEnabled": true,
 				"compute": {
@@ -894,6 +903,7 @@ func TestClusters_Get(t *testing.T) {
 		testMethod(t, r, http.MethodGet)
 		fmt.Fprint(w, `{	
 			"id":"1",
+			"acceptDataRisksAndForceReplicaSetReconfig": "2017-10-23T21:26:17Z",
 			"autoScaling": {
                 "diskGBEnabled": true
             },
@@ -969,7 +979,8 @@ func TestClusters_Get(t *testing.T) {
 	}
 
 	expected := &Cluster{
-		ID:            "1",
+		ID: "1",
+		AcceptDataRisksAndForceReplicaSetReconfig: "2017-10-23T21:26:17Z",
 		AutoScaling:   &AutoScaling{DiskGBEnabled: pointer(true)},
 		BackupEnabled: pointer(true),
 		BiConnector:   &BiConnector{Enabled: pointer(false), ReadPreference: "secondary"},
@@ -1066,7 +1077,8 @@ func TestClusters_LoadSampleDataset(t *testing.T) {
 							 "_id": "1",
 							  "clusterName": "globalCluster",
 							  "completeDate": null,
-							  "createDate": "2021-03-26T16:30:47Z",
+							  "acceptDataRisksAndForceReplicaSetReconfig": "2021-03-26T16:30:47Z",
+								"createDate": "2021-03-26T16:30:47Z",
 							  "errorMessage": null,
 							  "state": "WORKING"}`)
 	})
@@ -1333,6 +1345,7 @@ func TestClusters_Upgrade(t *testing.T) {
 
 	upgradeRequest := &Cluster{
 		ID: "1",
+		AcceptDataRisksAndForceReplicaSetReconfig: "2017-10-23T21:26:17Z",
 		AutoScaling: &AutoScaling{DiskGBEnabled: pointer(true),
 			Compute: &Compute{Enabled: pointer(true), ScaleDownEnabled: pointer(true)}},
 		BackupEnabled:            pointer(true),
@@ -1373,6 +1386,7 @@ func TestClusters_Upgrade(t *testing.T) {
 	mux.HandleFunc(fmt.Sprintf("/api/atlas/v1.0/groups/%s/clusters/tenantUpgrade", groupID), func(w http.ResponseWriter, r *http.Request) {
 		expected := map[string]interface{}{
 			"id": "1",
+			"acceptDataRisksAndForceReplicaSetReconfig": "2017-10-23T21:26:17Z",
 			"autoScaling": map[string]interface{}{
 				"diskGBEnabled": true,
 				"compute": map[string]interface{}{
@@ -1424,6 +1438,7 @@ func TestClusters_Upgrade(t *testing.T) {
 
 		jsonBlob := `
 		{
+			"acceptDataRisksAndForceReplicaSetReconfig": "2017-10-23T21:26:17Z",
 			"autoScaling": {
                 "diskGBEnabled": true,
 				"compute": {
