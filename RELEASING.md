@@ -14,6 +14,8 @@
 github_changelog_generator -u mongodb -p go-client-mongodb-atlas
 ```
 
+3. Change Version in file mongodbatlas/mongodbatlas.go 
+
 And open a PR with your changes.
 
 ## Tag and Release
