@@ -1,5 +1,15 @@
 # Changelog
 
+## [v0.35.0](https://github.com/mongodb/go-client-mongodb-atlas/tree/v0.35.0) (October 31, 2023)
+
+[Full Changelog](https://github.com/mongodb/go-client-mongodb-atlas/compare/v0.34.0...v0.35.0)
+
+**Merged pull requests:**
+
+- chore: Uses go.mod version in Github Action instead of a specific version [\#520](https://github.com/mongodb/go-client-mongodb-atlas/pull/520) ([lantoli](https://github.com/lantoli))
+- chore: Updates to Go 1.20 and creates .tool-versions [\#519](https://github.com/mongodb/go-client-mongodb-atlas/pull/519) ([lantoli](https://github.com/lantoli))
+- feat: Adds acceptDataRisksAndForceReplicaSetReconfig parameter in cluster and advanced cluster [\#518](https://github.com/mongodb/go-client-mongodb-atlas/pull/518) ([lantoli](https://github.com/lantoli))
+
 ## [v0.34.0](https://github.com/mongodb/go-client-mongodb-atlas/tree/v0.34.0) (October 11, 2023)
 
 [Full Changelog](https://github.com/mongodb/go-client-mongodb-atlas/compare/v0.33.0...v0.34.0)
