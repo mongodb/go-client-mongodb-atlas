@@ -44,27 +44,28 @@ var _ AdvancedClustersService = &AdvancedClustersServiceOp{}
 
 // AdvancedCluster represents MongoDB cluster.
 type AdvancedCluster struct {
-	BackupEnabled                *bool                      `json:"backupEnabled,omitempty"`
-	BiConnector                  *BiConnector               `json:"biConnector,omitempty"`
-	ClusterType                  string                     `json:"clusterType,omitempty"`
-	ConnectionStrings            *ConnectionStrings         `json:"connectionStrings,omitempty"`
-	DiskSizeGB                   *float64                   `json:"diskSizeGB,omitempty"`
-	EncryptionAtRestProvider     string                     `json:"encryptionAtRestProvider,omitempty"`
-	GroupID                      string                     `json:"groupId,omitempty"`
-	ID                           string                     `json:"id,omitempty"`
-	Labels                       []Label                    `json:"labels,omitempty"`
-	MongoDBMajorVersion          string                     `json:"mongoDBMajorVersion,omitempty"`
-	MongoDBVersion               string                     `json:"mongoDBVersion,omitempty"`
-	Name                         string                     `json:"name,omitempty"`
-	Paused                       *bool                      `json:"paused,omitempty"`
-	PitEnabled                   *bool                      `json:"pitEnabled,omitempty"`
-	StateName                    string                     `json:"stateName,omitempty"`
-	ReplicationSpecs             []*AdvancedReplicationSpec `json:"replicationSpecs,omitempty"`
-	CreateDate                   string                     `json:"createDate,omitempty"`
-	RootCertType                 string                     `json:"rootCertType,omitempty"`
-	VersionReleaseSystem         string                     `json:"versionReleaseSystem,omitempty"`
-	TerminationProtectionEnabled *bool                      `json:"terminationProtectionEnabled,omitempty"`
-	Tags                         []*Tag                     `json:"tags,omitempty"`
+	AcceptDataRisksAndForceReplicaSetReconfig string                     `json:"acceptDataRisksAndForceReplicaSetReconfig,omitempty"`
+	BackupEnabled                             *bool                      `json:"backupEnabled,omitempty"`
+	BiConnector                               *BiConnector               `json:"biConnector,omitempty"`
+	ClusterType                               string                     `json:"clusterType,omitempty"`
+	ConnectionStrings                         *ConnectionStrings         `json:"connectionStrings,omitempty"`
+	DiskSizeGB                                *float64                   `json:"diskSizeGB,omitempty"`
+	EncryptionAtRestProvider                  string                     `json:"encryptionAtRestProvider,omitempty"`
+	GroupID                                   string                     `json:"groupId,omitempty"`
+	ID                                        string                     `json:"id,omitempty"`
+	Labels                                    []Label                    `json:"labels,omitempty"`
+	MongoDBMajorVersion                       string                     `json:"mongoDBMajorVersion,omitempty"`
+	MongoDBVersion                            string                     `json:"mongoDBVersion,omitempty"`
+	Name                                      string                     `json:"name,omitempty"`
+	Paused                                    *bool                      `json:"paused,omitempty"`
+	PitEnabled                                *bool                      `json:"pitEnabled,omitempty"`
+	StateName                                 string                     `json:"stateName,omitempty"`
+	ReplicationSpecs                          []*AdvancedReplicationSpec `json:"replicationSpecs,omitempty"`
+	CreateDate                                string                     `json:"createDate,omitempty"`
+	RootCertType                              string                     `json:"rootCertType,omitempty"`
+	VersionReleaseSystem                      string                     `json:"versionReleaseSystem,omitempty"`
+	TerminationProtectionEnabled              *bool                      `json:"terminationProtectionEnabled,omitempty"`
+	Tags                                      []*Tag                     `json:"tags,omitempty"`
 }
 
 type AdvancedReplicationSpec struct {

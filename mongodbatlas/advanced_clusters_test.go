@@ -48,6 +48,7 @@ func TestAdvancedClusters_List(t *testing.T) {
 						"readPreference": "secondary"
 					  },
 					  "clusterType": "REPLICASET",
+						"acceptDataRisksAndForceReplicaSetReconfig": "2021-03-02T22:25:18Z",
 					  "createDate": "2021-03-02T22:25:18Z",
 					  "diskSizeGB": 10.0,
 					  "encryptionAtRestProvider": "NONE",
@@ -112,6 +113,7 @@ func TestAdvancedClusters_List(t *testing.T) {
 							"readPreference": "secondary"
 						  },
 						  "clusterType": "GEOSHARDED",
+							"acceptDataRisksAndForceReplicaSetReconfig": "2021-03-02T22:27:46Z",
 						  "createDate": "2021-03-02T22:27:46Z",
 						  "diskSizeGB": 40.0,
 						  "encryptionAtRestProvider": "NONE",
@@ -294,7 +296,8 @@ func TestAdvancedClusters_List(t *testing.T) {
 						},
 					},
 				},
-				CreateDate:   "2021-03-02T22:25:18Z",
+				CreateDate: "2021-03-02T22:25:18Z",
+				AcceptDataRisksAndForceReplicaSetReconfig: "2021-03-02T22:25:18Z",
 				RootCertType: "DST",
 			},
 			{
@@ -393,6 +396,7 @@ func TestAdvancedClusters_List(t *testing.T) {
 							},
 						},
 					}},
+				AcceptDataRisksAndForceReplicaSetReconfig: "2021-03-02T22:27:46Z",
 				CreateDate:           "2021-03-02T22:27:46Z",
 				RootCertType:         "DST",
 				VersionReleaseSystem: "LTS",
@@ -636,6 +640,7 @@ func TestAdvancedClusters_Create(t *testing.T) {
 							"readPreference": "secondary"
 						  },
 						  "clusterType": "GEOSHARDED",
+							"acceptDataRisksAndForceReplicaSetReconfig": "2021-03-02T22:27:46Z",
 						  "createDate": "2021-03-02T22:27:46Z",
 						  "diskSizeGB": 40.0,
 						  "encryptionAtRestProvider": "NONE",
@@ -832,6 +837,7 @@ func TestAdvancedClusters_Create(t *testing.T) {
 					},
 				},
 			}},
+		AcceptDataRisksAndForceReplicaSetReconfig: "2021-03-02T22:27:46Z",
 		CreateDate:           "2021-03-02T22:27:46Z",
 		RootCertType:         "DST",
 		VersionReleaseSystem: "LTS",
@@ -938,6 +944,7 @@ func TestAdvancedClusters_Create(t *testing.T) {
 					},
 				},
 			}},
+		AcceptDataRisksAndForceReplicaSetReconfig: "2021-03-02T22:27:46Z",
 		CreateDate:           "2021-03-02T22:27:46Z",
 		RootCertType:         "DST",
 		VersionReleaseSystem: "LTS",
@@ -960,6 +967,7 @@ func TestAdvancedClusters_Update(t *testing.T) {
 							"readPreference": "secondary"
 						  },
 						  "clusterType": "GEOSHARDED",
+							"acceptDataRisksAndForceReplicaSetReconfig": "2021-03-02T22:27:46Z",
 						  "createDate": "2021-03-02T22:27:46Z",
 						  "diskSizeGB": 40.0,
 						  "encryptionAtRestProvider": "NONE",
@@ -1149,6 +1157,7 @@ func TestAdvancedClusters_Update(t *testing.T) {
 					},
 				},
 			}},
+		AcceptDataRisksAndForceReplicaSetReconfig: "2021-03-02T22:27:46Z",
 		CreateDate:   "2021-03-02T22:27:46Z",
 		RootCertType: "DST",
 	}
@@ -1248,6 +1257,7 @@ func TestAdvancedClusters_Update(t *testing.T) {
 					},
 				},
 			}},
+		AcceptDataRisksAndForceReplicaSetReconfig: "2021-03-02T22:27:46Z",
 		CreateDate:   "2021-03-02T22:27:46Z",
 		RootCertType: "DST",
 	}
