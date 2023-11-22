@@ -33,6 +33,8 @@ func TestBackupCompliancePolicy_Get(t *testing.T) {
 		testMethod(t, r, http.MethodGet)
 		fmt.Fprint(w, `{
 			"authorizedEmail": "user@example.com",
+			"authorizedUserFirstName":  "first",
+			"authorizedUserLastName":  "last",
 			"copyProtectionEnabled": false,
 			"encryptionAtRestEnabled": false,
 			"onDemandPolicyItem": 
@@ -76,6 +78,8 @@ func TestBackupCompliancePolicy_Get(t *testing.T) {
 
 	expected := &BackupCompliancePolicy{
 		AuthorizedEmail:         "user@example.com",
+		AuthorizedUserFirstName: "first",
+		AuthorizedUserLastName:  "last",
 		CopyProtectionEnabled:   pointer(false),
 		EncryptionAtRestEnabled: pointer(false),
 		ProjectID:               "32b6e34b3d91647abb20e7b8",
@@ -125,6 +129,8 @@ func TestBackupCompliancePolicy_Update(t *testing.T) {
 	mux.HandleFunc(path, func(w http.ResponseWriter, r *http.Request) {
 		expected := map[string]interface{}{
 			"authorizedEmail":         "user@example.com",
+			"authorizedUserFirstName": "first",
+			"authorizedUserLastName":  "last",
 			"copyProtectionEnabled":   false,
 			"encryptionAtRestEnabled": false,
 			"updatedDate":             "2019-08-24T14:15:22Z",
@@ -170,6 +176,8 @@ func TestBackupCompliancePolicy_Update(t *testing.T) {
 
 		fmt.Fprint(w, `{
 			"authorizedEmail": "user@example.com",
+			"authorizedUserFirstName": "first",
+			"authorizedUserLastName":  "last",
 			"copyProtectionEnabled": false,
 			"encryptionAtRestEnabled": false,
 			"onDemandPolicyItem": 
@@ -208,6 +216,8 @@ func TestBackupCompliancePolicy_Update(t *testing.T) {
 
 	updateRequest := &BackupCompliancePolicy{
 		AuthorizedEmail:         "user@example.com",
+		AuthorizedUserFirstName: "first",
+		AuthorizedUserLastName:  "last",
 		CopyProtectionEnabled:   pointer(false),
 		EncryptionAtRestEnabled: pointer(false),
 		ProjectID:               "32b6e34b3d91647abb20e7b8",
@@ -248,6 +258,8 @@ func TestBackupCompliancePolicy_Update(t *testing.T) {
 
 	expected := &BackupCompliancePolicy{
 		AuthorizedEmail:         "user@example.com",
+		AuthorizedUserFirstName: "first",
+		AuthorizedUserLastName:  "last",
 		CopyProtectionEnabled:   pointer(false),
 		EncryptionAtRestEnabled: pointer(false),
 		ProjectID:               "32b6e34b3d91647abb20e7b8",
