@@ -1,5 +1,14 @@
 # Changelog
 
+## [v0.36.0](https://github.com/mongodb/go-client-mongodb-atlas/tree/v0.36.0) (November 22, 2023)
+
+[Full Changelog](https://github.com/mongodb/go-client-mongodb-atlas/compare/v0.35.0...v0.36.0)
+
+**Merged pull requests:**
+
+- feat: adds fields to backup\_compliance\_policy. [\#523](https://github.com/mongodb/go-client-mongodb-atlas/pull/523) ([marcosuma](https://github.com/marcosuma))
+- chore: Updates release doc [\#522](https://github.com/mongodb/go-client-mongodb-atlas/pull/522) ([lantoli](https://github.com/lantoli))
+
 ## [v0.35.0](https://github.com/mongodb/go-client-mongodb-atlas/tree/v0.35.0) (October 31, 2023)
 
 [Full Changelog](https://github.com/mongodb/go-client-mongodb-atlas/compare/v0.34.0...v0.35.0)
