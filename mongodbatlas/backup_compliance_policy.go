@@ -42,6 +42,8 @@ var _ BackupCompliancePolicyService = &BackupCompliancePolicyServiceOp{}
 // BackupCompliancePolicy represents a backup compiance policy.
 type BackupCompliancePolicy struct {
 	AuthorizedEmail         string                `json:"authorizedEmail,omitempty"`
+	AuthorizedUserFirstName string                `json:"authorizedUserFirstName,omitempty"`
+	AuthorizedUserLastName  string                `json:"authorizedUserLastName,omitempty"`
 	CopyProtectionEnabled   *bool                 `json:"copyProtectionEnabled,omitempty"`
 	EncryptionAtRestEnabled *bool                 `json:"encryptionAtRestEnabled,omitempty"`
 	OnDemandPolicyItem      PolicyItem            `json:"onDemandPolicyItem,omitempty"`
