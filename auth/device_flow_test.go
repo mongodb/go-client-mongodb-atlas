@@ -20,6 +20,7 @@ import (
 	"testing"
 
 	"github.com/go-test/deep"
+	atlas "go.mongodb.org/atlas/mongodbatlas"
 )
 
 func TestConfig_RequestCode(t *testing.T) {
@@ -135,7 +136,7 @@ func TestConfig_PollToken(t *testing.T) {
 
 	mux.HandleFunc("/api/private/unauth/account/device/token", func(w http.ResponseWriter, r *http.Request) {
 		testMethod(t, r)
-		fmt.Fprint(w, `{
+		_, _ = fmt.Fprint(w, `{
 		  "access_token": "secret1",
 		  "refresh_token": "secret2",
 		  "scope": "openid",
@@ -207,5 +208,14 @@ func TestConfig_RegistrationConfig(t *testing.T) {
 
 	if diff := deep.Equal(results, expected); diff != nil {
 		t.Error(diff)
+	}
+}
+
+func TestIsTimeoutErr(t *testing.T) {
+	err := &atlas.ErrorResponse{
+		ErrorCode: "DEVICE_AUTHORIZATION_EXPIRED",
+	}
+	if !IsTimeoutErr(err) {
+		t.Error("expected to be a timeout error")
 	}
 }
