@@ -1,5 +1,29 @@
 # Changelog
 
+## [v0.37.0](https://github.com/mongodb/go-client-mongodb-atlas/tree/v0.37.0) (August 26, 2024)
+
+[Full Changelog](https://github.com/mongodb/go-client-mongodb-atlas/compare/v0.36.0...v0.37.0)
+
+**Closed issues:**
+
+- ClustersService does not list the available clusters [\#532](https://github.com/mongodb/go-client-mongodb-atlas/issues/532)
+
+**Merged pull requests:**
+
+- feat: Adds field to ProcessArgs [\#538](https://github.com/mongodb/go-client-mongodb-atlas/pull/538) ([oarbusi](https://github.com/oarbusi))
+- chore\(deps\): bump golangci/golangci-lint-action from 6.0.1 to 6.1.0 [\#537](https://github.com/mongodb/go-client-mongodb-atlas/pull/537) ([dependabot[bot]](https://github.com/apps/dependabot))
+- chore\(deps\): bump github.com/go-test/deep from 1.1.0 to 1.1.1 [\#536](https://github.com/mongodb/go-client-mongodb-atlas/pull/536) ([dependabot[bot]](https://github.com/apps/dependabot))
+- chore\(deps\): bump golangci/golangci-lint-action from 6.0.0 to 6.0.1 [\#535](https://github.com/mongodb/go-client-mongodb-atlas/pull/535) ([dependabot[bot]](https://github.com/apps/dependabot))
+- chore\(deps\): bump golangci/golangci-lint-action from 5.1.0 to 6.0.0 [\#534](https://github.com/mongodb/go-client-mongodb-atlas/pull/534) ([dependabot[bot]](https://github.com/apps/dependabot))
+- chore\(deps\): bump golangci/golangci-lint-action from 4.0.0 to 5.1.0 [\#533](https://github.com/mongodb/go-client-mongodb-atlas/pull/533) ([dependabot[bot]](https://github.com/apps/dependabot))
+- task: Deprecated go.mod [\#531](https://github.com/mongodb/go-client-mongodb-atlas/pull/531) ([gssbzn](https://github.com/gssbzn))
+- test: add test for IsTimeoutErr [\#530](https://github.com/mongodb/go-client-mongodb-atlas/pull/530) ([gssbzn](https://github.com/gssbzn))
+- chore: updates README to clarify deprecation. [\#529](https://github.com/mongodb/go-client-mongodb-atlas/pull/529) ([mmarcon](https://github.com/mmarcon))
+- chore\(deps\): bump golangci/golangci-lint-action from 3.7.0 to 4.0.0 [\#528](https://github.com/mongodb/go-client-mongodb-atlas/pull/528) ([dependabot[bot]](https://github.com/apps/dependabot))
+- chore\(deps\): bump actions/cache from 3 to 4 [\#527](https://github.com/mongodb/go-client-mongodb-atlas/pull/527) ([dependabot[bot]](https://github.com/apps/dependabot))
+- chore\(deps\): bump actions/stale from 8 to 9 [\#526](https://github.com/mongodb/go-client-mongodb-atlas/pull/526) ([dependabot[bot]](https://github.com/apps/dependabot))
+- chore\(deps\): bump actions/setup-go from 4 to 5 [\#525](https://github.com/mongodb/go-client-mongodb-atlas/pull/525) ([dependabot[bot]](https://github.com/apps/dependabot))
+
 ## [v0.36.0](https://github.com/mongodb/go-client-mongodb-atlas/tree/v0.36.0) (November 22, 2023)
 
 [Full Changelog](https://github.com/mongodb/go-client-mongodb-atlas/compare/v0.35.0...v0.36.0)
