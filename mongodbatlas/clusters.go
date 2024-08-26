@@ -178,17 +178,18 @@ type Cluster struct {
 
 // ProcessArgs represents the advanced configuration options for the cluster.
 type ProcessArgs struct {
-	DefaultReadConcern               string   `json:"defaultReadConcern,omitempty"`
-	DefaultWriteConcern              string   `json:"defaultWriteConcern,omitempty"`
-	MinimumEnabledTLSProtocol        string   `json:"minimumEnabledTlsProtocol,omitempty"`
-	FailIndexKeyTooLong              *bool    `json:"failIndexKeyTooLong,omitempty"`
-	JavascriptEnabled                *bool    `json:"javascriptEnabled,omitempty"`
-	NoTableScan                      *bool    `json:"noTableScan,omitempty"`
-	OplogSizeMB                      *int64   `json:"oplogSizeMB,omitempty"`
-	SampleSizeBIConnector            *int64   `json:"sampleSizeBIConnector,omitempty"`
-	SampleRefreshIntervalBIConnector *int64   `json:"sampleRefreshIntervalBIConnector,omitempty"`
-	TransactionLifetimeLimitSeconds  *int64   `json:"transactionLifetimeLimitSeconds,omitempty"`
-	OplogMinRetentionHours           *float64 `json:"oplogMinRetentionHours,omitempty"`
+	DefaultReadConcern                                    string   `json:"defaultReadConcern,omitempty"`
+	DefaultWriteConcern                                   string   `json:"defaultWriteConcern,omitempty"`
+	MinimumEnabledTLSProtocol                             string   `json:"minimumEnabledTlsProtocol,omitempty"`
+	FailIndexKeyTooLong                                   *bool    `json:"failIndexKeyTooLong,omitempty"`
+	JavascriptEnabled                                     *bool    `json:"javascriptEnabled,omitempty"`
+	NoTableScan                                           *bool    `json:"noTableScan,omitempty"`
+	OplogSizeMB                                           *int64   `json:"oplogSizeMB,omitempty"`
+	SampleSizeBIConnector                                 *int64   `json:"sampleSizeBIConnector,omitempty"`
+	SampleRefreshIntervalBIConnector                      *int64   `json:"sampleRefreshIntervalBIConnector,omitempty"`
+	TransactionLifetimeLimitSeconds                       *int64   `json:"transactionLifetimeLimitSeconds,omitempty"`
+	OplogMinRetentionHours                                *float64 `json:"oplogMinRetentionHours,omitempty"`
+	ChangeStreamOptionsPreAndPostImagesExpireAfterSeconds *int64   `json:"changeStreamOptionsPreAndPostImagesExpireAfterSeconds,omitempty"`
 }
 
 type Tag struct {

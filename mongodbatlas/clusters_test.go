@@ -784,6 +784,7 @@ func TestClusters_UpdateProcessArgs(t *testing.T) {
 		SampleSizeBIConnector:            pointer(int64(5000)),
 		SampleRefreshIntervalBIConnector: pointer(int64(300)),
 		TransactionLifetimeLimitSeconds:  pointer(int64(30)),
+		ChangeStreamOptionsPreAndPostImagesExpireAfterSeconds: pointer(int64(-1)),
 	}
 
 	mux.HandleFunc(fmt.Sprintf("/api/atlas/v1.0/groups/%s/clusters/%s/processArgs", groupID, clusterName), func(w http.ResponseWriter, r *http.Request) {
@@ -799,6 +800,7 @@ func TestClusters_UpdateProcessArgs(t *testing.T) {
 			"sampleSizeBIConnector":            float64(5000),
 			"sampleRefreshIntervalBIConnector": float64(300),
 			"transactionLifetimeLimitSeconds":  float64(30),
+			"changeStreamOptionsPreAndPostImagesExpireAfterSeconds": float64(-1),
 		}
 
 		jsonBlob := `
@@ -813,7 +815,8 @@ func TestClusters_UpdateProcessArgs(t *testing.T) {
             "oplogMinRetentionHours": 100,
 			"sampleSizeBIConnector": 5000,
 			"sampleRefreshIntervalBIConnector": 300,
-			"transactionLifetimeLimitSeconds": 30
+			"transactionLifetimeLimitSeconds": 30,
+			"changeStreamOptionsPreAndPostImagesExpireAfterSeconds": -1
 		}
 		`
 
@@ -862,7 +865,8 @@ func TestClusters_GetProcessArgs(t *testing.T) {
 			"oplogSizeMB": 2000,
 			"sampleSizeBIConnector": 5000,
 			"sampleRefreshIntervalBIConnector": 300,
-			"transactionLifetimeLimitSeconds": 30
+			"transactionLifetimeLimitSeconds": 30,
+			"ChangeStreamOptionsPreAndPostImagesExpireAfterSeconds": 113
 		}`)
 	})
 
@@ -882,6 +886,7 @@ func TestClusters_GetProcessArgs(t *testing.T) {
 		SampleSizeBIConnector:            pointer(int64(5000)),
 		SampleRefreshIntervalBIConnector: pointer(int64(300)),
 		TransactionLifetimeLimitSeconds:  pointer(int64(30)),
+		ChangeStreamOptionsPreAndPostImagesExpireAfterSeconds: pointer(int64(113)),
 	}
 
 	if diff := deep.Equal(processArgs, expected); diff != nil {
