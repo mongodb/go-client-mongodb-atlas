@@ -367,9 +367,9 @@ func TestClusters_Create(t *testing.T) {
 	createRequest := &Cluster{
 		ID: "1",
 		AdvancedConfiguration: &AdvancedConfiguration{
-			MinimumEnabledTlsProtocol: pointer("TLS1_2"),
-			TlsCipherConfigMode: pointer("CUSTOM"),
-			CustomOpensslCipherConfigTls12: &[]string{"TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384"},
+			MinimumEnabledTLSProtocol:      pointer("TLS1_2"),
+			TLSCipherConfigMode:            pointer("CUSTOM"),
+			CustomOpensslCipherConfigTLS12: &[]string{"TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384"},
 		},
 		AcceptDataRisksAndForceReplicaSetReconfig: "2017-10-23T21:26:17Z",
 		AutoScaling: &AutoScaling{DiskGBEnabled: pointer(true),
@@ -422,9 +422,9 @@ func TestClusters_Create(t *testing.T) {
 			"acceptDataRisksAndForceReplicaSetReconfig": "2017-10-23T21:26:17Z",
 			"advancedConfiguration": map[string]interface{}{
 				"customOpensslCipherConfigTls12": []interface{}{"TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384"},
-				"minimumEnabledTlsProtocol": "TLS1_2",
-				"tlsCipherConfigMode": "CUSTOM",
-			   },
+				"minimumEnabledTlsProtocol":      "TLS1_2",
+				"tlsCipherConfigMode":            "CUSTOM",
+			},
 			"autoScaling": map[string]interface{}{
 				"diskGBEnabled": true,
 				"compute": map[string]interface{}{
@@ -1008,8 +1008,8 @@ func TestClusters_Get(t *testing.T) {
 		ID: "1",
 		AcceptDataRisksAndForceReplicaSetReconfig: "2017-10-23T21:26:17Z",
 		AdvancedConfiguration: &AdvancedConfiguration{
-			MinimumEnabledTlsProtocol: pointer("TLS1_2"),
-			TlsCipherConfigMode: pointer("DEFAULT"),
+			MinimumEnabledTLSProtocol: pointer("TLS1_2"),
+			TLSCipherConfigMode:       pointer("DEFAULT"),
 		},
 		AutoScaling:   &AutoScaling{DiskGBEnabled: pointer(true)},
 		BackupEnabled: pointer(true),

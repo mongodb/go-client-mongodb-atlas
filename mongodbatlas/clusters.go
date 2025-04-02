@@ -174,16 +174,15 @@ type Cluster struct {
 	RootCertType                              string                   `json:"rootCertType,omitempty"`
 	TerminationProtectionEnabled              *bool                    `json:"terminationProtectionEnabled,omitempty"`
 	Tags                                      *[]*Tag                  `json:"tags,omitempty"`
-	AdvancedConfiguration					  *AdvancedConfiguration   `json:"advancedConfiguration,omitempty"`
+	AdvancedConfiguration                     *AdvancedConfiguration   `json:"advancedConfiguration,omitempty"`
 }
 
-// AdvancedConfiguration group of settings that configures a subset of the advanced configuration details
+// AdvancedConfiguration group of settings that configures a subset of the advanced configuration details.
 type AdvancedConfiguration struct {
-	CustomOpensslCipherConfigTls12 *[]string `json:"customOpensslCipherConfigTls12,omitempty"`
-	MinimumEnabledTlsProtocol *string `json:"minimumEnabledTlsProtocol,omitempty"`
-	TlsCipherConfigMode *string `json:"tlsCipherConfigMode,omitempty"`
+	CustomOpensslCipherConfigTLS12 *[]string `json:"customOpensslCipherConfigTls12,omitempty"`
+	MinimumEnabledTLSProtocol      *string   `json:"minimumEnabledTlsProtocol,omitempty"`
+	TLSCipherConfigMode            *string   `json:"tlsCipherConfigMode,omitempty"`
 }
-
 
 // ProcessArgs represents the advanced configuration options for the cluster.
 type ProcessArgs struct {
