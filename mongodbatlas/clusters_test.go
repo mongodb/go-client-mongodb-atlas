@@ -366,6 +366,11 @@ func TestClusters_Create(t *testing.T) {
 
 	createRequest := &Cluster{
 		ID: "1",
+		AdvancedConfiguration: &AdvancedConfiguration{
+			MinimumEnabledTlsProtocol: pointer("TLS1_2"),
+			TlsCipherConfigMode: pointer("CUSTOM"),
+			CustomOpensslCipherConfigTls12: &[]string{"TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384"},
+		},
 		AcceptDataRisksAndForceReplicaSetReconfig: "2017-10-23T21:26:17Z",
 		AutoScaling: &AutoScaling{DiskGBEnabled: pointer(true),
 			Compute: &Compute{Enabled: pointer(true), ScaleDownEnabled: pointer(true)}},
@@ -415,6 +420,11 @@ func TestClusters_Create(t *testing.T) {
 		expected := map[string]interface{}{
 			"id": "1",
 			"acceptDataRisksAndForceReplicaSetReconfig": "2017-10-23T21:26:17Z",
+			"advancedConfiguration": map[string]interface{}{
+				"customOpensslCipherConfigTls12": []interface{}{"TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384"},
+				"minimumEnabledTlsProtocol": "TLS1_2",
+				"tlsCipherConfigMode": "CUSTOM",
+			   },
 			"autoScaling": map[string]interface{}{
 				"diskGBEnabled": true,
 				"compute": map[string]interface{}{
@@ -475,6 +485,13 @@ func TestClusters_Create(t *testing.T) {
 		{	
 			"id":"1",
 			"acceptDataRisksAndForceReplicaSetReconfig": "2017-10-23T21:26:17Z",
+			"advancedConfiguration": {
+				"customOpensslCipherConfigTls12": [
+				 "TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384"
+				],
+				"minimumEnabledTlsProtocol": "TLS1_2",
+				"tlsCipherConfigMode": "CUSTOM"
+			},
 			"autoScaling": {
                 "diskGBEnabled": true,
 				"compute": {
@@ -909,6 +926,10 @@ func TestClusters_Get(t *testing.T) {
 		fmt.Fprint(w, `{	
 			"id":"1",
 			"acceptDataRisksAndForceReplicaSetReconfig": "2017-10-23T21:26:17Z",
+			"advancedConfiguration": {
+				"minimumEnabledTlsProtocol": "TLS1_2",
+				"tlsCipherConfigMode": "DEFAULT"
+			},
 			"autoScaling": {
                 "diskGBEnabled": true
             },
@@ -986,6 +1007,10 @@ func TestClusters_Get(t *testing.T) {
 	expected := &Cluster{
 		ID: "1",
 		AcceptDataRisksAndForceReplicaSetReconfig: "2017-10-23T21:26:17Z",
+		AdvancedConfiguration: &AdvancedConfiguration{
+			MinimumEnabledTlsProtocol: pointer("TLS1_2"),
+			TlsCipherConfigMode: pointer("DEFAULT"),
+		},
 		AutoScaling:   &AutoScaling{DiskGBEnabled: pointer(true)},
 		BackupEnabled: pointer(true),
 		BiConnector:   &BiConnector{Enabled: pointer(false), ReadPreference: "secondary"},
