@@ -1,5 +1,19 @@
 # Changelog
 
+## [v0.38.0](https://github.com/mongodb/go-client-mongodb-atlas/tree/v0.38.0) (April 08, 2025)
+
+[Full Changelog](https://github.com/mongodb/go-client-mongodb-atlas/compare/v0.37.0...v0.38.0)
+
+**Merged pull requests:**
+
+- feat: Adds AdvancedConfiguration attribute [\#547](https://github.com/mongodb/go-client-mongodb-atlas/pull/547) ([maastha](https://github.com/maastha))
+- chore\(deps\): bump golangci/golangci-lint-action from 6.5.0 to 6.5.2 [\#545](https://github.com/mongodb/go-client-mongodb-atlas/pull/545) ([dependabot[bot]](https://github.com/apps/dependabot))
+- chore\(deps\): bump golangci/golangci-lint-action from 6.3.2 to 6.5.0 [\#544](https://github.com/mongodb/go-client-mongodb-atlas/pull/544) ([dependabot[bot]](https://github.com/apps/dependabot))
+- chore\(deps\): bump golangci/golangci-lint-action from 6.2.0 to 6.3.2 [\#543](https://github.com/mongodb/go-client-mongodb-atlas/pull/543) ([dependabot[bot]](https://github.com/apps/dependabot))
+- chore\(deps\): bump golangci/golangci-lint-action from 6.1.1 to 6.2.0 [\#542](https://github.com/mongodb/go-client-mongodb-atlas/pull/542) ([dependabot[bot]](https://github.com/apps/dependabot))
+- doc: Update README.md to use WARNING [\#541](https://github.com/mongodb/go-client-mongodb-atlas/pull/541) ([andreaangiolillo](https://github.com/andreaangiolillo))
+- chore\(deps\): bump golangci/golangci-lint-action from 6.1.0 to 6.1.1 [\#540](https://github.com/mongodb/go-client-mongodb-atlas/pull/540) ([dependabot[bot]](https://github.com/apps/dependabot))
+
 ## [v0.37.0](https://github.com/mongodb/go-client-mongodb-atlas/tree/v0.37.0) (August 26, 2024)
 
 [Full Changelog](https://github.com/mongodb/go-client-mongodb-atlas/compare/v0.36.0...v0.37.0)
