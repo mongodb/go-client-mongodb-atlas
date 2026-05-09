@@ -24,6 +24,7 @@ import (
 	"net/http"
 	"net/url"
 	"strings"
+	"time"
 
 	atlas "go.mongodb.org/atlas/mongodbatlas"
 )
@@ -118,6 +119,10 @@ func (c *Config) ExchangeCode(ctx context.Context, tokenEndpoint, code, redirect
 	var token Token
 	if err := json.NewDecoder(resp.Body).Decode(&token); err != nil {
 		return nil, fmt.Errorf("failed to parse token response: %w", err)
+	}
+
+	if token.ExpiresIn > 0 {
+		token.Expiry = time.Now().Add(time.Duration(token.ExpiresIn) * time.Second)
 	}
 
 	return &token, nil
