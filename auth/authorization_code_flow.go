@@ -178,3 +178,45 @@ func (c *Config) RefreshAccessToken(ctx context.Context, tokenEndpoint, refreshT
 
 	return &token, nil
 }
+
+// RevokeToken revokes a token at the given revocation endpoint per RFC 7009,
+// using the ClientID from the Config.
+func (c *Config) RevokeAuthServerToken(ctx context.Context, revocationEndpoint, token, tokenTypeHint string) error {
+	v := url.Values{
+		"client_id":       {c.ClientID},
+		"token":           {token},
+		"token_type_hint": {tokenTypeHint},
+	}
+
+	req, err := http.NewRequestWithContext(ctx, http.MethodPost, revocationEndpoint, strings.NewReader(v.Encode()))
+	if err != nil {
+		return fmt.Errorf("failed to create revocation request: %w", err)
+	}
+	req.Header.Set("Content-Type", "application/x-www-form-urlencoded")
+	req.Header.Set("Accept", "application/json")
+	if c.UserAgent != "" {
+		req.Header.Set("User-Agent", c.UserAgent)
+	}
+
+	resp, err := c.client.Do(req)
+	if err != nil {
+		return fmt.Errorf("revocation request failed: %w", err)
+	}
+	defer resp.Body.Close()
+
+	if resp.StatusCode != http.StatusOK {
+		var oauthErr struct {
+			Error       string `json:"error"`
+			Description string `json:"error_description"`
+		}
+		if decErr := json.NewDecoder(resp.Body).Decode(&oauthErr); decErr == nil && oauthErr.Error != "" {
+			if oauthErr.Description != "" {
+				return fmt.Errorf("token revocation failed (HTTP %d): %s: %s", resp.StatusCode, oauthErr.Error, oauthErr.Description)
+			}
+			return fmt.Errorf("token revocation failed (HTTP %d): %s", resp.StatusCode, oauthErr.Error)
+		}
+		return fmt.Errorf("token revocation failed with HTTP %d", resp.StatusCode)
+	}
+
+	return nil
+}
