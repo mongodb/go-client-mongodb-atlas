@@ -127,3 +127,54 @@ func (c *Config) ExchangeCode(ctx context.Context, tokenEndpoint, code, redirect
 
 	return &token, nil
 }
+
+// RefreshAccessToken exchanges a refresh token for a new access token at the
+// given token endpoint, using the ClientID from the Config.
+func (c *Config) RefreshAccessToken(ctx context.Context, tokenEndpoint, refreshToken string) (*Token, error) {
+	v := url.Values{
+		"grant_type":    {"refresh_token"},
+		"client_id":     {c.ClientID},
+		"refresh_token": {refreshToken},
+	}
+
+	req, err := http.NewRequestWithContext(ctx, http.MethodPost, tokenEndpoint, strings.NewReader(v.Encode()))
+	if err != nil {
+		return nil, fmt.Errorf("failed to create refresh request: %w", err)
+	}
+	req.Header.Set("Content-Type", "application/x-www-form-urlencoded")
+	req.Header.Set("Accept", "application/json")
+	if c.UserAgent != "" {
+		req.Header.Set("User-Agent", c.UserAgent)
+	}
+
+	resp, err := c.client.Do(req)
+	if err != nil {
+		return nil, fmt.Errorf("refresh request failed: %w", err)
+	}
+	defer resp.Body.Close()
+
+	if resp.StatusCode != http.StatusOK {
+		var oauthErr struct {
+			Error       string `json:"error"`
+			Description string `json:"error_description"`
+		}
+		if decErr := json.NewDecoder(resp.Body).Decode(&oauthErr); decErr == nil && oauthErr.Error != "" {
+			if oauthErr.Description != "" {
+				return nil, fmt.Errorf("token refresh failed (HTTP %d): %s: %s", resp.StatusCode, oauthErr.Error, oauthErr.Description)
+			}
+			return nil, fmt.Errorf("token refresh failed (HTTP %d): %s", resp.StatusCode, oauthErr.Error)
+		}
+		return nil, fmt.Errorf("token refresh failed with HTTP %d", resp.StatusCode)
+	}
+
+	var token Token
+	if err := json.NewDecoder(resp.Body).Decode(&token); err != nil {
+		return nil, fmt.Errorf("failed to parse refresh response: %w", err)
+	}
+
+	if token.ExpiresIn > 0 {
+		token.Expiry = time.Now().Add(time.Duration(token.ExpiresIn) * time.Second)
+	}
+
+	return &token, nil
+}
