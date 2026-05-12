@@ -19,9 +19,52 @@ import (
 	"fmt"
 	"net"
 	"net/http"
+	"net/url"
+	"strings"
 )
 
 const callbackPath = "/atlas-cli/callback"
+
+// NoBrowserRedirectURI returns the redirect URI for the manual paste flow,
+// using the registered loopback URI without a port.
+func NoBrowserRedirectURI() string {
+	return "http://127.0.0.1" + callbackPath
+}
+
+// ParseCodeFromRedirectURL reads a pasted URL from stdin, extracts the
+// authorization code, and validates the state parameter.
+func ParseCodeFromRedirectURL(expectedState string) (string, error) {
+	var raw string
+	if _, err := fmt.Scanln(&raw); err != nil {
+		return "", fmt.Errorf("failed to read URL: %w", err)
+	}
+
+	u, err := url.Parse(strings.TrimSpace(raw))
+	if err != nil {
+		return "", fmt.Errorf("invalid URL: %w", err)
+	}
+
+	query := u.Query()
+
+	if errCode := query.Get("error"); errCode != "" {
+		desc := query.Get("error_description")
+		if desc != "" {
+			return "", fmt.Errorf("%s: %s", errCode, desc)
+		}
+		return "", fmt.Errorf("%s", errCode)
+	}
+
+	if query.Get("state") != expectedState {
+		return "", fmt.Errorf("state mismatch")
+	}
+
+	code := query.Get("code")
+	if code == "" {
+		return "", fmt.Errorf("no authorization code in URL")
+	}
+
+	return code, nil
+}
 
 // CallbackServer listens on the loopback address with an OS-assigned port
 // to receive the authorization code redirect from the OAuth Authorization Server.
