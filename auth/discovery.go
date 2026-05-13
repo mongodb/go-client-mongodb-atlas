@@ -28,9 +28,9 @@ import (
 const wellKnownPath = ".well-known/oauth-authorization-server"
 
 // DiscoverAuthServer fetches the OAuth Authorization Server metadata from the
-// well-known endpoint per RFC 8414. Returns the metadata as a map preserving
-// the original JSON structure. An "expires_at" key is added based on HTTP
-// cache headers to support client-side caching.
+// well-known endpoint per RFC 8414. Returns a wrapper map with two keys:
+// "metadata" holds the server's response as-is, and "expiry" holds an RFC 3339
+// timestamp derived from HTTP cache headers to support client-side caching.
 func (c *Config) DiscoverAuthServer(ctx context.Context) (map[string]any, error) {
 	discoveryURL := c.AuthServerURL.ResolveReference(&url.URL{Path: wellKnownPath})
 
