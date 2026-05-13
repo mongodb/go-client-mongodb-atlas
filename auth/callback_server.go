@@ -141,7 +141,7 @@ func (cs *CallbackServer) handleCallback(w http.ResponseWriter, r *http.Request)
 
 	query := r.URL.Query()
 
-	// Check for error response from the AS
+	// OAuth error response from the AS (RFC 6749 §4.1.2.1) — surface before validating state so the upstream failure reaches the user.
 	if errCode := query.Get("error"); errCode != "" {
 		cs.errMsg = errCode
 		if desc := query.Get("error_description"); desc != "" {
