@@ -17,6 +17,7 @@ package auth
 import (
 	"context"
 	"fmt"
+	"io"
 	"net"
 	"net/http"
 	"net/url"
@@ -31,11 +32,12 @@ func NoBrowserRedirectURI() string {
 	return "http://127.0.0.1" + callbackPath
 }
 
-// ParseCodeFromRedirectURL reads a pasted URL from stdin, extracts the
-// authorization code, and validates the state parameter.
-func ParseCodeFromRedirectURL(expectedState string) (string, error) {
+// ParseCodeFromRedirectURL reads a pasted URL from r (pluggable for
+// testing), extracts the authorization code, and validates the state
+// parameter.
+func ParseCodeFromRedirectURL(r io.Reader, expectedState string) (string, error) {
 	var raw string
-	if _, err := fmt.Scanln(&raw); err != nil {
+	if _, err := fmt.Fscanln(r, &raw); err != nil {
 		return "", fmt.Errorf("failed to read URL: %w", err)
 	}
 
