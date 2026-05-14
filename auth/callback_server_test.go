@@ -18,6 +18,7 @@ import (
 	"context"
 	"fmt"
 	"net/http"
+	"strings"
 	"testing"
 	"time"
 )
@@ -166,4 +167,34 @@ func TestCallbackServer_DynamicPort(t *testing.T) {
 	if cs.RedirectURI() != expected {
 		t.Errorf("expected redirect URI '%s', got '%s'", expected, cs.RedirectURI())
 	}
+}
+
+func TestNoBrowserRedirectURI(t *testing.T) {
+	if got := NoBrowserRedirectURI(); got != "http://127.0.0.1/atlas-cli/callback" {
+		t.Errorf("NoBrowserRedirectURI() = %q", got)
+	}
+}
+
+func TestParseCodeFromRedirectURL(t *testing.T) {
+	t.Run("success", func(t *testing.T) {
+		input := strings.NewReader("http://127.0.0.1/atlas-cli/callback?code=auth-code&state=expected-state\n")
+		code, err := ParseCodeFromRedirectURL(input, "expected-state")
+		if err != nil {
+			t.Fatalf("ParseCodeFromRedirectURL returned error: %v", err)
+		}
+		if code != "auth-code" {
+			t.Errorf("code = %q, expected auth-code", code)
+		}
+	})
+
+	t.Run("state mismatch", func(t *testing.T) {
+		input := strings.NewReader("http://127.0.0.1/atlas-cli/callback?code=auth-code&state=wrong-state\n")
+		_, err := ParseCodeFromRedirectURL(input, "expected-state")
+		if err == nil {
+			t.Fatal("expected error for state mismatch, got nil")
+		}
+		if !strings.Contains(err.Error(), "state") {
+			t.Errorf("error %q does not mention state", err.Error())
+		}
+	})
 }
