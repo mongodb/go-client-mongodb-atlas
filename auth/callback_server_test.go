@@ -84,14 +84,15 @@ func TestCallbackServer_StateMismatch(t *testing.T) {
 }
 
 func TestCallbackServer_ErrorResponse(t *testing.T) {
-	cs, err := StartCallbackServer("test-state")
+	state := "test-state"
+	cs, err := StartCallbackServer(state)
 	if err != nil {
 		t.Fatalf("failed to start callback server: %v", err)
 	}
 	defer cs.Close()
 
 	go func() {
-		url := fmt.Sprintf("http://127.0.0.1:%d%s?error=access_denied&error_description=user+denied+access", cs.Port(), callbackPath)
+		url := fmt.Sprintf("http://127.0.0.1:%d%s?state=%s&error=access_denied&error_description=user+denied+access&error_uri=https://example.com/help", cs.Port(), callbackPath, state)
 		resp, err := http.Get(url)
 		if err != nil {
 			t.Errorf("callback request failed: %v", err)
@@ -106,6 +107,11 @@ func TestCallbackServer_ErrorResponse(t *testing.T) {
 	_, err = cs.WaitForCallback(ctx)
 	if err == nil {
 		t.Fatal("expected error for error response, got nil")
+	}
+	for _, want := range []string{"access_denied", "user denied access", "https://example.com/help"} {
+		if !strings.Contains(err.Error(), want) {
+			t.Errorf("error %q does not contain %q", err.Error(), want)
+		}
 	}
 }
 

@@ -48,16 +48,16 @@ func ParseCodeFromRedirectURL(r io.Reader, expectedState string) (string, error)
 
 	query := u.Query()
 
-	if errCode := query.Get("error"); errCode != "" {
-		desc := query.Get("error_description")
-		if desc != "" {
-			return "", fmt.Errorf("%s: %s", errCode, desc)
-		}
-		return "", fmt.Errorf("%s", errCode)
-	}
-
+	// Validate state first (CSRF protection — must precede surfacing any
+	// AS response data, otherwise an unsolicited callback could inject
+	// attacker-controlled content into the user-facing error message).
 	if query.Get("state") != expectedState {
 		return "", fmt.Errorf("state mismatch")
+	}
+
+	// OAuth error response from the AS (RFC 6749 §4.1.2.1).
+	if query.Get("error") != "" {
+		return "", fmt.Errorf("%s", formatOAuthError(query))
 	}
 
 	code := query.Get("code")
@@ -66,6 +66,19 @@ func ParseCodeFromRedirectURL(r io.Reader, expectedState string) (string, error)
 	}
 
 	return code, nil
+}
+
+// formatOAuthError builds the user-facing message for an RFC 6749 §4.1.2.1 /
+// §5.2 error response, including error_description and error_uri when present.
+func formatOAuthError(q url.Values) string {
+	msg := q.Get("error")
+	if desc := q.Get("error_description"); desc != "" {
+		msg = fmt.Sprintf("%s: %s", msg, desc)
+	}
+	if uri := q.Get("error_uri"); uri != "" {
+		msg = fmt.Sprintf("%s (see %s)", msg, uri)
+	}
+	return msg
 }
 
 // CallbackServer listens on the loopback address with an OS-assigned port
@@ -143,20 +156,19 @@ func (cs *CallbackServer) handleCallback(w http.ResponseWriter, r *http.Request)
 
 	query := r.URL.Query()
 
-	// OAuth error response from the AS (RFC 6749 §4.1.2.1) — surface before validating state so the upstream failure reaches the user.
-	if errCode := query.Get("error"); errCode != "" {
-		cs.errMsg = errCode
-		if desc := query.Get("error_description"); desc != "" {
-			cs.errMsg = fmt.Sprintf("%s: %s", errCode, desc)
-		}
-		http.Error(w, "Authorization failed. You may close this window.", http.StatusBadRequest)
-		return
-	}
-
-	// Validate state to prevent CSRF
+	// Validate state first (CSRF protection — must precede surfacing any
+	// AS response data, otherwise an unsolicited callback could inject
+	// attacker-controlled content into the user-facing error message).
 	if query.Get("state") != cs.state {
 		cs.errMsg = "state mismatch"
 		http.Error(w, "Authorization failed: state mismatch. You may close this window.", http.StatusBadRequest)
+		return
+	}
+
+	// OAuth error response from the AS (RFC 6749 §4.1.2.1).
+	if query.Get("error") != "" {
+		cs.errMsg = formatOAuthError(query)
+		http.Error(w, "Authorization failed. You may close this window.", http.StatusBadRequest)
 		return
 	}
 
