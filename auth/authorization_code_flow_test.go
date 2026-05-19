@@ -69,6 +69,7 @@ func TestGenerateState(t *testing.T) {
 func TestConfig_AuthorizationURL(t *testing.T) {
 	c := NewConfig(nil)
 	c.ClientID = "test-client"
+	c.Scopes = []string{"atlas", "extra"}
 
 	pkce := &PKCEParams{CodeVerifier: "verifier", CodeChallenge: "challenge"}
 	got, err := c.AuthorizationURL("https://as.example.com/authorize", "http://127.0.0.1:1234/cb", "state-123", pkce)
@@ -85,7 +86,7 @@ func TestConfig_AuthorizationURL(t *testing.T) {
 		"response_type":         "code",
 		"client_id":             "test-client",
 		"redirect_uri":          "http://127.0.0.1:1234/cb",
-		"scope":                 "atlas",
+		"scope":                 "atlas extra",
 		"state":                 "state-123",
 		"code_challenge":        "challenge",
 		"code_challenge_method": "S256",
