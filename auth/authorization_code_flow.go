@@ -62,7 +62,8 @@ func GenerateState() (string, error) {
 	return base64.RawURLEncoding.EncodeToString(stateBytes), nil
 }
 
-// AuthorizationURL builds the authorization endpoint URL using the ClientID from the Config.
+// AuthorizationURL builds the authorization endpoint URL using the ClientID
+// and Scopes from the Config.
 func (c *Config) AuthorizationURL(authorizationEndpoint, redirectURI, state string, pkce *PKCEParams) (string, error) {
 	u, err := url.Parse(authorizationEndpoint)
 	if err != nil {
@@ -73,7 +74,9 @@ func (c *Config) AuthorizationURL(authorizationEndpoint, redirectURI, state stri
 	q.Set("response_type", "code")
 	q.Set("client_id", c.ClientID)
 	q.Set("redirect_uri", redirectURI)
-	q.Set("scope", "atlas")
+	if len(c.Scopes) > 0 {
+		q.Set("scope", strings.Join(c.Scopes, " "))
+	}
 	q.Set("state", state)
 	q.Set("code_challenge", pkce.CodeChallenge)
 	q.Set("code_challenge_method", "S256")
