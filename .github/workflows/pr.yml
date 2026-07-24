@@ -13,7 +13,7 @@ jobs:
     steps:
       - uses: actions/checkout@v7
       - name: Install Go
-  uses: actions/setup-go@93397bea11091df50f3d7e59dc26a7711a8bcfbe # v7
+        uses: actions/setup-go@93397bea11091df50f3d7e59dc26a7711a8bcfbe # v7
         with:
           go-version-file: 'go.mod'
       - name: lint
@@ -33,7 +33,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v7
       - name: Install Go
-        uses: actions/setup-go@v7
+        uses: actions/setup-go@93397bea11091df50f3d7e59dc26a7711a8bcfbe
         with:
           go-version: ${{ matrix.golang }}
       - name: Cache Dependencies
