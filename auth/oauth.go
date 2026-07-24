@@ -29,18 +29,22 @@ import (
 	atlas "go.mongodb.org/atlas/mongodbatlas"
 )
 
-const defaultBaseURL = atlas.CloudURL
+const (
+	defaultBaseURL       = atlas.CloudURL
+	defaultAuthServerURL = atlas.AuthServerURL
+)
 
 var (
 	userAgent = fmt.Sprintf("go-mongodbatlas/%s (%s;%s)", atlas.Version, runtime.GOOS, runtime.GOARCH)
 )
 
 type Config struct {
-	client    *http.Client
-	ClientID  string
-	AuthURL   *url.URL
-	UserAgent string
-	Scopes    []string
+	client        *http.Client
+	ClientID      string
+	AuthURL       *url.URL
+	AuthServerURL *url.URL
+	UserAgent     string
+	Scopes        []string
 
 	// copy raw server response to the Response struct
 	withRaw bool
@@ -54,10 +58,12 @@ func NewConfig(httpClient *http.Client) *Config {
 	}
 
 	baseURL, _ := url.Parse(defaultBaseURL)
+	authServerURL, _ := url.Parse(defaultAuthServerURL)
 	c := &Config{
-		client:    httpClient,
-		AuthURL:   baseURL,
-		UserAgent: userAgent,
+		client:        httpClient,
+		AuthURL:       baseURL,
+		AuthServerURL: authServerURL,
+		UserAgent:     userAgent,
 	}
 	return c
 }
