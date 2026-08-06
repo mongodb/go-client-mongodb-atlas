@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Atlas CLI — %[1]s</title>
+<style>
+  body {
+    font-family: system-ui, -apple-system, sans-serif;
+    max-width: 40rem;
+    margin: 4rem auto;
+    padding: 0 1.5rem;
+    color: #001e2b;
+  }
+  img { width: 66px; height: 54px; }
+  h1 { font-size: 1.3rem; }
+  .banner {
+    border: 1px solid #c1c7c6;
+    border-left: 6px solid %[2]s;
+    border-radius: 6px;
+    padding: 0.25rem 1.25rem;
+    background: #f9fbfa;
+  }
+</style>
+</head>
+<body>
+<img src="https://webimages.mongodb.com/_com_assets/icons/atlas_cli.svg" alt="">
+<h1>%[1]s</h1>
+<div class="banner"><p>%[3]s You may close this window.</p></div>
+</body>
+</html>

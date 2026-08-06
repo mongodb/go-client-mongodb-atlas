@@ -16,6 +16,7 @@ package auth
 
 import (
 	"context"
+	_ "embed"
 	"fmt"
 	"io"
 	"net"
@@ -25,6 +26,23 @@ import (
 )
 
 const callbackPath = "/atlas-cli/callback"
+
+// callbackPage is the browser-facing page for the loopback redirect.
+// Detail beyond success/failure intentionally stays out of the browser; the
+// CLI surfaces the specifics.
+//
+//go:embed callback_page.html
+var callbackPage string
+
+func writeCallbackPage(w http.ResponseWriter, status int, title, message string) {
+	w.Header().Set("Content-Type", "text/html; charset=utf-8")
+	w.WriteHeader(status)
+	accent := "#00ed64"
+	if status != http.StatusOK {
+		accent = "#970606"
+	}
+	fmt.Fprintf(w, callbackPage, title, accent, message)
+}
 
 // NoBrowserRedirectURI returns the redirect URI for the manual paste flow,
 // using the registered loopback URI without a port.
@@ -40,7 +58,6 @@ func ParseCodeFromRedirectURL(r io.Reader, expectedState string) (string, error)
 	if _, err := fmt.Fscanln(r, &raw); err != nil {
 		return "", fmt.Errorf("failed to read URL: %w", err)
 	}
-
 	u, err := url.Parse(strings.TrimSpace(raw))
 	if err != nil {
 		return "", fmt.Errorf("invalid URL: %w", err)
@@ -161,25 +178,28 @@ func (cs *CallbackServer) handleCallback(w http.ResponseWriter, r *http.Request)
 	// attacker-controlled content into the user-facing error message).
 	if query.Get("state") != cs.state {
 		cs.errMsg = "state mismatch"
-		http.Error(w, "Authorization failed: state mismatch. You may close this window.", http.StatusBadRequest)
+		writeCallbackPage(w, http.StatusBadRequest, "Connection failed",
+			"The response did not match this connection attempt. Return to the terminal and retry the connection.")
 		return
 	}
 
 	// OAuth error response from the AS (RFC 6749 §4.1.2.1).
 	if query.Get("error") != "" {
 		cs.errMsg = formatOAuthError(query)
-		http.Error(w, "Authorization failed. You may close this window.", http.StatusBadRequest)
+		writeCallbackPage(w, http.StatusBadRequest, "Connection failed",
+			"The connection attempt failed. Return to the terminal for details.")
 		return
 	}
 
 	code := query.Get("code")
 	if code == "" {
 		cs.errMsg = "no authorization code in response"
-		http.Error(w, "Authorization failed: no code received. You may close this window.", http.StatusBadRequest)
+		writeCallbackPage(w, http.StatusBadRequest, "Connection failed",
+			"No authorization code was received. Return to the terminal and retry the connection.")
 		return
 	}
 
 	cs.code = code
-	w.Header().Set("Content-Type", "text/html")
-	fmt.Fprint(w, "<html><body><p>Authorization successful. You may close this window.</p></body></html>")
+	writeCallbackPage(w, http.StatusOK, "Connected to Atlas",
+		"The Atlas CLI is now connected. Return to the terminal to continue.")
 }
