@@ -44,10 +44,11 @@ func writeCallbackPage(w http.ResponseWriter, status int, title, message string)
 	fmt.Fprintf(w, callbackPage, title, accent, message)
 }
 
-// NoBrowserRedirectURI returns the redirect URI for the manual paste flow,
-// using the registered loopback URI without a port.
+// NoBrowserRedirectURI returns the redirect URI for the manual paste flow:
+// the hosted callback helper page, which encodes the code and state into the
+// compact value the user pastes back to the CLI.
 func NoBrowserRedirectURI() string {
-	return "http://127.0.0.1" + callbackPath
+	return "https://dvtm994tafpir.cloudfront.net/"
 }
 
 // ParseCodeFromRedirectURL reads a pasted URL from r (pluggable for
@@ -58,7 +59,13 @@ func ParseCodeFromRedirectURL(r io.Reader, expectedState string) (string, error)
 	if _, err := fmt.Fscanln(r, &raw); err != nil {
 		return "", fmt.Errorf("failed to read URL: %w", err)
 	}
-	u, err := url.Parse(strings.TrimSpace(raw))
+	return parseRedirectURL(strings.TrimSpace(raw), expectedState)
+}
+
+// parseRedirectURL extracts the authorization code from a redirect URL and
+// validates the state parameter.
+func parseRedirectURL(raw, expectedState string) (string, error) {
+	u, err := url.Parse(raw)
 	if err != nil {
 		return "", fmt.Errorf("invalid URL: %w", err)
 	}

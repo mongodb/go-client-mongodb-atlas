@@ -176,7 +176,7 @@ func TestCallbackServer_DynamicPort(t *testing.T) {
 }
 
 func TestNoBrowserRedirectURI(t *testing.T) {
-	if got := NoBrowserRedirectURI(); got != "http://127.0.0.1/atlas-cli/callback" {
+	if got := NoBrowserRedirectURI(); got != "https://dvtm994tafpir.cloudfront.net/" {
 		t.Errorf("NoBrowserRedirectURI() = %q", got)
 	}
 }
