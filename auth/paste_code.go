@@ -24,7 +24,8 @@ import (
 	"strings"
 )
 
-// Wire format shared with the hosted no-browser callback page: the page
+// Wire format shared with the hosted no-browser callback page
+// (nobrowser_callback_page.html): the page
 // derives a keystream from the state via HKDF-SHA256 (empty salt, versioned
 // info string), XORs it with the authorization code, and appends a short
 // checksum over the code so typos and cross-session pastes fail locally
