@@ -175,12 +175,6 @@ func TestCallbackServer_DynamicPort(t *testing.T) {
 	}
 }
 
-func TestNoBrowserRedirectURI(t *testing.T) {
-	if got := NoBrowserRedirectURI(); got != "https://dvtm994tafpir.cloudfront.net/" {
-		t.Errorf("NoBrowserRedirectURI() = %q", got)
-	}
-}
-
 func TestParseCodeFromRedirectURL(t *testing.T) {
 	t.Run("success", func(t *testing.T) {
 		input := strings.NewReader("http://127.0.0.1/atlas-cli/callback?code=auth-code&state=expected-state\n")

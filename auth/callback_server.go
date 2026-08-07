@@ -44,13 +44,6 @@ func writeCallbackPage(w http.ResponseWriter, status int, title, message string)
 	fmt.Fprintf(w, callbackPage, title, accent, message)
 }
 
-// NoBrowserRedirectURI returns the redirect URI for the manual paste flow:
-// the hosted callback helper page, which encodes the code and state into the
-// compact value the user pastes back to the CLI.
-func NoBrowserRedirectURI() string {
-	return "https://dvtm994tafpir.cloudfront.net/"
-}
-
 // ParseCodeFromRedirectURL reads a pasted URL from r (pluggable for
 // testing), extracts the authorization code, and validates the state
 // parameter.

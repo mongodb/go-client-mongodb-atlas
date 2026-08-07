@@ -60,21 +60,27 @@ func TestParsePastedCallback(t *testing.T) {
 		},
 		{
 			name:         "full URL fallback",
-			input:        "https://example.cloudfront.net/?code=abc123&state=some-state",
+			input:        NoBrowserRedirectURI + "?code=abc123&state=some-state",
 			state:        "some-state",
 			expectedCode: "abc123",
 		},
 		{
 			name:          "URL fallback with wrong state",
-			input:         "https://example.cloudfront.net/?code=abc123&state=other",
+			input:         NoBrowserRedirectURI + "?code=abc123&state=other",
 			state:         "some-state",
 			expectedError: "state mismatch",
 		},
 		{
 			name:          "URL fallback with AS error",
-			input:         "https://example.cloudfront.net/?error=access_denied&state=some-state",
+			input:         NoBrowserRedirectURI + "?error=access_denied&state=some-state",
 			state:         "some-state",
 			expectedError: "access_denied",
+		},
+		{
+			name:          "URL that is not the helper page is not parsed as a URL",
+			input:         "https://example.com/?code=abc123&state=some-state",
+			state:         "some-state",
+			expectedError: errPasteMalformed.Error(),
 		},
 		{
 			name:          "typo in paste",

@@ -31,6 +31,9 @@ import (
 // instead of at the token endpoint. The state must be fresh CSPRNG output,
 // unique per flow: the encoding leans on it never being reused.
 const (
+	// URL of the hosted helper page for --noBrowser interaction.
+	NoBrowserRedirectURI = "https://dvtm994tafpir.cloudfront.net/"
+
 	pasteInfo          = "atlas-cli-paste-v1"
 	pasteChecksumChars = 4
 )
@@ -47,7 +50,7 @@ func ParsePastedCallback(r io.Reader, expectedState string) (string, error) {
 	}
 	raw = strings.TrimSpace(raw)
 
-	if strings.Contains(raw, "://") {
+	if strings.HasPrefix(raw, NoBrowserRedirectURI) {
 		return parseRedirectURL(raw, expectedState)
 	}
 	return decodePastedCode(raw, expectedState)
