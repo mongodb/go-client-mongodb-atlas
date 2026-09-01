@@ -18,11 +18,9 @@ import (
 	"context"
 	_ "embed"
 	"fmt"
-	"io"
 	"net"
 	"net/http"
 	"net/url"
-	"strings"
 )
 
 const callbackPath = "/atlas-cli/callback"
@@ -42,47 +40,6 @@ func writeCallbackPage(w http.ResponseWriter, status int, title, message string)
 		accent = "#970606"
 	}
 	fmt.Fprintf(w, callbackPage, title, accent, message)
-}
-
-// ParseCodeFromRedirectURL reads a pasted URL from r (pluggable for
-// testing), extracts the authorization code, and validates the state
-// parameter.
-func ParseCodeFromRedirectURL(r io.Reader, expectedState string) (string, error) {
-	var raw string
-	if _, err := fmt.Fscanln(r, &raw); err != nil {
-		return "", fmt.Errorf("failed to read URL: %w", err)
-	}
-	return parseRedirectURL(strings.TrimSpace(raw), expectedState)
-}
-
-// parseRedirectURL extracts the authorization code from a redirect URL and
-// validates the state parameter.
-func parseRedirectURL(raw, expectedState string) (string, error) {
-	u, err := url.Parse(raw)
-	if err != nil {
-		return "", fmt.Errorf("invalid URL: %w", err)
-	}
-
-	query := u.Query()
-
-	// Validate state first (CSRF protection — must precede surfacing any
-	// AS response data, otherwise an unsolicited callback could inject
-	// attacker-controlled content into the user-facing error message).
-	if query.Get("state") != expectedState {
-		return "", fmt.Errorf("state mismatch")
-	}
-
-	// OAuth error response from the AS (RFC 6749 §4.1.2.1).
-	if query.Get("error") != "" {
-		return "", fmt.Errorf("%s", formatOAuthError(query))
-	}
-
-	code := query.Get("code")
-	if code == "" {
-		return "", fmt.Errorf("no authorization code in URL")
-	}
-
-	return code, nil
 }
 
 // formatOAuthError builds the user-facing message for an RFC 6749 §4.1.2.1 /
