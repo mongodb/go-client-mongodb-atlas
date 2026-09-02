@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<!-- Redirect target for the CLI's no-browser connect flow. Encodes the
+     callback into the compact paste value decoded by paste_code.go in this
+     directory; the two implementations share the wire format and must change
+     together. Deployed as a static page at the NoBrowserRedirectURI constant's
+     address; not embedded in any binary. -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Atlas CLI — Finish connecting</title>
+<style>
+  body {
+    font-family: system-ui, -apple-system, sans-serif;
+    max-width: 40rem;
+    margin: 4rem auto;
+    padding: 0 1.5rem;
+    color: #1c2d38;
+  }
+  h1 { font-size: 1.3rem; }
+  #paste-value {
+    display: block;
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-size: 1.05rem;
+    background: #f3f5f4;
+    border: 1px solid #c1c7c6;
+    border-radius: 6px;
+    padding: 1rem;
+    margin: 1rem 0;
+    word-break: break-all;
+    user-select: all;
+  }
+  #copy-btn {
+    font-size: 1rem;
+    padding: 0.5rem 1.25rem;
+    border-radius: 6px;
+    border: 1px solid #1c2d38;
+    background: #00ed64;
+    cursor: pointer;
+  }
+  .error { color: #970606; }
+  .muted { color: #5c6c75; font-size: 0.9rem; }
+</style>
+</head>
+<body>
+<h1>Finish connecting the Atlas CLI</h1>
+
+<div id="content">
+  <!-- No-JS fallback; replaced by script when the value is computed. -->
+  <p>Copy the <strong>entire URL</strong> from your browser's address bar and
+  paste it into the waiting Atlas CLI prompt.</p>
+  <p class="muted">If JavaScript is enabled, a shorter code will appear here
+  instead.</p>
+</div>
+
+<script type="module">
+const INFO = "atlas-cli-paste-v1";
+const CHECKSUM_CHARS = 4;
+
+const b64urlNoPad = (bytes) =>
+  btoa(String.fromCharCode(...bytes))
+    .replaceAll("+", "-").replaceAll("/", "_").replace(/=+$/, "");
+
+async function keystream(state, len) {
+  const key = await crypto.subtle.importKey(
+    "raw", new TextEncoder().encode(state), "HKDF", false, ["deriveBits"]);
+  const bits = await crypto.subtle.deriveBits(
+    { name: "HKDF", hash: "SHA-256",
+      salt: new Uint8Array(0),
+      info: new TextEncoder().encode(INFO) },
+    key, len * 8);
+  return new Uint8Array(bits);
+}
+
+async function checksum(codeBytes) {
+  const digest = await crypto.subtle.digest("SHA-256", codeBytes);
+  return b64urlNoPad(new Uint8Array(digest)).slice(0, CHECKSUM_CHARS);
+}
+
+async function buildPasteValue(state, code) {
+  const codeBytes = new TextEncoder().encode(code);
+  const ks = await keystream(state, codeBytes.length);
+  const cipher = codeBytes.map((b, i) => b ^ ks[i]);
+  return b64urlNoPad(cipher) + await checksum(codeBytes);
+}
+
+function render(html) {
+  document.getElementById("content").innerHTML = html;
+}
+
+async function main() {
+  const params = new URLSearchParams(location.search);
+  const state = params.get("state");
+  const code = params.get("code");
+  const error = params.get("error");
+
+  if (error !== null) {
+    const desc = params.get("error_description");
+    const uri = params.get("error_uri");
+    render(`
+      <p class="error">The connection attempt failed:
+        <strong></strong></p>
+      <p class="error" id="err-desc"></p>
+      <p>Copy the <strong>entire URL</strong> from the address bar and paste
+      it into the waiting Atlas CLI prompt to report the failure there, or
+      close this page and retry the connection.</p>`);
+    document.querySelector("#content strong").textContent = error;
+    const d = document.getElementById("err-desc");
+    d.textContent = desc ?? "";
+    if (uri) {
+      const a = document.createElement("a");
+      a.href = uri;
+      a.textContent = "More information";
+      d.append(" — ", a);
+    }
+    return;
+  }
+
+  if (!state || !code) {
+    // Leave the copy-the-URL fallback in place; nothing to compute.
+    return;
+  }
+
+  const paste = await buildPasteValue(state, code);
+  render(`
+    <p>Paste this code into the waiting Atlas CLI prompt:</p>
+    <code id="paste-value"></code>
+    <button id="copy-btn">Copy</button>
+    <p class="muted">You can close this page once the CLI accepts the
+    code.</p>`);
+  document.getElementById("paste-value").textContent = paste;
+  document.getElementById("copy-btn").addEventListener("click", async (e) => {
+    await navigator.clipboard.writeText(paste);
+    e.target.textContent = "Copied";
+  });
+}
+
+main();
+</script>
+</body>
+</html>
