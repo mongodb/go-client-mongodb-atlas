@@ -33,8 +33,8 @@ import (
 )
 
 const (
-	// CloudURL is default base URL for the services.
-	CloudURL       = "https://cloud.mongodb.com/"
+	CloudURL       = "https://cloud.mongodb.com/"    // default base URL for the services
+	AuthServerURL  = "https://authorize.mongodb.com" // issuer identifier for the dedicated MongoDB OAuth Authorization Server
 	defaultBaseURL = CloudURL
 	jsonMediaType  = "application/json"
 	plainMediaType = "text/plain"
